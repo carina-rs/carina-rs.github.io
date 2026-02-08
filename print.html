@@ -1,0 +1,1081 @@
+<!DOCTYPE HTML>
+<html lang="en" class="latte sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Carina Documentation</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-a8b77836.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./theme/catppuccin.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "latte";
+            const default_dark_theme = "mocha";
+            window.path_to_searchindex_js = "searchindex-8f4f12f6.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-88885506.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('latte')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Carina Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="carina"><a class="header" href="#carina">Carina</a></h1>
+<p>A strongly typed infrastructure management tool written in Rust.</p>
+<h2 id="key-features"><a class="header" href="#key-features">Key Features</a></h2>
+<ul>
+<li><strong>Custom DSL</strong> for infrastructure definition (<code>.crn</code> files)</li>
+<li><strong>Effects as Values</strong> - side effects are represented as data, inspectable before execution</li>
+<li><strong>Strong Typing</strong> - resource attributes are validated at parse time</li>
+<li><strong>Provider Architecture</strong> - pluggable providers (AWS, AWSCC)</li>
+<li><strong>Modules</strong> - reusable infrastructure components</li>
+<li><strong>State Management</strong> - S3 backend for remote state</li>
+<li><strong>LSP Support</strong> - editor integration with completions and diagnostics</li>
+</ul>
+<h2 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h2>
+<pre><code class="language-bash"># Build from source
+cargo build --release
+
+# Validate a configuration
+cargo run --bin carina -- validate example.crn
+
+# Preview changes
+aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- plan example.crn
+
+# Apply changes
+aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
+</code></pre>
+<h2 id="providers"><a class="header" href="#providers">Providers</a></h2>
+<ul>
+<li><a href="#awscc-provider">AWSCC Provider</a> - AWS Cloud Control API provider</li>
+</ul>
+<p>For more details, see the <a href="https://github.com/mizzy/carina">README</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awscc-provider"><a class="header" href="#awscc-provider">AWSCC Provider</a></h1>
+<p>The <code>awscc</code> provider manages AWS resources through the <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/what-is-cloudcontrolapi.html">AWS Cloud Control API</a>.</p>
+<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
+<pre><code class="language-crn">provider awscc {
+  region = aws.Region.ap_northeast_1
+}
+</code></pre>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<p>Resources are defined using the <code>awscc.&lt;resource_type&gt;</code> syntax:</p>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "my-vpc"
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    Environment = "production"
+  }
+}
+</code></pre>
+<p>Named resources (using <code>let</code>) can be referenced by other resources:</p>
+<pre><code class="language-crn">let subnet = awscc.ec2_subnet {
+  name              = "my-subnet"
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+</code></pre>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<p>Some attributes accept enum values. These can be specified in three formats:</p>
+<ul>
+<li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
+<li><strong>TypeName.value</strong>: <code>instance_tenancy = InstanceTenancy.default</code></li>
+<li><strong>Full namespace</strong>: <code>instance_tenancy = awscc.ec2_vpc.InstanceTenancy.default</code></li>
+</ul>
+<h2 id="supported-resource-types"><a class="header" href="#supported-resource-types">Supported Resource Types</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Resource Type</th><th>CloudFormation Type</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="#awsccec2_vpc">ec2_vpc</a></td><td>AWS::EC2::VPC</td><td>Virtual Private Cloud</td></tr>
+<tr><td><a href="#awsccec2_subnet">ec2_subnet</a></td><td>AWS::EC2::Subnet</td><td>VPC Subnet</td></tr>
+<tr><td><a href="#awsccec2_internet_gateway">ec2_internet_gateway</a></td><td>AWS::EC2::InternetGateway</td><td>Internet Gateway</td></tr>
+<tr><td><a href="#awsccec2_vpc_gateway_attachment">ec2_vpc_gateway_attachment</a></td><td>AWS::EC2::VPCGatewayAttachment</td><td>VPC Gateway Attachment</td></tr>
+<tr><td><a href="#awsccec2_route_table">ec2_route_table</a></td><td>AWS::EC2::RouteTable</td><td>Route Table</td></tr>
+<tr><td><a href="#awsccec2_route">ec2_route</a></td><td>AWS::EC2::Route</td><td>Route</td></tr>
+<tr><td><a href="#awsccec2_subnet_route_table_association">ec2_subnet_route_table_association</a></td><td>AWS::EC2::SubnetRouteTableAssociation</td><td>Subnet Route Table Association</td></tr>
+<tr><td><a href="#awsccec2_eip">ec2_eip</a></td><td>AWS::EC2::EIP</td><td>Elastic IP Address</td></tr>
+<tr><td><a href="#awsccec2_nat_gateway">ec2_nat_gateway</a></td><td>AWS::EC2::NatGateway</td><td>NAT Gateway</td></tr>
+<tr><td><a href="#awsccec2_security_group">ec2_security_group</a></td><td>AWS::EC2::SecurityGroup</td><td>Security Group</td></tr>
+<tr><td><a href="#awsccec2_security_group_ingress">ec2_security_group_ingress</a></td><td>AWS::EC2::SecurityGroupIngress</td><td>Security Group Ingress Rule</td></tr>
+<tr><td><a href="#awsccec2_security_group_egress">ec2_security_group_egress</a></td><td>AWS::EC2::SecurityGroupEgress</td><td>Security Group Egress Rule</td></tr>
+<tr><td><a href="#awsccec2_vpc_endpoint">ec2_vpc_endpoint</a></td><td>AWS::EC2::VPCEndpoint</td><td>VPC Endpoint</td></tr>
+<tr><td><a href="#awsccec2_flow_log">ec2_flow_log</a></td><td>AWS::EC2::FlowLog</td><td>VPC Flow Log</td></tr>
+</tbody>
+</table>
+</div>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_vpc"><a class="header" href="#awsccec2_vpc">awscc.ec2_vpc</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPC</code></p>
+<p>Specifies a virtual private cloud (VPC).
+To add an IPv6 CIDR block to the VPC, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html">AWS::EC2::VPCCidrBlock</a>.
+For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html">Virtual private clouds (VPC)</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</td></tr>
+<tr><td><code>cidr_block_associations</code></td><td>List</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>default_network_acl</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>default_security_group</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>enable_dns_hostnames</code></td><td>Bool</td><td>No</td><td>Indicates whether the instances launched in the VPC get DNS hostnames. If enabled, instances in the VPC get DNS hostnames; otherwise, they do not. Disabled by default for nondefault VPCs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support">DNS attributes in your VPC</a>. You can only enable DNS hostnames if you’ve enabled DNS support.</td></tr>
+<tr><td><code>enable_dns_support</code></td><td>Bool</td><td>No</td><td>Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range “plus two” succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled. Enabled by default. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support">DNS attributes in your VPC</a>.</td></tr>
+<tr><td><code>instance_tenancy</code></td><td>Enum (InstanceTenancy)</td><td>No</td><td>The allowed tenancy of instances launched into the VPC.  + <code>default</code>: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.  + <code>dedicated</code>: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of <code>host</code> during instance launch. You cannot specify a tenancy of <code>default</code> during instance launch.   Updating <code>InstanceTenancy</code> requires no replacement only if you are updating its value from <code>dedicated</code> to <code>default</code>. Updating <code>InstanceTenancy</code> from <code>default</code> to <code>dedicated</code> requires replacement.</td></tr>
+<tr><td><code>ipv4_ipam_pool_id</code></td><td>String</td><td>No</td><td>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</td></tr>
+<tr><td><code>ipv4_netmask_length</code></td><td>Int</td><td>No</td><td>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>.</td></tr>
+<tr><td><code>ipv6_cidr_blocks</code></td><td>List</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>The tags for the VPC.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="enum-values-1"><a class="header" href="#enum-values-1">Enum Values</a></h2>
+<h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>default</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.default</code></td></tr>
+<tr><td><code>dedicated</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.dedicated</code></td></tr>
+<tr><td><code>host</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.host</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>default</code> or <code>InstanceTenancy.default</code></p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+  instance_tenancy     = default
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_subnet"><a class="header" href="#awsccec2_subnet">awscc.ec2_subnet</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::Subnet</code></p>
+<p>Specifies a subnet for the specified VPC.
+For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.
+For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html">Subnets for your VPC</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="attributes-1"><a class="header" href="#attributes-1">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>assign_ipv6_address_on_creation</code></td><td>Bool</td><td>No</td><td>Indicates whether a network interface created in this subnet receives an IPv6 address. The default value is <code>false</code>. If you specify <code>AssignIpv6AddressOnCreation</code>, you must also specify an IPv6 CIDR block.</td></tr>
+<tr><td><code>availability_zone</code></td><td>String</td><td>No</td><td>The Availability Zone of the subnet. If you update this property, you must also update the <code>CidrBlock</code> property.</td></tr>
+<tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>The AZ ID of the subnet.</td></tr>
+<tr><td><code>block_public_access_states</code></td><td>Map</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv4 CIDR block assigned to the subnet. If you update this property, we create a new subnet, and then delete the existing one.</td></tr>
+<tr><td><code>enable_dns64</code></td><td>Bool</td><td>No</td><td>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.  You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a <code>0.0.0.0/0</code> route pointing to the internet gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough">Configure DNS64 and NAT64</a> in the <em>User Guide</em>.</td></tr>
+<tr><td><code>enable_lni_at_device_index</code></td><td>Int</td><td>No</td><td>Indicates the device position for local network interfaces in this subnet. For example, <code>1</code> indicates local network interfaces in this subnet are the secondary network interface (eth1).</td></tr>
+<tr><td><code>ipv4_ipam_pool_id</code></td><td>String</td><td>No</td><td>An IPv4 IPAM pool ID for the subnet.</td></tr>
+<tr><td><code>ipv4_netmask_length</code></td><td>Int</td><td>No</td><td>An IPv4 netmask length for the subnet.</td></tr>
+<tr><td><code>ipv6_cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv6 CIDR block. If you specify <code>AssignIpv6AddressOnCreation</code>, you must also specify an IPv6 CIDR block.</td></tr>
+<tr><td><code>ipv6_cidr_blocks</code></td><td>List</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>ipv6_ipam_pool_id</code></td><td>String</td><td>No</td><td>An IPv6 IPAM pool ID for the subnet.</td></tr>
+<tr><td><code>ipv6_native</code></td><td>Bool</td><td>No</td><td>Indicates whether this is an IPv6 only subnet. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">Subnet basics</a> in the <em>User Guide</em>.</td></tr>
+<tr><td><code>ipv6_netmask_length</code></td><td>Int</td><td>No</td><td>An IPv6 netmask length for the subnet.</td></tr>
+<tr><td><code>map_public_ip_on_launch</code></td><td>Bool</td><td>No</td><td>Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is <code>false</code>. AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the <em>Public IPv4 Address</em> tab on the <a href="https://docs.aws.amazon.com/vpc/pricing/">VPC pricing page</a>.</td></tr>
+<tr><td><code>network_acl_association_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>outpost_arn</code></td><td>String</td><td>No</td><td>The Amazon Resource Name (ARN) of the Outpost.</td></tr>
+<tr><td><code>private_dns_name_options_on_launch</code></td><td>Map</td><td>No</td><td>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</td></tr>
+<tr><td><code>subnet_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags assigned to the subnet.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>Yes</td><td>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+awscc.ec2_subnet {
+  name                    = "example-public-subnet"
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_internet_gateway"><a class="header" href="#awsccec2_internet_gateway">awscc.ec2_internet_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
+<p>Allocates an internet gateway for use with a VPC. After creating the Internet gateway, you then attach it to a VPC.</p>
+<h2 id="attributes-2"><a class="header" href="#attributes-2">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>internet_gateway_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags to assign to the internet gateway.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_internet_gateway {
+  name = "example-igw"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_route_table"><a class="header" href="#awsccec2_route_table">awscc.ec2_route_table</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
+<p>Specifies a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.
+For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html">Route tables</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="attributes-3"><a class="header" href="#attributes-3">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>route_table_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags assigned to the route table.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>Yes</td><td>The ID of the VPC.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+awscc.ec2_route_table {
+  name   = "example-public-rt"
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_route"><a class="header" href="#awsccec2_route">awscc.ec2_route</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::Route</code></p>
+<p>Specifies a route in a route table. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes">Routes</a> in the <em>Amazon VPC User Guide</em>.
+You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
+If you create a route that references a transit gateway in the same template where you create the transit gateway, you must declare a dependency on the transit gateway attachment. The route table cannot use the transit gateway until it has successfully attached to the VPC. Add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> in the <code>AWS::EC2::Route</code> resource to explicitly declare a dependency on the <code>AWS::EC2::TransitGatewayAttachment</code> resource.</p>
+<h2 id="attributes-4"><a class="header" href="#attributes-4">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>carrier_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</td></tr>
+<tr><td><code>cidr_block</code></td><td>CIDR</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>core_network_arn</code></td><td>String</td><td>No</td><td>The Amazon Resource Name (ARN) of the core network.</td></tr>
+<tr><td><code>destination_cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</td></tr>
+<tr><td><code>destination_ipv6_cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</td></tr>
+<tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td>The ID of a prefix list used for the destination match.</td></tr>
+<tr><td><code>egress_only_internet_gateway_id</code></td><td>String</td><td>No</td><td>[IPv6 traffic only] The ID of an egress-only internet gateway.</td></tr>
+<tr><td><code>gateway_id</code></td><td>String</td><td>No</td><td>The ID of an internet gateway or virtual private gateway attached to your VPC.</td></tr>
+<tr><td><code>instance_id</code></td><td>String</td><td>No</td><td>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</td></tr>
+<tr><td><code>local_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the local gateway.</td></tr>
+<tr><td><code>nat_gateway_id</code></td><td>String</td><td>No</td><td>[IPv4 traffic only] The ID of a NAT gateway.</td></tr>
+<tr><td><code>network_interface_id</code></td><td>String</td><td>No</td><td>The ID of a network interface.</td></tr>
+<tr><td><code>route_table_id</code></td><td>String</td><td>Yes</td><td>The ID of the route table for the route.</td></tr>
+<tr><td><code>transit_gateway_id</code></td><td>String</td><td>No</td><td>The ID of a transit gateway.</td></tr>
+<tr><td><code>vpc_endpoint_id</code></td><td>String</td><td>No</td><td>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</td></tr>
+<tr><td><code>vpc_peering_connection_id</code></td><td>String</td><td>No</td><td>The ID of a VPC peering connection.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let igw = awscc.ec2_internet_gateway {
+  name = "example-igw"
+}
+
+let igw_attachment = awscc.ec2_vpc_gateway_attachment {
+  name                = "example-igw-attachment"
+  vpc_id              = vpc.vpc_id
+  internet_gateway_id = igw.internet_gateway_id
+}
+
+let rt = awscc.ec2_route_table {
+  name   = "example-public-rt"
+  vpc_id = vpc.vpc_id
+}
+
+awscc.ec2_route {
+  name                   = "example-internet-route"
+  route_table_id         = rt.route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = igw_attachment.internet_gateway_id
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_subnet_route_table_association"><a class="header" href="#awsccec2_subnet_route_table_association">awscc.ec2_subnet_route_table_association</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SubnetRouteTableAssociation</code></p>
+<p>Associates a subnet with a route table. The subnet and route table must be in the same VPC. This association causes traffic originating from the subnet to be routed according to the routes in the route table. A route table can be associated with multiple subnets. To create a route table, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html">AWS::EC2::RouteTable</a>.</p>
+<h2 id="attributes-5"><a class="header" href="#attributes-5">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>route_table_id</code></td><td>String</td><td>Yes</td><td>The ID of the route table. The physical ID changes when the route table ID is changed.</td></tr>
+<tr><td><code>subnet_id</code></td><td>String</td><td>Yes</td><td>The ID of the subnet.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let subnet = awscc.ec2_subnet {
+  name              = "example-subnet"
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+
+let rt = awscc.ec2_route_table {
+  name   = "example-rt"
+  vpc_id = vpc.vpc_id
+}
+
+awscc.ec2_subnet_route_table_association {
+  name           = "example-subnet-rt-assoc"
+  subnet_id      = subnet.subnet_id
+  route_table_id = rt.route_table_id
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_eip"><a class="header" href="#awsccec2_eip">awscc.ec2_eip</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::EIP</code></p>
+<p>Specifies an Elastic IP (EIP) address and can, optionally, associate it with an Amazon EC2 instance.
+You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring Your Own IP Addresses (BYOIP)</a> in the <em>Amazon EC2 User Guide</em>.
+For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <em>Amazon EC2 User Guide</em>.</p>
+<h2 id="attributes-6"><a class="header" href="#attributes-6">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>address</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>allocation_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>domain</code></td><td>String</td><td>No</td><td>The network (<code>vpc</code>). If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> on this resource.</td></tr>
+<tr><td><code>instance_id</code></td><td>String</td><td>No</td><td>The ID of the instance.  Updates to the <code>InstanceId</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</td></tr>
+<tr><td><code>ipam_pool_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>network_border_group</code></td><td>String</td><td>No</td><td>A unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups. Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html">DescribeAvailabilityZones</a> to view the network border groups.</td></tr>
+<tr><td><code>public_ip</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>public_ipv4_pool</code></td><td>String</td><td>No</td><td>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool.  Updates to the <code>PublicIpv4Pool</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags assigned to the Elastic IP address.  Updates to the <code>Tags</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</td></tr>
+<tr><td><code>transfer_address</code></td><td>String</td><td>No</td><td>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_eip {
+  name   = "example-eip"
+  domain = "vpc"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_nat_gateway"><a class="header" href="#awsccec2_nat_gateway">awscc.ec2_nat_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::NatGateway</code></p>
+<p>Specifies a network address translation (NAT) gateway in the specified subnet. You can create either a public NAT gateway or a private NAT gateway. The default is a public NAT gateway. If you create a public NAT gateway, you must specify an elastic IP address.
+With a NAT gateway, instances in a private subnet can connect to the internet, other AWS services, or an on-premises network using the IP address of the NAT gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateways</a> in the <em>Amazon VPC User Guide</em>.
+If you add a default route (<code>AWS::EC2::Route</code> resource) that points to a NAT gateway, specify the NAT gateway ID for the route’s <code>NatGatewayId</code> property.
+When you associate an Elastic IP address or secondary Elastic IP address with a public NAT gateway, the network border group of the Elastic IP address must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. Otherwise, the NAT gateway fails to launch. You can see the network border group for the AZ by viewing the details of the subnet. Similarly, you can view the network border group for the Elastic IP address by viewing its details. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate an Elastic IP address</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="attributes-7"><a class="header" href="#attributes-7">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>allocation_id</code></td><td>String</td><td>No</td><td>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</td></tr>
+<tr><td><code>auto_provision_zones</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>auto_scaling_ips</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>availability_mode</code></td><td>String</td><td>No</td><td>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
+<tr><td><code>availability_zone_addresses</code></td><td>List</td><td>No</td><td>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
+<tr><td><code>connectivity_type</code></td><td>String</td><td>No</td><td>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</td></tr>
+<tr><td><code>eni_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>max_drain_duration_seconds</code></td><td>Int</td><td>No</td><td>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</td></tr>
+<tr><td><code>nat_gateway_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>private_ip_address</code></td><td>String</td><td>No</td><td>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</td></tr>
+<tr><td><code>route_table_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>secondary_allocation_ids</code></td><td>List</td><td>No</td><td>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
+<tr><td><code>secondary_private_ip_address_count</code></td><td>Int</td><td>No</td><td>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</td></tr>
+<tr><td><code>secondary_private_ip_addresses</code></td><td>List</td><td>No</td><td>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</td></tr>
+<tr><td><code>subnet_id</code></td><td>String</td><td>No</td><td>The ID of the subnet in which the NAT gateway is located.</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>The tags for the NAT gateway.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>No</td><td>The ID of the VPC in which the NAT gateway is located.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let public_subnet = awscc.ec2_subnet {
+  name                    = "example-public-subnet"
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+}
+
+let eip = awscc.ec2_eip {
+  name   = "example-nat-eip"
+  domain = "vpc"
+}
+
+awscc.ec2_nat_gateway {
+  name          = "example-nat-gw"
+  allocation_id = eip.allocation_id
+  subnet_id     = public_subnet.subnet_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_security_group"><a class="header" href="#awsccec2_security_group">awscc.ec2_security_group</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroup</code></p>
+<p>Resource Type definition for AWS::EC2::SecurityGroup</p>
+<h2 id="attributes-8"><a class="header" href="#attributes-8">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>group_description</code></td><td>String</td><td>Yes</td><td>A description for the security group.</td></tr>
+<tr><td><code>group_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>group_name</code></td><td>String</td><td>No</td><td>The name of the security group.</td></tr>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>security_group_egress</code></td><td>List</td><td>No</td><td>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</td></tr>
+<tr><td><code>security_group_ingress</code></td><td>List</td><td>No</td><td>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags assigned to the security group.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>No</td><td>The ID of the VPC for the security group.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "example-vpc"
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2_security_group {
+  name              = "example-sg"
+  vpc_id            = vpc.vpc_id
+  group_description = "Example security group"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_security_group_ingress"><a class="header" href="#awsccec2_security_group_ingress">awscc.ec2_security_group_ingress</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
+<p>Resource Type definition for AWS::EC2::SecurityGroupIngress</p>
+<h2 id="attributes-9"><a class="header" href="#attributes-9">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td>The IPv4 ranges</td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td>[VPC only] The IPv6 ranges</td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously</td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</td></tr>
+<tr><td><code>group_id</code></td><td>String</td><td>No</td><td>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</td></tr>
+<tr><td><code>group_name</code></td><td>String</td><td>No</td><td>The name of the security group.</td></tr>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td>The IP protocol name (tcp, udp, icmp, icmpv6) or number (see Protocol Numbers). [VPC only] Use -1 to specify all protocols. When authorizing security group rules, specifying -1 or a protocol number other than tcp, udp, icmp, or icmpv6 allows traffic on all ports, regardless of any port range you specify. For tcp, udp, and icmp, you must specify a port range. For icmpv6, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</td></tr>
+<tr><td><code>source_prefix_list_id</code></td><td>String</td><td>No</td><td>[EC2-VPC only] The ID of a prefix list.</td></tr>
+<tr><td><code>source_security_group_id</code></td><td>String</td><td>No</td><td>The ID of the security group. You must specify either the security group ID or the security group name. For security groups in a nondefault VPC, you must specify the security group ID.</td></tr>
+<tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td>[EC2-Classic, default VPC] The name of the source security group. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</td></tr>
+<tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td>[nondefault VPC] The AWS account ID that owns the source security group. You can’t specify this property with an IP address range. If you specify SourceSecurityGroupName or SourceSecurityGroupId and that security group is owned by a different account than the account creating the stack, you must specify the SourceSecurityGroupOwnerId; otherwise, this property is optional.</td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "example-vpc"
+  cidr_block = "10.0.0.0/16"
+}
+
+let sg = awscc.ec2_security_group {
+  name              = "example-sg"
+  vpc_id            = vpc.vpc_id
+  group_description = "Example security group"
+}
+
+awscc.ec2_security_group_ingress {
+  name        = "example-https-ingress"
+  group_id    = sg.group_id
+  description = "Allow HTTPS from VPC"
+  ip_protocol = "tcp"
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "10.0.0.0/16"
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_security_group_egress"><a class="header" href="#awsccec2_security_group_egress">awscc.ec2_security_group_egress</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
+<p>Adds the specified outbound (egress) rule to a security group.
+An outbound rule permits instances to send traffic to the specified IPv4 or IPv6 address range, the IP addresses that are specified by a prefix list, or the instances that are associated with a destination security group. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html">Security group rules</a>.
+You must specify exactly one of the following destinations: an IPv4 address range, an IPv6 address range, a prefix list, or a security group.
+You must specify a protocol for each rule (for example, TCP). If the protocol is TCP or UDP, you must also specify a port or port range. If the protocol is ICMP or ICMPv6, you must also specify the ICMP/ICMPv6 type and code. To specify all types or all codes, use -1.
+Rule changes are propagated to instances associated with the security group as quickly as possible. However, a small delay might occur.</p>
+<h2 id="attributes-10"><a class="header" href="#attributes-10">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td>The IPv4 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td>The IPv6 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td>The description of an egress (outbound) security group rule. Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</td></tr>
+<tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td>The prefix list IDs for an AWS service. This is the AWS service to access through a VPC endpoint from instances associated with the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</td></tr>
+<tr><td><code>destination_security_group_id</code></td><td>String</td><td>No</td><td>The ID of the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).</td></tr>
+<tr><td><code>group_id</code></td><td>String</td><td>Yes</td><td>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID.</td></tr>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>ip_protocol</code></td><td>Enum (IpProtocol)</td><td>Yes</td><td>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href="https://docs.aws.amazon.com/http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.-1</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "example-vpc"
+  cidr_block = "10.0.0.0/16"
+}
+
+let sg = awscc.ec2_security_group {
+  name              = "example-sg"
+  vpc_id            = vpc.vpc_id
+  group_description = "Example security group"
+}
+
+awscc.ec2_security_group_egress {
+  name        = "example-all-outbound"
+  group_id    = sg.group_id
+  description = "Allow all outbound traffic"
+  ip_protocol = "-1"
+  cidr_ip     = "0.0.0.0/0"
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_vpc_endpoint"><a class="header" href="#awsccec2_vpc_endpoint">awscc.ec2_vpc_endpoint</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPCEndpoint</code></p>
+<p>Specifies a VPC endpoint. A VPC endpoint provides a private connection between your VPC and an endpoint service. You can use an endpoint service provided by AWS, an MKT Partner, or another AWS accounts in your organization. For more information, see the <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/">User Guide</a>.
+An endpoint of type <code>Interface</code> establishes connections between the subnets in your VPC and an AWS-service, your own service, or a service hosted by another AWS-account. With an interface VPC endpoint, you specify the subnets in which to create the endpoint and the security groups to associate with the endpoint network interfaces.
+An endpoint of type <code>gateway</code> serves as a target for a route in your route table for traffic destined for S3 or DDB. You can specify an endpoint policy for the endpoint, which controls access to the service from your VPC. You can also specify the VPC route tables that use the endpoint. For more information about connectivity to S3, see <a href="https://docs.aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint">Why can’t I connect to an S3 bucket using a gateway VPC endpoint?</a>
+An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivity between your VPC and virtual appliances from a service provider.</p>
+<h2 id="attributes-11"><a class="header" href="#attributes-11">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>creation_timestamp</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>dns_entries</code></td><td>List</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>dns_options</code></td><td>String</td><td>No</td><td>Describes the DNS options for an endpoint.</td></tr>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>ip_address_type</code></td><td>Enum (IpAddressType)</td><td>No</td><td>The supported IP address types.</td></tr>
+<tr><td><code>network_interface_ids</code></td><td>List</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>policy_document</code></td><td>String</td><td>No</td><td>An endpoint policy, which controls access to the service from the VPC. The default endpoint policy allows full access to the service. Endpoint policies are supported only for gateway and interface endpoints. For CloudFormation templates in YAML, you can provide the policy in JSON or YAML format. For example, if you have a JSON policy, you can convert it to YAML before including it in the YAML template, and CFNlong converts the policy to JSON format before calling the API actions for privatelink. Alternatively, you can include the JSON directly in the YAML, as shown in the following <code>Properties</code> section: <code>Properties: VpcEndpointType: 'Interface' ServiceName: !Sub 'com.amazonaws.${AWS::Region}.logs' PolicyDocument: '{ "Version":"2012-10-17", "Statement": [{ "Effect":"Allow", "Principal":"*", "Action":["logs:Describe*","logs:Get*","logs:List*","logs:FilterLogEvents"], "Resource":"*" }] }'</code></td></tr>
+<tr><td><code>private_dns_enabled</code></td><td>Bool</td><td>No</td><td>Indicate whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, <code>kinesis.us-east-1.amazonaws.com</code>), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service. To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. This property is supported only for interface endpoints. Default: <code>false</code></td></tr>
+<tr><td><code>resource_configuration_arn</code></td><td>String</td><td>No</td><td>The Amazon Resource Name (ARN) of the resource configuration.</td></tr>
+<tr><td><code>route_table_ids</code></td><td>List</td><td>No</td><td>The IDs of the route tables. Routing is supported only for gateway endpoints.</td></tr>
+<tr><td><code>security_group_ids</code></td><td>List</td><td>No</td><td>The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints.</td></tr>
+<tr><td><code>service_name</code></td><td>String</td><td>No</td><td>The name of the endpoint service.</td></tr>
+<tr><td><code>service_network_arn</code></td><td>String</td><td>No</td><td>The Amazon Resource Name (ARN) of the service network.</td></tr>
+<tr><td><code>service_region</code></td><td>String</td><td>No</td><td>Describes a Region.</td></tr>
+<tr><td><code>subnet_ids</code></td><td>List</td><td>No</td><td>The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can’t specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>The tags to associate with the endpoint.</td></tr>
+<tr><td><code>vpc_endpoint_type</code></td><td>Enum (VpcEndpointType)</td><td>No</td><td>The type of endpoint. Default: Gateway</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>Yes</td><td>The ID of the VPC.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
+<h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ipv4</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv4</code></td></tr>
+<tr><td><code>ipv6</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv6</code></td></tr>
+<tr><td><code>dualstack</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.dualstack</code></td></tr>
+<tr><td><code>not-specified</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.not-specified</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ipv4</code> or <code>IpAddressType.ipv4</code></p>
+<h3 id="vpc_endpoint_type-vpcendpointtype"><a class="header" href="#vpc_endpoint_type-vpcendpointtype">vpc_endpoint_type (VpcEndpointType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Interface</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Interface</code></td></tr>
+<tr><td><code>Gateway</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Gateway</code></td></tr>
+<tr><td><code>GatewayLoadBalancer</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.GatewayLoadBalancer</code></td></tr>
+<tr><td><code>ServiceNetwork</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.ServiceNetwork</code></td></tr>
+<tr><td><code>Resource</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Resource</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Interface</code> or <code>VpcEndpointType.Interface</code></p>
+<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let subnet = awscc.ec2_subnet {
+  name              = "example-private-subnet"
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.100.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+
+let sg = awscc.ec2_security_group {
+  name              = "example-endpoint-sg"
+  vpc_id            = vpc.vpc_id
+  group_description = "SG for VPC Endpoint"
+}
+
+awscc.ec2_security_group_ingress {
+  name        = "example-endpoint-https"
+  group_id    = sg.group_id
+  description = "Allow HTTPS from VPC"
+  ip_protocol = "tcp"
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "10.0.0.0/16"
+}
+
+awscc.ec2_vpc_endpoint {
+  name                = "example-ecr-dkr"
+  vpc_id              = vpc.vpc_id
+  service_name        = "com.amazonaws.ap-northeast-1.ecr.dkr"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = [subnet.subnet_id]
+  security_group_ids  = [sg.group_id]
+  private_dns_enabled = true
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_vpc_gateway_attachment"><a class="header" href="#awsccec2_vpc_gateway_attachment">awscc.ec2_vpc_gateway_attachment</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPCGatewayAttachment</code></p>
+<p>Resource Type definition for AWS::EC2::VPCGatewayAttachment</p>
+<h2 id="attributes-12"><a class="header" href="#attributes-12">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>attachment_type</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>internet_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the internet gateway. You must specify either InternetGatewayId or VpnGatewayId, but not both.</td></tr>
+<tr><td><code>vpc_id</code></td><td>String</td><td>Yes</td><td>The ID of the VPC.</td></tr>
+<tr><td><code>vpn_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the virtual private gateway. You must specify either InternetGatewayId or VpnGatewayId, but not both.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-12"><a class="header" href="#example-12">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name                 = "example-vpc"
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let igw = awscc.ec2_internet_gateway {
+  name = "example-igw"
+}
+
+awscc.ec2_vpc_gateway_attachment {
+  name                = "example-igw-attachment"
+  vpc_id              = vpc.vpc_id
+  internet_gateway_id = igw.internet_gateway_id
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_flow_log"><a class="header" href="#awsccec2_flow_log">awscc.ec2_flow_log</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::FlowLog</code></p>
+<p>Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.</p>
+<h2 id="attributes-13"><a class="header" href="#attributes-13">Attributes</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>deliver_cross_account_role</code></td><td>String</td><td>No</td><td>The ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts.</td></tr>
+<tr><td><code>deliver_logs_permission_arn</code></td><td>String</td><td>No</td><td>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</td></tr>
+<tr><td><code>destination_options</code></td><td>Map</td><td>No</td><td></td></tr>
+<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
+<tr><td><code>log_destination</code></td><td>String</td><td>No</td><td>Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group, an Amazon S3 bucket, or a Kinesis Firehose stream. The value specified for this parameter depends on the value specified for LogDestinationType.</td></tr>
+<tr><td><code>log_destination_type</code></td><td>Enum (LogDestinationType)</td><td>No</td><td>Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3.</td></tr>
+<tr><td><code>log_format</code></td><td>String</td><td>No</td><td>The fields to include in the flow log record, in the order in which they should appear.</td></tr>
+<tr><td><code>log_group_name</code></td><td>String</td><td>No</td><td>The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</td></tr>
+<tr><td><code>max_aggregation_interval</code></td><td>Int</td><td>No</td><td>The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).</td></tr>
+<tr><td><code>resource_id</code></td><td>String</td><td>Yes</td><td>The ID of the subnet, network interface, or VPC for which you want to create a flow log.</td></tr>
+<tr><td><code>resource_type</code></td><td>Enum (ResourceType)</td><td>Yes</td><td>The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.</td></tr>
+<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>The tags to apply to the flow logs.</td></tr>
+<tr><td><code>traffic_type</code></td><td>Enum (TrafficType)</td><td>No</td><td>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
+<h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.cloud-watch-logs</code></td></tr>
+<tr><td><code>s3</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.s3</code></td></tr>
+<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.kinesis-data-firehose</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>cloud-watch-logs</code> or <code>LogDestinationType.cloud-watch-logs</code></p>
+<h3 id="resource_type-resourcetype"><a class="header" href="#resource_type-resourcetype">resource_type (ResourceType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>NetworkInterface</code></td><td><code>awscc.ec2_flow_log.ResourceType.NetworkInterface</code></td></tr>
+<tr><td><code>Subnet</code></td><td><code>awscc.ec2_flow_log.ResourceType.Subnet</code></td></tr>
+<tr><td><code>VPC</code></td><td><code>awscc.ec2_flow_log.ResourceType.VPC</code></td></tr>
+<tr><td><code>TransitGateway</code></td><td><code>awscc.ec2_flow_log.ResourceType.TransitGateway</code></td></tr>
+<tr><td><code>TransitGatewayAttachment</code></td><td><code>awscc.ec2_flow_log.ResourceType.TransitGatewayAttachment</code></td></tr>
+<tr><td><code>RegionalNatGateway</code></td><td><code>awscc.ec2_flow_log.ResourceType.RegionalNatGateway</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>NetworkInterface</code> or <code>ResourceType.NetworkInterface</code></p>
+<h3 id="traffic_type-traffictype"><a class="header" href="#traffic_type-traffictype">traffic_type (TrafficType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ACCEPT</code></td><td><code>awscc.ec2_flow_log.TrafficType.ACCEPT</code></td></tr>
+<tr><td><code>ALL</code></td><td><code>awscc.ec2_flow_log.TrafficType.ALL</code></td></tr>
+<tr><td><code>REJECT</code></td><td><code>awscc.ec2_flow_log.TrafficType.REJECT</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ACCEPT</code> or <code>TrafficType.ACCEPT</code></p>
+<h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "example-vpc"
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2_flow_log {
+  name                 = "example-flow-log"
+  resource_id          = vpc.vpc_id
+  resource_type        = VPC
+  traffic_type         = ALL
+  log_destination_type = s3
+  log_destination      = "arn:aws:s3:::example-flow-logs-bucket"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-61f896a8.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
