@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -176,12 +176,7 @@
                         <h1 id="awsccec2_subnet_route_table_association"><a class="header" href="#awsccec2_subnet_route_table_association">awscc.ec2_subnet_route_table_association</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SubnetRouteTableAssociation</code></p>
 <p>Associates a subnet with a route table. The subnet and route table must be in the same VPC. This association causes traffic originating from the subnet to be routed according to the routes in the route table. A route table can be associated with multiple subnets. To create a route table, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html">AWS::EC2::RouteTable</a>.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -194,6 +189,11 @@
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the subnet.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

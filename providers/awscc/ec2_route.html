@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -178,18 +178,13 @@
 <p>Specifies a route in a route table. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes">Routes</a> in the <em>Amazon VPC User Guide</em>.
 You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
 If you create a route that references a transit gateway in the same template where you create the transit gateway, you must declare a dependency on the transit gateway attachment. The route table cannot use the transit gateway until it has successfully attached to the VPC. Add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> in the <code>AWS::EC2::Route</code> resource to explicitly declare a dependency on the <code>AWS::EC2::TransitGatewayAttachment</code> resource.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id"><a class="header" href="#carrier_gateway_id"><code>carrier_gateway_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
-<h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Ipv4Cidr</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="core_network_arn"><a class="header" href="#core_network_arn"><code>core_network_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
@@ -274,6 +269,11 @@ If you create a route that references a transit gateway in the same template whe
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a VPC peering connection.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

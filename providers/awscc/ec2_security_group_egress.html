@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -180,7 +180,7 @@ An outbound rule permits instances to send traffic to the specified IPv4 or IPv6
 You must specify exactly one of the following destinations: an IPv4 address range, an IPv6 address range, a prefix list, or a security group.
 You must specify a protocol for each rule (for example, TCP). If the protocol is TCP or UDP, you must also specify a port or port range. If the protocol is ICMP or ICMPv6, you must also specify the ICMP/ICMPv6 type and code. To specify all types or all codes, use -1.
 Rule changes are propagated to instances associated with the security group as quickly as possible. However, a small delay might occur.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
@@ -223,11 +223,6 @@ Rule changes are propagated to instances associated with the security group as q
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID.</p>
-<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Enum (IpProtocol)</li>
@@ -240,6 +235,11 @@ Rule changes are propagated to instances associated with the security group as q
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">

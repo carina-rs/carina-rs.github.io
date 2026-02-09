@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -178,28 +178,13 @@
 <p>Specifies a virtual private cloud (VPC).
 To add an IPv6 CIDR block to the VPC, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html">AWS::EC2::VPCCidrBlock</a>.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html">Virtual private clouds (VPC)</a> in the <em>Amazon VPC User Guide</em>.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
-<h3 id="cidr_block_associations"><a class="header" href="#cidr_block_associations"><code>cidr_block_associations</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List</li>
-<li><strong>Read-only</strong></li>
-</ul>
-<h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
-<h3 id="default_security_group"><a class="header" href="#default_security_group"><code>default_security_group</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="enable_dns_hostnames"><a class="header" href="#enable_dns_hostnames"><code>enable_dns_hostnames</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
@@ -230,21 +215,32 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>.</p>
-<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the VPC.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="cidr_block_associations"><a class="header" href="#cidr_block_associations"><code>cidr_block_associations</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+</ul>
+<h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="default_security_group"><a class="header" href="#default_security_group"><code>default_security_group</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+</ul>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>

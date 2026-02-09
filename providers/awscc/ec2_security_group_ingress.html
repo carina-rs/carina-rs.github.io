@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -176,7 +176,7 @@
                         <h1 id="awsccec2_security_group_ingress"><a class="header" href="#awsccec2_security_group_ingress">awscc.ec2_security_group_ingress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
 <p>Resource Type definition for AWS::EC2::SecurityGroupIngress</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
@@ -213,11 +213,6 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The name of the security group.</p>
-<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Enum (IpProtocol)</li>
@@ -254,6 +249,11 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">

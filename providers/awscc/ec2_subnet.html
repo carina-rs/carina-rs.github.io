@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -178,7 +178,7 @@
 <p>Specifies a subnet for the specified VPC.
 For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html">Subnets for your VPC</a> in the <em>Amazon VPC User Guide</em>.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="assign_ipv6_address_on_creation"><a class="header" href="#assign_ipv6_address_on_creation"><code>assign_ipv6_address_on_creation</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
@@ -197,11 +197,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The AZ ID of the subnet.</p>
-<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Struct(BlockPublicAccessStates)</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
@@ -238,11 +233,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv6 CIDR block. If you specify <code>AssignIpv6AddressOnCreation</code>, you must also specify an IPv6 CIDR block.</p>
-<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="ipv6_ipam_pool_id"><a class="header" href="#ipv6_ipam_pool_id"><code>ipv6_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -267,11 +257,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether instances launched in this subnet receive a public IPv4 address. The default value is <code>false</code>. AWS charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the <em>Public IPv4 Address</em> tab on the <a href="https://docs.aws.amazon.com/vpc/pricing/">VPC pricing page</a>.</p>
-<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="outpost_arn"><a class="header" href="#outpost_arn"><code>outpost_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
@@ -284,11 +269,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
-<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
@@ -301,6 +281,23 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Struct(BlockPublicAccessStates)</li>
+</ul>
+<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+</ul>
+<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
 <div class="table-wrapper">

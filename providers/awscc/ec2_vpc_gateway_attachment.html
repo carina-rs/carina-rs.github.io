@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -176,12 +176,7 @@
                         <h1 id="awsccec2_vpc_gateway_attachment"><a class="header" href="#awsccec2_vpc_gateway_attachment">awscc.ec2_vpc_gateway_attachment</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCGatewayAttachment</code></p>
 <p>Resource Type definition for AWS::EC2::VPCGatewayAttachment</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<h3 id="attachment_type"><a class="header" href="#attachment_type"><code>attachment_type</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="internet_gateway_id"><a class="header" href="#internet_gateway_id"><code>internet_gateway_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -200,6 +195,11 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the virtual private gateway. You must specify either InternetGatewayId or VpnGatewayId, but not both.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="attachment_type"><a class="header" href="#attachment_type"><code>attachment_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

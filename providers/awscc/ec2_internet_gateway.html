@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -176,18 +176,18 @@
                         <h1 id="awsccec2_internet_gateway"><a class="header" href="#awsccec2_internet_gateway">awscc.ec2_internet_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
 <p>Allocates an internet gateway for use with a VPC. After creating the Internet gateway, you then attach it to a VPC.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<h3 id="internet_gateway_id"><a class="header" href="#internet_gateway_id"><code>internet_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Any tags to assign to the internet gateway.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="internet_gateway_id"><a class="header" href="#internet_gateway_id"><code>internet_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_internet_gateway {
   name = "example-igw"

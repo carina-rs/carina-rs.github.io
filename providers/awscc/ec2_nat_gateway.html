@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
+            window.path_to_searchindex_js = "../../searchindex-7df4915e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -179,23 +179,13 @@
 With a NAT gateway, instances in a private subnet can connect to the internet, other AWS services, or an on-premises network using the IP address of the NAT gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateways</a> in the <em>Amazon VPC User Guide</em>.
 If you add a default route (<code>AWS::EC2::Route</code> resource) that points to a NAT gateway, specify the NAT gateway ID for the route’s <code>NatGatewayId</code> property.
 When you associate an Elastic IP address or secondary Elastic IP address with a public NAT gateway, the network border group of the Elastic IP address must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. Otherwise, the NAT gateway fails to launch. You can see the network border group for the AZ by viewing the details of the subnet. Similarly, you can view the network border group for the Elastic IP address by viewing its details. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate an Elastic IP address</a> in the <em>Amazon VPC User Guide</em>.</p>
-<h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
-<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
-<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="availability_mode"><a class="header" href="#availability_mode"><code>availability_mode</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -214,33 +204,18 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>
-<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="max_drain_duration_seconds"><a class="header" href="#max_drain_duration_seconds"><code>max_drain_duration_seconds</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>
-<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="private_ip_address"><a class="header" href="#private_ip_address"><code>private_ip_address</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</p>
-<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Read-only</strong></li>
-</ul>
 <h3 id="secondary_allocation_ids"><a class="header" href="#secondary_allocation_ids"><code>secondary_allocation_ids</code></a></h3>
 <ul>
 <li><strong>Type:</strong> List</li>
@@ -277,6 +252,27 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="connectivity_type-connectivitytype"><a class="header" href="#connectivity_type-connectivitytype">connectivity_type (ConnectivityType)</a></h3>
 <div class="table-wrapper">
