@@ -23,9 +23,9 @@
         <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../.././theme/catppuccin.css">
@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8f4f12f6.js";
+            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -179,31 +179,101 @@
 You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
 If you create a route that references a transit gateway in the same template where you create the transit gateway, you must declare a dependency on the transit gateway attachment. The route table cannot use the transit gateway until it has successfully attached to the VPC. Add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> in the <code>AWS::EC2::Route</code> resource to explicitly declare a dependency on the <code>AWS::EC2::TransitGatewayAttachment</code> resource.</p>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>carrier_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</td></tr>
-<tr><td><code>cidr_block</code></td><td>CIDR</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>core_network_arn</code></td><td>String</td><td>No</td><td>The Amazon Resource Name (ARN) of the core network.</td></tr>
-<tr><td><code>destination_cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</td></tr>
-<tr><td><code>destination_ipv6_cidr_block</code></td><td>CIDR</td><td>No</td><td>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</td></tr>
-<tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td>The ID of a prefix list used for the destination match.</td></tr>
-<tr><td><code>egress_only_internet_gateway_id</code></td><td>String</td><td>No</td><td>[IPv6 traffic only] The ID of an egress-only internet gateway.</td></tr>
-<tr><td><code>gateway_id</code></td><td>String</td><td>No</td><td>The ID of an internet gateway or virtual private gateway attached to your VPC.</td></tr>
-<tr><td><code>instance_id</code></td><td>String</td><td>No</td><td>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</td></tr>
-<tr><td><code>local_gateway_id</code></td><td>String</td><td>No</td><td>The ID of the local gateway.</td></tr>
-<tr><td><code>nat_gateway_id</code></td><td>String</td><td>No</td><td>[IPv4 traffic only] The ID of a NAT gateway.</td></tr>
-<tr><td><code>network_interface_id</code></td><td>String</td><td>No</td><td>The ID of a network interface.</td></tr>
-<tr><td><code>route_table_id</code></td><td>String</td><td>Yes</td><td>The ID of the route table for the route.</td></tr>
-<tr><td><code>transit_gateway_id</code></td><td>String</td><td>No</td><td>The ID of a transit gateway.</td></tr>
-<tr><td><code>vpc_endpoint_id</code></td><td>String</td><td>No</td><td>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</td></tr>
-<tr><td><code>vpc_peering_connection_id</code></td><td>String</td><td>No</td><td>The ID of a VPC peering connection.</td></tr>
-</tbody>
-</table>
-</div>
+<h3 id="carrier_gateway_id"><a class="header" href="#carrier_gateway_id"><code>carrier_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
+<h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> CIDR</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="core_network_arn"><a class="header" href="#core_network_arn"><code>core_network_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Resource Name (ARN) of the core network.</p>
+<h3 id="destination_cidr_block"><a class="header" href="#destination_cidr_block"><code>destination_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> CIDR</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>
+<h3 id="destination_ipv6_cidr_block"><a class="header" href="#destination_ipv6_cidr_block"><code>destination_ipv6_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> CIDR</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
+<h3 id="destination_prefix_list_id"><a class="header" href="#destination_prefix_list_id"><code>destination_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a prefix list used for the destination match.</p>
+<h3 id="egress_only_internet_gateway_id"><a class="header" href="#egress_only_internet_gateway_id"><code>egress_only_internet_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
+<h3 id="gateway_id"><a class="header" href="#gateway_id"><code>gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>
+<h3 id="instance_id"><a class="header" href="#instance_id"><code>instance_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
+<h3 id="local_gateway_id"><a class="header" href="#local_gateway_id"><code>local_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the local gateway.</p>
+<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[IPv4 traffic only] The ID of a NAT gateway.</p>
+<h3 id="network_interface_id"><a class="header" href="#network_interface_id"><code>network_interface_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a network interface.</p>
+<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the route table for the route.</p>
+<h3 id="transit_gateway_id"><a class="header" href="#transit_gateway_id"><code>transit_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a transit gateway.</p>
+<h3 id="vpc_endpoint_id"><a class="header" href="#vpc_endpoint_id"><code>vpc_endpoint_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>
+<h3 id="vpc_peering_connection_id"><a class="header" href="#vpc_peering_connection_id"><code>vpc_peering_connection_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a VPC peering connection.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

@@ -23,9 +23,9 @@
         <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../.././theme/catppuccin.css">
@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8f4f12f6.js";
+            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -180,32 +180,103 @@ With a NAT gateway, instances in a private subnet can connect to the internet, o
 If you add a default route (<code>AWS::EC2::Route</code> resource) that points to a NAT gateway, specify the NAT gateway ID for the route’s <code>NatGatewayId</code> property.
 When you associate an Elastic IP address or secondary Elastic IP address with a public NAT gateway, the network border group of the Elastic IP address must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. Otherwise, the NAT gateway fails to launch. You can see the network border group for the AZ by viewing the details of the subnet. Similarly, you can view the network border group for the Elastic IP address by viewing its details. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate an Elastic IP address</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>allocation_id</code></td><td>String</td><td>No</td><td>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</td></tr>
-<tr><td><code>auto_provision_zones</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>auto_scaling_ips</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>availability_mode</code></td><td>String</td><td>No</td><td>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
-<tr><td><code>availability_zone_addresses</code></td><td>List</td><td>No</td><td>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
-<tr><td><code>connectivity_type</code></td><td>String</td><td>No</td><td>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</td></tr>
-<tr><td><code>eni_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>max_drain_duration_seconds</code></td><td>Int</td><td>No</td><td>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</td></tr>
-<tr><td><code>nat_gateway_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>private_ip_address</code></td><td>String</td><td>No</td><td>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</td></tr>
-<tr><td><code>route_table_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>secondary_allocation_ids</code></td><td>List</td><td>No</td><td>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</td></tr>
-<tr><td><code>secondary_private_ip_address_count</code></td><td>Int</td><td>No</td><td>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</td></tr>
-<tr><td><code>secondary_private_ip_addresses</code></td><td>List</td><td>No</td><td>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</td></tr>
-<tr><td><code>subnet_id</code></td><td>String</td><td>No</td><td>The ID of the subnet in which the NAT gateway is located.</td></tr>
-<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>The tags for the NAT gateway.</td></tr>
-<tr><td><code>vpc_id</code></td><td>String</td><td>No</td><td>The ID of the VPC in which the NAT gateway is located.</td></tr>
-</tbody>
-</table>
-</div>
+<h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
+<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="availability_mode"><a class="header" href="#availability_mode"><code>availability_mode</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h3 id="availability_zone_addresses"><a class="header" href="#availability_zone_addresses"><code>availability_zone_addresses</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h3 id="connectivity_type"><a class="header" href="#connectivity_type"><code>connectivity_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>
+<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="max_drain_duration_seconds"><a class="header" href="#max_drain_duration_seconds"><code>max_drain_duration_seconds</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>
+<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="private_ip_address"><a class="header" href="#private_ip_address"><code>private_ip_address</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</p>
+<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="secondary_allocation_ids"><a class="header" href="#secondary_allocation_ids"><code>secondary_allocation_ids</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h3 id="secondary_private_ip_address_count"><a class="header" href="#secondary_private_ip_address_count"><code>secondary_private_ip_address_count</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
+<h3 id="secondary_private_ip_addresses"><a class="header" href="#secondary_private_ip_addresses"><code>secondary_private_ip_addresses</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
+<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the subnet in which the NAT gateway is located.</p>
+<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the NAT gateway.</p>
+<h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the VPC in which the NAT gateway is located.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

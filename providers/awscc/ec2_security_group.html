@@ -23,9 +23,9 @@
         <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../.././theme/catppuccin.css">
@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8f4f12f6.js";
+            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -177,23 +177,52 @@
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroup</code></p>
 <p>Resource Type definition for AWS::EC2::SecurityGroup</p>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>group_description</code></td><td>String</td><td>Yes</td><td>A description for the security group.</td></tr>
-<tr><td><code>group_id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>group_name</code></td><td>String</td><td>No</td><td>The name of the security group.</td></tr>
-<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>security_group_egress</code></td><td>List</td><td>No</td><td>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</td></tr>
-<tr><td><code>security_group_ingress</code></td><td>List</td><td>No</td><td>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</td></tr>
-<tr><td><code>tags</code></td><td>Map</td><td>No</td><td>Any tags assigned to the security group.</td></tr>
-<tr><td><code>vpc_id</code></td><td>String</td><td>No</td><td>The ID of the VPC for the security group.</td></tr>
-</tbody>
-</table>
-</div>
+<h3 id="group_description"><a class="header" href="#group_description"><code>group_description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>A description for the security group.</p>
+<h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="group_name"><a class="header" href="#group_name"><code>group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The name of the security group.</p>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="security_group_egress"><a class="header" href="#security_group_egress"><code>security_group_egress</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
+<h3 id="security_group_ingress"><a class="header" href="#security_group_ingress"><code>security_group_ingress</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
+<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Any tags assigned to the security group.</p>
+<h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the VPC for the security group.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"

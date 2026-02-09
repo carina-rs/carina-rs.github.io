@@ -23,9 +23,9 @@
         <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-a8b77836.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-a8b77836.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="../.././theme/catppuccin.css">
@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8f4f12f6.js";
+            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -177,28 +177,83 @@
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
 <p>Resource Type definition for AWS::EC2::SecurityGroupIngress</p>
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td>The IPv4 ranges</td></tr>
-<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td>[VPC only] The IPv6 ranges</td></tr>
-<tr><td><code>description</code></td><td>String</td><td>No</td><td>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously</td></tr>
-<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</td></tr>
-<tr><td><code>group_id</code></td><td>String</td><td>No</td><td>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</td></tr>
-<tr><td><code>group_name</code></td><td>String</td><td>No</td><td>The name of the security group.</td></tr>
-<tr><td><code>id</code></td><td>String</td><td></td><td>(read-only)</td></tr>
-<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td>The IP protocol name (tcp, udp, icmp, icmpv6) or number (see Protocol Numbers). [VPC only] Use -1 to specify all protocols. When authorizing security group rules, specifying -1 or a protocol number other than tcp, udp, icmp, or icmpv6 allows traffic on all ports, regardless of any port range you specify. For tcp, udp, and icmp, you must specify a port range. For icmpv6, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</td></tr>
-<tr><td><code>source_prefix_list_id</code></td><td>String</td><td>No</td><td>[EC2-VPC only] The ID of a prefix list.</td></tr>
-<tr><td><code>source_security_group_id</code></td><td>String</td><td>No</td><td>The ID of the security group. You must specify either the security group ID or the security group name. For security groups in a nondefault VPC, you must specify the security group ID.</td></tr>
-<tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td>[EC2-Classic, default VPC] The name of the source security group. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</td></tr>
-<tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td>[nondefault VPC] The AWS account ID that owns the source security group. You can’t specify this property with an IP address range. If you specify SourceSecurityGroupName or SourceSecurityGroupId and that security group is owned by a different account than the account creating the stack, you must specify the SourceSecurityGroupOwnerId; otherwise, this property is optional.</td></tr>
-<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</td></tr>
-</tbody>
-</table>
-</div>
+<h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 ranges</p>
+<h3 id="cidr_ipv6"><a class="header" href="#cidr_ipv6"><code>cidr_ipv6</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[VPC only] The IPv6 ranges</p>
+<h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously</p>
+<h3 id="from_port"><a class="header" href="#from_port"><code>from_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
+<h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</p>
+<h3 id="group_name"><a class="header" href="#group_name"><code>group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The name of the security group.</p>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Read-only</strong></li>
+</ul>
+<h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The IP protocol name (tcp, udp, icmp, icmpv6) or number (see Protocol Numbers). [VPC only] Use -1 to specify all protocols. When authorizing security group rules, specifying -1 or a protocol number other than tcp, udp, icmp, or icmpv6 allows traffic on all ports, regardless of any port range you specify. For tcp, udp, and icmp, you must specify a port range. For icmpv6, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
+<h3 id="source_prefix_list_id"><a class="header" href="#source_prefix_list_id"><code>source_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[EC2-VPC only] The ID of a prefix list.</p>
+<h3 id="source_security_group_id"><a class="header" href="#source_security_group_id"><code>source_security_group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the security group. You must specify either the security group ID or the security group name. For security groups in a nondefault VPC, you must specify the security group ID.</p>
+<h3 id="source_security_group_name"><a class="header" href="#source_security_group_name"><code>source_security_group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[EC2-Classic, default VPC] The name of the source security group. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</p>
+<h3 id="source_security_group_owner_id"><a class="header" href="#source_security_group_owner_id"><code>source_security_group_owner_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[nondefault VPC] The AWS account ID that owns the source security group. You can’t specify this property with an IP address range. If you specify SourceSecurityGroupName or SourceSecurityGroupId and that security group is owned by a different account than the account creating the stack, you must specify the SourceSecurityGroupOwnerId; otherwise, this property is optional.</p>
+<h3 id="to_port"><a class="header" href="#to_port"><code>to_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
