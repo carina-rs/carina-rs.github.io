@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-915fcf66.js";
+            window.path_to_searchindex_js = "../../searchindex-a02075b2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -220,7 +220,7 @@
 </ul>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Enum (IpProtocol)</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The IP protocol name (tcp, udp, icmp, icmpv6) or number (see Protocol Numbers). [VPC only] Use -1 to specify all protocols. When authorizing security group rules, specifying -1 or a protocol number other than tcp, udp, icmp, or icmpv6 allows traffic on all ports, regardless of any port range you specify. For tcp, udp, and icmp, you must specify a port range. For icmpv6, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
@@ -254,6 +254,23 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.-1</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"

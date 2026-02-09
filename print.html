@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-915fcf66.js";
+            window.path_to_searchindex_js = "searchindex-a02075b2.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-88885506.js"></script>
@@ -465,7 +465,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="outpost_arn"><a class="header" href="#outpost_arn"><code>outpost_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the Outpost.</p>
@@ -622,7 +622,7 @@ If you create a route that references a transit gateway in the same template whe
 </ul>
 <h3 id="core_network_arn"><a class="header" href="#core_network_arn"><code>core_network_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the core network.</p>
@@ -893,7 +893,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="connectivity_type"><a class="header" href="#connectivity_type"><code>connectivity_type</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Enum (ConnectivityType)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>
@@ -960,6 +960,20 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
+<h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
+<h3 id="connectivity_type-connectivitytype"><a class="header" href="#connectivity_type-connectivitytype">connectivity_type (ConnectivityType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>public</code></td><td><code>awscc.ec2_nat_gateway.ConnectivityType.public</code></td></tr>
+<tr><td><code>private</code></td><td><code>awscc.ec2_nat_gateway.ConnectivityType.private</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>public</code> or <code>ConnectivityType.public</code></p>
 <h2 id="struct-definitions-1"><a class="header" href="#struct-definitions-1">Struct Definitions</a></h2>
 <h3 id="availabilityzoneaddress"><a class="header" href="#availabilityzoneaddress">AvailabilityZoneAddress</a></h3>
 <div class="table-wrapper">
@@ -1070,7 +1084,7 @@ awscc.ec2_nat_gateway {
 <tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
-<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
 </tbody>
 </table>
@@ -1086,7 +1100,7 @@ awscc.ec2_nat_gateway {
 <tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
-<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>source_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
@@ -1159,7 +1173,7 @@ awscc.ec2_security_group {
 </ul>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Enum (IpProtocol)</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The IP protocol name (tcp, udp, icmp, icmpv6) or number (see Protocol Numbers). [VPC only] Use -1 to specify all protocols. When authorizing security group rules, specifying -1 or a protocol number other than tcp, udp, icmp, or icmpv6 allows traffic on all ports, regardless of any port range you specify. For tcp, udp, and icmp, you must specify a port range. For icmpv6, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
@@ -1193,6 +1207,23 @@ awscc.ec2_security_group {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
+<h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.-1</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
 <h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1283,8 +1314,8 @@ Rule changes are propagated to instances associated with the security group as q
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</p>
-<h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
-<h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
+<h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-1"><a class="header" href="#ip_protocol-ipprotocol-1">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -1374,7 +1405,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>Indicate whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, <code>kinesis.us-east-1.amazonaws.com</code>), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service. To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. This property is supported only for interface endpoints. Default: <code>false</code></p>
 <h3 id="resource_configuration_arn"><a class="header" href="#resource_configuration_arn"><code>resource_configuration_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the resource configuration.</p>
@@ -1398,7 +1429,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>The name of the endpoint service.</p>
 <h3 id="service_network_arn"><a class="header" href="#service_network_arn"><code>service_network_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the service network.</p>
@@ -1432,7 +1463,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
-<h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
+<h2 id="enum-values-5"><a class="header" href="#enum-values-5">Enum Values</a></h2>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1579,7 +1610,7 @@ awscc.ec2_vpc_gateway_attachment {
 <p>The ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts.</p>
 <h3 id="deliver_logs_permission_arn"><a class="header" href="#deliver_logs_permission_arn"><code>deliver_logs_permission_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
@@ -1647,7 +1678,7 @@ awscc.ec2_vpc_gateway_attachment {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</p>
-<h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
+<h2 id="enum-values-6"><a class="header" href="#enum-values-6">Enum Values</a></h2>
 <h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
 <div class="table-wrapper">
 <table>
