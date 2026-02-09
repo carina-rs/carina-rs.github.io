@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
+            window.path_to_searchindex_js = "../../searchindex-ad9d119e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -204,7 +204,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="availability_zone_addresses"><a class="header" href="#availability_zone_addresses"><code>availability_zone_addresses</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<availabilityzoneaddress></availabilityzoneaddress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -277,6 +277,20 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="availabilityzoneaddress"><a class="header" href="#availabilityzoneaddress">AvailabilityZoneAddress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>allocation_ids</code></td><td>List</td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
+<tr><td><code>availability_zone</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
+<tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
+            window.path_to_searchindex_js = "../../searchindex-ad9d119e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -201,13 +201,13 @@
 </ul>
 <h3 id="security_group_egress"><a class="header" href="#security_group_egress"><code>security_group_egress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<egress></egress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
 <h3 id="security_group_ingress"><a class="header" href="#security_group_ingress"><code>security_group_ingress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<ingress></ingress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
@@ -223,6 +223,45 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="egress"><a class="header" href="#egress">Egress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>destination_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ingress"><a class="header" href="#ingress">Ingress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>source_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"

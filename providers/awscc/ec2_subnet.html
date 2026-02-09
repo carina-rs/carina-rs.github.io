@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-2742cf4f.js";
+            window.path_to_searchindex_js = "../../searchindex-ad9d119e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -199,7 +199,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The AZ ID of the subnet.</p>
 <h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Struct(BlockPublicAccessStates)</li>
 <li><strong>Read-only</strong></li>
 </ul>
 <h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
@@ -280,7 +280,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The Amazon Resource Name (ARN) of the Outpost.</p>
 <h3 id="private_dns_name_options_on_launch"><a class="header" href="#private_dns_name_options_on_launch"><code>private_dns_name_options_on_launch</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Struct(PrivateDnsNameOptionsOnLaunch)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
@@ -301,6 +301,31 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="privatednsnameoptionsonlaunch"><a class="header" href="#privatednsnameoptionsonlaunch">PrivateDnsNameOptionsOnLaunch</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td></td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td></td></tr>
+<tr><td><code>hostname_type</code></td><td>String</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

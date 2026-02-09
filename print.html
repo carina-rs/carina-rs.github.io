@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-2742cf4f.js";
+            window.path_to_searchindex_js = "searchindex-ad9d119e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-88885506.js"></script>
@@ -390,7 +390,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The AZ ID of the subnet.</p>
 <h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Struct(BlockPublicAccessStates)</li>
 <li><strong>Read-only</strong></li>
 </ul>
 <h3 id="cidr_block-1"><a class="header" href="#cidr_block-1"><code>cidr_block</code></a></h3>
@@ -471,7 +471,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The Amazon Resource Name (ARN) of the Outpost.</p>
 <h3 id="private_dns_name_options_on_launch"><a class="header" href="#private_dns_name_options_on_launch"><code>private_dns_name_options_on_launch</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Struct(PrivateDnsNameOptionsOnLaunch)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
@@ -492,6 +492,31 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="privatednsnameoptionsonlaunch"><a class="header" href="#privatednsnameoptionsonlaunch">PrivateDnsNameOptionsOnLaunch</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td></td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td></td></tr>
+<tr><td><code>hostname_type</code></td><td>String</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -862,7 +887,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="availability_zone_addresses"><a class="header" href="#availability_zone_addresses"><code>availability_zone_addresses</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<availabilityzoneaddress></availabilityzoneaddress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -935,6 +960,20 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
+<h2 id="struct-definitions-1"><a class="header" href="#struct-definitions-1">Struct Definitions</a></h2>
+<h3 id="availabilityzoneaddress"><a class="header" href="#availabilityzoneaddress">AvailabilityZoneAddress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>allocation_ids</code></td><td>List</td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
+<tr><td><code>availability_zone</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
+<tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -995,13 +1034,13 @@ awscc.ec2_nat_gateway {
 </ul>
 <h3 id="security_group_egress"><a class="header" href="#security_group_egress"><code>security_group_egress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<egress></egress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
 <h3 id="security_group_ingress"><a class="header" href="#security_group_ingress"><code>security_group_ingress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<ingress></ingress></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
@@ -1017,6 +1056,45 @@ awscc.ec2_nat_gateway {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
+<h2 id="struct-definitions-2"><a class="header" href="#struct-definitions-2">Struct Definitions</a></h2>
+<h3 id="egress"><a class="header" href="#egress">Egress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>destination_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ingress"><a class="header" href="#ingress">Ingress</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>source_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1262,7 +1340,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h3 id="dns_options"><a class="header" href="#dns_options"><code>dns_options</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Struct(DnsOptionsSpecification)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Describes the DNS options for an endpoint.</p>
@@ -1386,6 +1464,21 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </table>
 </div>
 <p>Shorthand formats: <code>Interface</code> or <code>VpcEndpointType.Interface</code></p>
+<h2 id="struct-definitions-3"><a class="header" href="#struct-definitions-3">Struct Definitions</a></h2>
+<h3 id="dnsoptionsspecification"><a class="header" href="#dnsoptionsspecification">DnsOptionsSpecification</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>dns_record_ip_type</code></td><td>String</td><td>No</td><td>The DNS records created for the endpoint.</td></tr>
+<tr><td><code>private_dns_only_for_inbound_resolver_endpoint</code></td><td>String</td><td>No</td><td>Indicates whether to enable private DNS only for inbound endpoints. This option is available only fo…</td></tr>
+<tr><td><code>private_dns_preference</code></td><td>String</td><td>No</td><td>The preference for which private domains have a private hosted zone created for and associated with …</td></tr>
+<tr><td><code>private_dns_specified_domains</code></td><td>List</td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -1492,7 +1585,7 @@ awscc.ec2_vpc_gateway_attachment {
 <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
 <h3 id="destination_options"><a class="header" href="#destination_options"><code>destination_options</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Struct(DestinationOptions)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
@@ -1600,6 +1693,20 @@ awscc.ec2_vpc_gateway_attachment {
 </table>
 </div>
 <p>Shorthand formats: <code>ACCEPT</code> or <code>TrafficType.ACCEPT</code></p>
+<h2 id="struct-definitions-4"><a class="header" href="#struct-definitions-4">Struct Definitions</a></h2>
+<h3 id="destinationoptions"><a class="header" href="#destinationoptions">DestinationOptions</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>file_format</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>hive_compatible_partitions</code></td><td>Bool</td><td>Yes</td><td></td></tr>
+<tr><td><code>per_hour_partition</code></td><td>Bool</td><td>Yes</td><td></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
