@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-ad9d119e.js";
+            window.path_to_searchindex_js = "searchindex-915fcf66.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-88885506.js"></script>
@@ -270,7 +270,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <h2 id="attributes"><a class="header" href="#attributes">Attributes</a></h2>
 <h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
@@ -395,7 +395,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="cidr_block-1"><a class="header" href="#cidr_block-1"><code>cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 CIDR block assigned to the subnet. If you update this property, we create a new subnet, and then delete the existing one.</p>
@@ -425,7 +425,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>An IPv4 netmask length for the subnet.</p>
 <h3 id="ipv6_cidr_block"><a class="header" href="#ipv6_cidr_block"><code>ipv6_cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv6 CIDR block. If you specify <code>AssignIpv6AddressOnCreation</code>, you must also specify an IPv6 CIDR block.</p>
@@ -617,7 +617,7 @@ If you create a route that references a transit gateway in the same template whe
 <p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
 <h3 id="cidr_block-2"><a class="header" href="#cidr_block-2"><code>cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Read-only</strong></li>
 </ul>
 <h3 id="core_network_arn"><a class="header" href="#core_network_arn"><code>core_network_arn</code></a></h3>
@@ -628,13 +628,13 @@ If you create a route that references a transit gateway in the same template whe
 <p>The Amazon Resource Name (ARN) of the core network.</p>
 <h3 id="destination_cidr_block"><a class="header" href="#destination_cidr_block"><code>destination_cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>
 <h3 id="destination_ipv6_cidr_block"><a class="header" href="#destination_ipv6_cidr_block"><code>destination_ipv6_cidr_block</code></a></h3>
 <ul>
-<li><strong>Type:</strong> CIDR</li>
+<li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
@@ -1064,8 +1064,8 @@ awscc.ec2_nat_gateway {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ip</code></td><td>Ipv4Cidr</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_prefix_list_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_security_group_id</code></td><td>String</td><td>No</td><td></td></tr>
@@ -1082,8 +1082,8 @@ awscc.ec2_nat_gateway {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cidr_ip</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>cidr_ipv6</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ip</code></td><td>Ipv4Cidr</td><td>No</td><td></td></tr>
+<tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>String</td><td>Yes</td><td></td></tr>
@@ -1118,13 +1118,13 @@ awscc.ec2_security_group {
 <h2 id="attributes-9"><a class="header" href="#attributes-9">Attributes</a></h2>
 <h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 ranges</p>
 <h3 id="cidr_ipv6"><a class="header" href="#cidr_ipv6"><code>cidr_ipv6</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[VPC only] The IPv6 ranges</p>
@@ -1226,13 +1226,13 @@ Rule changes are propagated to instances associated with the security group as q
 <h2 id="attributes-10"><a class="header" href="#attributes-10">Attributes</a></h2>
 <h3 id="cidr_ip-1"><a class="header" href="#cidr_ip-1"><code>cidr_ip</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</p>
 <h3 id="cidr_ipv6-1"><a class="header" href="#cidr_ipv6-1"><code>cidr_ipv6</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv6 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</p>
