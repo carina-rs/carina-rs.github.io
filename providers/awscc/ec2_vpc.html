@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-26046f20.js";
+            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -205,7 +205,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The allowed tenancy of instances launched into the VPC.  + <code>default</code>: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.  + <code>dedicated</code>: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of <code>host</code> during instance launch. You cannot specify a tenancy of <code>default</code> during instance launch.   Updating <code>InstanceTenancy</code> requires no replacement only if you are updating its value from <code>dedicated</code> to <code>default</code>. Updating <code>InstanceTenancy</code> from <code>default</code> to <code>dedicated</code> requires replacement.</p>
 <h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
@@ -240,7 +240,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>

@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-26046f20.js";
+            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -217,7 +217,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Indicates the device position for local network interfaces in this subnet. For example, <code>1</code> indicates local network interfaces in this subnet are the secondary network interface (eth1).</p>
 <h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv4 IPAM pool ID for the subnet.</p>
@@ -235,7 +235,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The IPv6 CIDR block. If you specify <code>AssignIpv6AddressOnCreation</code>, you must also specify an IPv6 CIDR block.</p>
 <h3 id="ipv6_ipam_pool_id"><a class="header" href="#ipv6_ipam_pool_id"><code>ipv6_ipam_pool_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv6 IPAM pool ID for the subnet.</p>
@@ -277,7 +277,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Any tags assigned to the subnet.</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
@@ -296,7 +296,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>

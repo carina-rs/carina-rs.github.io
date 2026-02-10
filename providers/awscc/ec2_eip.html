@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-26046f20.js";
+            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -192,13 +192,13 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <p>The network (<code>vpc</code>). If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> on this resource.</p>
 <h3 id="instance_id"><a class="header" href="#instance_id"><code>instance_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the instance.  Updates to the <code>InstanceId</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="network_border_group"><a class="header" href="#network_border_group"><code>network_border_group</code></a></h3>
@@ -228,7 +228,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
 <ul>

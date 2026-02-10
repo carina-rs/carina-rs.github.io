@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-26046f20.js";
+            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -182,7 +182,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
@@ -236,7 +236,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
 <h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the subnet in which the NAT gateway is located.</p>
@@ -248,7 +248,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>The tags for the NAT gateway.</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
@@ -263,15 +263,15 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 </ul>
 <h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="connectivity_type-connectivitytype"><a class="header" href="#connectivity_type-connectivitytype">connectivity_type (ConnectivityType)</a></h3>

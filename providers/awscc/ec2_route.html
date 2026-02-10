@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-26046f20.js";
+            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -181,7 +181,7 @@ If you create a route that references a transit gateway in the same template whe
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id"><a class="header" href="#carrier_gateway_id"><code>carrier_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
@@ -205,67 +205,67 @@ If you create a route that references a transit gateway in the same template whe
 <p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
 <h3 id="destination_prefix_list_id"><a class="header" href="#destination_prefix_list_id"><code>destination_prefix_list_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a prefix list used for the destination match.</p>
 <h3 id="egress_only_internet_gateway_id"><a class="header" href="#egress_only_internet_gateway_id"><code>egress_only_internet_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
 <h3 id="gateway_id"><a class="header" href="#gateway_id"><code>gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>
 <h3 id="instance_id"><a class="header" href="#instance_id"><code>instance_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
 <h3 id="local_gateway_id"><a class="header" href="#local_gateway_id"><code>local_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the local gateway.</p>
 <h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
 <h3 id="network_interface_id"><a class="header" href="#network_interface_id"><code>network_interface_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a network interface.</p>
 <h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the route table for the route.</p>
 <h3 id="transit_gateway_id"><a class="header" href="#transit_gateway_id"><code>transit_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a transit gateway.</p>
 <h3 id="vpc_endpoint_id"><a class="header" href="#vpc_endpoint_id"><code>vpc_endpoint_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>
 <h3 id="vpc_peering_connection_id"><a class="header" href="#vpc_peering_connection_id"><code>vpc_peering_connection_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a VPC peering connection.</p>
