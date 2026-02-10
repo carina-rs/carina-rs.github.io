@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-2d49b8ad.js";
+            window.path_to_searchindex_js = "searchindex-98896ec0.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-88885506.js"></script>
+        <script src="toc-d07f2a4e.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -1750,6 +1750,652 @@ awscc.ec2_flow_log {
   traffic_type         = ALL
   log_destination_type = s3
   log_destination      = "arn:aws:s3:::example-flow-logs-bucket"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_ipam"><a class="header" href="#awsccec2_ipam">awscc.ec2_ipam</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::IPAM</code></p>
+<p>Resource Schema of AWS::EC2::IPAM Type</p>
+<h2 id="argument-reference-14"><a class="header" href="#argument-reference-14">Argument Reference</a></h2>
+<h3 id="default_resource_discovery_organizational_unit_exclusions"><a class="header" href="#default_resource_discovery_organizational_unit_exclusions"><code>default_resource_discovery_organizational_unit_exclusions</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<ipamorganizationalunitexclusion></ipamorganizationalunitexclusion></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>A set of organizational unit (OU) exclusions for the default resource discovery, created with this IPAM.</p>
+<h3 id="description-2"><a class="header" href="#description-2"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="enable_private_gua"><a class="header" href="#enable_private_gua"><code>enable_private_gua</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Enable provisioning of GUA space in private pools.</p>
+<h3 id="metered_account"><a class="header" href="#metered_account"><code>metered_account</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (MeteredAccount)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>A metered account is an account that is charged for active IP addresses managed in IPAM</p>
+<h3 id="operating_regions"><a class="header" href="#operating_regions"><code>operating_regions</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<ipamoperatingregion></ipamoperatingregion></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring</p>
+<h3 id="tags-9"><a class="header" href="#tags-9"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An array of key-value pairs to apply to this resource.</p>
+<h3 id="tier"><a class="header" href="#tier"><code>tier</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (Tier)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tier of the IPAM.</p>
+<h2 id="attribute-reference-14"><a class="header" href="#attribute-reference-14">Attribute Reference</a></h2>
+<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="default_resource_discovery_association_id"><a class="header" href="#default_resource_discovery_association_id"><code>default_resource_discovery_association_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="default_resource_discovery_id"><a class="header" href="#default_resource_discovery_id"><code>default_resource_discovery_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="ipam_id"><a class="header" href="#ipam_id"><code>ipam_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="private_default_scope_id"><a class="header" href="#private_default_scope_id"><code>private_default_scope_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h3 id="scope_count"><a class="header" href="#scope_count"><code>scope_count</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h2 id="enum-values-7"><a class="header" href="#enum-values-7">Enum Values</a></h2>
+<h3 id="metered_account-meteredaccount"><a class="header" href="#metered_account-meteredaccount">metered_account (MeteredAccount)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ipam-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.ipam-owner</code></td></tr>
+<tr><td><code>resource-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.resource-owner</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ipam-owner</code> or <code>MeteredAccount.ipam-owner</code></p>
+<h3 id="tier-tier"><a class="header" href="#tier-tier">tier (Tier)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>free</code></td><td><code>awscc.ec2_ipam.Tier.free</code></td></tr>
+<tr><td><code>advanced</code></td><td><code>awscc.ec2_ipam.Tier.advanced</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>free</code> or <code>Tier.free</code></p>
+<h2 id="struct-definitions-5"><a class="header" href="#struct-definitions-5">Struct Definitions</a></h2>
+<h3 id="ipamoperatingregion"><a class="header" href="#ipamoperatingregion">IpamOperatingRegion</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>region_name</code></td><td>String</td><td>Yes</td><td>The name of the region.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ipamorganizationalunitexclusion"><a class="header" href="#ipamorganizationalunitexclusion">IpamOrganizationalUnitExclusion</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>organizations_entity_path</code></td><td>String</td><td>Yes</td><td>An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated…</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_ipam {
+  name        = "example-ipam"
+  description = "Example IPAM"
+  tier        = free
+
+  operating_regions = [
+    {
+      region_name = "ap-northeast-1"
+    }
+  ]
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_ipam_pool"><a class="header" href="#awsccec2_ipam_pool">awscc.ec2_ipam_pool</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::IPAMPool</code></p>
+<p>Resource Schema of AWS::EC2::IPAMPool Type</p>
+<h2 id="argument-reference-15"><a class="header" href="#argument-reference-15">Argument Reference</a></h2>
+<h3 id="address_family"><a class="header" href="#address_family"><code>address_family</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The address family of the address space in this pool. Either IPv4 or IPv6.</p>
+<h3 id="allocation_default_netmask_length"><a class="header" href="#allocation_default_netmask_length"><code>allocation_default_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The default netmask length for allocations made from this pool. This value is used when the netmask length of an allocation isn’t specified.</p>
+<h3 id="allocation_max_netmask_length"><a class="header" href="#allocation_max_netmask_length"><code>allocation_max_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The maximum allowed netmask length for allocations made from this pool.</p>
+<h3 id="allocation_min_netmask_length"><a class="header" href="#allocation_min_netmask_length"><code>allocation_min_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The minimum allowed netmask length for allocations made from this pool.</p>
+<h3 id="allocation_resource_tags"><a class="header" href="#allocation_resource_tags"><code>allocation_resource_tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>When specified, an allocation will not be allowed unless a resource has a matching set of tags.</p>
+<h3 id="auto_import"><a class="header" href="#auto_import"><code>auto_import</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Determines what to do if IPAM discovers resources that haven’t been assigned an allocation. If set to true, an allocation will be made automatically.</p>
+<h3 id="aws_service"><a class="header" href="#aws_service"><code>aws_service</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (AwsService)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Limits which service in Amazon Web Services that the pool can be used in.</p>
+<h3 id="description-3"><a class="header" href="#description-3"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="ipam_scope_id"><a class="header" href="#ipam_scope_id"><code>ipam_scope_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The Id of the scope this pool is a part of.</p>
+<h3 id="locale"><a class="header" href="#locale"><code>locale</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
+<h3 id="provisioned_cidrs"><a class="header" href="#provisioned_cidrs"><code>provisioned_cidrs</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<provisionedcidr></provisionedcidr></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>A list of cidrs representing the address space available for allocation in this pool.</p>
+<h3 id="public_ip_source"><a class="header" href="#public_ip_source"><code>public_ip_source</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (PublicIpSource)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is <code>byoip</code>.</p>
+<h3 id="publicly_advertisable"><a class="header" href="#publicly_advertisable"><code>publicly_advertisable</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.</p>
+<h3 id="source_ipam_pool_id"><a class="header" href="#source_ipam_pool_id"><code>source_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Id of this pool’s source. If set, all space provisioned in this pool must be free space provisioned in the parent pool.</p>
+<h3 id="source_resource"><a class="header" href="#source_resource"><code>source_resource</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Struct(SourceResource)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="tags-10"><a class="header" href="#tags-10"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An array of key-value pairs to apply to this resource.</p>
+<h2 id="attribute-reference-15"><a class="header" href="#attribute-reference-15">Attribute Reference</a></h2>
+<h3 id="arn-1"><a class="header" href="#arn-1"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_pool_id-1"><a class="header" href="#ipam_pool_id-1"><code>ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (IpamScopeType)</li>
+</ul>
+<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (State)</li>
+</ul>
+<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
+<h3 id="aws_service-awsservice"><a class="header" href="#aws_service-awsservice">aws_service (AwsService)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ec2</code></td><td><code>awscc.ec2_ipam_pool.AwsService.ec2</code></td></tr>
+<tr><td><code>global-services</code></td><td><code>awscc.ec2_ipam_pool.AwsService.global-services</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ec2</code> or <code>AwsService.ec2</code></p>
+<h3 id="ipam_scope_type-ipamscopetype"><a class="header" href="#ipam_scope_type-ipamscopetype">ipam_scope_type (IpamScopeType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>public</code></td><td><code>awscc.ec2_ipam_pool.IpamScopeType.public</code></td></tr>
+<tr><td><code>private</code></td><td><code>awscc.ec2_ipam_pool.IpamScopeType.private</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>public</code> or <code>IpamScopeType.public</code></p>
+<h3 id="public_ip_source-publicipsource"><a class="header" href="#public_ip_source-publicipsource">public_ip_source (PublicIpSource)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>byoip</code></td><td><code>awscc.ec2_ipam_pool.PublicIpSource.byoip</code></td></tr>
+<tr><td><code>amazon</code></td><td><code>awscc.ec2_ipam_pool.PublicIpSource.amazon</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>byoip</code> or <code>PublicIpSource.byoip</code></p>
+<h3 id="state-state"><a class="header" href="#state-state">state (State)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>create-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.create-in-progress</code></td></tr>
+<tr><td><code>create-complete</code></td><td><code>awscc.ec2_ipam_pool.State.create-complete</code></td></tr>
+<tr><td><code>modify-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.modify-in-progress</code></td></tr>
+<tr><td><code>modify-complete</code></td><td><code>awscc.ec2_ipam_pool.State.modify-complete</code></td></tr>
+<tr><td><code>delete-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.delete-in-progress</code></td></tr>
+<tr><td><code>delete-complete</code></td><td><code>awscc.ec2_ipam_pool.State.delete-complete</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>create-in-progress</code> or <code>State.create-in-progress</code></p>
+<h2 id="struct-definitions-6"><a class="header" href="#struct-definitions-6">Struct Definitions</a></h2>
+<h3 id="provisionedcidr"><a class="header" href="#provisionedcidr">ProvisionedCidr</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cidr</code></td><td>String</td><td>Yes</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="sourceresource"><a class="header" href="#sourceresource">SourceResource</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>resource_id</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>resource_owner</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>resource_region</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>resource_type</code></td><td>String</td><td>Yes</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<pre><code class="language-crn">let ipam = awscc.ec2_ipam {
+  name        = "example-ipam"
+  description = "Example IPAM"
+  tier        = free
+
+  operating_regions = [
+    {
+      region_name = "ap-northeast-1"
+    }
+  ]
+}
+
+awscc.ec2_ipam_pool {
+  name           = "example-ipam-pool"
+  ipam_scope_id  = ipam.private_default_scope_id
+  address_family = "IPv4"
+  locale         = "ap-northeast-1"
+  description    = "Example IPv4 IPAM Pool"
+
+  provisioned_cidrs = [
+    {
+      cidr = "10.0.0.0/8"
+    }
+  ]
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_vpn_gateway"><a class="header" href="#awsccec2_vpn_gateway">awscc.ec2_vpn_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPNGateway</code></p>
+<p>Specifies a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.
+For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"></a> in the <em>User Guide</em>.</p>
+<h2 id="argument-reference-16"><a class="header" href="#argument-reference-16">Argument Reference</a></h2>
+<h3 id="amazon_side_asn"><a class="header" href="#amazon_side_asn"><code>amazon_side_asn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The private Autonomous System Number (ASN) for the Amazon side of a BGP session.</p>
+<h3 id="tags-11"><a class="header" href="#tags-11"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Any tags assigned to the virtual private gateway.</p>
+<h3 id="type"><a class="header" href="#type"><code>type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The type of VPN connection the virtual private gateway supports.</p>
+<h2 id="attribute-reference-16"><a class="header" href="#attribute-reference-16">Attribute Reference</a></h2>
+<h3 id="vpn_gateway_id-1"><a class="header" href="#vpn_gateway_id-1"><code>vpn_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_vpn_gateway {
+  name = "example-vpn-gw"
+  type = "ipsec.1"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_transit_gateway"><a class="header" href="#awsccec2_transit_gateway">awscc.ec2_transit_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::TransitGateway</code></p>
+<p>Resource Type definition for AWS::EC2::TransitGateway</p>
+<h2 id="argument-reference-17"><a class="header" href="#argument-reference-17">Argument Reference</a></h2>
+<h3 id="amazon_side_asn-1"><a class="header" href="#amazon_side_asn-1"><code>amazon_side_asn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="association_default_route_table_id"><a class="header" href="#association_default_route_table_id"><code>association_default_route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="auto_accept_shared_attachments"><a class="header" href="#auto_accept_shared_attachments"><code>auto_accept_shared_attachments</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="default_route_table_association"><a class="header" href="#default_route_table_association"><code>default_route_table_association</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="default_route_table_propagation"><a class="header" href="#default_route_table_propagation"><code>default_route_table_propagation</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="description-4"><a class="header" href="#description-4"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="dns_support"><a class="header" href="#dns_support"><code>dns_support</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="encryption_support"><a class="header" href="#encryption_support"><code>encryption_support</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Enum (EncryptionSupport)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="multicast_support"><a class="header" href="#multicast_support"><code>multicast_support</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="tags-12"><a class="header" href="#tags-12"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="transit_gateway_cidr_blocks"><a class="header" href="#transit_gateway_cidr_blocks"><code>transit_gateway_cidr_blocks</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="vpn_ecmp_support"><a class="header" href="#vpn_ecmp_support"><code>vpn_ecmp_support</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h2 id="attribute-reference-17"><a class="header" href="#attribute-reference-17">Attribute Reference</a></h2>
+<h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="id-6"><a class="header" href="#id-6"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="transit_gateway_arn"><a class="header" href="#transit_gateway_arn"><code>transit_gateway_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
+<h3 id="encryption_support-encryptionsupport"><a class="header" href="#encryption_support-encryptionsupport">encryption_support (EncryptionSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.EncryptionSupport.disable</code></td></tr>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.EncryptionSupport.enable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>disable</code> or <code>EncryptionSupport.disable</code></p>
+<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2_transit_gateway {
+  name        = "example-tgw"
+  description = "Example Transit Gateway"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_vpc_peering_connection"><a class="header" href="#awsccec2_vpc_peering_connection">awscc.ec2_vpc_peering_connection</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPCPeeringConnection</code></p>
+<p>Resource Type definition for AWS::EC2::VPCPeeringConnection</p>
+<h2 id="argument-reference-18"><a class="header" href="#argument-reference-18">Argument Reference</a></h2>
+<h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The AWS account ID of the owner of the accepter VPC.</p>
+<h3 id="peer_region"><a class="header" href="#peer_region"><code>peer_region</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>
+<h3 id="peer_role_arn"><a class="header" href="#peer_role_arn"><code>peer_role_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
+<h3 id="peer_vpc_id"><a class="header" href="#peer_vpc_id"><code>peer_vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.</p>
+<h3 id="tags-13"><a class="header" href="#tags-13"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="vpc_id-7"><a class="header" href="#vpc_id-7"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC.</p>
+<h2 id="attribute-reference-18"><a class="header" href="#attribute-reference-18">Attribute Reference</a></h2>
+<h3 id="id-7"><a class="header" href="#id-7"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
+<pre><code class="language-crn">let vpc1 = awscc.ec2_vpc {
+  name       = "example-vpc-peer-1"
+  cidr_block = "10.0.0.0/16"
+}
+
+let vpc2 = awscc.ec2_vpc {
+  name       = "example-vpc-peer-2"
+  cidr_block = "10.1.0.0/16"
+}
+
+awscc.ec2_vpc_peering_connection {
+  name        = "example-vpc-peering"
+  vpc_id      = vpc1.vpc_id
+  peer_vpc_id = vpc2.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2_egress_only_internet_gateway"><a class="header" href="#awsccec2_egress_only_internet_gateway">awscc.ec2_egress_only_internet_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::EgressOnlyInternetGateway</code></p>
+<p>Resource Type definition for AWS::EC2::EgressOnlyInternetGateway</p>
+<h2 id="argument-reference-19"><a class="header" href="#argument-reference-19">Argument Reference</a></h2>
+<h3 id="tags-14"><a class="header" href="#tags-14"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Any tags assigned to the egress only internet gateway.</p>
+<h3 id="vpc_id-8"><a class="header" href="#vpc_id-8"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC for which to create the egress-only internet gateway.</p>
+<h2 id="attribute-reference-19"><a class="header" href="#attribute-reference-19">Attribute Reference</a></h2>
+<h3 id="id-8"><a class="header" href="#id-8"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+  name       = "example-vpc-eoigw"
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2_egress_only_internet_gateway {
+  name   = "example-eoigw"
+  vpc_id = vpc.vpc_id
 
   tags = {
     Environment = "example"
