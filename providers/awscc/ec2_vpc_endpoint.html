@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e572ce52.js";
+            window.path_to_searchindex_js = "../../searchindex-2d49b8ad.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-88885506.js"></script>
@@ -212,13 +212,13 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>The Amazon Resource Name (ARN) of the resource configuration.</p>
 <h3 id="route_table_ids"><a class="header" href="#route_table_ids"><code>route_table_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<string></string></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the route tables. Routing is supported only for gateway endpoints.</p>
 <h3 id="security_group_ids"><a class="header" href="#security_group_ids"><code>security_group_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<string></string></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints.</p>
@@ -242,7 +242,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>Describes a Region.</p>
 <h3 id="subnet_ids"><a class="header" href="#subnet_ids"><code>subnet_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<string></string></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can’t specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>
@@ -271,7 +271,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<string></string></li>
 </ul>
 <h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
 <ul>
@@ -279,7 +279,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List</li>
+<li><strong>Type:</strong> List<string></string></li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
@@ -324,7 +324,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <tr><td><code>dns_record_ip_type</code></td><td>String</td><td>No</td><td>The DNS records created for the endpoint.</td></tr>
 <tr><td><code>private_dns_only_for_inbound_resolver_endpoint</code></td><td>String</td><td>No</td><td>Indicates whether to enable private DNS only for inbound endpoints. This option is available only fo…</td></tr>
 <tr><td><code>private_dns_preference</code></td><td>String</td><td>No</td><td>The preference for which private domains have a private hosted zone created for and associated with …</td></tr>
-<tr><td><code>private_dns_specified_domains</code></td><td>List</td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
+<tr><td><code>private_dns_specified_domains</code></td><td>List<string></string></td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
 </tbody>
 </table>
 </div>
