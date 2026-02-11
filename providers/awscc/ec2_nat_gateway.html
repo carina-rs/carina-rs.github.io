@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-648c8702.js";
+            window.path_to_searchindex_js = "../../searchindex-62480f4f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -218,7 +218,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</p>
 <h3 id="secondary_allocation_ids"><a class="header" href="#secondary_allocation_ids"><code>secondary_allocation_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;AwsResourceId&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -230,7 +230,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
 <h3 id="secondary_private_ip_addresses"><a class="header" href="#secondary_private_ip_addresses"><code>secondary_private_ip_addresses</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;Ipv4Address&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
@@ -287,7 +287,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>allocation_ids</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
+<tr><td><code>allocation_ids</code></td><td><code>List&lt;AwsResourceId&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
 <tr><td><code>availability_zone</code></td><td>AvailabilityZone</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
 <tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
 </tbody>
