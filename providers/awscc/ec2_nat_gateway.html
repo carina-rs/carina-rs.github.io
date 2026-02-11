@@ -200,7 +200,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="connectivity_type"><a class="header" href="#connectivity_type"><code>connectivity_type</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Enum (ConnectivityType)</li>
+<li><strong>Type:</strong> <a href="#connectivity_type-connectivitytype">Enum (ConnectivityType)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>

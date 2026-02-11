@@ -199,7 +199,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range “plus two” succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled. Enabled by default. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support">DNS attributes in your VPC</a>.</p>
 <h3 id="instance_tenancy"><a class="header" href="#instance_tenancy"><code>instance_tenancy</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Enum (InstanceTenancy)</li>
+<li><strong>Type:</strong> <a href="#instance_tenancy-instancetenancy">Enum (InstanceTenancy)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The allowed tenancy of instances launched into the VPC.  + <code>default</code>: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.  + <code>dedicated</code>: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of <code>host</code> during instance launch. You cannot specify a tenancy of <code>default</code> during instance launch.   Updating <code>InstanceTenancy</code> requires no replacement only if you are updating its value from <code>dedicated</code> to <code>default</code>. Updating <code>InstanceTenancy</code> from <code>default</code> to <code>dedicated</code> requires replacement.</p>
