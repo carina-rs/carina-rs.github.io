@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -225,15 +225,6 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</p>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Ipv4Address</li>
-</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="domain-domain"><a class="header" href="#domain-domain">domain (Domain)</a></h3>
 <div class="table-wrapper">
@@ -248,6 +239,15 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 </table>
 </div>
 <p>Shorthand formats: <code>vpc</code> or <code>Domain.vpc</code></p>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Address</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_eip {
   name   = "example-eip"

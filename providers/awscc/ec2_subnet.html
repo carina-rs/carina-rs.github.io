@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -281,23 +281,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#blockpublicaccessstates">Struct(BlockPublicAccessStates)</a></li>
-</ul>
-<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
-<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
 <div class="table-wrapper">
@@ -323,6 +306,23 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#blockpublicaccessstates">Struct(BlockPublicAccessStates)</a></li>
+</ul>
+<h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
+<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

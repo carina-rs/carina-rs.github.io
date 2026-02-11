@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -252,27 +252,6 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="availability_mode-availabilitymode"><a class="header" href="#availability_mode-availabilitymode">availability_mode (AvailabilityMode)</a></h3>
 <div class="table-wrapper">
@@ -314,6 +293,27 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

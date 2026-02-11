@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d07f2a4e.js"></script>
@@ -310,6 +310,21 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the VPC.</p>
+<h2 id="enum-values-1"><a class="header" href="#enum-values-1">Enum Values</a></h2>
+<h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>default</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.default</code></td></tr>
+<tr><td><code>dedicated</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.dedicated</code></td></tr>
+<tr><td><code>host</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.host</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>default</code> or <code>InstanceTenancy.default</code></p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="cidr_block_associations"><a class="header" href="#cidr_block_associations"><code>cidr_block_associations</code></a></h3>
 <ul>
@@ -331,21 +346,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> AwsResourceId</li>
 </ul>
-<h2 id="enum-values-1"><a class="header" href="#enum-values-1">Enum Values</a></h2>
-<h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Value</th><th>DSL Identifier</th></tr>
-</thead>
-<tbody>
-<tr><td><code>default</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.default</code></td></tr>
-<tr><td><code>dedicated</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.dedicated</code></td></tr>
-<tr><td><code>host</code></td><td><code>awscc.ec2_vpc.InstanceTenancy.host</code></td></tr>
-</tbody>
-</table>
-</div>
-<p>Shorthand formats: <code>default</code> or <code>InstanceTenancy.default</code></p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -468,23 +468,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
-<h2 id="attribute-reference-1"><a class="header" href="#attribute-reference-1">Attribute Reference</a></h2>
-<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#blockpublicaccessstates">Struct(BlockPublicAccessStates)</a></li>
-</ul>
-<h3 id="ipv6_cidr_blocks-1"><a class="header" href="#ipv6_cidr_blocks-1"><code>ipv6_cidr_blocks</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
-<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
 <div class="table-wrapper">
@@ -510,6 +493,23 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-1"><a class="header" href="#attribute-reference-1">Attribute Reference</a></h2>
+<h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#blockpublicaccessstates">Struct(BlockPublicAccessStates)</a></li>
+</ul>
+<h3 id="ipv6_cidr_blocks-1"><a class="header" href="#ipv6_cidr_blocks-1"><code>ipv6_cidr_blocks</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
+<h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -828,15 +828,6 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</p>
-<h2 id="attribute-reference-6"><a class="header" href="#attribute-reference-6">Attribute Reference</a></h2>
-<h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Ipv4Address</li>
-</ul>
 <h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
 <h3 id="domain-domain"><a class="header" href="#domain-domain">domain (Domain)</a></h3>
 <div class="table-wrapper">
@@ -851,6 +842,15 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 </table>
 </div>
 <p>Shorthand formats: <code>vpc</code> or <code>Domain.vpc</code></p>
+<h2 id="attribute-reference-6"><a class="header" href="#attribute-reference-6">Attribute Reference</a></h2>
+<h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Address</li>
+</ul>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_eip {
   name   = "example-eip"
@@ -941,27 +941,6 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
-<h2 id="attribute-reference-7"><a class="header" href="#attribute-reference-7">Attribute Reference</a></h2>
-<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="nat_gateway_id-1"><a class="header" href="#nat_gateway_id-1"><code>nat_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="route_table_id-3"><a class="header" href="#route_table_id-3"><code>route_table_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
 <h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
 <h3 id="availability_mode-availabilitymode"><a class="header" href="#availability_mode-availabilitymode">availability_mode (AvailabilityMode)</a></h3>
 <div class="table-wrapper">
@@ -1003,6 +982,27 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-7"><a class="header" href="#attribute-reference-7">Attribute Reference</a></h2>
+<h3 id="auto_provision_zones"><a class="header" href="#auto_provision_zones"><code>auto_provision_zones</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="auto_scaling_ips"><a class="header" href="#auto_scaling_ips"><code>auto_scaling_ips</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="eni_id"><a class="header" href="#eni_id"><code>eni_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="nat_gateway_id-1"><a class="header" href="#nat_gateway_id-1"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="route_table_id-3"><a class="header" href="#route_table_id-3"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -1075,15 +1075,6 @@ awscc.ec2_nat_gateway {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
-<h2 id="attribute-reference-8"><a class="header" href="#attribute-reference-8">Attribute Reference</a></h2>
-<h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-</ul>
-<h3 id="id-1"><a class="header" href="#id-1"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="struct-definitions-2"><a class="header" href="#struct-definitions-2">Struct Definitions</a></h2>
 <h3 id="egress"><a class="header" href="#egress">Egress</a></h3>
 <div class="table-wrapper">
@@ -1123,6 +1114,15 @@ awscc.ec2_nat_gateway {
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-8"><a class="header" href="#attribute-reference-8">Attribute Reference</a></h2>
+<h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+</ul>
+<h3 id="id-1"><a class="header" href="#id-1"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1231,11 +1231,6 @@ awscc.ec2_security_group {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
-<h2 id="attribute-reference-9"><a class="header" href="#attribute-reference-9">Attribute Reference</a></h2>
-<h3 id="id-2"><a class="header" href="#id-2"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
@@ -1253,6 +1248,11 @@ awscc.ec2_security_group {
 </table>
 </div>
 <p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h2 id="attribute-reference-9"><a class="header" href="#attribute-reference-9">Attribute Reference</a></h2>
+<h3 id="id-2"><a class="header" href="#id-2"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1338,11 +1338,6 @@ Rule changes are propagated to instances associated with the security group as q
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</p>
-<h2 id="attribute-reference-10"><a class="header" href="#attribute-reference-10">Attribute Reference</a></h2>
-<h3 id="id-3"><a class="header" href="#id-3"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="enum-values-5"><a class="header" href="#enum-values-5">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol-1"><a class="header" href="#ip_protocol-ipprotocol-1">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
@@ -1360,6 +1355,11 @@ Rule changes are propagated to instances associated with the security group as q
 </table>
 </div>
 <p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h2 id="attribute-reference-10"><a class="header" href="#attribute-reference-10">Attribute Reference</a></h2>
+<h3 id="id-3"><a class="header" href="#id-3"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1472,23 +1472,6 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
-<h2 id="attribute-reference-11"><a class="header" href="#attribute-reference-11">Attribute Reference</a></h2>
-<h3 id="creation_timestamp"><a class="header" href="#creation_timestamp"><code>creation_timestamp</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
-<h3 id="id-4"><a class="header" href="#id-4"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
 <h2 id="enum-values-6"><a class="header" href="#enum-values-6">Enum Values</a></h2>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
 <div class="table-wrapper">
@@ -1536,6 +1519,23 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-11"><a class="header" href="#attribute-reference-11">Attribute Reference</a></h2>
+<h3 id="creation_timestamp"><a class="header" href="#creation_timestamp"><code>creation_timestamp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
+<h3 id="id-4"><a class="header" href="#id-4"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
 <h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"
@@ -1699,11 +1699,6 @@ awscc.ec2_vpc_gateway_attachment {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</p>
-<h2 id="attribute-reference-13"><a class="header" href="#attribute-reference-13">Attribute Reference</a></h2>
-<h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="enum-values-7"><a class="header" href="#enum-values-7">Enum Values</a></h2>
 <h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
 <div class="table-wrapper">
@@ -1764,6 +1759,11 @@ awscc.ec2_vpc_gateway_attachment {
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-13"><a class="header" href="#attribute-reference-13">Attribute Reference</a></h2>
+<h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name       = "example-vpc"
@@ -1829,39 +1829,6 @@ awscc.ec2_flow_log {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tier of the IPAM.</p>
-<h2 id="attribute-reference-14"><a class="header" href="#attribute-reference-14">Attribute Reference</a></h2>
-<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="default_resource_discovery_association_id"><a class="header" href="#default_resource_discovery_association_id"><code>default_resource_discovery_association_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="default_resource_discovery_id"><a class="header" href="#default_resource_discovery_id"><code>default_resource_discovery_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="ipam_id"><a class="header" href="#ipam_id"><code>ipam_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="private_default_scope_id"><a class="header" href="#private_default_scope_id"><code>private_default_scope_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-</ul>
-<h3 id="scope_count"><a class="header" href="#scope_count"><code>scope_count</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-</ul>
 <h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
 <h3 id="metered_account-meteredaccount"><a class="header" href="#metered_account-meteredaccount">metered_account (MeteredAccount)</a></h3>
 <div class="table-wrapper">
@@ -1912,6 +1879,39 @@ awscc.ec2_flow_log {
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-14"><a class="header" href="#attribute-reference-14">Attribute Reference</a></h2>
+<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="default_resource_discovery_association_id"><a class="header" href="#default_resource_discovery_association_id"><code>default_resource_discovery_association_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="default_resource_discovery_id"><a class="header" href="#default_resource_discovery_id"><code>default_resource_discovery_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="ipam_id"><a class="header" href="#ipam_id"><code>ipam_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="private_default_scope_id"><a class="header" href="#private_default_scope_id"><code>private_default_scope_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h3 id="scope_count"><a class="header" href="#scope_count"><code>scope_count</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
 <h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_ipam {
   name        = "example-ipam"
@@ -2028,39 +2028,6 @@ awscc.ec2_flow_log {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to this resource.</p>
-<h2 id="attribute-reference-15"><a class="header" href="#attribute-reference-15">Attribute Reference</a></h2>
-<h3 id="arn-1"><a class="header" href="#arn-1"><code>arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_pool_id-1"><a class="header" href="#ipam_pool_id-1"><code>ipam_pool_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IpamPoolId</li>
-</ul>
-<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
-</ul>
-<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-</ul>
-<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
-</ul>
-<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
 <h3 id="address_family-addressfamily"><a class="header" href="#address_family-addressfamily">address_family (AddressFamily)</a></h3>
 <div class="table-wrapper">
@@ -2157,6 +2124,39 @@ awscc.ec2_flow_log {
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference-15"><a class="header" href="#attribute-reference-15">Attribute Reference</a></h2>
+<h3 id="arn-1"><a class="header" href="#arn-1"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_pool_id-1"><a class="header" href="#ipam_pool_id-1"><code>ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+</ul>
+<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
+</ul>
+<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
+</ul>
+<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
 <pre><code class="language-crn">let ipam = awscc.ec2_ipam {
   name        = "example-ipam"
@@ -2302,19 +2302,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<h2 id="attribute-reference-17"><a class="header" href="#attribute-reference-17">Attribute Reference</a></h2>
-<h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="id-6"><a class="header" href="#id-6"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="transit_gateway_arn"><a class="header" href="#transit_gateway_arn"><code>transit_gateway_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
 <h2 id="enum-values-10"><a class="header" href="#enum-values-10">Enum Values</a></h2>
 <h3 id="encryption_support-encryptionsupport"><a class="header" href="#encryption_support-encryptionsupport">encryption_support (EncryptionSupport)</a></h3>
 <div class="table-wrapper">
@@ -2329,6 +2316,19 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </table>
 </div>
 <p>Shorthand formats: <code>disable</code> or <code>EncryptionSupport.disable</code></p>
+<h2 id="attribute-reference-17"><a class="header" href="#attribute-reference-17">Attribute Reference</a></h2>
+<h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="id-6"><a class="header" href="#id-6"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="transit_gateway_arn"><a class="header" href="#transit_gateway_arn"><code>transit_gateway_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
 <h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_transit_gateway {
   name        = "example-tgw"

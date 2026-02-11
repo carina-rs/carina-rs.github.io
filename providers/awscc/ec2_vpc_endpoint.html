@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -264,23 +264,6 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="creation_timestamp"><a class="header" href="#creation_timestamp"><code>creation_timestamp</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
-<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
-<ul>
-<li><strong>Type:</strong> List<string></string></li>
-</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
 <div class="table-wrapper">
@@ -328,6 +311,23 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="creation_timestamp"><a class="header" href="#creation_timestamp"><code>creation_timestamp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
+<ul>
+<li><strong>Type:</strong> List<string></string></li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   name                 = "example-vpc"

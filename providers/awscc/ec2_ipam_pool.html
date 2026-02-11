@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
+            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -271,39 +271,6 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to this resource.</p>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IpamPoolId</li>
-</ul>
-<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
-</ul>
-<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-</ul>
-<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
-</ul>
-<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="address_family-addressfamily"><a class="header" href="#address_family-addressfamily">address_family (AddressFamily)</a></h3>
 <div class="table-wrapper">
@@ -400,6 +367,39 @@
 </tbody>
 </table>
 </div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+</ul>
+<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
+</ul>
+<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+</ul>
+<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
+</ul>
+<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let ipam = awscc.ec2_ipam {
   name        = "example-ipam"
