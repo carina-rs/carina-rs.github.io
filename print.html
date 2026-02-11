@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-8923a0cd.js";
+            window.path_to_searchindex_js = "searchindex-ba5f4f5f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d07f2a4e.js"></script>
@@ -493,7 +493,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+<tr><td><code>internet_gateway_block_mode</code></td><td>Enum</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
 </tbody>
 </table>
 </div>
@@ -506,7 +506,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <tbody>
 <tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td></td></tr>
 <tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td></td></tr>
-<tr><td><code>hostname_type</code></td><td>String</td><td>No</td><td></td></tr>
+<tr><td><code>hostname_type</code></td><td>Enum</td><td>No</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -789,7 +789,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 </ul>
 <h3 id="domain"><a class="header" href="#domain"><code>domain</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#domain-domain">Enum (Domain)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The network (<code>vpc</code>). If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> on this resource.</p>
@@ -837,6 +837,20 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
+<h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
+<h3 id="domain-domain"><a class="header" href="#domain-domain">domain (Domain)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>vpc</code></td><td><code>awscc.ec2_eip.Domain.vpc</code></td></tr>
+<tr><td><code>standard</code></td><td><code>awscc.ec2_eip.Domain.standard</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>vpc</code> or <code>Domain.vpc</code></p>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_eip {
   name   = "example-eip"
@@ -863,7 +877,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
 <h3 id="availability_mode"><a class="header" href="#availability_mode"><code>availability_mode</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#availability_mode-availabilitymode">Enum (AvailabilityMode)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -948,7 +962,20 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <ul>
 <li><strong>Type:</strong> AwsResourceId</li>
 </ul>
-<h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
+<h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
+<h3 id="availability_mode-availabilitymode"><a class="header" href="#availability_mode-availabilitymode">availability_mode (AvailabilityMode)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>zonal</code></td><td><code>awscc.ec2_nat_gateway.AvailabilityMode.zonal</code></td></tr>
+<tr><td><code>regional</code></td><td><code>awscc.ec2_nat_gateway.AvailabilityMode.regional</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>zonal</code> or <code>AvailabilityMode.zonal</code></p>
 <h3 id="connectivity_type-connectivitytype"><a class="header" href="#connectivity_type-connectivitytype">connectivity_type (ConnectivityType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1209,7 +1236,7 @@ awscc.ec2_security_group {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="enum-values-3"><a class="header" href="#enum-values-3">Enum Values</a></h2>
+<h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1316,7 +1343,7 @@ Rule changes are propagated to instances associated with the security group as q
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="enum-values-4"><a class="header" href="#enum-values-4">Enum Values</a></h2>
+<h2 id="enum-values-5"><a class="header" href="#enum-values-5">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol-1"><a class="header" href="#ip_protocol-ipprotocol-1">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1462,7 +1489,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <ul>
 <li><strong>Type:</strong> List<string></string></li>
 </ul>
-<h2 id="enum-values-5"><a class="header" href="#enum-values-5">Enum Values</a></h2>
+<h2 id="enum-values-6"><a class="header" href="#enum-values-6">Enum Values</a></h2>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1677,7 +1704,7 @@ awscc.ec2_vpc_gateway_attachment {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="enum-values-6"><a class="header" href="#enum-values-6">Enum Values</a></h2>
+<h2 id="enum-values-7"><a class="header" href="#enum-values-7">Enum Values</a></h2>
 <h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1835,7 +1862,7 @@ awscc.ec2_flow_log {
 <ul>
 <li><strong>Type:</strong> Int</li>
 </ul>
-<h2 id="enum-values-7"><a class="header" href="#enum-values-7">Enum Values</a></h2>
+<h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
 <h3 id="metered_account-meteredaccount"><a class="header" href="#metered_account-meteredaccount">metered_account (MeteredAccount)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1909,7 +1936,7 @@ awscc.ec2_flow_log {
 <h2 id="argument-reference-15"><a class="header" href="#argument-reference-15">Argument Reference</a></h2>
 <h3 id="address_family"><a class="header" href="#address_family"><code>address_family</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#address_family-addressfamily">Enum (AddressFamily)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The address family of the address space in this pool. Either IPv4 or IPv6.</p>
@@ -2034,7 +2061,20 @@ awscc.ec2_flow_log {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
+<h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
+<h3 id="address_family-addressfamily"><a class="header" href="#address_family-addressfamily">address_family (AddressFamily)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>IPv4</code></td><td><code>awscc.ec2_ipam_pool.AddressFamily.IPv4</code></td></tr>
+<tr><td><code>IPv6</code></td><td><code>awscc.ec2_ipam_pool.AddressFamily.IPv6</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>IPv4</code> or <code>AddressFamily.IPv4</code></p>
 <h3 id="aws_service-awsservice"><a class="header" href="#aws_service-awsservice">aws_service (AwsService)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2275,7 +2315,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
-<h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
+<h2 id="enum-values-10"><a class="header" href="#enum-values-10">Enum Values</a></h2>
 <h3 id="encryption_support-encryptionsupport"><a class="header" href="#encryption_support-encryptionsupport">encryption_support (EncryptionSupport)</a></h3>
 <div class="table-wrapper">
 <table>

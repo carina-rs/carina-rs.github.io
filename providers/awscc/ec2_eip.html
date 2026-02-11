@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8923a0cd.js";
+            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -186,7 +186,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 </ul>
 <h3 id="domain"><a class="header" href="#domain"><code>domain</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#domain-domain">Enum (Domain)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The network (<code>vpc</code>). If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> on this resource.</p>
@@ -234,6 +234,20 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="domain-domain"><a class="header" href="#domain-domain">domain (Domain)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>vpc</code></td><td><code>awscc.ec2_eip.Domain.vpc</code></td></tr>
+<tr><td><code>standard</code></td><td><code>awscc.ec2_eip.Domain.standard</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>vpc</code> or <code>Domain.vpc</code></p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_eip {
   name   = "example-eip"

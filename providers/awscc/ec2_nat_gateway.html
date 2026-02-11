@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-8923a0cd.js";
+            window.path_to_searchindex_js = "../../searchindex-ba5f4f5f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -188,7 +188,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
 <h3 id="availability_mode"><a class="header" href="#availability_mode"><code>availability_mode</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#availability_mode-availabilitymode">Enum (AvailabilityMode)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -274,6 +274,19 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="availability_mode-availabilitymode"><a class="header" href="#availability_mode-availabilitymode">availability_mode (AvailabilityMode)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>zonal</code></td><td><code>awscc.ec2_nat_gateway.AvailabilityMode.zonal</code></td></tr>
+<tr><td><code>regional</code></td><td><code>awscc.ec2_nat_gateway.AvailabilityMode.regional</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>zonal</code> or <code>AvailabilityMode.zonal</code></p>
 <h3 id="connectivity_type-connectivitytype"><a class="header" href="#connectivity_type-connectivitytype">connectivity_type (ConnectivityType)</a></h3>
 <div class="table-wrapper">
 <table>
