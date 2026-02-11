@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.ec2_ipam_pool - Carina Documentation</title>
+        <title>awscc.logs_log_group - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -173,276 +173,99 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awsccec2_ipam_pool"><a class="header" href="#awsccec2_ipam_pool">awscc.ec2_ipam_pool</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::IPAMPool</code></p>
-<p>Resource Schema of AWS::EC2::IPAMPool Type</p>
+                        <h1 id="awscclogs_log_group"><a class="header" href="#awscclogs_log_group">awscc.logs_log_group</a></h1>
+<p>CloudFormation Type: <code>AWS::Logs::LogGroup</code></p>
+<p>The <code>AWS::Logs::LogGroup</code> resource specifies a log group. A log group defines common properties for log streams, such as their retention and access control rules. Each log stream must belong to one log group.
+You can create up to 1,000,000 log groups per Region per account. You must use the following guidelines when naming a log group:</p>
+<ul>
+<li>Log group names must be unique within a Region for an AWS account.</li>
+<li>Log group names can be between 1 and 512 characters long.</li>
+<li>Log group names consist of the following characters: a-z, A-Z, 0-9, ‘_’ (underscore), ‘-’ (hyphen), ‘/’ (forward slash), and ‘.’ (period).</li>
+</ul>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
-<h3 id="address_family"><a class="header" href="#address_family"><code>address_family</code></a></h3>
+<h3 id="data_protection_policy"><a class="header" href="#data_protection_policy"><code>data_protection_policy</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#address_family-addressfamily">Enum (AddressFamily)</a></li>
-<li><strong>Required:</strong> Yes</li>
-</ul>
-<p>The address family of the address space in this pool. Either IPv4 or IPv6.</p>
-<h3 id="allocation_default_netmask_length"><a class="header" href="#allocation_default_netmask_length"><code>allocation_default_netmask_length</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The default netmask length for allocations made from this pool. This value is used when the netmask length of an allocation isn’t specified.</p>
-<h3 id="allocation_max_netmask_length"><a class="header" href="#allocation_max_netmask_length"><code>allocation_max_netmask_length</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The maximum allowed netmask length for allocations made from this pool.</p>
-<h3 id="allocation_min_netmask_length"><a class="header" href="#allocation_min_netmask_length"><code>allocation_min_netmask_length</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The minimum allowed netmask length for allocations made from this pool.</p>
-<h3 id="allocation_resource_tags"><a class="header" href="#allocation_resource_tags"><code>allocation_resource_tags</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <code>List&lt;Map&gt;</code></li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>When specified, an allocation will not be allowed unless a resource has a matching set of tags.</p>
-<h3 id="auto_import"><a class="header" href="#auto_import"><code>auto_import</code></a></h3>
+<p>Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that’s ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.</p>
+<h3 id="deletion_protection_enabled"><a class="header" href="#deletion_protection_enabled"><code>deletion_protection_enabled</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Determines what to do if IPAM discovers resources that haven’t been assigned an allocation. If set to true, an allocation will be made automatically.</p>
-<h3 id="aws_service"><a class="header" href="#aws_service"><code>aws_service</code></a></h3>
+<p>Indicates whether deletion protection is enabled for this log group. When enabled, deletion protection blocks all deletion operations until it is explicitly disabled.</p>
+<h3 id="field_index_policies"><a class="header" href="#field_index_policies"><code>field_index_policies</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#aws_service-awsservice">Enum (AwsService)</a></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Limits which service in Amazon Web Services that the pool can be used in.</p>
-<h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
+<p>Creates or updates a <em>field index policy</em> for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a>. You can use field index policies to create <em>field indexes</em> on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create field indexes to improve query performance and reduce costs</a>. Currently, this array supports only one field index policy object.</p>
+<h3 id="kms_key_id"><a class="header" href="#kms_key_id"><code>kms_key_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<h3 id="ipam_scope_id"><a class="header" href="#ipam_scope_id"><code>ipam_scope_id</code></a></h3>
+<p>The Amazon Resource Name (ARN) of the KMS key to use when encrypting log data. To associate an KMS key with the log group, specify the ARN of that KMS key here. If you do so, ingested data is encrypted using this key. This association is stored as long as the data encrypted with the KMS key is still within CWL. This enables CWL to decrypt this data whenever it is requested. If you attempt to associate a KMS key with the log group but the KMS key doesn’t exist or is deactivated, you will receive an <code>InvalidParameterException</code> error. Log group data is always encrypted in CWL. If you omit this key, the encryption does not use KMS. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">Encrypt log data in using</a></p>
+<h3 id="log_group_class"><a class="header" href="#log_group_class"><code>log_group_class</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#log_group_class-loggroupclass">Enum (LogGroupClass)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the log group class for this log group. There are two classes:  + The <code>Standard</code> log class supports all CWL features.  + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs.   For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
+<h3 id="log_group_name"><a class="header" href="#log_group_name"><code>log_group_name</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
-<li><strong>Required:</strong> Yes</li>
-</ul>
-<p>The Id of the scope this pool is a part of.</p>
-<h3 id="locale"><a class="header" href="#locale"><code>locale</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
-<h3 id="provisioned_cidrs"><a class="header" href="#provisioned_cidrs"><code>provisioned_cidrs</code></a></h3>
+<p>The name of the log group. If you don’t specify a name, CFNlong generates a unique ID for the log group.</p>
+<h3 id="resource_policy_document"><a class="header" href="#resource_policy_document"><code>resource_policy_document</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#provisionedcidr">List&lt;ProvisionedCidr&gt;</a></li>
+<li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>A list of cidrs representing the address space available for allocation in this pool.</p>
-<h3 id="public_ip_source"><a class="header" href="#public_ip_source"><code>public_ip_source</code></a></h3>
+<p>Creates or updates a resource policy for the specified log group that allows other services to put log events to this account. A LogGroup can have 1 resource policy.</p>
+<h3 id="retention_in_days"><a class="header" href="#retention_in_days"><code>retention_in_days</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#public_ip_source-publicipsource">Enum (PublicIpSource)</a></li>
+<li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is <code>byoip</code>.</p>
-<h3 id="publicly_advertisable"><a class="header" href="#publicly_advertisable"><code>publicly_advertisable</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Bool</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.</p>
-<h3 id="source_ipam_pool_id"><a class="header" href="#source_ipam_pool_id"><code>source_ipam_pool_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IpamPoolId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The Id of this pool’s source. If set, all space provisioned in this pool must be free space provisioned in the parent pool.</p>
-<h3 id="source_resource"><a class="header" href="#source_resource"><code>source_resource</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#sourceresource">Struct(SourceResource)</a></li>
-<li><strong>Required:</strong> No</li>
-</ul>
+<p>The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653. To set a log group so that its log events do not expire, do not specify this property.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>An array of key-value pairs to apply to this resource.</p>
+<p>An array of key-value pairs to apply to the log group. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a>.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
-<h3 id="address_family-addressfamily"><a class="header" href="#address_family-addressfamily">address_family (AddressFamily)</a></h3>
+<h3 id="log_group_class-loggroupclass"><a class="header" href="#log_group_class-loggroupclass">log_group_class (LogGroupClass)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>IPv4</code></td><td><code>awscc.ec2_ipam_pool.AddressFamily.IPv4</code></td></tr>
-<tr><td><code>IPv6</code></td><td><code>awscc.ec2_ipam_pool.AddressFamily.IPv6</code></td></tr>
+<tr><td><code>STANDARD</code></td><td><code>awscc.logs_log_group.LogGroupClass.STANDARD</code></td></tr>
+<tr><td><code>INFREQUENT_ACCESS</code></td><td><code>awscc.logs_log_group.LogGroupClass.INFREQUENT_ACCESS</code></td></tr>
+<tr><td><code>DELIVERY</code></td><td><code>awscc.logs_log_group.LogGroupClass.DELIVERY</code></td></tr>
 </tbody>
 </table>
 </div>
-<p>Shorthand formats: <code>IPv4</code> or <code>AddressFamily.IPv4</code></p>
-<h3 id="aws_service-awsservice"><a class="header" href="#aws_service-awsservice">aws_service (AwsService)</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Value</th><th>DSL Identifier</th></tr>
-</thead>
-<tbody>
-<tr><td><code>ec2</code></td><td><code>awscc.ec2_ipam_pool.AwsService.ec2</code></td></tr>
-<tr><td><code>global-services</code></td><td><code>awscc.ec2_ipam_pool.AwsService.global-services</code></td></tr>
-</tbody>
-</table>
-</div>
-<p>Shorthand formats: <code>ec2</code> or <code>AwsService.ec2</code></p>
-<h3 id="ipam_scope_type-ipamscopetype"><a class="header" href="#ipam_scope_type-ipamscopetype">ipam_scope_type (IpamScopeType)</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Value</th><th>DSL Identifier</th></tr>
-</thead>
-<tbody>
-<tr><td><code>public</code></td><td><code>awscc.ec2_ipam_pool.IpamScopeType.public</code></td></tr>
-<tr><td><code>private</code></td><td><code>awscc.ec2_ipam_pool.IpamScopeType.private</code></td></tr>
-</tbody>
-</table>
-</div>
-<p>Shorthand formats: <code>public</code> or <code>IpamScopeType.public</code></p>
-<h3 id="public_ip_source-publicipsource"><a class="header" href="#public_ip_source-publicipsource">public_ip_source (PublicIpSource)</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Value</th><th>DSL Identifier</th></tr>
-</thead>
-<tbody>
-<tr><td><code>byoip</code></td><td><code>awscc.ec2_ipam_pool.PublicIpSource.byoip</code></td></tr>
-<tr><td><code>amazon</code></td><td><code>awscc.ec2_ipam_pool.PublicIpSource.amazon</code></td></tr>
-</tbody>
-</table>
-</div>
-<p>Shorthand formats: <code>byoip</code> or <code>PublicIpSource.byoip</code></p>
-<h3 id="state-state"><a class="header" href="#state-state">state (State)</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Value</th><th>DSL Identifier</th></tr>
-</thead>
-<tbody>
-<tr><td><code>create-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.create-in-progress</code></td></tr>
-<tr><td><code>create-complete</code></td><td><code>awscc.ec2_ipam_pool.State.create-complete</code></td></tr>
-<tr><td><code>modify-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.modify-in-progress</code></td></tr>
-<tr><td><code>modify-complete</code></td><td><code>awscc.ec2_ipam_pool.State.modify-complete</code></td></tr>
-<tr><td><code>delete-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.delete-in-progress</code></td></tr>
-<tr><td><code>delete-complete</code></td><td><code>awscc.ec2_ipam_pool.State.delete-complete</code></td></tr>
-</tbody>
-</table>
-</div>
-<p>Shorthand formats: <code>create-in-progress</code> or <code>State.create-in-progress</code></p>
-<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
-<h3 id="provisionedcidr"><a class="header" href="#provisionedcidr">ProvisionedCidr</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>cidr</code></td><td>String</td><td>Yes</td><td></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="sourceresource"><a class="header" href="#sourceresource">SourceResource</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>resource_id</code></td><td>String</td><td>Yes</td><td></td></tr>
-<tr><td><code>resource_owner</code></td><td>String</td><td>Yes</td><td></td></tr>
-<tr><td><code>resource_region</code></td><td>String</td><td>Yes</td><td></td></tr>
-<tr><td><code>resource_type</code></td><td>String</td><td>Yes</td><td></td></tr>
-</tbody>
-</table>
-</div>
+<p>Shorthand formats: <code>STANDARD</code> or <code>LogGroupClass.STANDARD</code></p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
-<h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IpamPoolId</li>
-</ul>
-<h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-</ul>
-<h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
-</ul>
-<h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int</li>
-</ul>
-<h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
-</ul>
-<h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let ipam = awscc.ec2_ipam {
-  name        = "example-ipam"
-  description = "Example IPAM"
-  tier        = free
-
-  operating_regions = [
-    {
-      region_name = "ap-northeast-1"
-    }
-  ]
-}
-
-awscc.ec2_ipam_pool {
-  name           = "example-ipam-pool"
-  ipam_scope_id  = ipam.private_default_scope_id
-  address_family = "IPv4"
-  locale         = "ap-northeast-1"
-  description    = "Example IPv4 IPAM Pool"
-
-  provisioned_cidrs = [
-    {
-      cidr = "10.0.0.0/8"
-    }
-  ]
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../providers/awscc/ec2_ipam.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../providers/awscc/iam_role.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../providers/awscc/ec2_vpn_gateway.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -450,13 +273,10 @@ awscc.ec2_ipam_pool {
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../providers/awscc/ec2_ipam.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../providers/awscc/iam_role.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../providers/awscc/ec2_vpn_gateway.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
-                    </a>
             </nav>
 
         </div>
