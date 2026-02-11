@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-c3d55178.js";
+            window.path_to_searchindex_js = "searchindex-8923a0cd.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d07f2a4e.js"></script>
@@ -452,7 +452,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The Amazon Resource Name (ARN) of the Outpost.</p>
 <h3 id="private_dns_name_options_on_launch"><a class="header" href="#private_dns_name_options_on_launch"><code>private_dns_name_options_on_launch</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Struct(PrivateDnsNameOptionsOnLaunch)</li>
+<li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
@@ -471,7 +471,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <h2 id="attribute-reference-1"><a class="header" href="#attribute-reference-1">Attribute Reference</a></h2>
 <h3 id="block_public_access_states"><a class="header" href="#block_public_access_states"><code>block_public_access_states</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Struct(BlockPublicAccessStates)</li>
+<li><strong>Type:</strong> <a href="#blockpublicaccessstates">Struct(BlockPublicAccessStates)</a></li>
 </ul>
 <h3 id="ipv6_cidr_blocks-1"><a class="header" href="#ipv6_cidr_blocks-1"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
@@ -869,7 +869,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="availability_zone_addresses"><a class="header" href="#availability_zone_addresses"><code>availability_zone_addresses</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<availabilityzoneaddress></availabilityzoneaddress></li>
+<li><strong>Type:</strong> <a href="#availabilityzoneaddress">List&lt;AvailabilityZoneAddress&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>For regional NAT gateways only: Specifies which Availability Zones you want the NAT gateway to support and the Elastic IP addresses (EIPs) to use in each AZ. The regional NAT gateway uses these EIPs to handle outbound NAT traffic from their respective AZs. If not specified, the NAT gateway will automatically expand to new AZs and associate EIPs upon detection of an elastic network interface. If you specify this parameter, auto-expansion is disabled and you must manually manage AZ coverage. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -1026,13 +1026,13 @@ awscc.ec2_nat_gateway {
 <p>The name of the security group.</p>
 <h3 id="security_group_egress"><a class="header" href="#security_group_egress"><code>security_group_egress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<egress></egress></li>
+<li><strong>Type:</strong> <a href="#egress">List&lt;Egress&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
 <h3 id="security_group_ingress"><a class="header" href="#security_group_ingress"><code>security_group_ingress</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<ingress></ingress></li>
+<li><strong>Type:</strong> <a href="#ingress">List&lt;Ingress&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.</p>
@@ -1363,7 +1363,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <h2 id="argument-reference-11"><a class="header" href="#argument-reference-11">Argument Reference</a></h2>
 <h3 id="dns_options"><a class="header" href="#dns_options"><code>dns_options</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Struct(DnsOptionsSpecification)</li>
+<li><strong>Type:</strong> <a href="#dnsoptionsspecification">Struct(DnsOptionsSpecification)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Describes the DNS options for an endpoint.</p>
@@ -1615,7 +1615,7 @@ awscc.ec2_vpc_gateway_attachment {
 <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
 <h3 id="destination_options"><a class="header" href="#destination_options"><code>destination_options</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Struct(DestinationOptions)</li>
+<li><strong>Type:</strong> <a href="#destinationoptions">Struct(DestinationOptions)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="log_destination"><a class="header" href="#log_destination"><code>log_destination</code></a></h3>
@@ -1763,7 +1763,7 @@ awscc.ec2_flow_log {
 <h2 id="argument-reference-14"><a class="header" href="#argument-reference-14">Argument Reference</a></h2>
 <h3 id="default_resource_discovery_organizational_unit_exclusions"><a class="header" href="#default_resource_discovery_organizational_unit_exclusions"><code>default_resource_discovery_organizational_unit_exclusions</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<ipamorganizationalunitexclusion></ipamorganizationalunitexclusion></li>
+<li><strong>Type:</strong> <a href="#ipamorganizationalunitexclusion">List&lt;IpamOrganizationalUnitExclusion&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>A set of organizational unit (OU) exclusions for the default resource discovery, created with this IPAM.</p>
@@ -1786,7 +1786,7 @@ awscc.ec2_flow_log {
 <p>A metered account is an account that is charged for active IP addresses managed in IPAM</p>
 <h3 id="operating_regions"><a class="header" href="#operating_regions"><code>operating_regions</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<ipamoperatingregion></ipamoperatingregion></li>
+<li><strong>Type:</strong> <a href="#ipamoperatingregion">List&lt;IpamOperatingRegion&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring</p>
@@ -1968,7 +1968,7 @@ awscc.ec2_flow_log {
 <p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
 <h3 id="provisioned_cidrs"><a class="header" href="#provisioned_cidrs"><code>provisioned_cidrs</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<provisionedcidr></provisionedcidr></li>
+<li><strong>Type:</strong> <a href="#provisionedcidr">List&lt;ProvisionedCidr&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>A list of cidrs representing the address space available for allocation in this pool.</p>
@@ -1992,7 +1992,7 @@ awscc.ec2_flow_log {
 <p>The Id of this pool’s source. If set, all space provisioned in this pool must be free space provisioned in the parent pool.</p>
 <h3 id="source_resource"><a class="header" href="#source_resource"><code>source_resource</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Struct(SourceResource)</li>
+<li><strong>Type:</strong> <a href="#sourceresource">Struct(SourceResource)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="tags-10"><a class="header" href="#tags-10"><code>tags</code></a></h3>
