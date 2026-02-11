@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-6d71ea4d.js";
+            window.path_to_searchindex_js = "searchindex-648c8702.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d07f2a4e.js"></script>
@@ -328,7 +328,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="cidr_block_associations"><a class="header" href="#cidr_block_associations"><code>cidr_block_associations</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
 <ul>
@@ -340,11 +340,11 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_vpc {
@@ -464,7 +464,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Any tags assigned to the subnet.</p>
 <h3 id="vpc_id-1"><a class="header" href="#vpc_id-1"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
@@ -476,7 +476,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>internet_gateway_block_mode</code></td><td>Enum</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
 </tbody>
 </table>
 </div>
@@ -500,7 +500,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="ipv6_cidr_blocks-1"><a class="header" href="#ipv6_cidr_blocks-1"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
 <ul>
@@ -508,7 +508,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SubnetId</li>
 </ul>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
@@ -544,7 +544,7 @@ awscc.ec2_subnet {
 <h2 id="attribute-reference-2"><a class="header" href="#attribute-reference-2">Attribute Reference</a></h2>
 <h3 id="internet_gateway_id"><a class="header" href="#internet_gateway_id"><code>internet_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> InternetGatewayId</li>
 </ul>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_internet_gateway {
@@ -569,14 +569,14 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Any tags assigned to the route table.</p>
 <h3 id="vpc_id-2"><a class="header" href="#vpc_id-2"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
 <h2 id="attribute-reference-3"><a class="header" href="#attribute-reference-3">Attribute Reference</a></h2>
 <h3 id="route_table_id"><a class="header" href="#route_table_id"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 </ul>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
@@ -634,7 +634,7 @@ If you create a route that references a transit gateway in the same template whe
 <p>The ID of a prefix list used for the destination match.</p>
 <h3 id="egress_only_internet_gateway_id"><a class="header" href="#egress_only_internet_gateway_id"><code>egress_only_internet_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> InternetGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
@@ -658,7 +658,7 @@ If you create a route that references a transit gateway in the same template whe
 <p>The ID of the local gateway.</p>
 <h3 id="nat_gateway_id"><a class="header" href="#nat_gateway_id"><code>nat_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> NatGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
@@ -670,25 +670,25 @@ If you create a route that references a transit gateway in the same template whe
 <p>The ID of a network interface.</p>
 <h3 id="route_table_id-1"><a class="header" href="#route_table_id-1"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the route table for the route.</p>
 <h3 id="transit_gateway_id"><a class="header" href="#transit_gateway_id"><code>transit_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> TransitGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a transit gateway.</p>
 <h3 id="vpc_endpoint_id"><a class="header" href="#vpc_endpoint_id"><code>vpc_endpoint_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcEndpointId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>
 <h3 id="vpc_peering_connection_id"><a class="header" href="#vpc_peering_connection_id"><code>vpc_peering_connection_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcPeeringConnectionId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a VPC peering connection.</p>
@@ -734,13 +734,13 @@ awscc.ec2_route {
 <h2 id="argument-reference-5"><a class="header" href="#argument-reference-5">Argument Reference</a></h2>
 <h3 id="route_table_id-2"><a class="header" href="#route_table_id-2"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the route table. The physical ID changes when the route table ID is changed.</p>
 <h3 id="subnet_id-1"><a class="header" href="#subnet_id-1"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SubnetId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the subnet.</p>
@@ -907,7 +907,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</p>
 <h3 id="secondary_allocation_ids"><a class="header" href="#secondary_allocation_ids"><code>secondary_allocation_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</p>
@@ -919,13 +919,13 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
 <h3 id="secondary_private_ip_addresses"><a class="header" href="#secondary_private_ip_addresses"><code>secondary_private_ip_addresses</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
 <h3 id="subnet_id-2"><a class="header" href="#subnet_id-2"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SubnetId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the subnet in which the NAT gateway is located.</p>
@@ -937,7 +937,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <p>The tags for the NAT gateway.</p>
 <h3 id="vpc_id-3"><a class="header" href="#vpc_id-3"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
@@ -976,7 +976,7 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>allocation_ids</code></td><td>List<string></string></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
+<tr><td><code>allocation_ids</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
 <tr><td><code>availability_zone</code></td><td>AvailabilityZone</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
 <tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
 </tbody>
@@ -997,11 +997,11 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 </ul>
 <h3 id="nat_gateway_id-1"><a class="header" href="#nat_gateway_id-1"><code>nat_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> NatGatewayId</li>
 </ul>
 <h3 id="route_table_id-3"><a class="header" href="#route_table_id-3"><code>route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 </ul>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
@@ -1071,7 +1071,7 @@ awscc.ec2_nat_gateway {
 <p>Any tags assigned to the security group.</p>
 <h3 id="vpc_id-4"><a class="header" href="#vpc_id-4"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
@@ -1087,7 +1087,7 @@ awscc.ec2_nat_gateway {
 <tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
-<tr><td><code>destination_security_group_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
+<tr><td><code>destination_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
@@ -1107,7 +1107,7 @@ awscc.ec2_nat_gateway {
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>source_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
-<tr><td><code>source_security_group_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
@@ -1117,7 +1117,7 @@ awscc.ec2_nat_gateway {
 <h2 id="attribute-reference-8"><a class="header" href="#attribute-reference-8">Attribute Reference</a></h2>
 <h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 </ul>
 <h3 id="id-1"><a class="header" href="#id-1"><code>id</code></a></h3>
 <ul>
@@ -1185,7 +1185,7 @@ awscc.ec2_security_group {
 <p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
 <h3 id="group_id-1"><a class="header" href="#group_id-1"><code>group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID. You must specify the GroupName property or the GroupId property. For security groups that are in a VPC, you must use the GroupId property.</p>
@@ -1209,7 +1209,7 @@ awscc.ec2_security_group {
 <p>[EC2-VPC only] The ID of a prefix list.</p>
 <h3 id="source_security_group_id"><a class="header" href="#source_security_group_id"><code>source_security_group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the security group. You must specify either the security group ID or the security group name. For security groups in a nondefault VPC, you must specify the security group ID.</p>
@@ -1310,7 +1310,7 @@ Rule changes are propagated to instances associated with the security group as q
 <p>The prefix list IDs for an AWS service. This is the AWS service to access through a VPC endpoint from instances associated with the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</p>
 <h3 id="destination_security_group_id"><a class="header" href="#destination_security_group_id"><code>destination_security_group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</p>
@@ -1322,7 +1322,7 @@ Rule changes are propagated to instances associated with the security group as q
 <p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).</p>
 <h3 id="group_id-2"><a class="header" href="#group_id-2"><code>group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID.</p>
@@ -1420,13 +1420,13 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>The Amazon Resource Name (ARN) of the resource configuration.</p>
 <h3 id="route_table_ids"><a class="header" href="#route_table_ids"><code>route_table_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the route tables. Routing is supported only for gateway endpoints.</p>
 <h3 id="security_group_ids"><a class="header" href="#security_group_ids"><code>security_group_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the security groups to associate with the endpoint network interfaces. If this parameter is not specified, we use the default security group for the VPC. Security groups are supported only for interface endpoints.</p>
@@ -1450,7 +1450,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>Describes a Region.</p>
 <h3 id="subnet_ids"><a class="header" href="#subnet_ids"><code>subnet_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can’t specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>
@@ -1468,7 +1468,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <p>The type of endpoint. Default: Gateway</p>
 <h3 id="vpc_id-5"><a class="header" href="#vpc_id-5"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
@@ -1515,7 +1515,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <tr><td><code>dns_record_ip_type</code></td><td>String</td><td>No</td><td>The DNS records created for the endpoint.</td></tr>
 <tr><td><code>private_dns_only_for_inbound_resolver_endpoint</code></td><td>String</td><td>No</td><td>Indicates whether to enable private DNS only for inbound endpoints. This option is available only fo…</td></tr>
 <tr><td><code>private_dns_preference</code></td><td>String</td><td>No</td><td>The preference for which private domains have a private hosted zone created for and associated with …</td></tr>
-<tr><td><code>private_dns_specified_domains</code></td><td>List<string></string></td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
+<tr><td><code>private_dns_specified_domains</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1526,7 +1526,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h3 id="dns_entries"><a class="header" href="#dns_entries"><code>dns_entries</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h3 id="id-4"><a class="header" href="#id-4"><code>id</code></a></h3>
 <ul>
@@ -1534,7 +1534,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
@@ -1584,19 +1584,19 @@ awscc.ec2_vpc_endpoint {
 <h2 id="argument-reference-12"><a class="header" href="#argument-reference-12">Argument Reference</a></h2>
 <h3 id="internet_gateway_id-1"><a class="header" href="#internet_gateway_id-1"><code>internet_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> InternetGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the internet gateway. You must specify either InternetGatewayId or VpnGatewayId, but not both.</p>
 <h3 id="vpc_id-6"><a class="header" href="#vpc_id-6"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
 <h3 id="vpn_gateway_id"><a class="header" href="#vpn_gateway_id"><code>vpn_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpnGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the virtual private gateway. You must specify either InternetGatewayId or VpnGatewayId, but not both.</p>
@@ -1960,7 +1960,7 @@ awscc.ec2_flow_log {
 <p>The minimum allowed netmask length for allocations made from this pool.</p>
 <h3 id="allocation_resource_tags"><a class="header" href="#allocation_resource_tags"><code>allocation_resource_tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<map></map></li>
+<li><strong>Type:</strong> <code>List&lt;Map&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>When specified, an allocation will not be allowed unless a resource has a matching set of tags.</p>
@@ -2215,7 +2215,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <h2 id="attribute-reference-16"><a class="header" href="#attribute-reference-16">Attribute Reference</a></h2>
 <h3 id="vpn_gateway_id-1"><a class="header" href="#vpn_gateway_id-1"><code>vpn_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpnGatewayId</li>
 </ul>
 <h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2_vpn_gateway {
@@ -2239,7 +2239,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="association_default_route_table_id"><a class="header" href="#association_default_route_table_id"><code>association_default_route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="auto_accept_shared_attachments"><a class="header" href="#auto_accept_shared_attachments"><code>auto_accept_shared_attachments</code></a></h3>
@@ -2279,7 +2279,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> RouteTableId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
@@ -2294,7 +2294,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="transit_gateway_cidr_blocks"><a class="header" href="#transit_gateway_cidr_blocks"><code>transit_gateway_cidr_blocks</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="vpn_ecmp_support"><a class="header" href="#vpn_ecmp_support"><code>vpn_ecmp_support</code></a></h3>
@@ -2364,7 +2364,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
 <h3 id="peer_vpc_id"><a class="header" href="#peer_vpc_id"><code>peer_vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.</p>
@@ -2375,7 +2375,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="vpc_id-7"><a class="header" href="#vpc_id-7"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
@@ -2418,7 +2418,7 @@ awscc.ec2_vpc_peering_connection {
 <p>Any tags assigned to the egress only internet gateway.</p>
 <h3 id="vpc_id-8"><a class="header" href="#vpc_id-8"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC for which to create the egress-only internet gateway.</p>

@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
+            window.path_to_searchindex_js = "../../searchindex-648c8702.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -209,7 +209,7 @@
 <p>Any tags assigned to the security group.</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
@@ -225,7 +225,7 @@
 <tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
-<tr><td><code>destination_security_group_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
+<tr><td><code>destination_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
@@ -245,7 +245,7 @@
 <tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>source_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
-<tr><td><code>source_security_group_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
+<tr><td><code>source_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
@@ -255,7 +255,7 @@
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 </ul>
 <h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
 <ul>

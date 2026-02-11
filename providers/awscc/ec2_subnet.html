@@ -36,7 +36,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-6d71ea4d.js";
+            window.path_to_searchindex_js = "../../searchindex-648c8702.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-d07f2a4e.js"></script>
@@ -277,7 +277,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Any tags assigned to the subnet.</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
@@ -289,7 +289,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>internet_gateway_block_mode</code></td><td>Enum</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
 </tbody>
 </table>
 </div>
@@ -313,7 +313,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
-<li><strong>Type:</strong> List<string></string></li>
+<li><strong>Type:</strong> <code>List&lt;String&gt;</code></li>
 </ul>
 <h3 id="network_acl_association_id"><a class="header" href="#network_acl_association_id"><code>network_acl_association_id</code></a></h3>
 <ul>
@@ -321,7 +321,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> SubnetId</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
