@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -227,9 +227,9 @@
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
 <tr><td><code>destination_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
-<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
-<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -243,13 +243,13 @@
 <tr><td><code>cidr_ip</code></td><td>Ipv4Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>source_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -264,12 +264,10 @@
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
-awscc.ec2_security_group {
-  name              = "example-sg"
+let sg = awscc.ec2_security_group {
   vpc_id            = vpc.vpc_id
   group_description = "Example security group"
 

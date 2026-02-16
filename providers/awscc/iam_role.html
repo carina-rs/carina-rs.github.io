@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -193,13 +193,13 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 <p>A description of the role that you provide.</p>
 <h3 id="managed_policy_arns"><a class="header" href="#managed_policy_arns"><code>managed_policy_arns</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;Arn&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;IamPolicyArn&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>A list of Amazon Resource Names (ARNs) of the IAM managed policies that you want to attach to the role. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and Service Namespaces</a> in the <em>General Reference</em>.</p>
 <h3 id="max_session_duration"><a class="header" href="#max_session_duration"><code>max_session_duration</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(3600..=43200)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default value of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the CLI or API can use the <code>DurationSeconds</code> API parameter or the <code>duration-seconds</code>CLI parameter to request a longer session. The <code>MaxSessionDuration</code> setting determines the maximum duration that can be requested using the <code>DurationSeconds</code> parameter. If users don’t specify a value for the <code>DurationSeconds</code> parameter, their security credentials are valid for one hour by default. This applies when you use the <code>AssumeRole*</code> API operations or the <code>assume-role*</code>CLI operations but does not apply when you use those operations to create a console URL. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM roles</a> in the <em>IAM User Guide</em>.</p>
@@ -211,7 +211,7 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 <p>The path to the role. For more information about paths, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM Identifiers</a> in the <em>IAM User Guide</em>. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>), including most punctuation characters, digits, and upper and lowercased letters.</p>
 <h3 id="permissions_boundary"><a class="header" href="#permissions_boundary"><code>permissions_boundary</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IamPolicyArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN of the policy used to set the permissions boundary for the role. For more information about permissions boundaries, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions boundaries for IAM identities</a> in the <em>IAM User Guide</em>.</p>

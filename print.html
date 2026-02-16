@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a3014d2b.js"></script>
@@ -277,7 +277,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
 <h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>.</p>
@@ -309,11 +309,11 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h3 id="default_security_group"><a class="header" href="#default_security_group"><code>default_security_group</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 </ul>
 <h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
@@ -324,8 +324,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Type:</strong> VpcId</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_vpc {
-  name                 = "example-vpc"
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
@@ -387,7 +386,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>An IPv4 IPAM pool ID for the subnet.</p>
 <h3 id="ipv4_netmask_length-1"><a class="header" href="#ipv4_netmask_length-1"><code>ipv4_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv4 netmask length for the subnet.</p>
@@ -411,7 +410,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Indicates whether this is an IPv6 only subnet. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">Subnet basics</a> in the <em>User Guide</em>.</p>
 <h3 id="ipv6_netmask_length"><a class="header" href="#ipv6_netmask_length"><code>ipv6_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=128)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv6 netmask length for the subnet.</p>
@@ -489,14 +488,12 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-awscc.ec2_subnet {
-  name                    = "example-public-subnet"
+let subnet = awscc.ec2_subnet {
   vpc_id                  = vpc.vpc_id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-northeast-1a"
@@ -524,9 +521,7 @@ awscc.ec2_subnet {
 <li><strong>Type:</strong> InternetGatewayId</li>
 </ul>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_internet_gateway {
-  name = "example-igw"
-
+<pre><code class="language-crn">let igw = awscc.ec2_internet_gateway {
   tags = {
     Environment = "example"
   }
@@ -557,14 +552,12 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-awscc.ec2_route_table {
-  name   = "example-public-rt"
+let rt = awscc.ec2_route_table {
   vpc_id = vpc.vpc_id
 
   tags = {
@@ -676,29 +669,24 @@ If you create a route that references a transit gateway in the same template whe
 </ul>
 <h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 let igw = awscc.ec2_internet_gateway {
-  name = "example-igw"
 }
 
 let igw_attachment = awscc.ec2_vpc_gateway_attachment {
-  name                = "example-igw-attachment"
   vpc_id              = vpc.vpc_id
   internet_gateway_id = igw.internet_gateway_id
 }
 
 let rt = awscc.ec2_route_table {
-  name   = "example-public-rt"
   vpc_id = vpc.vpc_id
 }
 
-awscc.ec2_route {
-  name                   = "example-internet-route"
+let route = awscc.ec2_route {
   route_table_id         = rt.route_table_id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = igw_attachment.internet_gateway_id
@@ -728,26 +716,22 @@ awscc.ec2_route {
 </ul>
 <h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 let subnet = awscc.ec2_subnet {
-  name              = "example-subnet"
   vpc_id            = vpc.vpc_id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "ap-northeast-1a"
 }
 
 let rt = awscc.ec2_route_table {
-  name   = "example-rt"
   vpc_id = vpc.vpc_id
 }
 
-awscc.ec2_subnet_route_table_association {
-  name           = "example-subnet-rt-assoc"
+let rt_assoc = awscc.ec2_subnet_route_table_association {
   subnet_id      = subnet.subnet_id
   route_table_id = rt.route_table_id
 }
@@ -829,8 +813,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
 <h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_eip {
-  name   = "example-eip"
+<pre><code class="language-crn">let eip = awscc.ec2_eip {
   domain = "vpc"
 
   tags = {
@@ -982,14 +965,12 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 </ul>
 <h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 let public_subnet = awscc.ec2_subnet {
-  name                    = "example-public-subnet"
   vpc_id                  = vpc.vpc_id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-northeast-1a"
@@ -997,12 +978,10 @@ let public_subnet = awscc.ec2_subnet {
 }
 
 let eip = awscc.ec2_eip {
-  name   = "example-nat-eip"
   domain = "vpc"
 }
 
-awscc.ec2_nat_gateway {
-  name          = "example-nat-gw"
+let nat_gw = awscc.ec2_nat_gateway {
   allocation_id = eip.allocation_id
   subnet_id     = public_subnet.subnet_id
 
@@ -1065,9 +1044,9 @@ awscc.ec2_nat_gateway {
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>destination_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
 <tr><td><code>destination_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
-<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
-<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -1081,13 +1060,13 @@ awscc.ec2_nat_gateway {
 <tr><td><code>cidr_ip</code></td><td>Ipv4Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>cidr_ipv6</code></td><td>Ipv6Cidr</td><td>No</td><td></td></tr>
 <tr><td><code>description</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>from_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>from_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 <tr><td><code>ip_protocol</code></td><td>Enum</td><td>Yes</td><td></td></tr>
 <tr><td><code>source_prefix_list_id</code></td><td>AwsResourceId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_id</code></td><td>SecurityGroupId</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_name</code></td><td>String</td><td>No</td><td></td></tr>
 <tr><td><code>source_security_group_owner_id</code></td><td>String</td><td>No</td><td></td></tr>
-<tr><td><code>to_port</code></td><td>Int</td><td>No</td><td></td></tr>
+<tr><td><code>to_port</code></td><td>Int(-1..=65535)</td><td>No</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -1102,12 +1081,10 @@ awscc.ec2_nat_gateway {
 </ul>
 <h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
-awscc.ec2_security_group {
-  name              = "example-sg"
+let sg = awscc.ec2_security_group {
   vpc_id            = vpc.vpc_id
   group_description = "Example security group"
 
@@ -1155,7 +1132,7 @@ awscc.ec2_security_group {
 <p>Updates the description of an ingress (inbound) security group rule. You can replace an existing description, or add a description to a rule that did not have one previously</p>
 <h3 id="from_port"><a class="header" href="#from_port"><code>from_port</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
@@ -1203,7 +1180,7 @@ awscc.ec2_security_group {
 <p>[nondefault VPC] The AWS account ID that owns the source security group. You can’t specify this property with an IP address range. If you specify SourceSecurityGroupName or SourceSecurityGroupId and that security group is owned by a different account than the account creating the stack, you must specify the SourceSecurityGroupOwnerId; otherwise, this property is optional.</p>
 <h3 id="to_port"><a class="header" href="#to_port"><code>to_port</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of -1 indicates all ICMP/ICMPv6 codes for the specified ICMP type. If you specify all ICMP/ICMPv6 types, you must specify all codes. Use this for ICMP and any protocol that uses ports.</p>
@@ -1231,18 +1208,15 @@ awscc.ec2_security_group {
 </ul>
 <h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
 let sg = awscc.ec2_security_group {
-  name              = "example-sg"
   vpc_id            = vpc.vpc_id
   group_description = "Example security group"
 }
 
-awscc.ec2_security_group_ingress {
-  name        = "example-https-ingress"
+let ingress = awscc.ec2_security_group_ingress {
   group_id    = sg.group_id
   description = "Allow HTTPS from VPC"
   ip_protocol = "tcp"
@@ -1292,7 +1266,7 @@ Rule changes are propagated to instances associated with the security group as q
 <p>The ID of the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</p>
 <h3 id="from_port-1"><a class="header" href="#from_port-1"><code>from_port</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).</p>
@@ -1310,7 +1284,7 @@ Rule changes are propagated to instances associated with the security group as q
 <p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href="https://docs.aws.amazon.com/http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
 <h3 id="to_port-1"><a class="header" href="#to_port-1"><code>to_port</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</p>
@@ -1338,18 +1312,15 @@ Rule changes are propagated to instances associated with the security group as q
 </ul>
 <h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
 let sg = awscc.ec2_security_group {
-  name              = "example-sg"
   vpc_id            = vpc.vpc_id
   group_description = "Example security group"
 }
 
-awscc.ec2_security_group_egress {
-  name        = "example-all-outbound"
+let egress = awscc.ec2_security_group_egress {
   group_id    = sg.group_id
   description = "Allow all outbound traffic"
   ip_protocol = "-1"
@@ -1514,27 +1485,23 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 </ul>
 <h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 let subnet = awscc.ec2_subnet {
-  name              = "example-private-subnet"
   vpc_id            = vpc.vpc_id
   cidr_block        = "10.0.100.0/24"
   availability_zone = "ap-northeast-1a"
 }
 
 let sg = awscc.ec2_security_group {
-  name              = "example-endpoint-sg"
   vpc_id            = vpc.vpc_id
   group_description = "SG for VPC Endpoint"
 }
 
-awscc.ec2_security_group_ingress {
-  name        = "example-endpoint-https"
+let ingress = awscc.ec2_security_group_ingress {
   group_id    = sg.group_id
   description = "Allow HTTPS from VPC"
   ip_protocol = "tcp"
@@ -1543,8 +1510,7 @@ awscc.ec2_security_group_ingress {
   cidr_ip     = "10.0.0.0/16"
 }
 
-awscc.ec2_vpc_endpoint {
-  name                = "example-ecr-dkr"
+let vpc_endpoint = awscc.ec2_vpc_endpoint {
   vpc_id              = vpc.vpc_id
   service_name        = "com.amazonaws.ap-northeast-1.ecr.dkr"
   vpc_endpoint_type   = "Interface"
@@ -1583,18 +1549,15 @@ awscc.ec2_vpc_endpoint {
 </ul>
 <h2 id="example-12"><a class="header" href="#example-12">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
 let igw = awscc.ec2_internet_gateway {
-  name = "example-igw"
 }
 
-awscc.ec2_vpc_gateway_attachment {
-  name                = "example-igw-attachment"
+let igw_attachment = awscc.ec2_vpc_gateway_attachment {
   vpc_id              = vpc.vpc_id
   internet_gateway_id = igw.internet_gateway_id
 }
@@ -1606,13 +1569,13 @@ awscc.ec2_vpc_gateway_attachment {
 <h2 id="argument-reference-13"><a class="header" href="#argument-reference-13">Argument Reference</a></h2>
 <h3 id="deliver_cross_account_role"><a class="header" href="#deliver_cross_account_role"><code>deliver_cross_account_role</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts.</p>
 <h3 id="deliver_logs_permission_arn"><a class="header" href="#deliver_logs_permission_arn"><code>deliver_logs_permission_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Arn</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
@@ -1742,12 +1705,10 @@ awscc.ec2_vpc_gateway_attachment {
 </ul>
 <h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
-awscc.ec2_flow_log {
-  name                 = "example-flow-log"
+let flow_log = awscc.ec2_flow_log {
   resource_id          = vpc.vpc_id
   resource_type        = VPC
   traffic_type         = ALL
@@ -1889,8 +1850,7 @@ awscc.ec2_flow_log {
 <li><strong>Type:</strong> Int</li>
 </ul>
 <h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_ipam {
-  name        = "example-ipam"
+<pre><code class="language-crn">let ipam = awscc.ec2_ipam {
   description = "Example IPAM"
   tier        = free
 
@@ -2082,7 +2042,7 @@ awscc.ec2_flow_log {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cidr</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>cidr</code></td><td>Ipv4Cidr</td><td>Yes</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -2135,7 +2095,6 @@ awscc.ec2_flow_log {
 </ul>
 <h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
 <pre><code class="language-crn">let ipam = awscc.ec2_ipam {
-  name        = "example-ipam"
   description = "Example IPAM"
   tier        = free
 
@@ -2146,8 +2105,7 @@ awscc.ec2_flow_log {
   ]
 }
 
-awscc.ec2_ipam_pool {
-  name           = "example-ipam-pool"
+let ipam_pool = awscc.ec2_ipam_pool {
   ipam_scope_id  = ipam.private_default_scope_id
   address_family = "IPv4"
   locale         = "ap-northeast-1"
@@ -2194,8 +2152,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <li><strong>Type:</strong> VpnGatewayId</li>
 </ul>
 <h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_vpn_gateway {
-  name = "example-vpn-gw"
+<pre><code class="language-crn">let vpn_gw = awscc.ec2_vpn_gateway {
   type = "ipsec.1"
 
   tags = {
@@ -2220,17 +2177,17 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="auto_accept_shared_attachments"><a class="header" href="#auto_accept_shared_attachments"><code>auto_accept_shared_attachments</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#auto_accept_shared_attachments-autoacceptsharedattachments">Enum (AutoAcceptSharedAttachments)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="default_route_table_association"><a class="header" href="#default_route_table_association"><code>default_route_table_association</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#default_route_table_association-defaultroutetableassociation">Enum (DefaultRouteTableAssociation)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="default_route_table_propagation"><a class="header" href="#default_route_table_propagation"><code>default_route_table_propagation</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#default_route_table_propagation-defaultroutetablepropagation">Enum (DefaultRouteTablePropagation)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="description-4"><a class="header" href="#description-4"><code>description</code></a></h3>
@@ -2240,7 +2197,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="dns_support"><a class="header" href="#dns_support"><code>dns_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#dns_support-dnssupport">Enum (DnsSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="encryption_support"><a class="header" href="#encryption_support"><code>encryption_support</code></a></h3>
@@ -2250,7 +2207,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="multicast_support"><a class="header" href="#multicast_support"><code>multicast_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#multicast_support-multicastsupport">Enum (MulticastSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
@@ -2260,7 +2217,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#security_group_referencing_support-securitygroupreferencingsupport">Enum (SecurityGroupReferencingSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="tags-12"><a class="header" href="#tags-12"><code>tags</code></a></h3>
@@ -2275,10 +2232,62 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h3 id="vpn_ecmp_support"><a class="header" href="#vpn_ecmp_support"><code>vpn_ecmp_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#vpn_ecmp_support-vpnecmpsupport">Enum (VpnEcmpSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h2 id="enum-values-10"><a class="header" href="#enum-values-10">Enum Values</a></h2>
+<h3 id="auto_accept_shared_attachments-autoacceptsharedattachments"><a class="header" href="#auto_accept_shared_attachments-autoacceptsharedattachments">auto_accept_shared_attachments (AutoAcceptSharedAttachments)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.AutoAcceptSharedAttachments.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.AutoAcceptSharedAttachments.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>AutoAcceptSharedAttachments.enable</code></p>
+<h3 id="default_route_table_association-defaultroutetableassociation"><a class="header" href="#default_route_table_association-defaultroutetableassociation">default_route_table_association (DefaultRouteTableAssociation)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTableAssociation.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTableAssociation.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DefaultRouteTableAssociation.enable</code></p>
+<h3 id="default_route_table_propagation-defaultroutetablepropagation"><a class="header" href="#default_route_table_propagation-defaultroutetablepropagation">default_route_table_propagation (DefaultRouteTablePropagation)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTablePropagation.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTablePropagation.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DefaultRouteTablePropagation.enable</code></p>
+<h3 id="dns_support-dnssupport"><a class="header" href="#dns_support-dnssupport">dns_support (DnsSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DnsSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DnsSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DnsSupport.enable</code></p>
 <h3 id="encryption_support-encryptionsupport"><a class="header" href="#encryption_support-encryptionsupport">encryption_support (EncryptionSupport)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2292,6 +2301,45 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </table>
 </div>
 <p>Shorthand formats: <code>disable</code> or <code>EncryptionSupport.disable</code></p>
+<h3 id="multicast_support-multicastsupport"><a class="header" href="#multicast_support-multicastsupport">multicast_support (MulticastSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.MulticastSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.MulticastSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>MulticastSupport.enable</code></p>
+<h3 id="security_group_referencing_support-securitygroupreferencingsupport"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.SecurityGroupReferencingSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.SecurityGroupReferencingSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>SecurityGroupReferencingSupport.enable</code></p>
+<h3 id="vpn_ecmp_support-vpnecmpsupport"><a class="header" href="#vpn_ecmp_support-vpnecmpsupport">vpn_ecmp_support (VpnEcmpSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.VpnEcmpSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.VpnEcmpSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>VpnEcmpSupport.enable</code></p>
 <h2 id="attribute-reference-17"><a class="header" href="#attribute-reference-17">Attribute Reference</a></h2>
 <h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
 <ul>
@@ -2306,8 +2354,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <li><strong>Type:</strong> Arn</li>
 </ul>
 <h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_transit_gateway {
-  name        = "example-tgw"
+<pre><code class="language-crn">let tgw = awscc.ec2_transit_gateway {
   description = "Example Transit Gateway"
 
   tags = {
@@ -2334,7 +2381,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>
 <h3 id="peer_role_arn"><a class="header" href="#peer_role_arn"><code>peer_role_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Arn</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
@@ -2362,17 +2409,14 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 </ul>
 <h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
 <pre><code class="language-crn">let vpc1 = awscc.ec2_vpc {
-  name       = "example-vpc-peer-1"
   cidr_block = "10.0.0.0/16"
 }
 
 let vpc2 = awscc.ec2_vpc {
-  name       = "example-vpc-peer-2"
   cidr_block = "10.1.0.0/16"
 }
 
-awscc.ec2_vpc_peering_connection {
-  name        = "example-vpc-peering"
+let peering = awscc.ec2_vpc_peering_connection {
   vpc_id      = vpc1.vpc_id
   peer_vpc_id = vpc2.vpc_id
 
@@ -2405,12 +2449,10 @@ awscc.ec2_vpc_peering_connection {
 </ul>
 <h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc-eoigw"
   cidr_block = "10.0.0.0/16"
 }
 
-awscc.ec2_egress_only_internet_gateway {
-  name   = "example-eoigw"
+let eoigw = awscc.ec2_egress_only_internet_gateway {
   vpc_id = vpc.vpc_id
 
   tags = {
@@ -2458,9 +2500,9 @@ awscc.ec2_egress_only_internet_gateway {
 </thead>
 <tbody>
 <tr><td><code>appliance_mode_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
-<tr><td><code>dns_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable</td></tr>
+<tr><td><code>dns_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable</td></tr>
 <tr><td><code>ipv6_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
-<tr><td><code>security_group_referencing_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: ena…</td></tr>
+<tr><td><code>security_group_referencing_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: ena…</td></tr>
 </tbody>
 </table>
 </div>
@@ -2881,7 +2923,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h2 id="attribute-reference-21"><a class="header" href="#attribute-reference-21">Attribute Reference</a></h2>
 <h3 id="arn-2"><a class="header" href="#arn-2"><code>arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 </ul>
 <h3 id="domain_name"><a class="header" href="#domain_name"><code>domain_name</code></a></h3>
 <ul>
@@ -2919,13 +2961,13 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 <p>A description of the role that you provide.</p>
 <h3 id="managed_policy_arns"><a class="header" href="#managed_policy_arns"><code>managed_policy_arns</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;Arn&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;IamPolicyArn&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>A list of Amazon Resource Names (ARNs) of the IAM managed policies that you want to attach to the role. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and Service Namespaces</a> in the <em>General Reference</em>.</p>
 <h3 id="max_session_duration"><a class="header" href="#max_session_duration"><code>max_session_duration</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(3600..=43200)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default value of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the CLI or API can use the <code>DurationSeconds</code> API parameter or the <code>duration-seconds</code>CLI parameter to request a longer session. The <code>MaxSessionDuration</code> setting determines the maximum duration that can be requested using the <code>DurationSeconds</code> parameter. If users don’t specify a value for the <code>DurationSeconds</code> parameter, their security credentials are valid for one hour by default. This applies when you use the <code>AssumeRole*</code> API operations or the <code>assume-role*</code>CLI operations but does not apply when you use those operations to create a console URL. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM roles</a> in the <em>IAM User Guide</em>.</p>
@@ -2937,7 +2979,7 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 <p>The path to the role. For more information about paths, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM Identifiers</a> in the <em>IAM User Guide</em>. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>), including most punctuation characters, digits, and upper and lowercased letters.</p>
 <h3 id="permissions_boundary"><a class="header" href="#permissions_boundary"><code>permissions_boundary</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IamPolicyArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN of the policy used to set the permissions boundary for the role. For more information about permissions boundaries, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions boundaries for IAM identities</a> in the <em>IAM User Guide</em>.</p>
@@ -3012,7 +3054,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <p>Creates or updates a <em>field index policy</em> for the specified log group. Only log groups in the Standard log class support field index policies. For more information about log classes, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a>. You can use field index policies to create <em>field indexes</em> on fields found in log events in the log group. Creating field indexes lowers the costs for CWL Insights queries that reference those field indexes, because these queries attempt to skip the processing of log events that are known to not match the indexed field. Good fields to index are fields that you often need to query for and fields that have high cardinality of values Common examples of indexes include request ID, session ID, userID, and instance IDs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogs-Field-Indexing.html">Create field indexes to improve query performance and reduce costs</a>. Currently, this array supports only one field index policy object.</p>
 <h3 id="kms_key_id"><a class="header" href="#kms_key_id"><code>kms_key_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> KmsKeyArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the KMS key to use when encrypting log data. To associate an KMS key with the log group, specify the ARN of that KMS key here. If you do so, ingested data is encrypted using this key. This association is stored as long as the data encrypted with the KMS key is still within CWL. This enables CWL to decrypt this data whenever it is requested. If you attempt to associate a KMS key with the log group but the KMS key doesn’t exist or is deactivated, you will receive an <code>InvalidParameterException</code> error. Log group data is always encrypted in CWL. If you omit this key, the encryption does not use KMS. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">Encrypt log data in using</a></p>

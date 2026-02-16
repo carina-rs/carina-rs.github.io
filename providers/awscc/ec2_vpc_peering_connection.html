@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -192,7 +192,7 @@
 <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>
 <h3 id="peer_role_arn"><a class="header" href="#peer_role_arn"><code>peer_role_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Arn</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
@@ -220,17 +220,14 @@
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc1 = awscc.ec2_vpc {
-  name       = "example-vpc-peer-1"
   cidr_block = "10.0.0.0/16"
 }
 
 let vpc2 = awscc.ec2_vpc {
-  name       = "example-vpc-peer-2"
   cidr_block = "10.1.0.0/16"
 }
 
-awscc.ec2_vpc_peering_connection {
-  name        = "example-vpc-peering"
+let peering = awscc.ec2_vpc_peering_connection {
   vpc_id      = vpc1.vpc_id
   peer_vpc_id = vpc2.vpc_id
 

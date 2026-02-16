@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -224,7 +224,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>An IPv4 IPAM pool ID for the subnet.</p>
 <h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv4 netmask length for the subnet.</p>
@@ -248,7 +248,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>Indicates whether this is an IPv6 only subnet. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#subnet-basics">Subnet basics</a> in the <em>User Guide</em>.</p>
 <h3 id="ipv6_netmask_length"><a class="header" href="#ipv6_netmask_length"><code>ipv6_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=128)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An IPv6 netmask length for the subnet.</p>
@@ -326,14 +326,12 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name                 = "example-vpc"
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-awscc.ec2_subnet {
-  name                    = "example-public-subnet"
+let subnet = awscc.ec2_subnet {
   vpc_id                  = vpc.vpc_id
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "ap-northeast-1a"

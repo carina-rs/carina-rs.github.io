@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -190,17 +190,17 @@
 </ul>
 <h3 id="auto_accept_shared_attachments"><a class="header" href="#auto_accept_shared_attachments"><code>auto_accept_shared_attachments</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#auto_accept_shared_attachments-autoacceptsharedattachments">Enum (AutoAcceptSharedAttachments)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="default_route_table_association"><a class="header" href="#default_route_table_association"><code>default_route_table_association</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#default_route_table_association-defaultroutetableassociation">Enum (DefaultRouteTableAssociation)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="default_route_table_propagation"><a class="header" href="#default_route_table_propagation"><code>default_route_table_propagation</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#default_route_table_propagation-defaultroutetablepropagation">Enum (DefaultRouteTablePropagation)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
@@ -210,7 +210,7 @@
 </ul>
 <h3 id="dns_support"><a class="header" href="#dns_support"><code>dns_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#dns_support-dnssupport">Enum (DnsSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="encryption_support"><a class="header" href="#encryption_support"><code>encryption_support</code></a></h3>
@@ -220,7 +220,7 @@
 </ul>
 <h3 id="multicast_support"><a class="header" href="#multicast_support"><code>multicast_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#multicast_support-multicastsupport">Enum (MulticastSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
@@ -230,7 +230,7 @@
 </ul>
 <h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#security_group_referencing_support-securitygroupreferencingsupport">Enum (SecurityGroupReferencingSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
@@ -245,10 +245,62 @@
 </ul>
 <h3 id="vpn_ecmp_support"><a class="header" href="#vpn_ecmp_support"><code>vpn_ecmp_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#vpn_ecmp_support-vpnecmpsupport">Enum (VpnEcmpSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="auto_accept_shared_attachments-autoacceptsharedattachments"><a class="header" href="#auto_accept_shared_attachments-autoacceptsharedattachments">auto_accept_shared_attachments (AutoAcceptSharedAttachments)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.AutoAcceptSharedAttachments.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.AutoAcceptSharedAttachments.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>AutoAcceptSharedAttachments.enable</code></p>
+<h3 id="default_route_table_association-defaultroutetableassociation"><a class="header" href="#default_route_table_association-defaultroutetableassociation">default_route_table_association (DefaultRouteTableAssociation)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTableAssociation.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTableAssociation.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DefaultRouteTableAssociation.enable</code></p>
+<h3 id="default_route_table_propagation-defaultroutetablepropagation"><a class="header" href="#default_route_table_propagation-defaultroutetablepropagation">default_route_table_propagation (DefaultRouteTablePropagation)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTablePropagation.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DefaultRouteTablePropagation.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DefaultRouteTablePropagation.enable</code></p>
+<h3 id="dns_support-dnssupport"><a class="header" href="#dns_support-dnssupport">dns_support (DnsSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.DnsSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.DnsSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DnsSupport.enable</code></p>
 <h3 id="encryption_support-encryptionsupport"><a class="header" href="#encryption_support-encryptionsupport">encryption_support (EncryptionSupport)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -262,6 +314,45 @@
 </table>
 </div>
 <p>Shorthand formats: <code>disable</code> or <code>EncryptionSupport.disable</code></p>
+<h3 id="multicast_support-multicastsupport"><a class="header" href="#multicast_support-multicastsupport">multicast_support (MulticastSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.MulticastSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.MulticastSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>MulticastSupport.enable</code></p>
+<h3 id="security_group_referencing_support-securitygroupreferencingsupport"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.SecurityGroupReferencingSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.SecurityGroupReferencingSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>SecurityGroupReferencingSupport.enable</code></p>
+<h3 id="vpn_ecmp_support-vpnecmpsupport"><a class="header" href="#vpn_ecmp_support-vpnecmpsupport">vpn_ecmp_support (VpnEcmpSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2_transit_gateway.VpnEcmpSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2_transit_gateway.VpnEcmpSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>VpnEcmpSupport.enable</code></p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
 <ul>
@@ -276,8 +367,7 @@
 <li><strong>Type:</strong> Arn</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_transit_gateway {
-  name        = "example-tgw"
+<pre><code class="language-crn">let tgw = awscc.ec2_transit_gateway {
   description = "Example Transit Gateway"
 
   tags = {

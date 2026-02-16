@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -180,13 +180,13 @@
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="deliver_cross_account_role"><a class="header" href="#deliver_cross_account_role"><code>deliver_cross_account_role</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts.</p>
 <h3 id="deliver_logs_permission_arn"><a class="header" href="#deliver_logs_permission_arn"><code>deliver_logs_permission_arn</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Arn</li>
+<li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
@@ -316,12 +316,10 @@
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2_vpc {
-  name       = "example-vpc"
   cidr_block = "10.0.0.0/16"
 }
 
-awscc.ec2_flow_log {
-  name                 = "example-flow-log"
+let flow_log = awscc.ec2_flow_log {
   resource_id          = vpc.vpc_id
   resource_type        = VPC
   traffic_type         = ALL

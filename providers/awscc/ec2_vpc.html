@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-e0d98cf1.js";
+            window.path_to_searchindex_js = "../../searchindex-9f389c58.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-a3014d2b.js"></script>
@@ -212,7 +212,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
 <h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>.</p>
@@ -244,11 +244,11 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 </ul>
 <h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsResourceId</li>
 </ul>
 <h3 id="default_security_group"><a class="header" href="#default_security_group"><code>default_security_group</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 </ul>
 <h3 id="ipv6_cidr_blocks"><a class="header" href="#ipv6_cidr_blocks"><code>ipv6_cidr_blocks</code></a></h3>
 <ul>
@@ -259,8 +259,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Type:</strong> VpcId</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2_vpc {
-  name                 = "example-vpc"
+<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
