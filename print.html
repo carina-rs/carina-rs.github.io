@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-4cd199c1.js";
+            window.path_to_searchindex_js = "searchindex-2680fdb0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-a3014d2b.js"></script>
@@ -1196,7 +1196,7 @@ let sg = awscc.ec2_security_group {
 <tr><td><code>udp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.udp</code></td></tr>
 <tr><td><code>icmp</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmp</code></td></tr>
 <tr><td><code>icmpv6</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.icmpv6</code></td></tr>
-<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol.-1</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_ingress.IpProtocol._1</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -1300,7 +1300,7 @@ Rule changes are propagated to instances associated with the security group as q
 <tr><td><code>udp</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.udp</code></td></tr>
 <tr><td><code>icmp</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.icmp</code></td></tr>
 <tr><td><code>icmpv6</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.icmpv6</code></td></tr>
-<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol.-1</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2_security_group_egress.IpProtocol._1</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -1430,7 +1430,7 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <tr><td><code>ipv4</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv4</code></td></tr>
 <tr><td><code>ipv6</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv6</code></td></tr>
 <tr><td><code>dualstack</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.dualstack</code></td></tr>
-<tr><td><code>not-specified</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.not-specified</code></td></tr>
+<tr><td><code>not-specified</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.not_specified</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -1646,13 +1646,13 @@ let igw_attachment = awscc.ec2_vpc_gateway_attachment {
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.cloud-watch-logs</code></td></tr>
+<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.cloud_watch_logs</code></td></tr>
 <tr><td><code>s3</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.s3</code></td></tr>
-<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.kinesis-data-firehose</code></td></tr>
+<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.kinesis_data_firehose</code></td></tr>
 </tbody>
 </table>
 </div>
-<p>Shorthand formats: <code>cloud-watch-logs</code> or <code>LogDestinationType.cloud-watch-logs</code></p>
+<p>Shorthand formats: <code>cloud_watch_logs</code> or <code>LogDestinationType.cloud_watch_logs</code></p>
 <h3 id="resource_type-resourcetype"><a class="header" href="#resource_type-resourcetype">resource_type (ResourceType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1774,12 +1774,12 @@ let flow_log = awscc.ec2_flow_log {
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>ipam-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.ipam-owner</code></td></tr>
-<tr><td><code>resource-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.resource-owner</code></td></tr>
+<tr><td><code>ipam-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.ipam_owner</code></td></tr>
+<tr><td><code>resource-owner</code></td><td><code>awscc.ec2_ipam.MeteredAccount.resource_owner</code></td></tr>
 </tbody>
 </table>
 </div>
-<p>Shorthand formats: <code>ipam-owner</code> or <code>MeteredAccount.ipam-owner</code></p>
+<p>Shorthand formats: <code>ipam_owner</code> or <code>MeteredAccount.ipam_owner</code></p>
 <h3 id="tier-tier"><a class="header" href="#tier-tier">tier (Tier)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1986,7 +1986,7 @@ let flow_log = awscc.ec2_flow_log {
 </thead>
 <tbody>
 <tr><td><code>ec2</code></td><td><code>awscc.ec2_ipam_pool.AwsService.ec2</code></td></tr>
-<tr><td><code>global-services</code></td><td><code>awscc.ec2_ipam_pool.AwsService.global-services</code></td></tr>
+<tr><td><code>global-services</code></td><td><code>awscc.ec2_ipam_pool.AwsService.global_services</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -2024,16 +2024,16 @@ let flow_log = awscc.ec2_flow_log {
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>create-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.create-in-progress</code></td></tr>
-<tr><td><code>create-complete</code></td><td><code>awscc.ec2_ipam_pool.State.create-complete</code></td></tr>
-<tr><td><code>modify-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.modify-in-progress</code></td></tr>
-<tr><td><code>modify-complete</code></td><td><code>awscc.ec2_ipam_pool.State.modify-complete</code></td></tr>
-<tr><td><code>delete-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.delete-in-progress</code></td></tr>
-<tr><td><code>delete-complete</code></td><td><code>awscc.ec2_ipam_pool.State.delete-complete</code></td></tr>
+<tr><td><code>create-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.create_in_progress</code></td></tr>
+<tr><td><code>create-complete</code></td><td><code>awscc.ec2_ipam_pool.State.create_complete</code></td></tr>
+<tr><td><code>modify-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.modify_in_progress</code></td></tr>
+<tr><td><code>modify-complete</code></td><td><code>awscc.ec2_ipam_pool.State.modify_complete</code></td></tr>
+<tr><td><code>delete-in-progress</code></td><td><code>awscc.ec2_ipam_pool.State.delete_in_progress</code></td></tr>
+<tr><td><code>delete-complete</code></td><td><code>awscc.ec2_ipam_pool.State.delete_complete</code></td></tr>
 </tbody>
 </table>
 </div>
-<p>Shorthand formats: <code>create-in-progress</code> or <code>State.create-in-progress</code></p>
+<p>Shorthand formats: <code>create_in_progress</code> or <code>State.create_in_progress</code></p>
 <h2 id="struct-definitions-6"><a class="header" href="#struct-definitions-6">Struct Definitions</a></h2>
 <h3 id="provisionedcidr"><a class="header" href="#provisionedcidr">ProvisionedCidr</a></h3>
 <div class="table-wrapper">
