@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
+            window.path_to_searchindex_js = "../../searchindex-0b9add07.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-64519e8a.js"></script>
+        <script src="../../toc-98b3dad5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -182,8 +182,8 @@
 }
 </code></pre>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Resources are defined using the <code>awscc.&lt;resource_type&gt;</code> syntax:</p>
-<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+<p>Resources are defined using the <code>awscc.&lt;service&gt;.&lt;resource_type&gt;</code> syntax:</p>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   name       = "my-vpc"
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -192,7 +192,7 @@
 }
 </code></pre>
 <p>Named resources (using <code>let</code>) can be referenced by other resources:</p>
-<pre><code class="language-crn">let subnet = awscc.ec2_subnet {
+<pre><code class="language-crn">let subnet = awscc.ec2.subnet {
   name              = "my-subnet"
   vpc_id            = vpc.vpc_id
   cidr_block        = "10.0.1.0/24"
@@ -204,14 +204,14 @@
 <ul>
 <li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
 <li><strong>TypeName.value</strong>: <code>instance_tenancy = InstanceTenancy.default</code></li>
-<li><strong>Full namespace</strong>: <code>instance_tenancy = awscc.ec2_vpc.InstanceTenancy.default</code></li>
+<li><strong>Full namespace</strong>: <code>instance_tenancy = awscc.ec2.vpc.InstanceTenancy.default</code></li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../providers/aws/s3_bucket.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -225,7 +225,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../providers/aws/s3_bucket.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 

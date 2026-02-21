@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.ec2_flow_log - Carina Documentation</title>
+        <title>awscc.ec2.flow_log - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
+            window.path_to_searchindex_js = "../../searchindex-0b9add07.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-64519e8a.js"></script>
+        <script src="../../toc-98b3dad5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -174,7 +174,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awsccec2_flow_log"><a class="header" href="#awsccec2_flow_log">awscc.ec2_flow_log</a></h1>
+                        <h1 id="awsccec2flow_log"><a class="header" href="#awsccec2flow_log">awscc.ec2.flow_log</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::FlowLog</code></p>
 <p>Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.</p>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
@@ -257,9 +257,9 @@
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.cloud_watch_logs</code></td></tr>
-<tr><td><code>s3</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.s3</code></td></tr>
-<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2_flow_log.LogDestinationType.kinesis_data_firehose</code></td></tr>
+<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.cloud_watch_logs</code></td></tr>
+<tr><td><code>s3</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.s3</code></td></tr>
+<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.kinesis_data_firehose</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -271,12 +271,12 @@
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>NetworkInterface</code></td><td><code>awscc.ec2_flow_log.ResourceType.NetworkInterface</code></td></tr>
-<tr><td><code>Subnet</code></td><td><code>awscc.ec2_flow_log.ResourceType.Subnet</code></td></tr>
-<tr><td><code>VPC</code></td><td><code>awscc.ec2_flow_log.ResourceType.VPC</code></td></tr>
-<tr><td><code>TransitGateway</code></td><td><code>awscc.ec2_flow_log.ResourceType.TransitGateway</code></td></tr>
-<tr><td><code>TransitGatewayAttachment</code></td><td><code>awscc.ec2_flow_log.ResourceType.TransitGatewayAttachment</code></td></tr>
-<tr><td><code>RegionalNatGateway</code></td><td><code>awscc.ec2_flow_log.ResourceType.RegionalNatGateway</code></td></tr>
+<tr><td><code>NetworkInterface</code></td><td><code>awscc.ec2.flow_log.ResourceType.NetworkInterface</code></td></tr>
+<tr><td><code>Subnet</code></td><td><code>awscc.ec2.flow_log.ResourceType.Subnet</code></td></tr>
+<tr><td><code>VPC</code></td><td><code>awscc.ec2.flow_log.ResourceType.VPC</code></td></tr>
+<tr><td><code>TransitGateway</code></td><td><code>awscc.ec2.flow_log.ResourceType.TransitGateway</code></td></tr>
+<tr><td><code>TransitGatewayAttachment</code></td><td><code>awscc.ec2.flow_log.ResourceType.TransitGatewayAttachment</code></td></tr>
+<tr><td><code>RegionalNatGateway</code></td><td><code>awscc.ec2.flow_log.ResourceType.RegionalNatGateway</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -288,9 +288,9 @@
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>ACCEPT</code></td><td><code>awscc.ec2_flow_log.TrafficType.ACCEPT</code></td></tr>
-<tr><td><code>ALL</code></td><td><code>awscc.ec2_flow_log.TrafficType.ALL</code></td></tr>
-<tr><td><code>REJECT</code></td><td><code>awscc.ec2_flow_log.TrafficType.REJECT</code></td></tr>
+<tr><td><code>ACCEPT</code></td><td><code>awscc.ec2.flow_log.TrafficType.ACCEPT</code></td></tr>
+<tr><td><code>ALL</code></td><td><code>awscc.ec2.flow_log.TrafficType.ALL</code></td></tr>
+<tr><td><code>REJECT</code></td><td><code>awscc.ec2.flow_log.TrafficType.REJECT</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -315,11 +315,11 @@
 <li><strong>Type:</strong> String</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block = "10.0.0.0/16"
 }
 
-let flow_log = awscc.ec2_flow_log {
+let flow_log = awscc.ec2.flow_log {
   resource_id          = vpc.vpc_id
   resource_type        = VPC
   traffic_type         = ALL

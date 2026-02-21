@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.ec2_route - Carina Documentation</title>
+        <title>awscc.ec2.route - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
+            window.path_to_searchindex_js = "../../searchindex-0b9add07.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-64519e8a.js"></script>
+        <script src="../../toc-98b3dad5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -174,7 +174,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awsccec2_route"><a class="header" href="#awsccec2_route">awscc.ec2_route</a></h1>
+                        <h1 id="awsccec2route"><a class="header" href="#awsccec2route">awscc.ec2.route</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::Route</code></p>
 <p>Specifies a route in a route table. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes">Routes</a> in the <em>Amazon VPC User Guide</em>.
 You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
@@ -276,25 +276,25 @@ If you create a route that references a transit gateway in the same template whe
 <li><strong>Type:</strong> Ipv4Cidr</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-let igw = awscc.ec2_internet_gateway {
+let igw = awscc.ec2.internet_gateway {
 }
 
-let igw_attachment = awscc.ec2_vpc_gateway_attachment {
+let igw_attachment = awscc.ec2.vpc_gateway_attachment {
   vpc_id              = vpc.vpc_id
   internet_gateway_id = igw.internet_gateway_id
 }
 
-let rt = awscc.ec2_route_table {
+let rt = awscc.ec2.route_table {
   vpc_id = vpc.vpc_id
 }
 
-let route = awscc.ec2_route {
+let route = awscc.ec2.route {
   route_table_id         = rt.route_table_id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = igw_attachment.internet_gateway_id

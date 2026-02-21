@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.ec2_eip - Carina Documentation</title>
+        <title>awscc.ec2.eip - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
+            window.path_to_searchindex_js = "../../searchindex-0b9add07.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-64519e8a.js"></script>
+        <script src="../../toc-98b3dad5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -174,7 +174,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awsccec2_eip"><a class="header" href="#awsccec2_eip">awscc.ec2_eip</a></h1>
+                        <h1 id="awsccec2eip"><a class="header" href="#awsccec2eip">awscc.ec2.eip</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::EIP</code></p>
 <p>Specifies an Elastic IP (EIP) address and can, optionally, associate it with an Amazon EC2 instance.
 You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring Your Own IP Addresses (BYOIP)</a> in the <em>Amazon EC2 User Guide</em>.
@@ -234,8 +234,8 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>vpc</code></td><td><code>awscc.ec2_eip.Domain.vpc</code></td></tr>
-<tr><td><code>standard</code></td><td><code>awscc.ec2_eip.Domain.standard</code></td></tr>
+<tr><td><code>vpc</code></td><td><code>awscc.ec2.eip.Domain.vpc</code></td></tr>
+<tr><td><code>standard</code></td><td><code>awscc.ec2.eip.Domain.standard</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -250,7 +250,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let eip = awscc.ec2_eip {
+<pre><code class="language-crn">let eip = awscc.ec2.eip {
   domain = "vpc"
 
   tags = {

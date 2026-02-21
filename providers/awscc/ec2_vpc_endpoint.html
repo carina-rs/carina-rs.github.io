@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.ec2_vpc_endpoint - Carina Documentation</title>
+        <title>awscc.ec2.vpc_endpoint - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
+            window.path_to_searchindex_js = "../../searchindex-0b9add07.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-64519e8a.js"></script>
+        <script src="../../toc-98b3dad5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -174,7 +174,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awsccec2_vpc_endpoint"><a class="header" href="#awsccec2_vpc_endpoint">awscc.ec2_vpc_endpoint</a></h1>
+                        <h1 id="awsccec2vpc_endpoint"><a class="header" href="#awsccec2vpc_endpoint">awscc.ec2.vpc_endpoint</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCEndpoint</code></p>
 <p>Specifies a VPC endpoint. A VPC endpoint provides a private connection between your VPC and an endpoint service. You can use an endpoint service provided by AWS, an MKT Partner, or another AWS accounts in your organization. For more information, see the <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/">User Guide</a>.
 An endpoint of type <code>Interface</code> establishes connections between the subnets in your VPC and an AWS-service, your own service, or a service hosted by another AWS-account. With an interface VPC endpoint, you specify the subnets in which to create the endpoint and the security groups to associate with the endpoint network interfaces.
@@ -273,10 +273,10 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>ipv4</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv4</code></td></tr>
-<tr><td><code>ipv6</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.ipv6</code></td></tr>
-<tr><td><code>dualstack</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.dualstack</code></td></tr>
-<tr><td><code>not-specified</code></td><td><code>awscc.ec2_vpc_endpoint.IpAddressType.not_specified</code></td></tr>
+<tr><td><code>ipv4</code></td><td><code>awscc.ec2.vpc_endpoint.IpAddressType.ipv4</code></td></tr>
+<tr><td><code>ipv6</code></td><td><code>awscc.ec2.vpc_endpoint.IpAddressType.ipv6</code></td></tr>
+<tr><td><code>dualstack</code></td><td><code>awscc.ec2.vpc_endpoint.IpAddressType.dualstack</code></td></tr>
+<tr><td><code>not-specified</code></td><td><code>awscc.ec2.vpc_endpoint.IpAddressType.not_specified</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -288,11 +288,11 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <tr><th>Value</th><th>DSL Identifier</th></tr>
 </thead>
 <tbody>
-<tr><td><code>Interface</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Interface</code></td></tr>
-<tr><td><code>Gateway</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Gateway</code></td></tr>
-<tr><td><code>GatewayLoadBalancer</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.GatewayLoadBalancer</code></td></tr>
-<tr><td><code>ServiceNetwork</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.ServiceNetwork</code></td></tr>
-<tr><td><code>Resource</code></td><td><code>awscc.ec2_vpc_endpoint.VpcEndpointType.Resource</code></td></tr>
+<tr><td><code>Interface</code></td><td><code>awscc.ec2.vpc_endpoint.VpcEndpointType.Interface</code></td></tr>
+<tr><td><code>Gateway</code></td><td><code>awscc.ec2.vpc_endpoint.VpcEndpointType.Gateway</code></td></tr>
+<tr><td><code>GatewayLoadBalancer</code></td><td><code>awscc.ec2.vpc_endpoint.VpcEndpointType.GatewayLoadBalancer</code></td></tr>
+<tr><td><code>ServiceNetwork</code></td><td><code>awscc.ec2.vpc_endpoint.VpcEndpointType.ServiceNetwork</code></td></tr>
+<tr><td><code>Resource</code></td><td><code>awscc.ec2.vpc_endpoint.VpcEndpointType.Resource</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -330,24 +330,24 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <li><strong>Type:</strong> <code>List&lt;AwsResourceId&gt;</code></li>
 </ul>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2_vpc {
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-let subnet = awscc.ec2_subnet {
+let subnet = awscc.ec2.subnet {
   vpc_id            = vpc.vpc_id
   cidr_block        = "10.0.100.0/24"
   availability_zone = "ap-northeast-1a"
 }
 
-let sg = awscc.ec2_security_group {
+let sg = awscc.ec2.security_group {
   vpc_id            = vpc.vpc_id
   group_description = "SG for VPC Endpoint"
 }
 
-let ingress = awscc.ec2_security_group_ingress {
+let ingress = awscc.ec2.security_group_ingress {
   group_id    = sg.group_id
   description = "Allow HTTPS from VPC"
   ip_protocol = "tcp"
@@ -356,7 +356,7 @@ let ingress = awscc.ec2_security_group_ingress {
   cidr_ip     = "10.0.0.0/16"
 }
 
-let vpc_endpoint = awscc.ec2_vpc_endpoint {
+let vpc_endpoint = awscc.ec2.vpc_endpoint {
   vpc_id              = vpc.vpc_id
   service_name        = "com.amazonaws.ap-northeast-1.ecr.dkr"
   vpc_endpoint_type   = "Interface"
