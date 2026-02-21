@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-cdf6d42b.js";
+            window.path_to_searchindex_js = "../../searchindex-9930784e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-64519e8a.js"></script>
@@ -176,66 +176,50 @@
                     <main>
                         <h1 id="awsec2_security_group_egress"><a class="header" href="#awsec2_security_group_egress">aws.ec2_security_group_egress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
-<p>Adds the specified outbound (egress) rule to a security group.
-An outbound rule permits instances to send traffic to the specified IPv4 or IPv6 address range, the IP addresses that are specified by a prefix list, or the instances that are associated with a destination security group. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html">Security group rules</a>.
-You must specify exactly one of the following destinations: an IPv4 address range, an IPv6 address range, a prefix list, or a security group.
-You must specify a protocol for each rule (for example, TCP). If the protocol is TCP or UDP, you must also specify a port or port range. If the protocol is ICMP or ICMPv6, you must also specify the ICMP/ICMPv6 type and code. To specify all types or all codes, use -1.
-Rule changes are propagated to instances associated with the security group as quickly as possible. However, a small delay might occur.</p>
+<p>Describes a security group rule.</p>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</p>
-<h3 id="cidr_ipv6"><a class="header" href="#cidr_ipv6"><code>cidr_ipv6</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Ipv6Cidr</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The IPv6 address range, in CIDR format. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>. For examples of rules that you can add to security groups for specific access scenarios, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules-reference.html">Security group rules for different use cases</a> in the <em>User Guide</em>.</p>
-<h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The description of an egress (outbound) security group rule. Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
-<h3 id="destination_prefix_list_id"><a class="header" href="#destination_prefix_list_id"><code>destination_prefix_list_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> AwsResourceId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The prefix list IDs for an AWS service. This is the AWS service to access through a VPC endpoint from instances associated with the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</p>
-<h3 id="destination_security_group_id"><a class="header" href="#destination_security_group_id"><code>destination_security_group_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> SecurityGroupId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of the security group. You must specify exactly one of the following: <code>CidrIp</code>, <code>CidrIpv6</code>, <code>DestinationPrefixListId</code>, or <code>DestinationSecurityGroupId</code>.</p>
+<p>Not supported. Use IP permissions instead.</p>
 <h3 id="from_port"><a class="header" href="#from_port"><code>from_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).</p>
+<p>Not supported. Use IP permissions instead.</p>
 <h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> SecurityGroupId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>The ID of the security group. You must specify either the security group ID or the security group name in the request. For security groups in a nondefault VPC, you must specify the security group ID.</p>
+<p>The ID of the security group.</p>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol">Enum (IpProtocol)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href="https://docs.aws.amazon.com/http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol Numbers</a>). Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="source_security_group_name"><a class="header" href="#source_security_group_name"><code>source_security_group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="source_security_group_owner_id"><a class="header" href="#source_security_group_owner_id"><code>source_security_group_owner_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
 <h3 id="to_port"><a class="header" href="#to_port"><code>to_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).</p>
+<p>Not supported. Use IP permissions instead.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
@@ -254,7 +238,7 @@ Rule changes are propagated to instances associated with the security group as q
 </div>
 <p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<h3 id="security_group_rule_id"><a class="header" href="#security_group_rule_id"><code>security_group_rule_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
