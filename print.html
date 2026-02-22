@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-8877601d.js";
+            window.path_to_searchindex_js = "searchindex-ecfa7eb8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-98b3dad5.js"></script>
+        <script src="toc-0374f043.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3108,6 +3108,555 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="aws-provider"><a class="header" href="#aws-provider">AWS Provider</a></h1>
+<p>The <code>aws</code> provider manages AWS resources through native AWS SDK APIs (EC2, S3).</p>
+<h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
+<pre><code class="language-crn">provider aws {
+  region = aws.Region.ap_northeast_1
+}
+</code></pre>
+<h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
+<p>Resources are defined using the <code>aws.&lt;resource_type&gt;</code> syntax:</p>
+<pre><code class="language-crn">let vpc = aws.ec2_vpc {
+  name       = "my-vpc"
+  cidr_block = "10.0.0.0/16"
+  tags = {
+    Environment = "production"
+  }
+}
+</code></pre>
+<p>Named resources (using <code>let</code>) can be referenced by other resources:</p>
+<pre><code class="language-crn">let subnet = aws.ec2_subnet {
+  name              = "my-subnet"
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+</code></pre>
+<h2 id="enum-values-13"><a class="header" href="#enum-values-13">Enum Values</a></h2>
+<p>Some attributes accept enum values. These can be specified in three formats:</p>
+<ul>
+<li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
+<li><strong>TypeName.value</strong>: <code>instance_tenancy = InstanceTenancy.default</code></li>
+<li><strong>Full namespace</strong>: <code>instance_tenancy = aws.ec2_vpc.InstanceTenancy.default</code></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2vpc"><a class="header" href="#awsec2vpc">aws.ec2.vpc</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPC</code></p>
+<p>Describes a VPC.</p>
+<h2 id="argument-reference-24"><a class="header" href="#argument-reference-24">Argument Reference</a></h2>
+<h3 id="cidr_block-3"><a class="header" href="#cidr_block-3"><code>cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 network range for the VPC, in CIDR notation. For example, 		    10.0.0.0/16. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.</p>
+<h3 id="instance_tenancy-1"><a class="header" href="#instance_tenancy-1"><code>instance_tenancy</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#instance_tenancy-instancetenancy-1">Enum (InstanceTenancy)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tenancy options for instances launched into the VPC. For default, instances    are launched with shared tenancy by default. You can launch instances with any tenancy into a    shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy    instances by default. You can only launch instances with a tenancy of dedicated    or host into a dedicated tenancy VPC.            Important: The host value cannot be used with this parameter. Use the default or dedicated values only.     Default: default</p>
+<h3 id="ipv4_ipam_pool_id-2"><a class="header" href="#ipv4_ipam_pool_id-2"><code>ipv4_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see What is IPAM? in the Amazon VPC IPAM User Guide.</p>
+<h3 id="ipv4_netmask_length-2"><a class="header" href="#ipv4_netmask_length-2"><code>ipv4_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(0..=32)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see What is IPAM? in the Amazon VPC IPAM User Guide.</p>
+<h3 id="tags-19"><a class="header" href="#tags-19"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="enum-values-14"><a class="header" href="#enum-values-14">Enum Values</a></h2>
+<h3 id="instance_tenancy-instancetenancy-1"><a class="header" href="#instance_tenancy-instancetenancy-1">instance_tenancy (InstanceTenancy)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>dedicated</code></td><td><code>aws.ec2.vpc.InstanceTenancy.dedicated</code></td></tr>
+<tr><td><code>default</code></td><td><code>aws.ec2.vpc.InstanceTenancy.default</code></td></tr>
+<tr><td><code>host</code></td><td><code>aws.ec2.vpc.InstanceTenancy.host</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>dedicated</code> or <code>InstanceTenancy.dedicated</code></p>
+<h2 id="attribute-reference-24"><a class="header" href="#attribute-reference-24">Attribute Reference</a></h2>
+<h3 id="vpc_id-10"><a class="header" href="#vpc_id-10"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> VpcId</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2subnet"><a class="header" href="#awsec2subnet">aws.ec2.subnet</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::Subnet</code></p>
+<p>Describes a subnet.</p>
+<h2 id="argument-reference-25"><a class="header" href="#argument-reference-25">Argument Reference</a></h2>
+<h3 id="assign_ipv6_address_on_creation-1"><a class="header" href="#assign_ipv6_address_on_creation-1"><code>assign_ipv6_address_on_creation</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether a network interface created in this subnet (including a network       interface created by RunInstances) receives an IPv6 address.</p>
+<h3 id="availability_zone-1"><a class="header" href="#availability_zone-1"><code>availability_zone</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AvailabilityZone</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Availability Zone or Local Zone for the subnet.     Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we      do not necessarily select a different zone for each subnet.     To create a subnet in a Local Zone, set this value to the Local Zone ID, for example      us-west-2-lax-1a. For information about the Regions that support Local Zones,       see Available Local Zones.     To create a subnet in an Outpost, set this value to the Availability Zone for the      Outpost and specify the Outpost ARN.</p>
+<h3 id="availability_zone_id-1"><a class="header" href="#availability_zone_id-1"><code>availability_zone_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The AZ ID or the Local Zone ID of the subnet.</p>
+<h3 id="cidr_block-4"><a class="header" href="#cidr_block-4"><code>cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.       We modify the specified CIDR block to its canonical form; for example, if you specify       100.68.0.18/18, we modify it to 100.68.0.0/18.     This parameter is not supported for an IPv6 only subnet.</p>
+<h3 id="enable_dns64-1"><a class="header" href="#enable_dns64-1"><code>enable_dns64</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet       should return synthetic IPv6 addresses for IPv4-only destinations.</p>
+<h3 id="enable_lni_at_device_index-1"><a class="header" href="#enable_lni_at_device_index-1"><code>enable_lni_at_device_index</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates the device position for local network interfaces in this subnet. For example,       1 indicates local network interfaces in this subnet are the secondary       network interface (eth1).</p>
+<h3 id="ipv4_ipam_pool_id-3"><a class="header" href="#ipv4_ipam_pool_id-3"><code>ipv4_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv4 IPAM pool ID for the subnet.</p>
+<h3 id="ipv4_netmask_length-3"><a class="header" href="#ipv4_netmask_length-3"><code>ipv4_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(0..=32)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv4 netmask length for the subnet.</p>
+<h3 id="ipv6_cidr_block-1"><a class="header" href="#ipv6_cidr_block-1"><code>ipv6_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required       for an IPv6 only subnet.</p>
+<h3 id="ipv6_ipam_pool_id-1"><a class="header" href="#ipv6_ipam_pool_id-1"><code>ipv6_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv6 IPAM pool ID for the subnet.</p>
+<h3 id="ipv6_native-1"><a class="header" href="#ipv6_native-1"><code>ipv6_native</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether to create an IPv6 only subnet.</p>
+<h3 id="ipv6_netmask_length-1"><a class="header" href="#ipv6_netmask_length-1"><code>ipv6_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(0..=128)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv6 netmask length for the subnet.</p>
+<h3 id="map_public_ip_on_launch-1"><a class="header" href="#map_public_ip_on_launch-1"><code>map_public_ip_on_launch</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether instances launched in this subnet receive a public IPv4 address.     Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
+<h3 id="outpost_arn-1"><a class="header" href="#outpost_arn-1"><code>outpost_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also     specify the Availability Zone of the Outpost subnet.</p>
+<h3 id="private_dns_name_options_on_launch-1"><a class="header" href="#private_dns_name_options_on_launch-1"><code>private_dns_name_options_on_launch</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch-1">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname       is based on the IPv4 address or ID of the instance.</p>
+<h3 id="vpc_id-11"><a class="header" href="#vpc_id-11"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> VpcId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC.</p>
+<h3 id="tags-20"><a class="header" href="#tags-20"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="struct-definitions-10"><a class="header" href="#struct-definitions-10">Struct Definitions</a></h2>
+<h3 id="privatednsnameoptionsonlaunch-1"><a class="header" href="#privatednsnameoptionsonlaunch-1">PrivateDnsNameOptionsOnLaunch</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA       records.</td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A       records.</td></tr>
+<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name       must be ba…</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="attribute-reference-25"><a class="header" href="#attribute-reference-25">Attribute Reference</a></h2>
+<h3 id="subnet_id-3"><a class="header" href="#subnet_id-3"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SubnetId</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2internet_gateway"><a class="header" href="#awsec2internet_gateway">aws.ec2.internet_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
+<p>Describes an internet gateway.</p>
+<h2 id="argument-reference-26"><a class="header" href="#argument-reference-26">Argument Reference</a></h2>
+<h3 id="tags-21"><a class="header" href="#tags-21"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="attribute-reference-26"><a class="header" href="#attribute-reference-26">Attribute Reference</a></h2>
+<h3 id="internet_gateway_id-2"><a class="header" href="#internet_gateway_id-2"><code>internet_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> internet_gateway_id</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2route_table"><a class="header" href="#awsec2route_table">aws.ec2.route_table</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
+<p>Describes a route table.</p>
+<h2 id="argument-reference-27"><a class="header" href="#argument-reference-27">Argument Reference</a></h2>
+<h3 id="vpc_id-12"><a class="header" href="#vpc_id-12"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> VpcId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC.</p>
+<h3 id="tags-22"><a class="header" href="#tags-22"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="attribute-reference-27"><a class="header" href="#attribute-reference-27">Attribute Reference</a></h2>
+<h3 id="route_table_id-4"><a class="header" href="#route_table_id-4"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> route_table_id</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2route"><a class="header" href="#awsec2route">aws.ec2.route</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::Route</code></p>
+<p>Describes a route in a route table.</p>
+<h2 id="argument-reference-28"><a class="header" href="#argument-reference-28">Argument Reference</a></h2>
+<h3 id="carrier_gateway_id-1"><a class="header" href="#carrier_gateway_id-1"><code>carrier_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the carrier gateway.     You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
+<h3 id="core_network_arn-1"><a class="header" href="#core_network_arn-1"><code>core_network_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Resource Name (ARN) of the core network.</p>
+<h3 id="destination_cidr_block-1"><a class="header" href="#destination_cidr_block-1"><code>destination_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.</p>
+<h3 id="destination_ipv6_cidr_block-1"><a class="header" href="#destination_ipv6_cidr_block-1"><code>destination_ipv6_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
+<h3 id="destination_prefix_list_id-2"><a class="header" href="#destination_prefix_list_id-2"><code>destination_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a prefix list used for the destination match.</p>
+<h3 id="egress_only_internet_gateway_id-1"><a class="header" href="#egress_only_internet_gateway_id-1"><code>egress_only_internet_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> egress_only_internet_gateway_id</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
+<h3 id="gateway_id-1"><a class="header" href="#gateway_id-1"><code>gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of an internet gateway or virtual private gateway attached to your 			VPC.</p>
+<h3 id="instance_id-2"><a class="header" href="#instance_id-2"><code>instance_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
+<h3 id="local_gateway_id-1"><a class="header" href="#local_gateway_id-1"><code>local_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the local gateway.</p>
+<h3 id="nat_gateway_id-2"><a class="header" href="#nat_gateway_id-2"><code>nat_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> nat_gateway_id</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[IPv4 traffic only] The ID of a NAT gateway.</p>
+<h3 id="network_interface_id-1"><a class="header" href="#network_interface_id-1"><code>network_interface_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a network interface.</p>
+<h3 id="transit_gateway_id-2"><a class="header" href="#transit_gateway_id-2"><code>transit_gateway_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> transit_gateway_id</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a transit gateway.</p>
+<h3 id="vpc_endpoint_id-1"><a class="header" href="#vpc_endpoint_id-1"><code>vpc_endpoint_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> vpc_endpoint_id</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>
+<h3 id="vpc_peering_connection_id-1"><a class="header" href="#vpc_peering_connection_id-1"><code>vpc_peering_connection_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> vpc_peering_connection_id</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of a VPC peering connection.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2security_group"><a class="header" href="#awsec2security_group">aws.ec2.security_group</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroup</code></p>
+<p>Describes a security group.</p>
+<h2 id="argument-reference-29"><a class="header" href="#argument-reference-29">Argument Reference</a></h2>
+<h3 id="description-6"><a class="header" href="#description-6"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>A description for the security group.     Constraints: Up to 255 characters in length     Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
+<h3 id="group_name-2"><a class="header" href="#group_name-2"><code>group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The name of the security group. Names are case-insensitive and must be unique within the VPC.     Constraints: Up to 255 characters in length. Can’t start with sg-.     Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
+<h3 id="vpc_id-13"><a class="header" href="#vpc_id-13"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> VpcId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the VPC. Required for a nondefault VPC.</p>
+<h3 id="tags-23"><a class="header" href="#tags-23"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="attribute-reference-28"><a class="header" href="#attribute-reference-28">Attribute Reference</a></h2>
+<h3 id="group_id-3"><a class="header" href="#group_id-3"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2security_group_ingress"><a class="header" href="#awsec2security_group_ingress">aws.ec2.security_group_ingress</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
+<p>Describes a security group rule.</p>
+<h2 id="argument-reference-30"><a class="header" href="#argument-reference-30">Argument Reference</a></h2>
+<h3 id="cidr_ip-2"><a class="header" href="#cidr_ip-2"><code>cidr_ip</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 address range, in CIDR format.                    Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block,        Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will        return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the        non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized        form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error.          To specify an IPv6 address range, use IP permissions instead.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="from_port-2"><a class="header" href="#from_port-2"><code>from_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>If the protocol is TCP or UDP, this is the start of the port range.      If the protocol is ICMP, this is the ICMP type or -1 (all ICMP types).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="group_id-4"><a class="header" href="#group_id-4"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the security group.</p>
+<h3 id="group_name-3"><a class="header" href="#group_name-3"><code>group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[Default VPC] The name of the security group. For security groups for a default VPC     you can specify either the ID or the name of the security group. For security groups for     a nondefault VPC, you must specify the ID of the security group.</p>
+<h3 id="ip_protocol-2"><a class="header" href="#ip_protocol-2"><code>ip_protocol</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-2">Enum (IpProtocol)</a></li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The IP protocol name (tcp, udp, icmp) or number    (see Protocol Numbers). To specify all protocols, use -1.     To specify icmpv6, use IP permissions instead.     If you specify a protocol other than one of the supported values, traffic is allowed      on all ports, regardless of any ports that you specify.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="source_security_group_name-1"><a class="header" href="#source_security_group_name-1"><code>source_security_group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>[Default VPC] The name of the source security group.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol       and port range, specify a set of IP permissions instead.</p>
+<h3 id="source_security_group_owner_id-1"><a class="header" href="#source_security_group_owner_id-1"><code>source_security_group_owner_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Web Services account ID for the source security group, if the source security group is      in a different account.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol      and port range, use IP permissions instead.</p>
+<h3 id="to_port-2"><a class="header" href="#to_port-2"><code>to_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>If the protocol is TCP or UDP, this is the end of the port range.      If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes).       If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h2 id="enum-values-15"><a class="header" href="#enum-values-15">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-2"><a class="header" href="#ip_protocol-ipprotocol-2">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>aws.ec2.security_group_ingress.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>aws.ec2.security_group_ingress.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>aws.ec2.security_group_ingress.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>aws.ec2.security_group_ingress.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>aws.ec2.security_group_ingress.IpProtocol.all</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h2 id="attribute-reference-29"><a class="header" href="#attribute-reference-29">Attribute Reference</a></h2>
+<h3 id="security_group_rule_id"><a class="header" href="#security_group_rule_id"><code>security_group_rule_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsec2security_group_egress"><a class="header" href="#awsec2security_group_egress">aws.ec2.security_group_egress</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
+<p>Describes a security group rule.</p>
+<h2 id="argument-reference-31"><a class="header" href="#argument-reference-31">Argument Reference</a></h2>
+<h3 id="cidr_ip-3"><a class="header" href="#cidr_ip-3"><code>cidr_ip</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="from_port-3"><a class="header" href="#from_port-3"><code>from_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="group_id-5"><a class="header" href="#group_id-5"><code>group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the security group.</p>
+<h3 id="ip_protocol-3"><a class="header" href="#ip_protocol-3"><code>ip_protocol</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-3">Enum (IpProtocol)</a></li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="source_security_group_name-2"><a class="header" href="#source_security_group_name-2"><code>source_security_group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="source_security_group_owner_id-2"><a class="header" href="#source_security_group_owner_id-2"><code>source_security_group_owner_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h3 id="to_port-3"><a class="header" href="#to_port-3"><code>to_port</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(-1..=65535)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Not supported. Use IP permissions instead.</p>
+<h2 id="enum-values-16"><a class="header" href="#enum-values-16">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-3"><a class="header" href="#ip_protocol-ipprotocol-3">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>aws.ec2.security_group_egress.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>aws.ec2.security_group_egress.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>aws.ec2.security_group_egress.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>aws.ec2.security_group_egress.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>aws.ec2.security_group_egress.IpProtocol.all</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h2 id="attribute-reference-30"><a class="header" href="#attribute-reference-30">Attribute Reference</a></h2>
+<h3 id="security_group_rule_id-1"><a class="header" href="#security_group_rule_id-1"><code>security_group_rule_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awss3bucket"><a class="header" href="#awss3bucket">aws.s3.bucket</a></h1>
+<p>CloudFormation Type: <code>AWS::S3::Bucket</code></p>
+<h2 id="argument-reference-32"><a class="header" href="#argument-reference-32">Argument Reference</a></h2>
+<h3 id="versioning_status"><a class="header" href="#versioning_status"><code>versioning_status</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#versioning_status-versioningstatus">Enum (VersioningStatus)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The versioning state of the bucket.</p>
+<h3 id="tags-24"><a class="header" href="#tags-24"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="enum-values-17"><a class="header" href="#enum-values-17">Enum Values</a></h2>
+<h3 id="versioning_status-versioningstatus"><a class="header" href="#versioning_status-versioningstatus">versioning_status (VersioningStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>aws.s3.bucket.VersioningStatus.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>aws.s3.bucket.VersioningStatus.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>VersioningStatus.Enabled</code></p>
 
                     </main>
 

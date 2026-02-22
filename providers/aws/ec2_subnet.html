@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - Carina Documentation</title>
+        <title>aws.ec2.subnet - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -12,35 +12,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../css/general-2459343d.css">
+        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-275cfee9.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-615d99a6.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-cdf89140.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="./theme/catppuccin.css">
-        <link rel="stylesheet" href="./theme/custom.css">
+        <link rel="stylesheet" href="../.././theme/catppuccin.css">
+        <link rel="stylesheet" href="../.././theme/custom.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-ecfa7eb8.js";
+            window.path_to_searchindex_js = "../../searchindex-ecfa7eb8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0374f043.js"></script>
+        <script src="../../toc-0374f043.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +107,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Carina Documentation</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,43 +174,141 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="carina"><a class="header" href="#carina">Carina</a></h1>
-<p>A strongly typed infrastructure management tool written in Rust.</p>
-<h2 id="key-features"><a class="header" href="#key-features">Key Features</a></h2>
+                        <h1 id="awsec2subnet"><a class="header" href="#awsec2subnet">aws.ec2.subnet</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::Subnet</code></p>
+<p>Describes a subnet.</p>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
+<h3 id="assign_ipv6_address_on_creation"><a class="header" href="#assign_ipv6_address_on_creation"><code>assign_ipv6_address_on_creation</code></a></h3>
 <ul>
-<li><strong>Custom DSL</strong> for infrastructure definition (<code>.crn</code> files)</li>
-<li><strong>Effects as Values</strong> - side effects are represented as data, inspectable before execution</li>
-<li><strong>Strong Typing</strong> - resource attributes are validated at parse time</li>
-<li><strong>Provider Architecture</strong> - pluggable providers (AWS, AWSCC)</li>
-<li><strong>Modules</strong> - reusable infrastructure components</li>
-<li><strong>State Management</strong> - S3 backend for remote state</li>
-<li><strong>LSP Support</strong> - editor integration with completions and diagnostics</li>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
 </ul>
-<h2 id="quick-start"><a class="header" href="#quick-start">Quick Start</a></h2>
-<pre><code class="language-bash"># Build from source
-cargo build --release
-
-# Validate a configuration
-cargo run --bin carina -- validate example.crn
-
-# Preview changes
-aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- plan example.crn
-
-# Apply changes
-aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
-</code></pre>
-<h2 id="providers"><a class="header" href="#providers">Providers</a></h2>
+<p>Indicates whether a network interface created in this subnet (including a network       interface created by RunInstances) receives an IPv6 address.</p>
+<h3 id="availability_zone"><a class="header" href="#availability_zone"><code>availability_zone</code></a></h3>
 <ul>
-<li><a href="providers/awscc/index.html">AWSCC Provider</a> - AWS Cloud Control API provider</li>
+<li><strong>Type:</strong> AvailabilityZone</li>
+<li><strong>Required:</strong> No</li>
 </ul>
-<p>For more details, see the <a href="https://github.com/mizzy/carina">README</a>.</p>
+<p>The Availability Zone or Local Zone for the subnet.     Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we      do not necessarily select a different zone for each subnet.     To create a subnet in a Local Zone, set this value to the Local Zone ID, for example      us-west-2-lax-1a. For information about the Regions that support Local Zones,       see Available Local Zones.     To create a subnet in an Outpost, set this value to the Availability Zone for the      Outpost and specify the Outpost ARN.</p>
+<h3 id="availability_zone_id"><a class="header" href="#availability_zone_id"><code>availability_zone_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The AZ ID or the Local Zone ID of the subnet.</p>
+<h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv4Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.       We modify the specified CIDR block to its canonical form; for example, if you specify       100.68.0.18/18, we modify it to 100.68.0.0/18.     This parameter is not supported for an IPv6 only subnet.</p>
+<h3 id="enable_dns64"><a class="header" href="#enable_dns64"><code>enable_dns64</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet       should return synthetic IPv6 addresses for IPv4-only destinations.</p>
+<h3 id="enable_lni_at_device_index"><a class="header" href="#enable_lni_at_device_index"><code>enable_lni_at_device_index</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates the device position for local network interfaces in this subnet. For example,       1 indicates local network interfaces in this subnet are the secondary       network interface (eth1).</p>
+<h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv4 IPAM pool ID for the subnet.</p>
+<h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(0..=32)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv4 netmask length for the subnet.</p>
+<h3 id="ipv6_cidr_block"><a class="header" href="#ipv6_cidr_block"><code>ipv6_cidr_block</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required       for an IPv6 only subnet.</p>
+<h3 id="ipv6_ipam_pool_id"><a class="header" href="#ipv6_ipam_pool_id"><code>ipv6_ipam_pool_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IpamPoolId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv6 IPAM pool ID for the subnet.</p>
+<h3 id="ipv6_native"><a class="header" href="#ipv6_native"><code>ipv6_native</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether to create an IPv6 only subnet.</p>
+<h3 id="ipv6_netmask_length"><a class="header" href="#ipv6_netmask_length"><code>ipv6_netmask_length</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Int(0..=128)</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>An IPv6 netmask length for the subnet.</p>
+<h3 id="map_public_ip_on_launch"><a class="header" href="#map_public_ip_on_launch"><code>map_public_ip_on_launch</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Indicates whether instances launched in this subnet receive a public IPv4 address.     Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
+<h3 id="outpost_arn"><a class="header" href="#outpost_arn"><code>outpost_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also     specify the Availability Zone of the Outpost subnet.</p>
+<h3 id="private_dns_name_options_on_launch"><a class="header" href="#private_dns_name_options_on_launch"><code>private_dns_name_options_on_launch</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname       is based on the IPv4 address or ID of the instance.</p>
+<h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> VpcId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the VPC.</p>
+<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="privatednsnameoptionsonlaunch"><a class="header" href="#privatednsnameoptionsonlaunch">PrivateDnsNameOptionsOnLaunch</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA       records.</td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A       records.</td></tr>
+<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name       must be ba…</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="subnet_id"><a class="header" href="#subnet_id"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SubnetId</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../providers/aws/ec2_vpc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
-                            <a rel="next prefetch" href="providers/awscc/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../providers/aws/ec2_internet_gateway.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -220,8 +318,11 @@ aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../providers/aws/ec2_vpc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
-                    <a rel="next prefetch" href="providers/awscc/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../providers/aws/ec2_internet_gateway.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -241,16 +342,16 @@ aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../mark-09e88c2c.min.js"></script>
+        <script src="../../searcher-c2a407aa.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-61f896a8.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="../../clipboard-1626706a.min.js"></script>
+        <script src="../../highlight-61f896a8.js"></script>
+        <script src="../../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="./theme/sidebar-filter.js"></script>
+        <script src="../.././theme/sidebar-filter.js"></script>
 
 
 
