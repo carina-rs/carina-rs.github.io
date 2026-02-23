@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>awscc.iam.role - Carina Documentation</title>
+        <title>awscc.sts.caller_identity - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -174,97 +174,43 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="awscciamrole"><a class="header" href="#awscciamrole">awscc.iam.role</a></h1>
-<p>CloudFormation Type: <code>AWS::IAM::Role</code></p>
-<p>Creates a new role for your AWS-account.
-For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> in the <em>IAM User Guide</em>. For information about quotas for role names and the number of roles you can create, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and quotas</a> in the <em>IAM User Guide</em>.</p>
-<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
-<h3 id="assume_role_policy_document"><a class="header" href="#assume_role_policy_document"><code>assume_role_policy_document</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IamPolicyDocument</li>
-<li><strong>Required:</strong> Yes</li>
-</ul>
-<p>The trust policy that is associated with this role. Trust policies define which entities can assume the role. You can associate only one trust policy with a role. For an example of a policy that can be used to assume a role, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#aws-resource-iam-role--examples">Template Examples</a>. For more information about the elements that you can use in an IAM policy, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html">Policy Elements Reference</a> in the <em>User Guide</em>.</p>
-<h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>A description of the role that you provide.</p>
-<h3 id="managed_policy_arns"><a class="header" href="#managed_policy_arns"><code>managed_policy_arns</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <code>List&lt;IamPolicyArn&gt;</code></li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>A list of Amazon Resource Names (ARNs) of the IAM managed policies that you want to attach to the role. For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and Service Namespaces</a> in the <em>General Reference</em>.</p>
-<h3 id="max_session_duration"><a class="header" href="#max_session_duration"><code>max_session_duration</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Int(3600..=43200)</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The maximum session duration (in seconds) that you want to set for the specified role. If you do not specify a value for this setting, the default value of one hour is applied. This setting can have a value from 1 hour to 12 hours. Anyone who assumes the role from the CLI or API can use the <code>DurationSeconds</code> API parameter or the <code>duration-seconds</code>CLI parameter to request a longer session. The <code>MaxSessionDuration</code> setting determines the maximum duration that can be requested using the <code>DurationSeconds</code> parameter. If users don’t specify a value for the <code>DurationSeconds</code> parameter, their security credentials are valid for one hour by default. This applies when you use the <code>AssumeRole*</code> API operations or the <code>assume-role*</code>CLI operations but does not apply when you use those operations to create a console URL. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using IAM roles</a> in the <em>IAM User Guide</em>.</p>
-<h3 id="path"><a class="header" href="#path"><code>path</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The path to the role. For more information about paths, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM Identifiers</a> in the <em>IAM User Guide</em>. This parameter is optional. If it is not included, it defaults to a slash (/). This parameter allows (through its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of either a forward slash (/) by itself or a string that must begin and end with forward slashes. In addition, it can contain any ASCII character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>), including most punctuation characters, digits, and upper and lowercased letters.</p>
-<h3 id="permissions_boundary"><a class="header" href="#permissions_boundary"><code>permissions_boundary</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IamPolicyArn</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ARN of the policy used to set the permissions boundary for the role. For more information about permissions boundaries, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">Permissions boundaries for IAM identities</a> in the <em>IAM User Guide</em>.</p>
-<h3 id="policies"><a class="header" href="#policies"><code>policies</code></a></h3>
-<ul>
-<li><strong>Type:</strong> <a href="#policy">List&lt;Policy&gt;</a></li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>Adds or updates an inline policy document that is embedded in the specified IAM role. When you embed an inline policy in a role, the inline policy is used as part of the role’s access (permissions) policy. The role’s trust policy is created at the same time as the role. You can update a role’s trust policy later. For more information about IAM roles, go to <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html">Using Roles to Delegate Permissions and Federate Identities</a>. A role can also have an attached managed policy. For information about policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed Policies and Inline Policies</a> in the <em>User Guide</em>. For information about limits on the number of inline policies that you can embed with a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html">Limitations on Entities</a> in the <em>User Guide</em>.  If an external policy (such as <code>AWS::IAM::Policy</code> or <code>AWS::IAM::ManagedPolicy</code>) has a <code>Ref</code> to a role and if a resource (such as <code>AWS::ECS::Service</code>) also has a <code>Ref</code> to the same role, add a <code>DependsOn</code> attribute to the resource to make the resource depend on the external policy. This dependency ensures that the role’s policy is available throughout the resource’s lifecycle. For example, when you delete a stack with an <code>AWS::ECS::Service</code> resource, the <code>DependsOn</code> attribute ensures that CFN deletes the <code>AWS::ECS::Service</code> resource before deleting its role’s policy.</p>
-<h3 id="role_name"><a class="header" href="#role_name"><code>role_name</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>A name for the IAM role, up to 64 characters in length. For valid values, see the <code>RoleName</code> parameter for the <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a> action in the <em>User Guide</em>. This parameter allows (per its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-. The role name must be unique within the account. Role names are not distinguished by case. For example, you cannot create roles named both “Role1” and “role1”. If you don’t specify a name, CFN generates a unique physical ID and uses that ID for the role name. If you specify a name, you must specify the <code>CAPABILITY_NAMED_IAM</code> value to acknowledge your template’s capabilities. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging Resources in Templates</a>.  Naming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple Regions. To prevent this, we recommend using <code>Fn::Join</code> and <code>AWS::Region</code> to create a Region-specific name, as in the following example: <code>{"Fn::Join": ["", [{"Ref": "AWS::Region"}, {"Ref": "MyResourceName"}]]}</code>.</p>
-<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Map</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>A list of tags that are attached to the role. For more information about tagging, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_tags.html">Tagging IAM resources</a> in the <em>IAM User Guide</em>.</p>
-<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
-<h3 id="policy"><a class="header" href="#policy">Policy</a></h3>
+                        <h1 id="awsccstscaller_identity"><a class="header" href="#awsccstscaller_identity">awscc.sts.caller_identity</a></h1>
+<p>Data source that returns the AWS account ID, ARN, and user ID of the caller via STS GetCallerIdentity.</p>
+<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
+<pre><code class="language-crn">let identity = read awscc.sts.caller_identity {}
+</code></pre>
+<p>The returned attributes can be referenced by other resources:</p>
+<pre><code class="language-crn">let vpc_pool = awscc.ec2.ipam_pool {
+  source_resource = [
+    {
+      resource_owner = identity.account_id
+    }
+  ]
+}
+</code></pre>
+<h2 id="attributes-read-only"><a class="header" href="#attributes-read-only">Attributes (read-only)</a></h2>
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+<tr><th>Attribute</th><th>Type</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>policy_document</code></td><td>IamPolicyDocument</td><td>Yes</td><td>The entire contents of the policy that defines permissions. For more information, see [Overview of J…</td></tr>
-<tr><td><code>policy_name</code></td><td>String</td><td>Yes</td><td>The friendly name (not ARN) identifying the policy.</td></tr>
+<tr><td><code>account_id</code></td><td>String</td><td>The AWS account ID of the caller</td></tr>
+<tr><td><code>arn</code></td><td>String</td><td>The ARN of the IAM principal making the call</td></tr>
+<tr><td><code>user_id</code></td><td>String</td><td>The unique identifier of the calling entity</td></tr>
 </tbody>
 </table>
 </div>
-<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
-<h3 id="arn"><a class="header" href="#arn"><code>arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> IamRoleArn</li>
-</ul>
-<h3 id="role_id"><a class="header" href="#role_id"><code>role_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../providers/awscc/s3_bucket.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../providers/awscc/logs_log_group.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../providers/awscc/logs_log_group.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../providers/aws/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -274,11 +220,11 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../providers/awscc/s3_bucket.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../providers/awscc/logs_log_group.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../providers/awscc/logs_log_group.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../providers/aws/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
