@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-22742e7c.js";
+            window.path_to_searchindex_js = "searchindex-32e3841b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-efc8fad7.js"></script>
@@ -3522,6 +3522,18 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 address range, in CIDR format.                    Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block,        Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will        return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the        non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized        form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error.          To specify an IPv6 address range, use IP permissions instead.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="cidr_ipv6-2"><a class="header" href="#cidr_ipv6-2"><code>cidr_ipv6</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 CIDR range.</p>
+<h3 id="description-7"><a class="header" href="#description-7"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The security group rule description.</p>
 <h3 id="from_port-2"><a class="header" href="#from_port-2"><code>from_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
@@ -3546,6 +3558,12 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The IP protocol name (tcp, udp, icmp) or number    (see Protocol Numbers). To specify all protocols, use -1.     To specify icmpv6, use IP permissions instead.     If you specify a protocol other than one of the supported values, traffic is allowed      on all ports, regardless of any ports that you specify.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="source_prefix_list_id-1"><a class="header" href="#source_prefix_list_id-1"><code>source_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the source prefix list.</p>
 <h3 id="source_security_group_name-1"><a class="header" href="#source_security_group_name-1"><code>source_security_group_name</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -3564,6 +3582,12 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>If the protocol is TCP or UDP, this is the end of the port range.      If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes).       If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<h3 id="source_security_group_id-1"><a class="header" href="#source_security_group_id-1"><code>source_security_group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the source security group.</p>
 <h2 id="enum-values-15"><a class="header" href="#enum-values-15">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol-2"><a class="header" href="#ip_protocol-ipprotocol-2">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
@@ -3597,6 +3621,24 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
+<h3 id="cidr_ipv6-3"><a class="header" href="#cidr_ipv6-3"><code>cidr_ipv6</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 CIDR range.</p>
+<h3 id="description-8"><a class="header" href="#description-8"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The security group rule description.</p>
+<h3 id="destination_prefix_list_id-3"><a class="header" href="#destination_prefix_list_id-3"><code>destination_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the destination prefix list.</p>
 <h3 id="from_port-3"><a class="header" href="#from_port-3"><code>from_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
@@ -3633,6 +3675,12 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
+<h3 id="destination_security_group_id-1"><a class="header" href="#destination_security_group_id-1"><code>destination_security_group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the destination security group.</p>
 <h2 id="enum-values-16"><a class="header" href="#enum-values-16">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol-3"><a class="header" href="#ip_protocol-ipprotocol-3">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">

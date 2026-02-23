@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-22742e7c.js";
+            window.path_to_searchindex_js = "../../searchindex-32e3841b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-efc8fad7.js"></script>
@@ -184,6 +184,24 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
+<h3 id="cidr_ipv6"><a class="header" href="#cidr_ipv6"><code>cidr_ipv6</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Ipv6Cidr</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The IPv6 CIDR range.</p>
+<h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The security group rule description.</p>
+<h3 id="destination_prefix_list_id"><a class="header" href="#destination_prefix_list_id"><code>destination_prefix_list_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the destination prefix list.</p>
 <h3 id="from_port"><a class="header" href="#from_port"><code>from_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
@@ -220,6 +238,12 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
+<h3 id="destination_security_group_id"><a class="header" href="#destination_security_group_id"><code>destination_security_group_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SecurityGroupId</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ID of the destination security group.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
 <h3 id="ip_protocol-ipprotocol"><a class="header" href="#ip_protocol-ipprotocol">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
