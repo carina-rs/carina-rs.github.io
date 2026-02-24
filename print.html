@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-32e3841b.js";
+            window.path_to_searchindex_js = "searchindex-843e01ff.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-efc8fad7.js"></script>
+        <script src="toc-fbd918b9.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -3109,34 +3109,6 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Type:</strong> Arn</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccstscaller_identity"><a class="header" href="#awsccstscaller_identity">awscc.sts.caller_identity</a></h1>
-<p>Data source that returns the AWS account ID, ARN, and user ID of the caller via STS GetCallerIdentity.</p>
-<h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
-<pre><code class="language-crn">let identity = read awscc.sts.caller_identity {}
-</code></pre>
-<p>The returned attributes can be referenced by other resources:</p>
-<pre><code class="language-crn">let vpc_pool = awscc.ec2.ipam_pool {
-  source_resource = [
-    {
-      resource_owner = identity.account_id
-    }
-  ]
-}
-</code></pre>
-<h2 id="attributes-read-only"><a class="header" href="#attributes-read-only">Attributes (read-only)</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Attribute</th><th>Type</th><th>Description</th></tr>
-</thead>
-<tbody>
-<tr><td><code>account_id</code></td><td>String</td><td>The AWS account ID of the caller</td></tr>
-<tr><td><code>arn</code></td><td>String</td><td>The ARN of the IAM principal making the call</td></tr>
-<tr><td><code>user_id</code></td><td>String</td><td>The unique identifier of the calling entity</td></tr>
-</tbody>
-</table>
-</div>
-<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="aws-provider"><a class="header" href="#aws-provider">AWS Provider</a></h1>
 <p>The <code>aws</code> provider manages AWS resources through native AWS SDK APIs (EC2, S3).</p>
 <h2 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h2>
@@ -3144,7 +3116,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
   region = aws.Region.ap_northeast_1
 }
 </code></pre>
-<h2 id="usage-2"><a class="header" href="#usage-2">Usage</a></h2>
+<h2 id="usage-1"><a class="header" href="#usage-1">Usage</a></h2>
 <p>Resources are defined using the <code>aws.&lt;resource_type&gt;</code> syntax:</p>
 <pre><code class="language-crn">let vpc = aws.ec2_vpc {
   name       = "my-vpc"
@@ -3733,6 +3705,22 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 </table>
 </div>
 <p>Shorthand formats: <code>Enabled</code> or <code>VersioningStatus.Enabled</code></p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsstscaller_identity"><a class="header" href="#awsstscaller_identity">aws.sts.caller_identity</a></h1>
+<p>CloudFormation Type: <code>AWS::STS::CallerIdentity</code></p>
+<h2 id="attribute-reference-31"><a class="header" href="#attribute-reference-31">Attribute Reference</a></h2>
+<h3 id="account_id"><a class="header" href="#account_id"><code>account_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
+<h3 id="arn-5"><a class="header" href="#arn-5"><code>arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+</ul>
+<h3 id="user_id"><a class="header" href="#user_id"><code>user_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 
                     </main>
 
