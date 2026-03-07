@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-b8ca0268.js";
+            window.path_to_searchindex_js = "../../searchindex-456a191b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -227,7 +227,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.  You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a <code>0.0.0.0/0</code> route pointing to the internet gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough">Configure DNS64 and NAT64</a> in the <em>User Guide</em>.</p>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a <code>0.0.0.0/0</code> route pointing to the internet gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough">Configure DNS64 and NAT64</a> in the <em>User Guide</em>.</p>
 <h3 id="enable_lni_at_device_index"><a class="header" href="#enable_lni_at_device_index"><code>enable_lni_at_device_index</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
@@ -287,7 +287,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
+<p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options: + EnableResourceNameDnsAAAARecord (true | false) + EnableResourceNameDnsARecord (true | false) + HostnameType (ip-name | resource-name)</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>

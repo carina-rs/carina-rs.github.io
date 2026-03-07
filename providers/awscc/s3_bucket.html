@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-b8ca0268.js";
+            window.path_to_searchindex_js = "../../searchindex-456a191b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -197,7 +197,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#access_control-accesscontrol">Enum (AccessControl)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see <a href="https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html">Controlling object ownership</a> in the <em>Amazon S3 User Guide</em>.  A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACL</a> in the <em>Amazon S3 User Guide</em>.  S3 buckets are created with ACLs disabled by default. Therefore, unless you explicitly set the <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html">AWS::S3::OwnershipControls</a> property to enable ACLs, your resource will fail to deploy with any value other than Private. Use cases requiring ACLs are uncommon.  The majority of access control configurations can be successfully and more easily achieved with bucket policies. For more information, see <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html">AWS::S3::BucketPolicy</a>. For examples of common policy configurations, including S3 Server Access Logs buckets and more, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html">Bucket policy examples</a> in the <em>Amazon S3 User Guide</em>.</p>
+<p>This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see <a href="https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html">Controlling object ownership</a> in the <em>Amazon S3 User Guide</em>. A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACL</a> in the <em>Amazon S3 User Guide</em>. S3 buckets are created with ACLs disabled by default. Therefore, unless you explicitly set the <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html">AWS::S3::OwnershipControls</a> property to enable ACLs, your resource will fail to deploy with any value other than Private. Use cases requiring ACLs are uncommon. The majority of access control configurations can be successfully and more easily achieved with bucket policies. For more information, see <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html">AWS::S3::BucketPolicy</a>. For examples of common policy configurations, including S3 Server Access Logs buckets and more, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html">Bucket policy examples</a> in the <em>Amazon S3 User Guide</em>.</p>
 <h3 id="analytics_configurations"><a class="header" href="#analytics_configurations"><code>analytics_configurations</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#analyticsconfiguration">List&lt;AnalyticsConfiguration&gt;</a></li>
@@ -215,7 +215,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>A name for the bucket. If you don’t specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Amazon S3 bucket restrictions and limitations</a>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Rules for naming Amazon S3 buckets</a> in the <em>Amazon S3 User Guide</em>.  If you specify a name, you can’t perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.</p>
+<p>A name for the bucket. If you don’t specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Amazon S3 bucket restrictions and limitations</a>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Rules for naming Amazon S3 buckets</a> in the <em>Amazon S3 User Guide</em>. If you specify a name, you can’t perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.</p>
 <h3 id="cors_configuration"><a class="header" href="#cors_configuration"><code>cors_configuration</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#corsconfiguration">Struct(CorsConfiguration)</a></li>
@@ -275,7 +275,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#objectlockconfiguration">Struct(ObjectLockConfiguration)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>This operation is not supported for directory buckets.  Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking Objects</a>.   + The <code>DefaultRetention</code> settings require both a mode and a period.  + The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same time.  + You can enable Object Lock for new or existing buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html">Configuring Object Lock</a>.    You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>
+<p>This operation is not supported for directory buckets. Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking Objects</a>. + The <code>DefaultRetention</code> settings require both a mode and a period. + The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same time. + You can enable Object Lock for new or existing buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html">Configuring Object Lock</a>. You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>
 <h3 id="object_lock_enabled"><a class="header" href="#object_lock_enabled"><code>object_lock_enabled</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
@@ -311,7 +311,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#versioningconfiguration">Struct(VersioningConfiguration)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them.  When you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (<code>PUT</code> or <code>DELETE</code>) on objects in the bucket.</p>
+<p>Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them. When you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (<code>PUT</code> or <code>DELETE</code>) on objects in the bucket.</p>
 <h3 id="website_configuration"><a class="header" href="#website_configuration"><code>website_configuration</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#websiteconfiguration">Struct(WebsiteConfiguration)</a></li>
@@ -439,7 +439,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>rules</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>A lifecycle rule for individual objects in an Amazon S3 bucket.</td></tr>
-<tr><td><code>transition_default_minimum_object_size</code></td><td>String</td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration.  Thi…</td></tr>
+<tr><td><code>transition_default_minimum_object_size</code></td><td>String</td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration. This…</td></tr>
 </tbody>
 </table>
 </div>
@@ -577,7 +577,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>error_document</code></td><td>String</td><td>No</td><td>The name of the error document for the website.</td></tr>
 <tr><td><code>index_document</code></td><td>String</td><td>No</td><td>The name of the index document for the website.</td></tr>
-<tr><td><code>redirect_all_requests_to</code></td><td>String</td><td>No</td><td>The redirect behavior for every request to this bucket’s website endpoint.  If you specify this prop…</td></tr>
+<tr><td><code>redirect_all_requests_to</code></td><td>String</td><td>No</td><td>The redirect behavior for every request to this bucket’s website endpoint. If you specify this prope…</td></tr>
 <tr><td><code>routing_rules</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Rules that define when a redirect is applied and the redirect behavior.</td></tr>
 </tbody>
 </table>

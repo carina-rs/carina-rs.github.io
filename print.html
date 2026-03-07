@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-b8ca0268.js";
+            window.path_to_searchindex_js = "searchindex-456a191b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -305,7 +305,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The ID of the instance.  Updates to the <code>InstanceId</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
+<p>The ID of the instance. Updates to the <code>InstanceId</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -322,13 +322,13 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool.  Updates to the <code>PublicIpv4Pool</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
+<p>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. Updates to the <code>PublicIpv4Pool</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="tags-1"><a class="header" href="#tags-1"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Any tags assigned to the Elastic IP address.  Updates to the <code>Tags</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
+<p>Any tags assigned to the Elastic IP address. Updates to the <code>Tags</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="transfer_address"><a class="header" href="#transfer_address"><code>transfer_address</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -1710,7 +1710,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.  You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a <code>0.0.0.0/0</code> route pointing to the internet gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough">Configure DNS64 and NAT64</a> in the <em>User Guide</em>.</p>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations. You must first configure a NAT gateway in a public subnet (separate from the subnet containing the IPv6-only workloads). For example, the subnet containing the NAT gateway should have a <code>0.0.0.0/0</code> route pointing to the internet gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-nat64-dns64.html#nat-gateway-nat64-dns64-walkthrough">Configure DNS64 and NAT64</a> in the <em>User Guide</em>.</p>
 <h3 id="enable_lni_at_device_index"><a class="header" href="#enable_lni_at_device_index"><code>enable_lni_at_device_index</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
@@ -1770,7 +1770,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options:  + EnableResourceNameDnsAAAARecord (true | false)  + EnableResourceNameDnsARecord (true | false)  + HostnameType (ip-name | resource-name)</p>
+<p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options: + EnableResourceNameDnsAAAARecord (true | false) + EnableResourceNameDnsARecord (true | false) + HostnameType (ip-name | resource-name)</p>
 <h3 id="tags-9"><a class="header" href="#tags-9"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
@@ -2418,7 +2418,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Type:</strong> <a href="#instance_tenancy-instancetenancy">Enum (InstanceTenancy)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The allowed tenancy of instances launched into the VPC.  + <code>default</code>: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.  + <code>dedicated</code>: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of <code>host</code> during instance launch. You cannot specify a tenancy of <code>default</code> during instance launch.   Updating <code>InstanceTenancy</code> requires no replacement only if you are updating its value from <code>dedicated</code> to <code>default</code>. Updating <code>InstanceTenancy</code> from <code>default</code> to <code>dedicated</code> requires replacement.</p>
+<p>The allowed tenancy of instances launched into the VPC. + <code>default</code>: An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch. + <code>dedicated</code>: An instance launched into the VPC runs on dedicated hardware by default, unless you explicitly specify a tenancy of <code>host</code> during instance launch. You cannot specify a tenancy of <code>default</code> during instance launch. Updating <code>InstanceTenancy</code> requires no replacement only if you are updating its value from <code>dedicated</code> to <code>default</code>. Updating <code>InstanceTenancy</code> from <code>default</code> to <code>dedicated</code> requires replacement.</p>
 <h3 id="ipv4_ipam_pool_id-1"><a class="header" href="#ipv4_ipam_pool_id-1"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -2558,13 +2558,13 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 <li><strong>Type:</strong> <a href="#policy">List&lt;Policy&gt;</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Adds or updates an inline policy document that is embedded in the specified IAM role. When you embed an inline policy in a role, the inline policy is used as part of the role’s access (permissions) policy. The role’s trust policy is created at the same time as the role. You can update a role’s trust policy later. For more information about IAM roles, go to <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html">Using Roles to Delegate Permissions and Federate Identities</a>. A role can also have an attached managed policy. For information about policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed Policies and Inline Policies</a> in the <em>User Guide</em>. For information about limits on the number of inline policies that you can embed with a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html">Limitations on Entities</a> in the <em>User Guide</em>.  If an external policy (such as <code>AWS::IAM::Policy</code> or <code>AWS::IAM::ManagedPolicy</code>) has a <code>Ref</code> to a role and if a resource (such as <code>AWS::ECS::Service</code>) also has a <code>Ref</code> to the same role, add a <code>DependsOn</code> attribute to the resource to make the resource depend on the external policy. This dependency ensures that the role’s policy is available throughout the resource’s lifecycle. For example, when you delete a stack with an <code>AWS::ECS::Service</code> resource, the <code>DependsOn</code> attribute ensures that CFN deletes the <code>AWS::ECS::Service</code> resource before deleting its role’s policy.</p>
+<p>Adds or updates an inline policy document that is embedded in the specified IAM role. When you embed an inline policy in a role, the inline policy is used as part of the role’s access (permissions) policy. The role’s trust policy is created at the same time as the role. You can update a role’s trust policy later. For more information about IAM roles, go to <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html">Using Roles to Delegate Permissions and Federate Identities</a>. A role can also have an attached managed policy. For information about policies, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed Policies and Inline Policies</a> in the <em>User Guide</em>. For information about limits on the number of inline policies that you can embed with a role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html">Limitations on Entities</a> in the <em>User Guide</em>. If an external policy (such as <code>AWS::IAM::Policy</code> or <code>AWS::IAM::ManagedPolicy</code>) has a <code>Ref</code> to a role and if a resource (such as <code>AWS::ECS::Service</code>) also has a <code>Ref</code> to the same role, add a <code>DependsOn</code> attribute to the resource to make the resource depend on the external policy. This dependency ensures that the role’s policy is available throughout the resource’s lifecycle. For example, when you delete a stack with an <code>AWS::ECS::Service</code> resource, the <code>DependsOn</code> attribute ensures that CFN deletes the <code>AWS::ECS::Service</code> resource before deleting its role’s policy.</p>
 <h3 id="role_name"><a class="header" href="#role_name"><code>role_name</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>A name for the IAM role, up to 64 characters in length. For valid values, see the <code>RoleName</code> parameter for the <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a> action in the <em>User Guide</em>. This parameter allows (per its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-. The role name must be unique within the account. Role names are not distinguished by case. For example, you cannot create roles named both “Role1” and “role1”. If you don’t specify a name, CFN generates a unique physical ID and uses that ID for the role name. If you specify a name, you must specify the <code>CAPABILITY_NAMED_IAM</code> value to acknowledge your template’s capabilities. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging Resources in Templates</a>.  Naming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple Regions. To prevent this, we recommend using <code>Fn::Join</code> and <code>AWS::Region</code> to create a Region-specific name, as in the following example: <code>{"Fn::Join": ["", [{"Ref": "AWS::Region"}, {"Ref": "MyResourceName"}]]}</code>.</p>
+<p>A name for the IAM role, up to 64 characters in length. For valid values, see the <code>RoleName</code> parameter for the <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a> action in the <em>User Guide</em>. This parameter allows (per its <a href="https://docs.aws.amazon.com/http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-. The role name must be unique within the account. Role names are not distinguished by case. For example, you cannot create roles named both “Role1” and “role1”. If you don’t specify a name, CFN generates a unique physical ID and uses that ID for the role name. If you specify a name, you must specify the <code>CAPABILITY_NAMED_IAM</code> value to acknowledge your template’s capabilities. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html#using-iam-capabilities">Acknowledging Resources in Templates</a>. Naming an IAM resource can cause an unrecoverable error if you reuse the same template in multiple Regions. To prevent this, we recommend using <code>Fn::Join</code> and <code>AWS::Region</code> to create a Region-specific name, as in the following example: <code>{"Fn::Join": ["", [{"Ref": "AWS::Region"}, {"Ref": "MyResourceName"}]]}</code>.</p>
 <h3 id="tags-16"><a class="header" href="#tags-16"><code>tags</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Map</li>
@@ -2633,7 +2633,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Type:</strong> <a href="#log_group_class-loggroupclass">Enum (LogGroupClass)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Specifies the log group class for this log group. There are two classes:  + The <code>Standard</code> log class supports all CWL features.  + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs.   For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
+<p>Specifies the log group class for this log group. There are two classes: + The <code>Standard</code> log class supports all CWL features. + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs. For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
 <h3 id="log_group_name-1"><a class="header" href="#log_group_name-1"><code>log_group_name</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -2702,7 +2702,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#access_control-accesscontrol">Enum (AccessControl)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see <a href="https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html">Controlling object ownership</a> in the <em>Amazon S3 User Guide</em>.  A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACL</a> in the <em>Amazon S3 User Guide</em>.  S3 buckets are created with ACLs disabled by default. Therefore, unless you explicitly set the <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html">AWS::S3::OwnershipControls</a> property to enable ACLs, your resource will fail to deploy with any value other than Private. Use cases requiring ACLs are uncommon.  The majority of access control configurations can be successfully and more easily achieved with bucket policies. For more information, see <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html">AWS::S3::BucketPolicy</a>. For examples of common policy configurations, including S3 Server Access Logs buckets and more, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html">Bucket policy examples</a> in the <em>Amazon S3 User Guide</em>.</p>
+<p>This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see <a href="https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html">Controlling object ownership</a> in the <em>Amazon S3 User Guide</em>. A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACL</a> in the <em>Amazon S3 User Guide</em>. S3 buckets are created with ACLs disabled by default. Therefore, unless you explicitly set the <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html">AWS::S3::OwnershipControls</a> property to enable ACLs, your resource will fail to deploy with any value other than Private. Use cases requiring ACLs are uncommon. The majority of access control configurations can be successfully and more easily achieved with bucket policies. For more information, see <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html">AWS::S3::BucketPolicy</a>. For examples of common policy configurations, including S3 Server Access Logs buckets and more, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html">Bucket policy examples</a> in the <em>Amazon S3 User Guide</em>.</p>
 <h3 id="analytics_configurations"><a class="header" href="#analytics_configurations"><code>analytics_configurations</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#analyticsconfiguration">List&lt;AnalyticsConfiguration&gt;</a></li>
@@ -2720,7 +2720,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>A name for the bucket. If you don’t specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Amazon S3 bucket restrictions and limitations</a>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Rules for naming Amazon S3 buckets</a> in the <em>Amazon S3 User Guide</em>.  If you specify a name, you can’t perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.</p>
+<p>A name for the bucket. If you don’t specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Amazon S3 bucket restrictions and limitations</a>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Rules for naming Amazon S3 buckets</a> in the <em>Amazon S3 User Guide</em>. If you specify a name, you can’t perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.</p>
 <h3 id="cors_configuration"><a class="header" href="#cors_configuration"><code>cors_configuration</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#corsconfiguration">Struct(CorsConfiguration)</a></li>
@@ -2780,7 +2780,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#objectlockconfiguration">Struct(ObjectLockConfiguration)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>This operation is not supported for directory buckets.  Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking Objects</a>.   + The <code>DefaultRetention</code> settings require both a mode and a period.  + The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same time.  + You can enable Object Lock for new or existing buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html">Configuring Object Lock</a>.    You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>
+<p>This operation is not supported for directory buckets. Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html">Locking Objects</a>. + The <code>DefaultRetention</code> settings require both a mode and a period. + The <code>DefaultRetention</code> period can be either <code>Days</code> or <code>Years</code> but you must select one. You cannot specify <code>Days</code> and <code>Years</code> at the same time. + You can enable Object Lock for new or existing buckets. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html">Configuring Object Lock</a>. You must URL encode any signed header values that contain spaces. For example, if your header value is <code>my file.txt</code>, containing two spaces after <code>my</code>, you must URL encode this value to <code>my%20%20file.txt</code>.</p>
 <h3 id="object_lock_enabled"><a class="header" href="#object_lock_enabled"><code>object_lock_enabled</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
@@ -2816,7 +2816,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> <a href="#versioningconfiguration">Struct(VersioningConfiguration)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them.  When you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (<code>PUT</code> or <code>DELETE</code>) on objects in the bucket.</p>
+<p>Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them. When you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations (<code>PUT</code> or <code>DELETE</code>) on objects in the bucket.</p>
 <h3 id="website_configuration"><a class="header" href="#website_configuration"><code>website_configuration</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#websiteconfiguration">Struct(WebsiteConfiguration)</a></li>
@@ -2944,7 +2944,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>rules</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>A lifecycle rule for individual objects in an Amazon S3 bucket.</td></tr>
-<tr><td><code>transition_default_minimum_object_size</code></td><td>String</td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration.  Thi…</td></tr>
+<tr><td><code>transition_default_minimum_object_size</code></td><td>String</td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration. This…</td></tr>
 </tbody>
 </table>
 </div>
@@ -3082,7 +3082,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>error_document</code></td><td>String</td><td>No</td><td>The name of the error document for the website.</td></tr>
 <tr><td><code>index_document</code></td><td>String</td><td>No</td><td>The name of the index document for the website.</td></tr>
-<tr><td><code>redirect_all_requests_to</code></td><td>String</td><td>No</td><td>The redirect behavior for every request to this bucket’s website endpoint.  If you specify this prop…</td></tr>
+<tr><td><code>redirect_all_requests_to</code></td><td>String</td><td>No</td><td>The redirect behavior for every request to this bucket’s website endpoint. If you specify this prope…</td></tr>
 <tr><td><code>routing_rules</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Rules that define when a redirect is applied and the redirect behavior.</td></tr>
 </tbody>
 </table>
