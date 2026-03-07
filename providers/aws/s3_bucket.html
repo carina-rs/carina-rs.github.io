@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-456a191b.js";
+            window.path_to_searchindex_js = "../../searchindex-df2e6232.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -183,6 +183,12 @@
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The canned ACL to apply to the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="bucket"><a class="header" href="#bucket"><code>bucket</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren’t supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name–zone-id–x-s3 (for example, DOC-EXAMPLE-BUCKET–usw2-az1–x-s3). For information about bucket naming restrictions, see Directory bucket naming rules in the Amazon S3 User Guide</p>
 <h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
