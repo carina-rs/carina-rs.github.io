@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-07d0c2b7.js";
+            window.path_to_searchindex_js = "searchindex-bccd0a55.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -3189,7 +3189,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The ID of the carrier gateway.     You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
+<p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
 <h3 id="core_network_arn-1"><a class="header" href="#core_network_arn-1"><code>core_network_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
@@ -3225,7 +3225,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> AwsResourceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The ID of an internet gateway or virtual private gateway attached to your 			VPC.</p>
+<p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>
 <h3 id="instance_id-2"><a class="header" href="#instance_id-2"><code>instance_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsResourceId</li>
@@ -3371,7 +3371,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 address range, in CIDR format.                    Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block,        Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will        return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the        non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized        form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error.          To specify an IPv6 address range, use IP permissions instead.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>The IPv4 address range, in CIDR format. Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block, Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error. To specify an IPv6 address range, use IP permissions instead. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="cidr_ipv6-3"><a class="header" href="#cidr_ipv6-3"><code>cidr_ipv6</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv6Cidr</li>
@@ -3389,7 +3389,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the start of the port range.      If the protocol is ICMP, this is the ICMP type or -1 (all ICMP types).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP, this is the ICMP type or -1 (all ICMP types). To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="group_id-4"><a class="header" href="#group_id-4"><code>group_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> SecurityGroupId</li>
@@ -3401,13 +3401,13 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>[Default VPC] The name of the security group. For security groups for a default VPC     you can specify either the ID or the name of the security group. For security groups for     a nondefault VPC, you must specify the ID of the security group.</p>
+<p>[Default VPC] The name of the security group. For security groups for a default VPC you can specify either the ID or the name of the security group. For security groups for a nondefault VPC, you must specify the ID of the security group.</p>
 <h3 id="ip_protocol-3"><a class="header" href="#ip_protocol-3"><code>ip_protocol</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-3">Enum (IpProtocol)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>The IP protocol name (tcp, udp, icmp) or number    (see Protocol Numbers). To specify all protocols, use -1.     To specify icmpv6, use IP permissions instead.     If you specify a protocol other than one of the supported values, traffic is allowed      on all ports, regardless of any ports that you specify.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers). To specify all protocols, use -1. To specify icmpv6, use IP permissions instead. If you specify a protocol other than one of the supported values, traffic is allowed on all ports, regardless of any ports that you specify. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_prefix_list_id-1"><a class="header" href="#source_prefix_list_id-1"><code>source_prefix_list_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsResourceId</li>
@@ -3419,19 +3419,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>[Default VPC] The name of the source security group.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol       and port range, specify a set of IP permissions instead.</p>
+<p>[Default VPC] The name of the source security group. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, specify a set of IP permissions instead.</p>
 <h3 id="source_security_group_owner_id-2"><a class="header" href="#source_security_group_owner_id-2"><code>source_security_group_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Amazon Web Services account ID for the source security group, if the source security group is      in a different account.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol      and port range, use IP permissions instead.</p>
+<p>The Amazon Web Services account ID for the source security group, if the source security group is in a different account. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, use IP permissions instead.</p>
 <h3 id="to_port-3"><a class="header" href="#to_port-3"><code>to_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the end of the port range.      If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes).       If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes). To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_security_group_id-1"><a class="header" href="#source_security_group_id-1"><code>source_security_group_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> SecurityGroupId</li>
@@ -3470,13 +3470,13 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>A description for the security group.     Constraints: Up to 255 characters in length     Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
+<p>A description for the security group. Constraints: Up to 255 characters in length Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
 <h3 id="group_name-3"><a class="header" href="#group_name-3"><code>group_name</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>The name of the security group. Names are case-insensitive and must be unique within the VPC.     Constraints: Up to 255 characters in length. Can’t start with sg-.     Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
+<p>The name of the security group. Names are case-insensitive and must be unique within the VPC. Constraints: Up to 255 characters in length. Can’t start with sg-. Valid characters: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>
 <h3 id="vpc_id-11"><a class="header" href="#vpc_id-11"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
@@ -3504,13 +3504,13 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether a network interface created in this subnet (including a network       interface created by RunInstances) receives an IPv6 address.</p>
+<p>Indicates whether a network interface created in this subnet (including a network interface created by RunInstances) receives an IPv6 address.</p>
 <h3 id="availability_zone-1"><a class="header" href="#availability_zone-1"><code>availability_zone</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AvailabilityZone</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Availability Zone or Local Zone for the subnet.     Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we      do not necessarily select a different zone for each subnet.     To create a subnet in a Local Zone, set this value to the Local Zone ID, for example      us-west-2-lax-1a. For information about the Regions that support Local Zones,       see Available Local Zones.     To create a subnet in an Outpost, set this value to the Availability Zone for the      Outpost and specify the Outpost ARN.</p>
+<p>The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Local Zones. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.</p>
 <h3 id="availability_zone_id-1"><a class="header" href="#availability_zone_id-1"><code>availability_zone_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -3522,19 +3522,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.       We modify the specified CIDR block to its canonical form; for example, if you specify       100.68.0.18/18, we modify it to 100.68.0.0/18.     This parameter is not supported for an IPv6 only subnet.</p>
+<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18. This parameter is not supported for an IPv6 only subnet.</p>
 <h3 id="enable_dns64-1"><a class="header" href="#enable_dns64-1"><code>enable_dns64</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet       should return synthetic IPv6 addresses for IPv4-only destinations.</p>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.</p>
 <h3 id="enable_lni_at_device_index-1"><a class="header" href="#enable_lni_at_device_index-1"><code>enable_lni_at_device_index</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates the device position for local network interfaces in this subnet. For example,       1 indicates local network interfaces in this subnet are the secondary       network interface (eth1).</p>
+<p>Indicates the device position for local network interfaces in this subnet. For example, 1 indicates local network interfaces in this subnet are the secondary network interface (eth1).</p>
 <h3 id="ipv4_ipam_pool_id-2"><a class="header" href="#ipv4_ipam_pool_id-2"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -3552,7 +3552,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required       for an IPv6 only subnet.</p>
+<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.</p>
 <h3 id="ipv6_ipam_pool_id-1"><a class="header" href="#ipv6_ipam_pool_id-1"><code>ipv6_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -3576,19 +3576,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether instances launched in this subnet receive a public IPv4 address.     Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
+<p>Indicates whether instances launched in this subnet receive a public IPv4 address. Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
 <h3 id="outpost_arn-1"><a class="header" href="#outpost_arn-1"><code>outpost_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also     specify the Availability Zone of the Outpost subnet.</p>
+<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.</p>
 <h3 id="private_dns_name_options_on_launch-1"><a class="header" href="#private_dns_name_options_on_launch-1"><code>private_dns_name_options_on_launch</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch-1">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname       is based on the IPv4 address or ID of the instance.</p>
+<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname is based on the IPv4 address or ID of the instance.</p>
 <h3 id="vpc_id-12"><a class="header" href="#vpc_id-12"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
@@ -3609,9 +3609,9 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA       records.</td></tr>
-<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A       records.</td></tr>
-<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name       must be ba…</td></tr>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA records.</td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A records.</td></tr>
+<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name must be based on…</td></tr>
 </tbody>
 </table>
 </div>
@@ -3630,13 +3630,13 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 network range for the VPC, in CIDR notation. For example, 		    10.0.0.0/16. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.</p>
+<p>The IPv4 network range for the VPC, in CIDR notation. For example, 10.0.0.0/16. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.</p>
 <h3 id="instance_tenancy-1"><a class="header" href="#instance_tenancy-1"><code>instance_tenancy</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#instance_tenancy-instancetenancy-1">Enum (InstanceTenancy)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The tenancy options for instances launched into the VPC. For default, instances    are launched with shared tenancy by default. You can launch instances with any tenancy into a    shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy    instances by default. You can only launch instances with a tenancy of dedicated    or host into a dedicated tenancy VPC.            Important: The host value cannot be used with this parameter. Use the default or dedicated values only.     Default: default</p>
+<p>The tenancy options for instances launched into the VPC. For default, instances are launched with shared tenancy by default. You can launch instances with any tenancy into a shared tenancy VPC. For dedicated, instances are launched as dedicated tenancy instances by default. You can only launch instances with a tenancy of dedicated or host into a dedicated tenancy VPC. Important: The host value cannot be used with this parameter. Use the default or dedicated values only. Default: default</p>
 <h3 id="ipv4_ipam_pool_id-3"><a class="header" href="#ipv4_ipam_pool_id-3"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -3684,7 +3684,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket.            This functionality is not supported for directory buckets.</p>
+<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="object_ownership"><a class="header" href="#object_ownership"><code>object_ownership</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#object_ownership-objectownership">Enum (ObjectOwnership)</a></li>

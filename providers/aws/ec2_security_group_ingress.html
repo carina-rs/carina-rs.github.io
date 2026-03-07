@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-07d0c2b7.js";
+            window.path_to_searchindex_js = "../../searchindex-bccd0a55.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -183,7 +183,7 @@
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 address range, in CIDR format.                    Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block,        Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will        return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the        non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized        form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error.          To specify an IPv6 address range, use IP permissions instead.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>The IPv4 address range, in CIDR format. Amazon Web Services canonicalizes IPv4 and IPv6 CIDRs. For example, if you specify 100.68.0.18/18 for the CIDR block, Amazon Web Services canonicalizes the CIDR block to 100.68.0.0/18. Any subsequent DescribeSecurityGroups and DescribeSecurityGroupRules calls will return the canonicalized form of the CIDR block. Additionally, if you attempt to add another rule with the non-canonical form of the CIDR (such as 100.68.0.18/18) and there is already a rule for the canonicalized form of the CIDR block (such as 100.68.0.0/18), the API throws an duplicate rule error. To specify an IPv6 address range, use IP permissions instead. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="cidr_ipv6"><a class="header" href="#cidr_ipv6"><code>cidr_ipv6</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv6Cidr</li>
@@ -201,7 +201,7 @@
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the start of the port range.      If the protocol is ICMP, this is the ICMP type or -1 (all ICMP types).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP, this is the ICMP type or -1 (all ICMP types). To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="group_id"><a class="header" href="#group_id"><code>group_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> SecurityGroupId</li>
@@ -213,13 +213,13 @@
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>[Default VPC] The name of the security group. For security groups for a default VPC     you can specify either the ID or the name of the security group. For security groups for     a nondefault VPC, you must specify the ID of the security group.</p>
+<p>[Default VPC] The name of the security group. For security groups for a default VPC you can specify either the ID or the name of the security group. For security groups for a nondefault VPC, you must specify the ID of the security group.</p>
 <h3 id="ip_protocol"><a class="header" href="#ip_protocol"><code>ip_protocol</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol">Enum (IpProtocol)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
-<p>The IP protocol name (tcp, udp, icmp) or number    (see Protocol Numbers). To specify all protocols, use -1.     To specify icmpv6, use IP permissions instead.     If you specify a protocol other than one of the supported values, traffic is allowed      on all ports, regardless of any ports that you specify.     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers). To specify all protocols, use -1. To specify icmpv6, use IP permissions instead. If you specify a protocol other than one of the supported values, traffic is allowed on all ports, regardless of any ports that you specify. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_prefix_list_id"><a class="header" href="#source_prefix_list_id"><code>source_prefix_list_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsResourceId</li>
@@ -231,19 +231,19 @@
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>[Default VPC] The name of the source security group.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol       and port range, specify a set of IP permissions instead.</p>
+<p>[Default VPC] The name of the source security group. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, specify a set of IP permissions instead.</p>
 <h3 id="source_security_group_owner_id"><a class="header" href="#source_security_group_owner_id"><code>source_security_group_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Amazon Web Services account ID for the source security group, if the source security group is      in a different account.     The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol      and port range, use IP permissions instead.</p>
+<p>The Amazon Web Services account ID for the source security group, if the source security group is in a different account. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, use IP permissions instead.</p>
 <h3 id="to_port"><a class="header" href="#to_port"><code>to_port</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int(-1..=65535)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>If the protocol is TCP or UDP, this is the end of the port range.      If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes).       If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).     To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
+<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP, this is the ICMP code or -1 (all ICMP codes). If the start port is -1 (all ICMP types), then the end port must be -1 (all ICMP codes). To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_security_group_id"><a class="header" href="#source_security_group_id"><code>source_security_group_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> SecurityGroupId</li>

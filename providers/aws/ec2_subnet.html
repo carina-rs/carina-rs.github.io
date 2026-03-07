@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-07d0c2b7.js";
+            window.path_to_searchindex_js = "../../searchindex-bccd0a55.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -183,13 +183,13 @@
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether a network interface created in this subnet (including a network       interface created by RunInstances) receives an IPv6 address.</p>
+<p>Indicates whether a network interface created in this subnet (including a network interface created by RunInstances) receives an IPv6 address.</p>
 <h3 id="availability_zone"><a class="header" href="#availability_zone"><code>availability_zone</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AvailabilityZone</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Availability Zone or Local Zone for the subnet.     Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we      do not necessarily select a different zone for each subnet.     To create a subnet in a Local Zone, set this value to the Local Zone ID, for example      us-west-2-lax-1a. For information about the Regions that support Local Zones,       see Available Local Zones.     To create a subnet in an Outpost, set this value to the Availability Zone for the      Outpost and specify the Outpost ARN.</p>
+<p>The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Local Zones. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.</p>
 <h3 id="availability_zone_id"><a class="header" href="#availability_zone_id"><code>availability_zone_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -201,19 +201,19 @@
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.       We modify the specified CIDR block to its canonical form; for example, if you specify       100.68.0.18/18, we modify it to 100.68.0.0/18.     This parameter is not supported for an IPv6 only subnet.</p>
+<p>The IPv4 network range for the subnet, in CIDR notation. For example, 10.0.0.0/24. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18. This parameter is not supported for an IPv6 only subnet.</p>
 <h3 id="enable_dns64"><a class="header" href="#enable_dns64"><code>enable_dns64</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet       should return synthetic IPv6 addresses for IPv4-only destinations.</p>
+<p>Indicates whether DNS queries made to the Amazon-provided DNS Resolver in this subnet should return synthetic IPv6 addresses for IPv4-only destinations.</p>
 <h3 id="enable_lni_at_device_index"><a class="header" href="#enable_lni_at_device_index"><code>enable_lni_at_device_index</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates the device position for local network interfaces in this subnet. For example,       1 indicates local network interfaces in this subnet are the secondary       network interface (eth1).</p>
+<p>Indicates the device position for local network interfaces in this subnet. For example, 1 indicates local network interfaces in this subnet are the secondary network interface (eth1).</p>
 <h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -231,7 +231,7 @@
 <li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required       for an IPv6 only subnet.</p>
+<p>The IPv6 network range for the subnet, in CIDR notation. This parameter is required for an IPv6 only subnet.</p>
 <h3 id="ipv6_ipam_pool_id"><a class="header" href="#ipv6_ipam_pool_id"><code>ipv6_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
@@ -255,19 +255,19 @@
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>Indicates whether instances launched in this subnet receive a public IPv4 address.     Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
+<p>Indicates whether instances launched in this subnet receive a public IPv4 address. Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses associated with running instances and Elastic IP addresses. For more information, see the Public IPv4 Address tab on the Amazon VPC pricing page.</p>
 <h3 id="outpost_arn"><a class="header" href="#outpost_arn"><code>outpost_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also     specify the Availability Zone of the Outpost subnet.</p>
+<p>The Amazon Resource Name (ARN) of the Outpost. If you specify an Outpost ARN, you must also specify the Availability Zone of the Outpost subnet.</p>
 <h3 id="private_dns_name_options_on_launch"><a class="header" href="#private_dns_name_options_on_launch"><code>private_dns_name_options_on_launch</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#privatednsnameoptionsonlaunch">Struct(PrivateDnsNameOptionsOnLaunch)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname       is based on the IPv4 address or ID of the instance.</p>
+<p>The type of hostnames to assign to instances in the subnet at launch. An instance hostname is based on the IPv4 address or ID of the instance.</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
@@ -288,9 +288,9 @@
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA       records.</td></tr>
-<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A       records.</td></tr>
-<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name       must be ba…</td></tr>
+<tr><td><code>enable_resource_name_dns_aaaa_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostname with DNS AAAA records.</td></tr>
+<tr><td><code>enable_resource_name_dns_a_record</code></td><td>Bool</td><td>No</td><td>Indicates whether to respond to DNS queries for instance hostnames with DNS A records.</td></tr>
+<tr><td><code>hostname_type</code></td><td><a href="#hostname_type-hostnametype">Enum (HostnameType)</a></td><td>No</td><td>The type of hostname for EC2 instances. For IPv4 only subnets, an instance DNS name must be based on…</td></tr>
 </tbody>
 </table>
 </div>
