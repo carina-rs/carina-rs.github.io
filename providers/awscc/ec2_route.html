@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -179,6 +179,31 @@
 <p>Specifies a route in a route table. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes">Routes</a> in the <em>Amazon VPC User Guide</em>.
 You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
 If you create a route that references a transit gateway in the same template where you create the transit gateway, you must declare a dependency on the transit gateway attachment. The route table cannot use the transit gateway until it has successfully attached to the VPC. Add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> in the <code>AWS::EC2::Route</code> resource to explicitly declare a dependency on the <code>AWS::EC2::TransitGatewayAttachment</code> resource.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let igw = awscc.ec2.internet_gateway {
+}
+
+let igw_attachment = awscc.ec2.vpc_gateway_attachment {
+  vpc_id              = vpc.vpc_id
+  internet_gateway_id = igw.internet_gateway_id
+}
+
+let rt = awscc.ec2.route_table {
+  vpc_id = vpc.vpc_id
+}
+
+awscc.ec2.route {
+  route_table_id         = rt.route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = igw_attachment.internet_gateway_id
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id"><a class="header" href="#carrier_gateway_id"><code>carrier_gateway_id</code></a></h3>
 <ul>
@@ -275,31 +300,6 @@ If you create a route that references a transit gateway in the same template whe
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-let igw = awscc.ec2.internet_gateway {
-}
-
-let igw_attachment = awscc.ec2.vpc_gateway_attachment {
-  vpc_id              = vpc.vpc_id
-  internet_gateway_id = igw.internet_gateway_id
-}
-
-let rt = awscc.ec2.route_table {
-  vpc_id = vpc.vpc_id
-}
-
-awscc.ec2.route {
-  route_table_id         = rt.route_table_id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = igw_attachment.internet_gateway_id
-}
-</code></pre>
 
                     </main>
 

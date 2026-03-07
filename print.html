@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -242,6 +242,19 @@ aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
 <h1 id="awsccec2egress_only_internet_gateway"><a class="header" href="#awsccec2egress_only_internet_gateway">awscc.ec2.egress_only_internet_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::EgressOnlyInternetGateway</code></p>
 <p>Resource Type definition for AWS::EC2::EgressOnlyInternetGateway</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2.egress_only_internet_gateway {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
@@ -260,25 +273,21 @@ aws-vault exec &lt;profile&gt; -- cargo run --bin carina -- apply example.crn
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-awscc.ec2.egress_only_internet_gateway {
-  vpc_id = vpc.vpc_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2eip"><a class="header" href="#awsccec2eip">awscc.ec2.eip</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::EIP</code></p>
 <p>Specifies an Elastic IP (EIP) address and can, optionally, associate it with an Amazon EC2 instance.
 You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring Your Own IP Addresses (BYOIP)</a> in the <em>Amazon EC2 User Guide</em>.
 For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <em>Amazon EC2 User Guide</em>.</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.eip {
+  domain = "vpc"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-1"><a class="header" href="#argument-reference-1">Argument Reference</a></h2>
 <h3 id="address"><a class="header" href="#address"><code>address</code></a></h3>
 <ul>
@@ -349,19 +358,27 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.eip {
-  domain = "vpc"
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2flow_log"><a class="header" href="#awsccec2flow_log">awscc.ec2.flow_log</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::FlowLog</code></p>
+<p>Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.</p>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2.flow_log {
+  resource_id          = vpc.vpc_id
+  resource_type        = VPC
+  traffic_type         = ALL
+  log_destination_type = s3
+  log_destination      = "arn:aws:s3:::example-flow-logs-bucket"
 
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2flow_log"><a class="header" href="#awsccec2flow_log">awscc.ec2.flow_log</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::FlowLog</code></p>
-<p>Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.</p>
 <h2 id="argument-reference-2"><a class="header" href="#argument-reference-2">Argument Reference</a></h2>
 <h3 id="deliver_cross_account_role"><a class="header" href="#deliver_cross_account_role"><code>deliver_cross_account_role</code></a></h3>
 <ul>
@@ -499,27 +516,17 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-awscc.ec2.flow_log {
-  resource_id          = vpc.vpc_id
-  resource_type        = VPC
-  traffic_type         = ALL
-  log_destination_type = s3
-  log_destination      = "arn:aws:s3:::example-flow-logs-bucket"
-
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2internet_gateway"><a class="header" href="#awsccec2internet_gateway">awscc.ec2.internet_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
+<p>Allocates an internet gateway for use with a VPC. After creating the Internet gateway, you then attach it to a VPC.</p>
+<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.internet_gateway {
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2internet_gateway"><a class="header" href="#awsccec2internet_gateway">awscc.ec2.internet_gateway</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
-<p>Allocates an internet gateway for use with a VPC. After creating the Internet gateway, you then attach it to a VPC.</p>
 <h2 id="argument-reference-3"><a class="header" href="#argument-reference-3">Argument Reference</a></h2>
 <h3 id="tags-3"><a class="header" href="#tags-3"><code>tags</code></a></h3>
 <ul>
@@ -532,17 +539,39 @@ awscc.ec2.flow_log {
 <ul>
 <li><strong>Type:</strong> InternetGatewayId</li>
 </ul>
-<h2 id="example-3"><a class="header" href="#example-3">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.internet_gateway {
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2ipam_pool"><a class="header" href="#awsccec2ipam_pool">awscc.ec2.ipam_pool</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::IPAMPool</code></p>
+<p>Resource Schema of AWS::EC2::IPAMPool Type</p>
+<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
+<pre><code class="language-crn">let ipam = awscc.ec2.ipam {
+  description = "Example IPAM"
+  tier        = free
+
+  operating_regions = [
+    {
+      region_name = "ap-northeast-1"
+    }
+  ]
+}
+
+awscc.ec2.ipam_pool {
+  ipam_scope_id  = ipam.private_default_scope_id
+  address_family = "IPv4"
+  locale         = "ap-northeast-1"
+  description    = "Example IPv4 IPAM Pool"
+
+  provisioned_cidrs = [
+    {
+      cidr = "10.0.0.0/8"
+    }
+  ]
+
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2ipam_pool"><a class="header" href="#awsccec2ipam_pool">awscc.ec2.ipam_pool</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::IPAMPool</code></p>
-<p>Resource Schema of AWS::EC2::IPAMPool Type</p>
 <h2 id="argument-reference-4"><a class="header" href="#argument-reference-4">Argument Reference</a></h2>
 <h3 id="address_family"><a class="header" href="#address_family"><code>address_family</code></a></h3>
 <ul>
@@ -767,8 +796,12 @@ awscc.ec2.flow_log {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-4"><a class="header" href="#example-4">Example</a></h2>
-<pre><code class="language-crn">let ipam = awscc.ec2.ipam {
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2ipam"><a class="header" href="#awsccec2ipam">awscc.ec2.ipam</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::IPAM</code></p>
+<p>Resource Schema of AWS::EC2::IPAM Type</p>
+<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.ipam {
   description = "Example IPAM"
   tier        = free
 
@@ -777,29 +810,12 @@ awscc.ec2.flow_log {
       region_name = "ap-northeast-1"
     }
   ]
-}
-
-awscc.ec2.ipam_pool {
-  ipam_scope_id  = ipam.private_default_scope_id
-  address_family = "IPv4"
-  locale         = "ap-northeast-1"
-  description    = "Example IPv4 IPAM Pool"
-
-  provisioned_cidrs = [
-    {
-      cidr = "10.0.0.0/8"
-    }
-  ]
 
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2ipam"><a class="header" href="#awsccec2ipam">awscc.ec2.ipam</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::IPAM</code></p>
-<p>Resource Schema of AWS::EC2::IPAM Type</p>
 <h2 id="argument-reference-5"><a class="header" href="#argument-reference-5">Argument Reference</a></h2>
 <h3 id="default_resource_discovery_organizational_unit_exclusions"><a class="header" href="#default_resource_discovery_organizational_unit_exclusions"><code>default_resource_discovery_organizational_unit_exclusions</code></a></h3>
 <ul>
@@ -925,22 +941,6 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> Int</li>
 </ul>
-<h2 id="example-5"><a class="header" href="#example-5">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.ipam {
-  description = "Example IPAM"
-  tier        = free
-
-  operating_regions = [
-    {
-      region_name = "ap-northeast-1"
-    }
-  ]
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2nat_gateway"><a class="header" href="#awsccec2nat_gateway">awscc.ec2.nat_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::NatGateway</code></p>
@@ -948,6 +948,33 @@ awscc.ec2.ipam_pool {
 With a NAT gateway, instances in a private subnet can connect to the internet, other AWS services, or an on-premises network using the IP address of the NAT gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateways</a> in the <em>Amazon VPC User Guide</em>.
 If you add a default route (<code>AWS::EC2::Route</code> resource) that points to a NAT gateway, specify the NAT gateway ID for the route’s <code>NatGatewayId</code> property.
 When you associate an Elastic IP address or secondary Elastic IP address with a public NAT gateway, the network border group of the Elastic IP address must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. Otherwise, the NAT gateway fails to launch. You can see the network border group for the AZ by viewing the details of the subnet. Similarly, you can view the network border group for the Elastic IP address by viewing its details. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate an Elastic IP address</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let public_subnet = awscc.ec2.subnet {
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+}
+
+let eip = awscc.ec2.eip {
+  domain = "vpc"
+}
+
+awscc.ec2.nat_gateway {
+  allocation_id = eip.allocation_id
+  subnet_id     = public_subnet.subnet_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-6"><a class="header" href="#argument-reference-6">Argument Reference</a></h2>
 <h3 id="allocation_id-1"><a class="header" href="#allocation_id-1"><code>allocation_id</code></a></h3>
 <ul>
@@ -1083,38 +1110,26 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <ul>
 <li><strong>Type:</strong> RouteTableId</li>
 </ul>
-<h2 id="example-6"><a class="header" href="#example-6">Example</a></h2>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2route_table"><a class="header" href="#awsccec2route_table">awscc.ec2.route_table</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
+<p>Specifies a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.
+For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html">Route tables</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-let public_subnet = awscc.ec2.subnet {
-  vpc_id                  = vpc.vpc_id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "ap-northeast-1a"
-  map_public_ip_on_launch = true
-}
-
-let eip = awscc.ec2.eip {
-  domain = "vpc"
-}
-
-awscc.ec2.nat_gateway {
-  allocation_id = eip.allocation_id
-  subnet_id     = public_subnet.subnet_id
+awscc.ec2.route_table {
+  vpc_id = vpc.vpc_id
 
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2route_table"><a class="header" href="#awsccec2route_table">awscc.ec2.route_table</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
-<p>Specifies a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.
-For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html">Route tables</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h2 id="argument-reference-7"><a class="header" href="#argument-reference-7">Argument Reference</a></h2>
 <h3 id="tags-7"><a class="header" href="#tags-7"><code>tags</code></a></h3>
 <ul>
@@ -1133,27 +1148,37 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> RouteTableId</li>
 </ul>
-<h2 id="example-7"><a class="header" href="#example-7">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-awscc.ec2.route_table {
-  vpc_id = vpc.vpc_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2route"><a class="header" href="#awsccec2route">awscc.ec2.route</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::Route</code></p>
 <p>Specifies a route in a route table. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes">Routes</a> in the <em>Amazon VPC User Guide</em>.
 You must specify either a destination CIDR block or prefix list ID. You must also specify exactly one of the resources as the target.
 If you create a route that references a transit gateway in the same template where you create the transit gateway, you must declare a dependency on the transit gateway attachment. The route table cannot use the transit gateway until it has successfully attached to the VPC. Add a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> in the <code>AWS::EC2::Route</code> resource to explicitly declare a dependency on the <code>AWS::EC2::TransitGatewayAttachment</code> resource.</p>
+<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let igw = awscc.ec2.internet_gateway {
+}
+
+let igw_attachment = awscc.ec2.vpc_gateway_attachment {
+  vpc_id              = vpc.vpc_id
+  internet_gateway_id = igw.internet_gateway_id
+}
+
+let rt = awscc.ec2.route_table {
+  vpc_id = vpc.vpc_id
+}
+
+awscc.ec2.route {
+  route_table_id         = rt.route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = igw_attachment.internet_gateway_id
+}
+</code></pre>
 <h2 id="argument-reference-8"><a class="header" href="#argument-reference-8">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id"><a class="header" href="#carrier_gateway_id"><code>carrier_gateway_id</code></a></h3>
 <ul>
@@ -1250,31 +1275,6 @@ If you create a route that references a transit gateway in the same template whe
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 </ul>
-<h2 id="example-8"><a class="header" href="#example-8">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-let igw = awscc.ec2.internet_gateway {
-}
-
-let igw_attachment = awscc.ec2.vpc_gateway_attachment {
-  vpc_id              = vpc.vpc_id
-  internet_gateway_id = igw.internet_gateway_id
-}
-
-let rt = awscc.ec2.route_table {
-  vpc_id = vpc.vpc_id
-}
-
-awscc.ec2.route {
-  route_table_id         = rt.route_table_id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = igw_attachment.internet_gateway_id
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2security_group_egress"><a class="header" href="#awsccec2security_group_egress">awscc.ec2.security_group_egress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
@@ -1283,6 +1283,23 @@ An outbound rule permits instances to send traffic to the specified IPv4 or IPv6
 You must specify exactly one of the following destinations: an IPv4 address range, an IPv6 address range, a prefix list, or a security group.
 You must specify a protocol for each rule (for example, TCP). If the protocol is TCP or UDP, you must also specify a port or port range. If the protocol is ICMP or ICMPv6, you must also specify the ICMP/ICMPv6 type and code. To specify all types or all codes, use -1.
 Rule changes are propagated to instances associated with the security group as quickly as possible. However, a small delay might occur.</p>
+<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+let sg = awscc.ec2.security_group {
+  vpc_id            = vpc.vpc_id
+  group_description = "Example security group"
+}
+
+awscc.ec2.security_group_egress {
+  group_id    = sg.group_id
+  description = "Allow all outbound traffic"
+  ip_protocol = all
+  cidr_ip     = "0.0.0.0/0"
+}
+</code></pre>
 <h2 id="argument-reference-9"><a class="header" href="#argument-reference-9">Argument Reference</a></h2>
 <h3 id="cidr_ip"><a class="header" href="#cidr_ip"><code>cidr_ip</code></a></h3>
 <ul>
@@ -1360,7 +1377,11 @@ Rule changes are propagated to instances associated with the security group as q
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-9"><a class="header" href="#example-9">Example</a></h2>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2security_group_ingress"><a class="header" href="#awsccec2security_group_ingress">awscc.ec2.security_group_ingress</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
+<p>Resource Type definition for AWS::EC2::SecurityGroupIngress</p>
+<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block = "10.0.0.0/16"
 }
@@ -1370,17 +1391,15 @@ let sg = awscc.ec2.security_group {
   group_description = "Example security group"
 }
 
-awscc.ec2.security_group_egress {
+awscc.ec2.security_group_ingress {
   group_id    = sg.group_id
-  description = "Allow all outbound traffic"
-  ip_protocol = all
-  cidr_ip     = "0.0.0.0/0"
+  description = "Allow HTTPS from VPC"
+  ip_protocol = "tcp"
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "10.0.0.0/16"
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2security_group_ingress"><a class="header" href="#awsccec2security_group_ingress">awscc.ec2.security_group_ingress</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
-<p>Resource Type definition for AWS::EC2::SecurityGroupIngress</p>
 <h2 id="argument-reference-10"><a class="header" href="#argument-reference-10">Argument Reference</a></h2>
 <h3 id="cidr_ip-1"><a class="header" href="#cidr_ip-1"><code>cidr_ip</code></a></h3>
 <ul>
@@ -1476,29 +1495,38 @@ awscc.ec2.security_group_egress {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-10"><a class="header" href="#example-10">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-let sg = awscc.ec2.security_group {
-  vpc_id            = vpc.vpc_id
-  group_description = "Example security group"
-}
-
-awscc.ec2.security_group_ingress {
-  group_id    = sg.group_id
-  description = "Allow HTTPS from VPC"
-  ip_protocol = "tcp"
-  from_port   = 443
-  to_port     = 443
-  cidr_ip     = "10.0.0.0/16"
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2security_group"><a class="header" href="#awsccec2security_group">awscc.ec2.security_group</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroup</code></p>
 <p>Resource Type definition for AWS::EC2::SecurityGroup</p>
+<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2.security_group {
+  vpc_id            = vpc.vpc_id
+  group_description = "Example security group"
+
+  security_group_ingress {
+    ip_protocol = "tcp"
+    from_port   = 80
+    to_port     = 80
+    cidr_ip     = "0.0.0.0/0"
+  }
+
+  security_group_ingress {
+    ip_protocol = "tcp"
+    from_port   = 443
+    to_port     = 443
+    cidr_ip     = "0.0.0.0/0"
+  }
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-11"><a class="header" href="#argument-reference-11">Argument Reference</a></h2>
 <h3 id="group_description"><a class="header" href="#group_description"><code>group_description</code></a></h3>
 <ul>
@@ -1584,56 +1612,10 @@ awscc.ec2.security_group_ingress {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-11"><a class="header" href="#example-11">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-awscc.ec2.security_group {
-  vpc_id            = vpc.vpc_id
-  group_description = "Example security group"
-
-  security_group_ingress {
-    ip_protocol = "tcp"
-    from_port   = 80
-    to_port     = 80
-    cidr_ip     = "0.0.0.0/0"
-  }
-
-  security_group_ingress {
-    ip_protocol = "tcp"
-    from_port   = 443
-    to_port     = 443
-    cidr_ip     = "0.0.0.0/0"
-  }
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2subnet_route_table_association"><a class="header" href="#awsccec2subnet_route_table_association">awscc.ec2.subnet_route_table_association</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SubnetRouteTableAssociation</code></p>
 <p>Associates a subnet with a route table. The subnet and route table must be in the same VPC. This association causes traffic originating from the subnet to be routed according to the routes in the route table. A route table can be associated with multiple subnets. To create a route table, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html">AWS::EC2::RouteTable</a>.</p>
-<h2 id="argument-reference-12"><a class="header" href="#argument-reference-12">Argument Reference</a></h2>
-<h3 id="route_table_id-3"><a class="header" href="#route_table_id-3"><code>route_table_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> RouteTableId</li>
-<li><strong>Required:</strong> Yes</li>
-</ul>
-<p>The ID of the route table. The physical ID changes when the route table ID is changed.</p>
-<h3 id="subnet_id-1"><a class="header" href="#subnet_id-1"><code>subnet_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> SubnetId</li>
-<li><strong>Required:</strong> Yes</li>
-</ul>
-<p>The ID of the subnet.</p>
-<h2 id="attribute-reference-12"><a class="header" href="#attribute-reference-12">Attribute Reference</a></h2>
-<h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> String</li>
-</ul>
 <h2 id="example-12"><a class="header" href="#example-12">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
@@ -1656,12 +1638,48 @@ awscc.ec2.subnet_route_table_association {
   route_table_id = rt.route_table_id
 }
 </code></pre>
+<h2 id="argument-reference-12"><a class="header" href="#argument-reference-12">Argument Reference</a></h2>
+<h3 id="route_table_id-3"><a class="header" href="#route_table_id-3"><code>route_table_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> RouteTableId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the route table. The physical ID changes when the route table ID is changed.</p>
+<h3 id="subnet_id-1"><a class="header" href="#subnet_id-1"><code>subnet_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> SubnetId</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the subnet.</p>
+<h2 id="attribute-reference-12"><a class="header" href="#attribute-reference-12">Attribute Reference</a></h2>
+<h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2subnet"><a class="header" href="#awsccec2subnet">awscc.ec2.subnet</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::Subnet</code></p>
 <p>Specifies a subnet for the specified VPC.
 For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html">Subnets for your VPC</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+awscc.ec2.subnet {
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-13"><a class="header" href="#argument-reference-13">Argument Reference</a></h2>
 <h3 id="assign_ipv6_address_on_creation"><a class="header" href="#assign_ipv6_address_on_creation"><code>assign_ipv6_address_on_creation</code></a></h3>
 <ul>
@@ -1807,24 +1825,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> SubnetId</li>
 </ul>
-<h2 id="example-13"><a class="header" href="#example-13">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-awscc.ec2.subnet {
-  vpc_id                  = vpc.vpc_id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "ap-northeast-1a"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2transit_gateway_attachment"><a class="header" href="#awsccec2transit_gateway_attachment">awscc.ec2.transit_gateway_attachment</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::TransitGatewayAttachment</code></p>
@@ -1880,6 +1880,15 @@ awscc.ec2.subnet {
 <h1 id="awsccec2transit_gateway"><a class="header" href="#awsccec2transit_gateway">awscc.ec2.transit_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::TransitGateway</code></p>
 <p>Resource Type definition for AWS::EC2::TransitGateway</p>
+<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.transit_gateway {
+  description = "Example Transit Gateway"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-15"><a class="header" href="#argument-reference-15">Argument Reference</a></h2>
 <h3 id="amazon_side_asn"><a class="header" href="#amazon_side_asn"><code>amazon_side_asn</code></a></h3>
 <ul>
@@ -2069,15 +2078,6 @@ awscc.ec2.subnet {
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
-<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.transit_gateway {
-  description = "Example Transit Gateway"
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2vpc_endpoint"><a class="header" href="#awsccec2vpc_endpoint">awscc.ec2.vpc_endpoint</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCEndpoint</code></p>
@@ -2085,6 +2085,42 @@ awscc.ec2.subnet {
 An endpoint of type <code>Interface</code> establishes connections between the subnets in your VPC and an AWS-service, your own service, or a service hosted by another AWS-account. With an interface VPC endpoint, you specify the subnets in which to create the endpoint and the security groups to associate with the endpoint network interfaces.
 An endpoint of type <code>gateway</code> serves as a target for a route in your route table for traffic destined for S3 or DDB. You can specify an endpoint policy for the endpoint, which controls access to the service from your VPC. You can also specify the VPC route tables that use the endpoint. For more information about connectivity to S3, see <a href="https://docs.aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint">Why can’t I connect to an S3 bucket using a gateway VPC endpoint?</a>
 An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivity between your VPC and virtual appliances from a service provider.</p>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let subnet = awscc.ec2.subnet {
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.100.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+
+let sg = awscc.ec2.security_group {
+  vpc_id            = vpc.vpc_id
+  group_description = "SG for VPC Endpoint"
+}
+
+awscc.ec2.security_group_ingress {
+  group_id    = sg.group_id
+  description = "Allow HTTPS from VPC"
+  ip_protocol = "tcp"
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "10.0.0.0/16"
+}
+
+awscc.ec2.vpc_endpoint {
+  vpc_id              = vpc.vpc_id
+  service_name        = "com.amazonaws.ap-northeast-1.ecr.dkr"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = [subnet.subnet_id]
+  security_group_ids  = [sg.group_id]
+  private_dns_enabled = true
+}
+</code></pre>
 <h2 id="argument-reference-16"><a class="header" href="#argument-reference-16">Argument Reference</a></h2>
 <h3 id="dns_options"><a class="header" href="#dns_options"><code>dns_options</code></a></h3>
 <ul>
@@ -2234,46 +2270,25 @@ An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivi
 <ul>
 <li><strong>Type:</strong> <code>List&lt;AwsResourceId&gt;</code></li>
 </ul>
-<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2vpc_gateway_attachment"><a class="header" href="#awsccec2vpc_gateway_attachment">awscc.ec2.vpc_gateway_attachment</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPCGatewayAttachment</code></p>
+<p>Resource Type definition for AWS::EC2::VPCGatewayAttachment</p>
+<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
-let subnet = awscc.ec2.subnet {
-  vpc_id            = vpc.vpc_id
-  cidr_block        = "10.0.100.0/24"
-  availability_zone = "ap-northeast-1a"
+let igw = awscc.ec2.internet_gateway {
 }
 
-let sg = awscc.ec2.security_group {
-  vpc_id            = vpc.vpc_id
-  group_description = "SG for VPC Endpoint"
-}
-
-awscc.ec2.security_group_ingress {
-  group_id    = sg.group_id
-  description = "Allow HTTPS from VPC"
-  ip_protocol = "tcp"
-  from_port   = 443
-  to_port     = 443
-  cidr_ip     = "10.0.0.0/16"
-}
-
-awscc.ec2.vpc_endpoint {
+awscc.ec2.vpc_gateway_attachment {
   vpc_id              = vpc.vpc_id
-  service_name        = "com.amazonaws.ap-northeast-1.ecr.dkr"
-  vpc_endpoint_type   = "Interface"
-  subnet_ids          = [subnet.subnet_id]
-  security_group_ids  = [sg.group_id]
-  private_dns_enabled = true
+  internet_gateway_id = igw.internet_gateway_id
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2vpc_gateway_attachment"><a class="header" href="#awsccec2vpc_gateway_attachment">awscc.ec2.vpc_gateway_attachment</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::VPCGatewayAttachment</code></p>
-<p>Resource Type definition for AWS::EC2::VPCGatewayAttachment</p>
 <h2 id="argument-reference-17"><a class="header" href="#argument-reference-17">Argument Reference</a></h2>
 <h3 id="internet_gateway_id-1"><a class="header" href="#internet_gateway_id-1"><code>internet_gateway_id</code></a></h3>
 <ul>
@@ -2298,25 +2313,28 @@ awscc.ec2.vpc_endpoint {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-let igw = awscc.ec2.internet_gateway {
-}
-
-awscc.ec2.vpc_gateway_attachment {
-  vpc_id              = vpc.vpc_id
-  internet_gateway_id = igw.internet_gateway_id
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2vpc_peering_connection"><a class="header" href="#awsccec2vpc_peering_connection">awscc.ec2.vpc_peering_connection</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCPeeringConnection</code></p>
 <p>Resource Type definition for AWS::EC2::VPCPeeringConnection</p>
+<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
+<pre><code class="language-crn">let vpc1 = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+let vpc2 = awscc.ec2.vpc {
+  cidr_block = "10.1.0.0/16"
+}
+
+awscc.ec2.vpc_peering_connection {
+  vpc_id      = vpc1.vpc_id
+  peer_vpc_id = vpc2.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-18"><a class="header" href="#argument-reference-18">Argument Reference</a></h2>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
@@ -2358,30 +2376,24 @@ awscc.ec2.vpc_gateway_attachment {
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
-<pre><code class="language-crn">let vpc1 = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-let vpc2 = awscc.ec2.vpc {
-  cidr_block = "10.1.0.0/16"
-}
-
-awscc.ec2.vpc_peering_connection {
-  vpc_id      = vpc1.vpc_id
-  peer_vpc_id = vpc2.vpc_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2vpc"><a class="header" href="#awsccec2vpc">awscc.ec2.vpc</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPC</code></p>
 <p>Specifies a virtual private cloud (VPC).
 To add an IPv6 CIDR block to the VPC, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html">AWS::EC2::VPCCidrBlock</a>.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html">Virtual private clouds (VPC)</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+  instance_tenancy     = default
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-19"><a class="header" href="#argument-reference-19">Argument Reference</a></h2>
 <h3 id="cidr_block-2"><a class="header" href="#cidr_block-2"><code>cidr_block</code></a></h3>
 <ul>
@@ -2461,23 +2473,20 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 </ul>
-<h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-  instance_tenancy     = default
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="awsccec2vpn_gateway"><a class="header" href="#awsccec2vpn_gateway">awscc.ec2.vpn_gateway</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::VPNGateway</code></p>
+<p>Specifies a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.
+For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"></a> in the <em>User Guide</em>.</p>
+<h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.vpn_gateway {
+  type = "ipsec.1"
 
   tags = {
     Environment = "example"
   }
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="awsccec2vpn_gateway"><a class="header" href="#awsccec2vpn_gateway">awscc.ec2.vpn_gateway</a></h1>
-<p>CloudFormation Type: <code>AWS::EC2::VPNGateway</code></p>
-<p>Specifies a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.
-For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"></a> in the <em>User Guide</em>.</p>
 <h2 id="argument-reference-20"><a class="header" href="#argument-reference-20">Argument Reference</a></h2>
 <h3 id="amazon_side_asn-1"><a class="header" href="#amazon_side_asn-1"><code>amazon_side_asn</code></a></h3>
 <ul>
@@ -2502,15 +2511,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <ul>
 <li><strong>Type:</strong> VpnGatewayId</li>
 </ul>
-<h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.vpn_gateway {
-  type = "ipsec.1"
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awscciamrole"><a class="header" href="#awscciamrole">awscc.iam.role</a></h1>
 <p>CloudFormation Type: <code>AWS::IAM::Role</code></p>

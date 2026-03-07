@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -179,6 +179,18 @@
 <p>Specifies a virtual private cloud (VPC).
 To add an IPv6 CIDR block to the VPC, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html">AWS::EC2::VPCCidrBlock</a>.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html">Virtual private clouds (VPC)</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+  instance_tenancy     = default
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="cidr_block"><a class="header" href="#cidr_block"><code>cidr_block</code></a></h3>
 <ul>
@@ -258,18 +270,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-  instance_tenancy     = default
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

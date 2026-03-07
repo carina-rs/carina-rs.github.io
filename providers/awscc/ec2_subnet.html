@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -179,6 +179,24 @@
 <p>Specifies a subnet for the specified VPC.
 For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html">Subnets for your VPC</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+awscc.ec2.subnet {
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="assign_ipv6_address_on_creation"><a class="header" href="#assign_ipv6_address_on_creation"><code>assign_ipv6_address_on_creation</code></a></h3>
 <ul>
@@ -324,24 +342,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> SubnetId</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-awscc.ec2.subnet {
-  vpc_id                  = vpc.vpc_id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "ap-northeast-1a"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

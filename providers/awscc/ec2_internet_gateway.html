@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -177,6 +177,13 @@
                         <h1 id="awsccec2internet_gateway"><a class="header" href="#awsccec2internet_gateway">awscc.ec2.internet_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
 <p>Allocates an internet gateway for use with a VPC. After creating the Internet gateway, you then attach it to a VPC.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.internet_gateway {
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
@@ -189,13 +196,6 @@
 <ul>
 <li><strong>Type:</strong> InternetGatewayId</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.internet_gateway {
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

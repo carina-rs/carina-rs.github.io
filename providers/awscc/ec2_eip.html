@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -179,6 +179,15 @@
 <p>Specifies an Elastic IP (EIP) address and can, optionally, associate it with an Amazon EC2 instance.
 You can allocate an Elastic IP address from an address pool owned by AWS or from an address pool created from a public IPv4 address range that you have brought to AWS for use with your AWS resources using bring your own IP addresses (BYOIP). For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">Bring Your Own IP Addresses (BYOIP)</a> in the <em>Amazon EC2 User Guide</em>.
 For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a> in the <em>Amazon EC2 User Guide</em>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">awscc.ec2.eip {
+  domain = "vpc"
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="address"><a class="header" href="#address"><code>address</code></a></h3>
 <ul>
@@ -249,15 +258,6 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">awscc.ec2.eip {
-  domain = "vpc"
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

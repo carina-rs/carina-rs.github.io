@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -180,6 +180,33 @@
 With a NAT gateway, instances in a private subnet can connect to the internet, other AWS services, or an on-premises network using the IP address of the NAT gateway. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT gateways</a> in the <em>Amazon VPC User Guide</em>.
 If you add a default route (<code>AWS::EC2::Route</code> resource) that points to a NAT gateway, specify the NAT gateway ID for the route’s <code>NatGatewayId</code> property.
 When you associate an Elastic IP address or secondary Elastic IP address with a public NAT gateway, the network border group of the Elastic IP address must match the network border group of the Availability Zone (AZ) that the public NAT gateway is in. Otherwise, the NAT gateway fails to launch. You can see the network border group for the AZ by viewing the details of the subnet. Similarly, you can view the network border group for the Elastic IP address by viewing its details. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#allocate-eip">Allocate an Elastic IP address</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+let public_subnet = awscc.ec2.subnet {
+  vpc_id                  = vpc.vpc_id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+}
+
+let eip = awscc.ec2.eip {
+  domain = "vpc"
+}
+
+awscc.ec2.nat_gateway {
+  allocation_id = eip.allocation_id
+  subnet_id     = public_subnet.subnet_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
 <ul>
@@ -315,33 +342,6 @@ When you associate an Elastic IP address or secondary Elastic IP address with a 
 <ul>
 <li><strong>Type:</strong> RouteTableId</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-let public_subnet = awscc.ec2.subnet {
-  vpc_id                  = vpc.vpc_id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "ap-northeast-1a"
-  map_public_ip_on_launch = true
-}
-
-let eip = awscc.ec2.eip {
-  domain = "vpc"
-}
-
-awscc.ec2.nat_gateway {
-  allocation_id = eip.allocation_id
-  subnet_id     = public_subnet.subnet_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

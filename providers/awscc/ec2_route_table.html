@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -178,6 +178,21 @@
 <p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
 <p>Specifies a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html">Route tables</a> in the <em>Amazon VPC User Guide</em>.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+awscc.ec2.route_table {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
@@ -196,21 +211,6 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <ul>
 <li><strong>Type:</strong> RouteTableId</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-}
-
-awscc.ec2.route_table {
-  vpc_id = vpc.vpc_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 

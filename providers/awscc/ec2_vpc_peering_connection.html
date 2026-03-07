@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
+            window.path_to_searchindex_js = "../../searchindex-84652dd9.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -177,6 +177,24 @@
                         <h1 id="awsccec2vpc_peering_connection"><a class="header" href="#awsccec2vpc_peering_connection">awscc.ec2.vpc_peering_connection</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCPeeringConnection</code></p>
 <p>Resource Type definition for AWS::EC2::VPCPeeringConnection</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc1 = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+let vpc2 = awscc.ec2.vpc {
+  cidr_block = "10.1.0.0/16"
+}
+
+awscc.ec2.vpc_peering_connection {
+  vpc_id      = vpc1.vpc_id
+  peer_vpc_id = vpc2.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
@@ -218,24 +236,6 @@
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<pre><code class="language-crn">let vpc1 = awscc.ec2.vpc {
-  cidr_block = "10.0.0.0/16"
-}
-
-let vpc2 = awscc.ec2.vpc {
-  cidr_block = "10.1.0.0/16"
-}
-
-awscc.ec2.vpc_peering_connection {
-  vpc_id      = vpc1.vpc_id
-  peer_vpc_id = vpc2.vpc_id
-
-  tags = {
-    Environment = "example"
-  }
-}
-</code></pre>
 
                     </main>
 
