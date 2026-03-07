@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-26f6f2e1.js";
+            window.path_to_searchindex_js = "searchindex-a231673e.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -3679,6 +3679,11 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awss3bucket"><a class="header" href="#awss3bucket">aws.s3.bucket</a></h1>
 <p>CloudFormation Type: <code>AWS::S3::Bucket</code></p>
 <h2 id="argument-reference-32"><a class="header" href="#argument-reference-32">Argument Reference</a></h2>
+<h3 id="object_ownership"><a class="header" href="#object_ownership"><code>object_ownership</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#object_ownership-objectownership">Enum (ObjectOwnership)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
 <h3 id="versioning_status"><a class="header" href="#versioning_status"><code>versioning_status</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#versioning_status-versioningstatus">Enum (VersioningStatus)</a></li>
@@ -3692,6 +3697,20 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </ul>
 <p>The tags for the resource.</p>
 <h2 id="enum-values-17"><a class="header" href="#enum-values-17">Enum Values</a></h2>
+<h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>BucketOwnerEnforced</code></td><td><code>aws.s3.bucket.ObjectOwnership.BucketOwnerEnforced</code></td></tr>
+<tr><td><code>BucketOwnerPreferred</code></td><td><code>aws.s3.bucket.ObjectOwnership.BucketOwnerPreferred</code></td></tr>
+<tr><td><code>ObjectWriter</code></td><td><code>aws.s3.bucket.ObjectOwnership.ObjectWriter</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>BucketOwnerEnforced</code> or <code>ObjectOwnership.BucketOwnerEnforced</code></p>
 <h3 id="versioning_status-versioningstatus"><a class="header" href="#versioning_status-versioningstatus">versioning_status (VersioningStatus)</a></h3>
 <div class="table-wrapper">
 <table>
