@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a231673e.js";
+            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -211,7 +211,7 @@
 let igw = awscc.ec2.internet_gateway {
 }
 
-let igw_attachment = awscc.ec2.vpc_gateway_attachment {
+awscc.ec2.vpc_gateway_attachment {
   vpc_id              = vpc.vpc_id
   internet_gateway_id = igw.internet_gateway_id
 }

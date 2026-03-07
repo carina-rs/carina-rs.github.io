@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a231673e.js";
+            window.path_to_searchindex_js = "../../searchindex-635f2f3b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -333,7 +333,7 @@ let eip = awscc.ec2.eip {
   domain = "vpc"
 }
 
-let nat_gw = awscc.ec2.nat_gateway {
+awscc.ec2.nat_gateway {
   allocation_id = eip.allocation_id
   subnet_id     = public_subnet.subnet_id
 
