@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-bccd0a55.js";
+            window.path_to_searchindex_js = "../../searchindex-b8ca0268.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -177,6 +177,42 @@
                         <h1 id="awss3bucket"><a class="header" href="#awss3bucket">aws.s3.bucket</a></h1>
 <p>CloudFormation Type: <code>AWS::S3::Bucket</code></p>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
+<h3 id="acl"><a class="header" href="#acl"><code>acl</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#acl-acl">Enum (ACL)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The canned ACL to apply to the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_read"><a class="header" href="#grant_read"><code>grant_read</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_read_acp"><a class="header" href="#grant_read_acp"><code>grant_read_acp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_write"><a class="header" href="#grant_write"><code>grant_write</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_write_acp"><a class="header" href="#grant_write_acp"><code>grant_write_acp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="object_lock_enabled_for_bucket"><a class="header" href="#object_lock_enabled_for_bucket"><code>object_lock_enabled_for_bucket</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
@@ -201,6 +237,21 @@
 </ul>
 <p>The tags for the resource.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="acl-acl"><a class="header" href="#acl-acl">acl (ACL)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>authenticated-read</code></td><td><code>aws.s3.bucket.ACL.authenticated_read</code></td></tr>
+<tr><td><code>private</code></td><td><code>aws.s3.bucket.ACL.private</code></td></tr>
+<tr><td><code>public-read</code></td><td><code>aws.s3.bucket.ACL.public_read</code></td></tr>
+<tr><td><code>public-read-write</code></td><td><code>aws.s3.bucket.ACL.public_read_write</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>authenticated_read</code> or <code>ACL.authenticated_read</code></p>
 <h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
 <div class="table-wrapper">
 <table>
