@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-773e984d.js";
+            window.path_to_searchindex_js = "searchindex-86dfed94.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -3186,7 +3186,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h2 id="argument-reference-26"><a class="header" href="#argument-reference-26">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id-1"><a class="header" href="#carrier_gateway_id-1"><code>carrier_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> CarrierGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
@@ -3210,7 +3210,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
 <h3 id="destination_prefix_list_id-2"><a class="header" href="#destination_prefix_list_id-2"><code>destination_prefix_list_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a prefix list used for the destination match.</p>
@@ -3222,19 +3222,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
 <h3 id="gateway_id-1"><a class="header" href="#gateway_id-1"><code>gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> GatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>
 <h3 id="instance_id-2"><a class="header" href="#instance_id-2"><code>instance_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> InstanceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
 <h3 id="local_gateway_id-1"><a class="header" href="#local_gateway_id-1"><code>local_gateway_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> LocalGatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the local gateway.</p>
@@ -3246,7 +3246,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
 <h3 id="network_interface_id-1"><a class="header" href="#network_interface_id-1"><code>network_interface_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> NetworkInterfaceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of a network interface.</p>
@@ -3299,7 +3299,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>The security group rule description.</p>
 <h3 id="destination_prefix_list_id-3"><a class="header" href="#destination_prefix_list_id-3"><code>destination_prefix_list_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the destination prefix list.</p>
@@ -3329,7 +3329,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>Not supported. Use IP permissions instead.</p>
 <h3 id="source_security_group_owner_id-1"><a class="header" href="#source_security_group_owner_id-1"><code>source_security_group_owner_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsAccountId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
@@ -3416,7 +3416,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers). To specify all protocols, use -1. To specify icmpv6, use IP permissions instead. If you specify a protocol other than one of the supported values, traffic is allowed on all ports, regardless of any ports that you specify. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_prefix_list_id-1"><a class="header" href="#source_prefix_list_id-1"><code>source_prefix_list_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the source prefix list.</p>
@@ -3428,7 +3428,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>[Default VPC] The name of the source security group. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, specify a set of IP permissions instead.</p>
 <h3 id="source_security_group_owner_id-2"><a class="header" href="#source_security_group_owner_id-2"><code>source_security_group_owner_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsAccountId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Web Services account ID for the source security group, if the source security group is in a different account. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, use IP permissions instead.</p>
@@ -3799,7 +3799,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h2 id="attribute-reference-31"><a class="header" href="#attribute-reference-31">Attribute Reference</a></h2>
 <h3 id="account_id"><a class="header" href="#account_id"><code>account_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsAccountId</li>
 </ul>
 <h3 id="arn-5"><a class="header" href="#arn-5"><code>arn</code></a></h3>
 <ul>

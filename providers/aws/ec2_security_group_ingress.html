@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-773e984d.js";
+            window.path_to_searchindex_js = "../../searchindex-86dfed94.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -222,7 +222,7 @@
 <p>The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers). To specify all protocols, use -1. To specify icmpv6, use IP permissions instead. If you specify a protocol other than one of the supported values, traffic is allowed on all ports, regardless of any ports that you specify. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
 <h3 id="source_prefix_list_id"><a class="header" href="#source_prefix_list_id"><code>source_prefix_list_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the source prefix list.</p>
@@ -234,7 +234,7 @@
 <p>[Default VPC] The name of the source security group. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, specify a set of IP permissions instead.</p>
 <h3 id="source_security_group_owner_id"><a class="header" href="#source_security_group_owner_id"><code>source_security_group_owner_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AwsAccountId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Amazon Web Services account ID for the source security group, if the source security group is in a different account. The rule grants full ICMP, UDP, and TCP access. To create a rule with a specific protocol and port range, use IP permissions instead.</p>
