@@ -37,10 +37,10 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-1c85bc32.js";
+            window.path_to_searchindex_js = "../../searchindex-773e984d.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-cf04f26a.js"></script>
+        <script src="../../toc-ae9d83cd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -202,7 +202,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <p>The network (<code>vpc</code>). If you define an Elastic IP address and associate it with a VPC that is defined in the same template, you must declare a dependency on the VPC-gateway attachment by using the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html">DependsOn Attribute</a> on this resource.</p>
 <h3 id="instance_id"><a class="header" href="#instance_id"><code>instance_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> InstanceId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the instance. Updates to the <code>InstanceId</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
@@ -252,7 +252,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="allocation_id"><a class="header" href="#allocation_id"><code>allocation_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> AwsResourceId</li>
+<li><strong>Type:</strong> AllocationId</li>
 </ul>
 <h3 id="public_ip"><a class="header" href="#public_ip"><code>public_ip</code></a></h3>
 <ul>
