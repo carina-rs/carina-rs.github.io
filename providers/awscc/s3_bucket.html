@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-dbf504ce.js";
+            window.path_to_searchindex_js = "../../searchindex-a3e7a07d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -179,6 +179,19 @@
 <p>The <code>AWS::S3::Bucket</code> resource creates an Amazon S3 bucket in the same AWS Region where you create the AWS CloudFormation stack.
 To control how AWS CloudFormation handles the bucket when the stack is deleted, you can set a deletion policy for your bucket. You can choose to <em>retain</em> the bucket or to <em>delete</em> the bucket. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html">DeletionPolicy Attribute</a>.
 You can only delete empty buckets. Deletion fails for buckets that have contents.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">awscc.s3.bucket {
+  bucket_name = "my-example-bucket"
+
+  versioning_configuration = {
+    status = Enabled
+  }
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="abac_status"><a class="header" href="#abac_status"><code>abac_status</code></a></h3>
 <ul>

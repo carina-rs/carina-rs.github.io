@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-dbf504ce.js";
+            window.path_to_searchindex_js = "searchindex-a3e7a07d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -1887,6 +1887,31 @@ awscc.ec2.subnet {
 <h1 id="awsccec2transit_gateway_attachment"><a class="header" href="#awsccec2transit_gateway_attachment">awscc.ec2.transit_gateway_attachment</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::TransitGatewayAttachment</code></p>
 <p>Resource Type definition for AWS::EC2::TransitGatewayAttachment</p>
+<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+}
+
+let subnet = awscc.ec2.subnet {
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-northeast-1a"
+}
+
+let tgw = awscc.ec2.transit_gateway {
+  description = "Example Transit Gateway"
+}
+
+awscc.ec2.transit_gateway_attachment {
+  transit_gateway_id = tgw.transit_gateway_id
+  vpc_id             = vpc.vpc_id
+  subnet_ids         = [subnet.subnet_id]
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-14"><a class="header" href="#argument-reference-14">Argument Reference</a></h2>
 <h3 id="options"><a class="header" href="#options"><code>options</code></a></h3>
 <ul>
@@ -1991,7 +2016,7 @@ awscc.ec2.subnet {
 <h1 id="awsccec2transit_gateway"><a class="header" href="#awsccec2transit_gateway">awscc.ec2.transit_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::TransitGateway</code></p>
 <p>Resource Type definition for AWS::EC2::TransitGateway</p>
-<h2 id="example-14"><a class="header" href="#example-14">Example</a></h2>
+<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2.transit_gateway {
   description = "Example Transit Gateway"
 
@@ -2209,7 +2234,7 @@ awscc.ec2.subnet {
 An endpoint of type <code>Interface</code> establishes connections between the subnets in your VPC and an AWS-service, your own service, or a service hosted by another AWS-account. With an interface VPC endpoint, you specify the subnets in which to create the endpoint and the security groups to associate with the endpoint network interfaces.
 An endpoint of type <code>gateway</code> serves as a target for a route in your route table for traffic destined for S3 or DDB. You can specify an endpoint policy for the endpoint, which controls access to the service from your VPC. You can also specify the VPC route tables that use the endpoint. For more information about connectivity to S3, see <a href="https://docs.aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint">Why can’t I connect to an S3 bucket using a gateway VPC endpoint?</a>
 An endpoint of type <code>GatewayLoadBalancer</code> provides private connectivity between your VPC and virtual appliances from a service provider.</p>
-<h2 id="example-15"><a class="header" href="#example-15">Example</a></h2>
+<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -2443,7 +2468,7 @@ awscc.ec2.vpc_endpoint {
 <h1 id="awsccec2vpc_gateway_attachment"><a class="header" href="#awsccec2vpc_gateway_attachment">awscc.ec2.vpc_gateway_attachment</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCGatewayAttachment</code></p>
 <p>Resource Type definition for AWS::EC2::VPCGatewayAttachment</p>
-<h2 id="example-16"><a class="header" href="#example-16">Example</a></h2>
+<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
 <pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -2486,7 +2511,7 @@ awscc.ec2.vpc_gateway_attachment {
 <h1 id="awsccec2vpc_peering_connection"><a class="header" href="#awsccec2vpc_peering_connection">awscc.ec2.vpc_peering_connection</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPCPeeringConnection</code></p>
 <p>Resource Type definition for AWS::EC2::VPCPeeringConnection</p>
-<h2 id="example-17"><a class="header" href="#example-17">Example</a></h2>
+<h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
 <pre><code class="language-crn">let vpc1 = awscc.ec2.vpc {
   cidr_block = "10.0.0.0/16"
 }
@@ -2551,7 +2576,7 @@ awscc.ec2.vpc_peering_connection {
 <p>Specifies a virtual private cloud (VPC).
 To add an IPv6 CIDR block to the VPC, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpccidrblock.html">AWS::EC2::VPCCidrBlock</a>.
 For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html">Virtual private clouds (VPC)</a> in the <em>Amazon VPC User Guide</em>.</p>
-<h2 id="example-18"><a class="header" href="#example-18">Example</a></h2>
+<h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2.vpc {
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
@@ -2647,7 +2672,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>CloudFormation Type: <code>AWS::EC2::VPNGateway</code></p>
 <p>Specifies a virtual private gateway. A virtual private gateway is the endpoint on the VPC side of your VPN connection. You can create a virtual private gateway before creating the VPC itself.
 For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"></a> in the <em>User Guide</em>.</p>
-<h2 id="example-19"><a class="header" href="#example-19">Example</a></h2>
+<h2 id="example-20"><a class="header" href="#example-20">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2.vpn_gateway {
   type = "ipsec.1"
 
@@ -2685,6 +2710,24 @@ For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn
 <p>CloudFormation Type: <code>AWS::IAM::Role</code></p>
 <p>Creates a new role for your AWS-account.
 For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> in the <em>IAM User Guide</em>. For information about quotas for role names and the number of roles you can create, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html">IAM and quotas</a> in the <em>IAM User Guide</em>.</p>
+<h2 id="example-21"><a class="header" href="#example-21">Example</a></h2>
+<pre><code class="language-crn">awscc.iam.role {
+  role_name = "my-example-role"
+
+  assume_role_policy_document = {
+    version = "2012-10-17"
+    statement {
+      effect    = "Allow"
+      principal = { service = "lambda.amazonaws.com" }
+      action    = "sts:AssumeRole"
+    }
+  }
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-21"><a class="header" href="#argument-reference-21">Argument Reference</a></h2>
 <h3 id="assume_role_policy_document"><a class="header" href="#assume_role_policy_document"><code>assume_role_policy_document</code></a></h3>
 <ul>
@@ -2772,6 +2815,16 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li>Log group names can be between 1 and 512 characters long.</li>
 <li>Log group names consist of the following characters: a-z, A-Z, 0-9, ‘_’ (underscore), ‘-’ (hyphen), ‘/’ (forward slash), and ‘.’ (period).</li>
 </ul>
+<h2 id="example-22"><a class="header" href="#example-22">Example</a></h2>
+<pre><code class="language-crn">awscc.logs.log_group {
+  log_group_name    = "/example/my-app"
+  retention_in_days = 30
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-22"><a class="header" href="#argument-reference-22">Argument Reference</a></h2>
 <h3 id="data_protection_policy"><a class="header" href="#data_protection_policy"><code>data_protection_policy</code></a></h3>
 <ul>
@@ -2853,6 +2906,19 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <p>The <code>AWS::S3::Bucket</code> resource creates an Amazon S3 bucket in the same AWS Region where you create the AWS CloudFormation stack.
 To control how AWS CloudFormation handles the bucket when the stack is deleted, you can set a deletion policy for your bucket. You can choose to <em>retain</em> the bucket or to <em>delete</em> the bucket. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html">DeletionPolicy Attribute</a>.
 You can only delete empty buckets. Deletion fails for buckets that have contents.</p>
+<h2 id="example-23"><a class="header" href="#example-23">Example</a></h2>
+<pre><code class="language-crn">awscc.s3.bucket {
+  bucket_name = "my-example-bucket"
+
+  versioning_configuration = {
+    status = Enabled
+  }
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-23"><a class="header" href="#argument-reference-23">Argument Reference</a></h2>
 <h3 id="abac_status"><a class="header" href="#abac_status"><code>abac_status</code></a></h3>
 <ul>
