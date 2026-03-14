@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-86dfed94.js";
+            window.path_to_searchindex_js = "../../searchindex-a3e40c21.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -189,6 +189,12 @@
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren’t supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name–zone-id–x-s3 (for example, DOC-EXAMPLE-BUCKET–usw2-az1–x-s3). For information about bucket naming restrictions, see Directory bucket naming rules in the Amazon S3 User Guide</p>
+<h3 id="bucket_namespace"><a class="header" href="#bucket_namespace"><code>bucket_namespace</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#bucket_namespace-bucketnamespace">Enum (BucketNamespace)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the namespace where you want to create your general purpose bucket. When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace. Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in. For more information on bucket namespaces, see Namespaces for general purpose buckets. General purpose buckets in your account regional namespace must follow a specific naming convention. These buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with -an. Bucket names must follow the format bucket-name-prefix-accountId-region-an (for example, amzn-s3-demo-bucket-111122223333-us-west-2-an). For information about bucket naming restrictions, see Account regional namespace naming rules in the Amazon S3 User Guide. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -258,6 +264,19 @@
 </table>
 </div>
 <p>Shorthand formats: <code>authenticated_read</code> or <code>ACL.authenticated_read</code></p>
+<h3 id="bucket_namespace-bucketnamespace"><a class="header" href="#bucket_namespace-bucketnamespace">bucket_namespace (BucketNamespace)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>account-regional</code></td><td><code>aws.s3.bucket.BucketNamespace.account_regional</code></td></tr>
+<tr><td><code>global</code></td><td><code>aws.s3.bucket.BucketNamespace.global</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>account_regional</code> or <code>BucketNamespace.account_regional</code></p>
 <h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
 <div class="table-wrapper">
 <table>

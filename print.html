@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-86dfed94.js";
+            window.path_to_searchindex_js = "searchindex-a3e40c21.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -271,7 +271,7 @@ awscc.ec2.egress_only_internet_gateway {
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
 <h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> EgressOnlyInternetGatewayId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2eip"><a class="header" href="#awsccec2eip">awscc.ec2.eip</a></h1>
@@ -514,7 +514,7 @@ awscc.ec2.flow_log {
 <h2 id="attribute-reference-2"><a class="header" href="#attribute-reference-2">Attribute Reference</a></h2>
 <h3 id="id-1"><a class="header" href="#id-1"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> FlowLogId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2internet_gateway"><a class="header" href="#awsccec2internet_gateway">awscc.ec2.internet_gateway</a></h1>
@@ -923,7 +923,7 @@ awscc.ec2.ipam_pool {
 </ul>
 <h3 id="ipam_id"><a class="header" href="#ipam_id"><code>ipam_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IpamId</li>
 </ul>
 <h3 id="private_default_scope_id"><a class="header" href="#private_default_scope_id"><code>private_default_scope_id</code></a></h3>
 <ul>
@@ -1610,7 +1610,7 @@ awscc.ec2.security_group {
 </ul>
 <h3 id="id-4"><a class="header" href="#id-4"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SecurityGroupId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2subnet_route_table_association"><a class="header" href="#awsccec2subnet_route_table_association">awscc.ec2.subnet_route_table_association</a></h1>
@@ -1654,7 +1654,7 @@ awscc.ec2.subnet_route_table_association {
 <h2 id="attribute-reference-12"><a class="header" href="#attribute-reference-12">Attribute Reference</a></h2>
 <h3 id="id-5"><a class="header" href="#id-5"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SubnetRouteTableAssociationId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2subnet"><a class="header" href="#awsccec2subnet">awscc.ec2.subnet</a></h1>
@@ -1874,7 +1874,7 @@ awscc.ec2.subnet {
 <h2 id="attribute-reference-14"><a class="header" href="#attribute-reference-14">Attribute Reference</a></h2>
 <h3 id="id-6"><a class="header" href="#id-6"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> TransitGatewayAttachmentId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2transit_gateway"><a class="header" href="#awsccec2transit_gateway">awscc.ec2.transit_gateway</a></h1>
@@ -2026,6 +2026,19 @@ awscc.ec2.subnet {
 </table>
 </div>
 <p>Shorthand formats: <code>disable</code> or <code>EncryptionSupport.disable</code></p>
+<h3 id="encryption_support_state-encryptionsupportstate"><a class="header" href="#encryption_support_state-encryptionsupportstate">encryption_support_state (EncryptionSupportState)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway.EncryptionSupportState.disable</code></td></tr>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway.EncryptionSupportState.enable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>disable</code> or <code>EncryptionSupportState.disable</code></p>
 <h3 id="multicast_support-multicastsupport"><a class="header" href="#multicast_support-multicastsupport">multicast_support (MulticastSupport)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2068,11 +2081,11 @@ awscc.ec2.subnet {
 <h2 id="attribute-reference-15"><a class="header" href="#attribute-reference-15">Attribute Reference</a></h2>
 <h3 id="encryption_support_state"><a class="header" href="#encryption_support_state"><code>encryption_support_state</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> <a href="#encryption_support_state-encryptionsupportstate">Enum (EncryptionSupportState)</a></li>
 </ul>
 <h3 id="id-7"><a class="header" href="#id-7"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> TransitGatewayId</li>
 </ul>
 <h3 id="transit_gateway_arn"><a class="header" href="#transit_gateway_arn"><code>transit_gateway_arn</code></a></h3>
 <ul>
@@ -2264,7 +2277,7 @@ awscc.ec2.vpc_endpoint {
 </ul>
 <h3 id="id-8"><a class="header" href="#id-8"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> VpcEndpointId</li>
 </ul>
 <h3 id="network_interface_ids"><a class="header" href="#network_interface_ids"><code>network_interface_ids</code></a></h3>
 <ul>
@@ -2374,7 +2387,7 @@ awscc.ec2.vpc_peering_connection {
 <h2 id="attribute-reference-18"><a class="header" href="#attribute-reference-18">Attribute Reference</a></h2>
 <h3 id="id-9"><a class="header" href="#id-9"><code>id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> VpcPeeringConnectionId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsccec2vpc"><a class="header" href="#awsccec2vpc">awscc.ec2.vpc</a></h1>
@@ -2591,7 +2604,7 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
 </ul>
 <h3 id="role_id"><a class="header" href="#role_id"><code>role_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> IamRoleId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awscclogslog_group"><a class="header" href="#awscclogslog_group">awscc.logs.log_group</a></h1>
@@ -3365,7 +3378,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h2 id="attribute-reference-26"><a class="header" href="#attribute-reference-26">Attribute Reference</a></h2>
 <h3 id="security_group_rule_id"><a class="header" href="#security_group_rule_id"><code>security_group_rule_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SecurityGroupRuleId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsec2security_group_ingress"><a class="header" href="#awsec2security_group_ingress">aws.ec2.security_group_ingress</a></h1>
@@ -3464,7 +3477,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h2 id="attribute-reference-27"><a class="header" href="#attribute-reference-27">Attribute Reference</a></h2>
 <h3 id="security_group_rule_id-1"><a class="header" href="#security_group_rule_id-1"><code>security_group_rule_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> SecurityGroupRuleId</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsec2security_group"><a class="header" href="#awsec2security_group">aws.ec2.security_group</a></h1>
@@ -3697,6 +3710,12 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren’t supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name–zone-id–x-s3 (for example, DOC-EXAMPLE-BUCKET–usw2-az1–x-s3). For information about bucket naming restrictions, see Directory bucket naming rules in the Amazon S3 User Guide</p>
+<h3 id="bucket_namespace"><a class="header" href="#bucket_namespace"><code>bucket_namespace</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#bucket_namespace-bucketnamespace">Enum (BucketNamespace)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the namespace where you want to create your general purpose bucket. When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace. Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in. For more information on bucket namespaces, see Namespaces for general purpose buckets. General purpose buckets in your account regional namespace must follow a specific naming convention. These buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with -an. Bucket names must follow the format bucket-name-prefix-accountId-region-an (for example, amzn-s3-demo-bucket-111122223333-us-west-2-an). For information about bucket naming restrictions, see Account regional namespace naming rules in the Amazon S3 User Guide. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
@@ -3766,6 +3785,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>authenticated_read</code> or <code>ACL.authenticated_read</code></p>
+<h3 id="bucket_namespace-bucketnamespace"><a class="header" href="#bucket_namespace-bucketnamespace">bucket_namespace (BucketNamespace)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>account-regional</code></td><td><code>aws.s3.bucket.BucketNamespace.account_regional</code></td></tr>
+<tr><td><code>global</code></td><td><code>aws.s3.bucket.BucketNamespace.global</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>account_regional</code> or <code>BucketNamespace.account_regional</code></p>
 <h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
 <div class="table-wrapper">
 <table>
