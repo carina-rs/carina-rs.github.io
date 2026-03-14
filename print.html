@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-6f21f202.js";
+            window.path_to_searchindex_js = "searchindex-75fd3b79.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -745,7 +745,7 @@ awscc.ec2.ipam_pool {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>cidr</code></td><td>Ipv4Cidr</td><td>Yes</td><td></td></tr>
+<tr><td><code>cidr</code></td><td>Cidr</td><td>Yes</td><td></td></tr>
 </tbody>
 </table>
 </div>
@@ -1897,7 +1897,7 @@ awscc.ec2.subnet {
 </ul>
 <h3 id="association_default_route_table_id"><a class="header" href="#association_default_route_table_id"><code>association_default_route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> RouteTableId</li>
+<li><strong>Type:</strong> TgwRouteTableId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="auto_accept_shared_attachments"><a class="header" href="#auto_accept_shared_attachments"><code>auto_accept_shared_attachments</code></a></h3>
@@ -1937,7 +1937,7 @@ awscc.ec2.subnet {
 </ul>
 <h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> RouteTableId</li>
+<li><strong>Type:</strong> TgwRouteTableId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
@@ -1952,7 +1952,7 @@ awscc.ec2.subnet {
 </ul>
 <h3 id="transit_gateway_cidr_blocks"><a class="header" href="#transit_gateway_cidr_blocks"><code>transit_gateway_cidr_blocks</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;Ipv4Cidr&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;Cidr&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="vpn_ecmp_support"><a class="header" href="#vpn_ecmp_support"><code>vpn_ecmp_support</code></a></h3>
@@ -2474,7 +2474,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <h2 id="attribute-reference-19"><a class="header" href="#attribute-reference-19">Attribute Reference</a></h2>
 <h3 id="cidr_block_associations"><a class="header" href="#cidr_block_associations"><code>cidr_block_associations</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;Ipv4Cidr&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;VpcCidrBlockAssociationId&gt;</code></li>
 </ul>
 <h3 id="default_network_acl"><a class="header" href="#default_network_acl"><code>default_network_acl</code></a></h3>
 <ul>
