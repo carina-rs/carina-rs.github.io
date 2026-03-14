@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a7b42ee1.js";
+            window.path_to_searchindex_js = "../../searchindex-cea640d6.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -364,6 +364,99 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>AuthenticatedRead</code> or <code>AccessControl.AuthenticatedRead</code></p>
+<h3 id="owner-owner"><a class="header" href="#owner-owner">owner (Owner)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Destination</code></td><td><code>awscc.s3.bucket.Owner.Destination</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Destination</code> or <code>Owner.Destination</code></p>
+<h3 id="encryption_type-encryptiontype"><a class="header" href="#encryption_type-encryptiontype">encryption_type (EncryptionType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>NONE</code></td><td><code>awscc.s3.bucket.EncryptionType.NONE</code></td></tr>
+<tr><td><code>SSE-C</code></td><td><code>awscc.s3.bucket.EncryptionType.SSE_C</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>NONE</code> or <code>EncryptionType.NONE</code></p>
+<h3 id="allowed_methods-allowedmethods"><a class="header" href="#allowed_methods-allowedmethods">allowed_methods (AllowedMethods)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>GET</code></td><td><code>awscc.s3.bucket.AllowedMethods.GET</code></td></tr>
+<tr><td><code>PUT</code></td><td><code>awscc.s3.bucket.AllowedMethods.PUT</code></td></tr>
+<tr><td><code>HEAD</code></td><td><code>awscc.s3.bucket.AllowedMethods.HEAD</code></td></tr>
+<tr><td><code>POST</code></td><td><code>awscc.s3.bucket.AllowedMethods.POST</code></td></tr>
+<tr><td><code>DELETE</code></td><td><code>awscc.s3.bucket.AllowedMethods.DELETE</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>GET</code> or <code>AllowedMethods.GET</code></p>
+<h3 id="output_schema_version-outputschemaversion"><a class="header" href="#output_schema_version-outputschemaversion">output_schema_version (OutputSchemaVersion)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>V_1</code></td><td><code>awscc.s3.bucket.OutputSchemaVersion.V_1</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>V_1</code> or <code>OutputSchemaVersion.V_1</code></p>
+<h3 id="mode-mode"><a class="header" href="#mode-mode">mode (Mode)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>COMPLIANCE</code></td><td><code>awscc.s3.bucket.Mode.COMPLIANCE</code></td></tr>
+<tr><td><code>GOVERNANCE</code></td><td><code>awscc.s3.bucket.Mode.GOVERNANCE</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>COMPLIANCE</code> or <code>Mode.COMPLIANCE</code></p>
+<h3 id="status-deletemarkerreplicationstatus"><a class="header" href="#status-deletemarkerreplicationstatus">status (DeleteMarkerReplicationStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.DeleteMarkerReplicationStatus.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.DeleteMarkerReplicationStatus.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>DeleteMarkerReplicationStatus.Disabled</code></p>
+<h3 id="format-format"><a class="header" href="#format-format">format (Format)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>CSV</code></td><td><code>awscc.s3.bucket.Format.CSV</code></td></tr>
+<tr><td><code>ORC</code></td><td><code>awscc.s3.bucket.Format.ORC</code></td></tr>
+<tr><td><code>Parquet</code></td><td><code>awscc.s3.bucket.Format.Parquet</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>CSV</code> or <code>Format.CSV</code></p>
 <h3 id="status-intelligenttieringconfigurationstatus"><a class="header" href="#status-intelligenttieringconfigurationstatus">status (IntelligentTieringConfigurationStatus)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -430,6 +523,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>Daily</code> or <code>ScheduleFrequency.Daily</code></p>
+<h3 id="configuration_state-configurationstate"><a class="header" href="#configuration_state-configurationstate">configuration_state (ConfigurationState)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ENABLED</code></td><td><code>awscc.s3.bucket.ConfigurationState.ENABLED</code></td></tr>
+<tr><td><code>DISABLED</code></td><td><code>awscc.s3.bucket.ConfigurationState.DISABLED</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ENABLED</code> or <code>ConfigurationState.ENABLED</code></p>
 <h3 id="transition_default_minimum_object_size-transitiondefaultminimumobjectsize"><a class="header" href="#transition_default_minimum_object_size-transitiondefaultminimumobjectsize">transition_default_minimum_object_size (TransitionDefaultMinimumObjectSize)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -443,6 +549,62 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>varies_by_storage_class</code> or <code>TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></p>
+<h3 id="table_bucket_type-tablebuckettype"><a class="header" href="#table_bucket_type-tablebuckettype">table_bucket_type (TableBucketType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>aws</code></td><td><code>awscc.s3.bucket.TableBucketType.aws</code></td></tr>
+<tr><td><code>customer</code></td><td><code>awscc.s3.bucket.TableBucketType.customer</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>aws</code> or <code>TableBucketType.aws</code></p>
+<h3 id="sse_algorithm-metadatatableencryptionconfigurationssealgorithm"><a class="header" href="#sse_algorithm-metadatatableencryptionconfigurationssealgorithm">sse_algorithm (MetadataTableEncryptionConfigurationSseAlgorithm)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>aws:kms</code></td><td><code>awscc.s3.bucket.MetadataTableEncryptionConfigurationSseAlgorithm.aws:kms</code></td></tr>
+<tr><td><code>AES256</code></td><td><code>awscc.s3.bucket.MetadataTableEncryptionConfigurationSseAlgorithm.AES256</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>aws:kms</code> or <code>MetadataTableEncryptionConfigurationSseAlgorithm.aws:kms</code></p>
+<h3 id="status-metricsstatus"><a class="header" href="#status-metricsstatus">status (MetricsStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.MetricsStatus.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.MetricsStatus.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>MetricsStatus.Disabled</code></p>
+<h3 id="storage_class-noncurrentversiontransitionstorageclass"><a class="header" href="#storage_class-noncurrentversiontransitionstorageclass">storage_class (NoncurrentVersionTransitionStorageClass)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>DEEP_ARCHIVE</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.DEEP_ARCHIVE</code></td></tr>
+<tr><td><code>GLACIER</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.GLACIER</code></td></tr>
+<tr><td><code>GLACIER_IR</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.GLACIER_IR</code></td></tr>
+<tr><td><code>INTELLIGENT_TIERING</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.INTELLIGENT_TIERING</code></td></tr>
+<tr><td><code>ONEZONE_IA</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.ONEZONE_IA</code></td></tr>
+<tr><td><code>STANDARD_IA</code></td><td><code>awscc.s3.bucket.NoncurrentVersionTransitionStorageClass.STANDARD_IA</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>DEEP_ARCHIVE</code> or <code>NoncurrentVersionTransitionStorageClass.DEEP_ARCHIVE</code></p>
 <h3 id="object_lock_enabled-objectlockenabled"><a class="header" href="#object_lock_enabled-objectlockenabled">object_lock_enabled (ObjectLockEnabled)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -455,6 +617,187 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>Enabled</code> or <code>ObjectLockEnabled.Enabled</code></p>
+<h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ObjectWriter</code></td><td><code>awscc.s3.bucket.ObjectOwnership.ObjectWriter</code></td></tr>
+<tr><td><code>BucketOwnerPreferred</code></td><td><code>awscc.s3.bucket.ObjectOwnership.BucketOwnerPreferred</code></td></tr>
+<tr><td><code>BucketOwnerEnforced</code></td><td><code>awscc.s3.bucket.ObjectOwnership.BucketOwnerEnforced</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ObjectWriter</code> or <code>ObjectOwnership.ObjectWriter</code></p>
+<h3 id="partition_date_source-partitiondatesource"><a class="header" href="#partition_date_source-partitiondatesource">partition_date_source (PartitionDateSource)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>EventTime</code></td><td><code>awscc.s3.bucket.PartitionDateSource.EventTime</code></td></tr>
+<tr><td><code>DeliveryTime</code></td><td><code>awscc.s3.bucket.PartitionDateSource.DeliveryTime</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>EventTime</code> or <code>PartitionDateSource.EventTime</code></p>
+<h3 id="expiration-expiration"><a class="header" href="#expiration-expiration">expiration (Expiration)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ENABLED</code></td><td><code>awscc.s3.bucket.Expiration.ENABLED</code></td></tr>
+<tr><td><code>DISABLED</code></td><td><code>awscc.s3.bucket.Expiration.DISABLED</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ENABLED</code> or <code>Expiration.ENABLED</code></p>
+<h3 id="protocol-protocol"><a class="header" href="#protocol-protocol">protocol (Protocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>http</code></td><td><code>awscc.s3.bucket.Protocol.http</code></td></tr>
+<tr><td><code>https</code></td><td><code>awscc.s3.bucket.Protocol.https</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>http</code> or <code>Protocol.http</code></p>
+<h3 id="status-replicamodificationsstatus"><a class="header" href="#status-replicamodificationsstatus">status (ReplicaModificationsStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.ReplicaModificationsStatus.Enabled</code></td></tr>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.ReplicaModificationsStatus.Disabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>ReplicaModificationsStatus.Enabled</code></p>
+<h3 id="storage_class-replicationdestinationstorageclass"><a class="header" href="#storage_class-replicationdestinationstorageclass">storage_class (ReplicationDestinationStorageClass)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>DEEP_ARCHIVE</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.DEEP_ARCHIVE</code></td></tr>
+<tr><td><code>GLACIER</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.GLACIER</code></td></tr>
+<tr><td><code>GLACIER_IR</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.GLACIER_IR</code></td></tr>
+<tr><td><code>INTELLIGENT_TIERING</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.INTELLIGENT_TIERING</code></td></tr>
+<tr><td><code>ONEZONE_IA</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.ONEZONE_IA</code></td></tr>
+<tr><td><code>REDUCED_REDUNDANCY</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.REDUCED_REDUNDANCY</code></td></tr>
+<tr><td><code>STANDARD</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.STANDARD</code></td></tr>
+<tr><td><code>STANDARD_IA</code></td><td><code>awscc.s3.bucket.ReplicationDestinationStorageClass.STANDARD_IA</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>DEEP_ARCHIVE</code> or <code>ReplicationDestinationStorageClass.DEEP_ARCHIVE</code></p>
+<h3 id="status-replicationrulestatus"><a class="header" href="#status-replicationrulestatus">status (ReplicationRuleStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.ReplicationRuleStatus.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.ReplicationRuleStatus.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>ReplicationRuleStatus.Disabled</code></p>
+<h3 id="status-replicationtimestatus"><a class="header" href="#status-replicationtimestatus">status (ReplicationTimeStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.ReplicationTimeStatus.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.ReplicationTimeStatus.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>ReplicationTimeStatus.Disabled</code></p>
+<h3 id="status-rulestatus"><a class="header" href="#status-rulestatus">status (RuleStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.RuleStatus.Enabled</code></td></tr>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.RuleStatus.Disabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>RuleStatus.Enabled</code></p>
+<h3 id="sse_algorithm-serversideencryptionbydefaultssealgorithm"><a class="header" href="#sse_algorithm-serversideencryptionbydefaultssealgorithm">sse_algorithm (ServerSideEncryptionByDefaultSseAlgorithm)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>aws:kms</code></td><td><code>awscc.s3.bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms</code></td></tr>
+<tr><td><code>AES256</code></td><td><code>awscc.s3.bucket.ServerSideEncryptionByDefaultSseAlgorithm.AES256</code></td></tr>
+<tr><td><code>aws:kms:dsse</code></td><td><code>awscc.s3.bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms:dsse</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>aws:kms</code> or <code>ServerSideEncryptionByDefaultSseAlgorithm.aws:kms</code></p>
+<h3 id="status-ssekmsencryptedobjectsstatus"><a class="header" href="#status-ssekmsencryptedobjectsstatus">status (SseKmsEncryptedObjectsStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.SseKmsEncryptedObjectsStatus.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.SseKmsEncryptedObjectsStatus.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>SseKmsEncryptedObjectsStatus.Disabled</code></p>
+<h3 id="access_tier-accesstier"><a class="header" href="#access_tier-accesstier">access_tier (AccessTier)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ARCHIVE_ACCESS</code></td><td><code>awscc.s3.bucket.AccessTier.ARCHIVE_ACCESS</code></td></tr>
+<tr><td><code>DEEP_ARCHIVE_ACCESS</code></td><td><code>awscc.s3.bucket.AccessTier.DEEP_ARCHIVE_ACCESS</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ARCHIVE_ACCESS</code> or <code>AccessTier.ARCHIVE_ACCESS</code></p>
+<h3 id="storage_class-transitionstorageclass"><a class="header" href="#storage_class-transitionstorageclass">storage_class (TransitionStorageClass)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>DEEP_ARCHIVE</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.DEEP_ARCHIVE</code></td></tr>
+<tr><td><code>GLACIER</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.GLACIER</code></td></tr>
+<tr><td><code>GLACIER_IR</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.GLACIER_IR</code></td></tr>
+<tr><td><code>INTELLIGENT_TIERING</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.INTELLIGENT_TIERING</code></td></tr>
+<tr><td><code>ONEZONE_IA</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.ONEZONE_IA</code></td></tr>
+<tr><td><code>STANDARD_IA</code></td><td><code>awscc.s3.bucket.TransitionStorageClass.STANDARD_IA</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>DEEP_ARCHIVE</code> or <code>TransitionStorageClass.DEEP_ARCHIVE</code></p>
 <h3 id="status-versioningconfigurationstatus"><a class="header" href="#status-versioningconfigurationstatus">status (VersioningConfigurationStatus)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -469,6 +812,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </div>
 <p>Shorthand formats: <code>Enabled</code> or <code>VersioningConfigurationStatus.Enabled</code></p>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="abortincompletemultipartupload"><a class="header" href="#abortincompletemultipartupload">AbortIncompleteMultipartUpload</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>days_after_initiation</code></td><td>Int(0..)</td><td>Yes</td><td>Specifies the number of days after which Amazon S3 stops an incomplete multipart upload.</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="accelerateconfiguration"><a class="header" href="#accelerateconfiguration">AccelerateConfiguration</a></h3>
 <div class="table-wrapper">
 <table>
@@ -477,6 +831,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>acceleration_status</code></td><td>Enum</td><td>Yes</td><td>Specifies the transfer acceleration status of the bucket.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="accesscontroltranslation"><a class="header" href="#accesscontroltranslation">AccessControlTranslation</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>owner</code></td><td><a href="#owner-owner">Enum (Owner)</a></td><td>Yes</td><td>Specifies the replica ownership. For default and valid values, see [PUT bucket replication](https://…</td></tr>
 </tbody>
 </table>
 </div>
@@ -491,6 +856,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>The prefix that an object must have to be included in the analytics results.</td></tr>
 <tr><td><code>storage_class_analysis</code></td><td><a href="#storageclassanalysis">Struct(StorageClassAnalysis)</a></td><td>Yes</td><td>Contains data related to access patterns to be collected and made available to analyze the tradeoffs…</td></tr>
 <tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>The tags to use when evaluating an analytics filter. The analytics only includes objects that meet t…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="blockedencryptiontypes"><a class="header" href="#blockedencryptiontypes">BlockedEncryptionTypes</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encryption_type</code></td><td><a href="#encryption_type-encryptiontype">Enum (EncryptionType)</a></td><td>No</td><td>The object encryption type that you want to block or unblock for an Amazon S3 general purpose bucket…</td></tr>
 </tbody>
 </table>
 </div>
@@ -513,6 +889,106 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>cors_rules</code></td><td><a href="#corsrule">List&lt;CorsRule&gt;</a></td><td>Yes</td><td>A set of origins and methods (cross-origin access that you want to allow). You can add up to 100 rul…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="corsrule"><a class="header" href="#corsrule">CorsRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>allowed_headers</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Headers that are specified in the <code>Access-Control-Request-Headers</code> header. These headers are allow…</td></tr>
+<tr><td><code>allowed_methods</code></td><td>List&lt;<a href="#allowed_methods-allowedmethods">Enum (AllowedMethods)</a>&gt;</td><td>Yes</td><td>An HTTP method that you allow the origin to run. <em>Allowed values</em>: <code>GET</code></td></tr>
+<tr><td><code>allowed_origins</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>One or more origins you want customers to be able to access the bucket from.</td></tr>
+<tr><td><code>exposed_headers</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>One or more headers in the response that you want customers to be able to access from their applicat…</td></tr>
+<tr><td><code>id</code></td><td>String</td><td>No</td><td>A unique identifier for this rule. The value must be no more than 255 characters.</td></tr>
+<tr><td><code>max_age</code></td><td>Int(0..)</td><td>No</td><td>The time in seconds that your browser is to cache the preflight response for the specified resource.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="dataexport"><a class="header" href="#dataexport">DataExport</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>destination</code></td><td><a href="#destination">Struct(Destination)</a></td><td>Yes</td><td>The place to store the data for an analysis.</td></tr>
+<tr><td><code>output_schema_version</code></td><td><a href="#output_schema_version-outputschemaversion">Enum (OutputSchemaVersion)</a></td><td>Yes</td><td>The version of the output schema to use when exporting data. Must be <code>V_1</code>.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="defaultretention"><a class="header" href="#defaultretention">DefaultRetention</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>days</code></td><td>Int</td><td>No</td><td>The number of days that you want to specify for the default retention period. If Object Lock is turn…</td></tr>
+<tr><td><code>mode</code></td><td>Enum</td><td>No</td><td>The default Object Lock retention mode you want to apply to new objects placed in the specified buck…</td></tr>
+<tr><td><code>years</code></td><td>Int</td><td>No</td><td>The number of years that you want to specify for the default retention period. If Object Lock is tur…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="deletemarkerreplication"><a class="header" href="#deletemarkerreplication">DeleteMarkerReplication</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>status</code></td><td>Enum</td><td>No</td><td>Indicates whether to replicate delete markers.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="destination"><a class="header" href="#destination">Destination</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>bucket_account_id</code></td><td>AwsAccountId</td><td>No</td><td>The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not v…</td></tr>
+<tr><td><code>bucket_arn</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the bucket to which data is exported.</td></tr>
+<tr><td><code>format</code></td><td>Enum</td><td>Yes</td><td>Specifies the file format used when exporting data to Amazon S3. <em>Allowed values</em>: <code>CSV</code></td></tr>
+<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>The prefix to use when exporting data. The prefix is prepended to all results.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="encryptionconfiguration"><a class="header" href="#encryptionconfiguration">EncryptionConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>replica_kms_key_id</code></td><td>KmsKeyId</td><td>Yes</td><td>Specifies the ID (Key ARN or Alias ARN) of the customer managed AWS KMS key stored in AWS Key Manage…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="eventbridgeconfiguration"><a class="header" href="#eventbridgeconfiguration">EventBridgeConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>event_bridge_enabled</code></td><td>Bool</td><td>Yes</td><td>Enables delivery of events to Amazon EventBridge.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="filterrule"><a class="header" href="#filterrule">FilterRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>String</td><td>Yes</td><td>The object key name prefix or suffix identifying one or more objects to which the filtering rule app…</td></tr>
+<tr><td><code>value</code></td><td>String</td><td>Yes</td><td>The value that the filter searches for in object key names.</td></tr>
 </tbody>
 </table>
 </div>
@@ -545,6 +1021,47 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>optional_fields</code></td><td>List&lt;<a href="#optional_fields-optionalfields">Enum (OptionalFields)</a>&gt;</td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Specifies the inventory filter prefix.</td></tr>
 <tr><td><code>schedule_frequency</code></td><td>Enum</td><td>Yes</td><td>Specifies the schedule for generating inventory results.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="inventorytableconfiguration"><a class="header" href="#inventorytableconfiguration">InventoryTableConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>configuration_state</code></td><td>Enum</td><td>Yes</td><td>The configuration state of the inventory table, indicating whether the inventory table is enabled or…</td></tr>
+<tr><td><code>encryption_configuration</code></td><td><a href="#metadatatableencryptionconfiguration">Struct(MetadataTableEncryptionConfiguration)</a></td><td>No</td><td>The encryption configuration for the inventory table.</td></tr>
+<tr><td><code>table_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) for the inventory table.</td></tr>
+<tr><td><code>table_name</code></td><td>String</td><td>No</td><td>The name of the inventory table.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="journaltableconfiguration"><a class="header" href="#journaltableconfiguration">JournalTableConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>encryption_configuration</code></td><td><a href="#metadatatableencryptionconfiguration">Struct(MetadataTableEncryptionConfiguration)</a></td><td>No</td><td>The encryption configuration for the journal table.</td></tr>
+<tr><td><code>record_expiration</code></td><td><a href="#recordexpiration">Struct(RecordExpiration)</a></td><td>Yes</td><td>The journal table record expiration settings for the journal table.</td></tr>
+<tr><td><code>table_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) for the journal table.</td></tr>
+<tr><td><code>table_name</code></td><td>String</td><td>No</td><td>The name of the journal table.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="lambdaconfiguration"><a class="header" href="#lambdaconfiguration">LambdaConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>event</code></td><td>String</td><td>Yes</td><td>The Amazon S3 bucket event for which to invoke the LAMlong function. For more information, see [Supp…</td></tr>
+<tr><td><code>filter</code></td><td><a href="#notificationfilter">Struct(NotificationFilter)</a></td><td>No</td><td>The filtering rules that determine which objects invoke the AWS Lambda function. For example, you ca…</td></tr>
+<tr><td><code>function</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the LAMlong function that Amazon S3 invokes when the specified eve…</td></tr>
 </tbody>
 </table>
 </div>
@@ -586,6 +1103,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </tbody>
 </table>
 </div>
+<h3 id="metadatadestination"><a class="header" href="#metadatadestination">MetadataDestination</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>table_bucket_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.</td></tr>
+<tr><td><code>table_bucket_type</code></td><td>Enum</td><td>Yes</td><td>The type of the table bucket where the metadata configuration is stored. The <code>aws</code> value indicates…</td></tr>
+<tr><td><code>table_namespace</code></td><td>String</td><td>No</td><td>The namespace in the table bucket where the metadata tables for a metadata configuration are stored.</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="metadatatableconfiguration"><a class="header" href="#metadatatableconfiguration">MetadataTableConfiguration</a></h3>
 <div class="table-wrapper">
 <table>
@@ -594,6 +1124,30 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>s3_tables_destination</code></td><td><a href="#s3tablesdestination">Struct(S3TablesDestination)</a></td><td>Yes</td><td>The destination information for the metadata table configuration. The destination table bucket must …</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="metadatatableencryptionconfiguration"><a class="header" href="#metadatatableencryptionconfiguration">MetadataTableEncryptionConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>kms_key_arn</code></td><td>KmsKeyArn</td><td>No</td><td>If server-side encryption with KMSlong (KMS) keys (SSE-KMS) is specified, you must also specify the …</td></tr>
+<tr><td><code>sse_algorithm</code></td><td>Enum</td><td>Yes</td><td>The encryption type specified for a metadata table. To specify server-side encryption with KMSlong (…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="metrics"><a class="header" href="#metrics">Metrics</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>event_threshold</code></td><td><a href="#replicationtimevalue">Struct(ReplicationTimeValue)</a></td><td>No</td><td>A container specifying the time threshold for emitting the ``s3:Replication:OperationMissedThreshold…</td></tr>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the replication metrics are enabled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -611,6 +1165,31 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </tbody>
 </table>
 </div>
+<h3 id="noncurrentversionexpiration"><a class="header" href="#noncurrentversionexpiration">NoncurrentVersionExpiration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>newer_noncurrent_versions</code></td><td>Int</td><td>No</td><td>Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent…</td></tr>
+<tr><td><code>noncurrent_days</code></td><td>Int</td><td>Yes</td><td>Specifies the number of days an object is noncurrent before S3 can perform the associated action. Fo…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="noncurrentversiontransition"><a class="header" href="#noncurrentversiontransition">NoncurrentVersionTransition</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>newer_noncurrent_versions</code></td><td>Int</td><td>No</td><td>Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent…</td></tr>
+<tr><td><code>storage_class</code></td><td>Enum</td><td>Yes</td><td>The class of storage used to store the object.</td></tr>
+<tr><td><code>transition_in_days</code></td><td>Int</td><td>Yes</td><td>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated act…</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="notificationconfiguration"><a class="header" href="#notificationconfiguration">NotificationConfiguration</a></h3>
 <div class="table-wrapper">
 <table>
@@ -622,6 +1201,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>lambda_configurations</code></td><td><a href="#lambdaconfiguration">List&lt;LambdaConfiguration&gt;</a></td><td>No</td><td>Describes the LAMlong functions to invoke and the events for which to invoke them.</td></tr>
 <tr><td><code>queue_configurations</code></td><td><a href="#queueconfiguration">List&lt;QueueConfiguration&gt;</a></td><td>No</td><td>The Amazon Simple Queue Service queues to publish messages to and the events for which to publish me…</td></tr>
 <tr><td><code>topic_configurations</code></td><td><a href="#topicconfiguration">List&lt;TopicConfiguration&gt;</a></td><td>No</td><td>The topic to which notifications are sent and the events for which notifications are generated.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="notificationfilter"><a class="header" href="#notificationfilter">NotificationFilter</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>s3_key</code></td><td><a href="#s3keyfilter">Struct(S3KeyFilter)</a></td><td>Yes</td><td>A container for object key name prefix and suffix filtering rules.</td></tr>
 </tbody>
 </table>
 </div>
@@ -637,6 +1227,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </tbody>
 </table>
 </div>
+<h3 id="objectlockrule"><a class="header" href="#objectlockrule">ObjectLockRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>default_retention</code></td><td><a href="#defaultretention">Struct(DefaultRetention)</a></td><td>No</td><td>The default Object Lock retention mode and period that you want to apply to new objects placed in th…</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="ownershipcontrols"><a class="header" href="#ownershipcontrols">OwnershipControls</a></h3>
 <div class="table-wrapper">
 <table>
@@ -645,6 +1246,28 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>rules</code></td><td><a href="#ownershipcontrolsrule">List&lt;OwnershipControlsRule&gt;</a></td><td>Yes</td><td>Specifies the container element for Object Ownership rules.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ownershipcontrolsrule"><a class="header" href="#ownershipcontrolsrule">OwnershipControlsRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>object_ownership</code></td><td>Enum</td><td>No</td><td>Specifies an object ownership rule.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="partitionedprefix"><a class="header" href="#partitionedprefix">PartitionedPrefix</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>partition_date_source</code></td><td>Enum</td><td>No</td><td>Specifies the partition date source for the partitioned prefix. <code>PartitionDateSource</code> can be ``Eve…</td></tr>
 </tbody>
 </table>
 </div>
@@ -662,6 +1285,69 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </tbody>
 </table>
 </div>
+<h3 id="queueconfiguration"><a class="header" href="#queueconfiguration">QueueConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>event</code></td><td>String</td><td>Yes</td><td>The Amazon S3 bucket event about which you want to publish messages to Amazon SQS. For more informat…</td></tr>
+<tr><td><code>filter</code></td><td><a href="#notificationfilter">Struct(NotificationFilter)</a></td><td>No</td><td>The filtering rules that determine which objects trigger notifications. For example, you can create …</td></tr>
+<tr><td><code>queue</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the Amazon SQS queue to which Amazon S3 publishes a message when i…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="recordexpiration"><a class="header" href="#recordexpiration">RecordExpiration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>days</code></td><td>Int</td><td>No</td><td>If you enable journal table record expiration, you can set the number of days to retain your journal…</td></tr>
+<tr><td><code>expiration</code></td><td>Enum</td><td>Yes</td><td>Specifies whether journal table record expiration is enabled or disabled.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="redirectallrequeststo"><a class="header" href="#redirectallrequeststo">RedirectAllRequestsTo</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>host_name</code></td><td>String</td><td>Yes</td><td>Name of the host where requests are redirected.</td></tr>
+<tr><td><code>protocol</code></td><td>Enum</td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="redirectrule"><a class="header" href="#redirectrule">RedirectRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>host_name</code></td><td>String</td><td>No</td><td>The host name to use in the redirect request.</td></tr>
+<tr><td><code>http_redirect_code</code></td><td>String</td><td>No</td><td>The HTTP redirect code to use on the response. Not required if one of the siblings is present.</td></tr>
+<tr><td><code>protocol</code></td><td>Enum</td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
+<tr><td><code>replace_key_prefix_with</code></td><td>String</td><td>No</td><td>The object key prefix to use in the redirect request. For example, to redirect requests for all page…</td></tr>
+<tr><td><code>replace_key_with</code></td><td>String</td><td>No</td><td>The specific object key to use in the redirect request. For example, redirect request to ``error.htm…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicamodifications"><a class="header" href="#replicamodifications">ReplicaModifications</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether Amazon S3 replicates modifications on replicas. <em>Allowed values</em>: <code>Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="replicationconfiguration"><a class="header" href="#replicationconfiguration">ReplicationConfiguration</a></h3>
 <div class="table-wrapper">
 <table>
@@ -671,6 +1357,273 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>role</code></td><td>IamRoleArn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the IAMlong (IAM) role that Amazon S3 assumes when replicating obj…</td></tr>
 <tr><td><code>rules</code></td><td><a href="#replicationrule">List&lt;ReplicationRule&gt;</a></td><td>Yes</td><td>A container for one or more replication rules. A replication configuration must have at least one ru…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationdestination"><a class="header" href="#replicationdestination">ReplicationDestination</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>access_control_translation</code></td><td><a href="#accesscontroltranslation">Struct(AccessControlTranslation)</a></td><td>No</td><td>Specify this only in a cross-account scenario (where source and destination bucket owners are not th…</td></tr>
+<tr><td><code>account</code></td><td>AwsAccountId</td><td>No</td><td>Destination bucket owner account ID. In a cross-account scenario, if you direct Amazon S3 to change …</td></tr>
+<tr><td><code>bucket</code></td><td>String</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the bucket where you want Amazon S3 to store the results.</td></tr>
+<tr><td><code>encryption_configuration</code></td><td><a href="#encryptionconfiguration">Struct(EncryptionConfiguration)</a></td><td>No</td><td>Specifies encryption-related information.</td></tr>
+<tr><td><code>metrics</code></td><td><a href="#metrics">Struct(Metrics)</a></td><td>No</td><td>A container specifying replication metrics-related settings enabling replication metrics and events.</td></tr>
+<tr><td><code>replication_time</code></td><td><a href="#replicationtime">Struct(ReplicationTime)</a></td><td>No</td><td>A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and…</td></tr>
+<tr><td><code>storage_class</code></td><td>Enum</td><td>No</td><td>The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By def…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationrule"><a class="header" href="#replicationrule">ReplicationRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>delete_marker_replication</code></td><td><a href="#deletemarkerreplication">Struct(DeleteMarkerReplication)</a></td><td>No</td><td>Specifies whether Amazon S3 replicates delete markers. If you specify a <code>Filter</code> in your replicati…</td></tr>
+<tr><td><code>destination</code></td><td><a href="#replicationdestination">Struct(ReplicationDestination)</a></td><td>Yes</td><td>A container for information about the replication destination and its configurations including enabl…</td></tr>
+<tr><td><code>filter</code></td><td><a href="#replicationrulefilter">Struct(ReplicationRuleFilter)</a></td><td>No</td><td>A filter that identifies the subset of objects to which the replication rule applies. A <code>Filter</code> m…</td></tr>
+<tr><td><code>id</code></td><td>String</td><td>No</td><td>A unique identifier for the rule. The maximum value is 255 characters. If you don’t specify a value,…</td></tr>
+<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the object or objects to which the rule applies. The maxim…</td></tr>
+<tr><td><code>priority</code></td><td>Int</td><td>No</td><td>The priority indicates which rule has precedence whenever two or more replication rules conflict. Am…</td></tr>
+<tr><td><code>source_selection_criteria</code></td><td><a href="#sourceselectioncriteria">Struct(SourceSelectionCriteria)</a></td><td>No</td><td>A container that describes additional filters for identifying the source objects that you want to re…</td></tr>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the rule is enabled.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationruleandoperator"><a class="header" href="#replicationruleandoperator">ReplicationRuleAndOperator</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>An array of tags containing key and value pairs.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationrulefilter"><a class="header" href="#replicationrulefilter">ReplicationRuleFilter</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>and</code></td><td><a href="#replicationruleandoperator">Struct(ReplicationRuleAndOperator)</a></td><td>No</td><td>A container for specifying rule filters. The filters determine the subset of objects to which the ru…</td></tr>
+<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies. Replaceme…</td></tr>
+<tr><td><code>tag_filter</code></td><td>Map</td><td>No</td><td>A container for specifying a tag key and value. The rule applies only to objects that have the tag i…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationtime"><a class="header" href="#replicationtime">ReplicationTime</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the replication time is enabled.</td></tr>
+<tr><td><code>time</code></td><td><a href="#replicationtimevalue">Struct(ReplicationTimeValue)</a></td><td>Yes</td><td>A container specifying the time by which replication should be complete for all objects and operatio…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="replicationtimevalue"><a class="header" href="#replicationtimevalue">ReplicationTimeValue</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>minutes</code></td><td>Int</td><td>Yes</td><td>Contains an integer specifying time in minutes. Valid value: 15</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="routingrule"><a class="header" href="#routingrule">RoutingRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>redirect_rule</code></td><td><a href="#redirectrule">Struct(RedirectRule)</a></td><td>Yes</td><td>Container for redirect information. You can redirect requests to another host, to another page, or w…</td></tr>
+<tr><td><code>routing_rule_condition</code></td><td><a href="#routingrulecondition">Struct(RoutingRuleCondition)</a></td><td>No</td><td>A container for describing a condition that must be met for the specified redirect to apply. For exa…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="routingrulecondition"><a class="header" href="#routingrulecondition">RoutingRuleCondition</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>http_error_code_returned_equals</code></td><td>String</td><td>No</td><td>The HTTP error code when the redirect is applied. In the event of an error, if the error code equals…</td></tr>
+<tr><td><code>key_prefix_equals</code></td><td>String</td><td>No</td><td>The object key name prefix when the redirect is applied. For example, to redirect requests for ``Exa…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="rule"><a class="header" href="#rule">Rule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>abort_incomplete_multipart_upload</code></td><td><a href="#abortincompletemultipartupload">Struct(AbortIncompleteMultipartUpload)</a></td><td>No</td><td>Specifies a lifecycle rule that stops incomplete multipart uploads to an Amazon S3 bucket.</td></tr>
+<tr><td><code>expiration_date</code></td><td>String</td><td>No</td><td>Indicates when objects are deleted from Amazon S3 and Amazon S3 Glacier. The date value must be in I…</td></tr>
+<tr><td><code>expiration_in_days</code></td><td>Int</td><td>No</td><td>Indicates the number of days after creation when objects are deleted from Amazon S3 and Amazon S3 Gl…</td></tr>
+<tr><td><code>expired_object_delete_marker</code></td><td>Bool</td><td>No</td><td>Indicates whether Amazon S3 will remove a delete marker without any noncurrent versions. If set to t…</td></tr>
+<tr><td><code>id</code></td><td>String</td><td>No</td><td>Unique identifier for the rule. The value can’t be longer than 255 characters.</td></tr>
+<tr><td><code>noncurrent_version_expiration</code></td><td><a href="#noncurrentversionexpiration">Struct(NoncurrentVersionExpiration)</a></td><td>No</td><td>Specifies when noncurrent object versions expire. Upon expiration, S3 permanently deletes the noncur…</td></tr>
+<tr><td><code>noncurrent_version_expiration_in_days</code></td><td>Int</td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, betwe…</td></tr>
+<tr><td><code>noncurrent_version_transition</code></td><td><a href="#noncurrentversiontransition">Struct(NoncurrentVersionTransition)</a></td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects…</td></tr>
+<tr><td><code>noncurrent_version_transitions</code></td><td><a href="#noncurrentversiontransition">List&lt;NoncurrentVersionTransition&gt;</a></td><td>No</td><td>For buckets with versioning enabled (or suspended), one or more transition rules that specify when n…</td></tr>
+<tr><td><code>object_size_greater_than</code></td><td>String</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
+<tr><td><code>object_size_less_than</code></td><td>String</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
+<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Object key prefix that identifies one or more objects to which this rule applies. Replacement must b…</td></tr>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently bein…</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>
+<tr><td><code>transition</code></td><td><a href="#transition">Struct(Transition)</a></td><td>No</td><td>(Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an e…</td></tr>
+<tr><td><code>transitions</code></td><td><a href="#transition">List&lt;Transition&gt;</a></td><td>No</td><td>One or more transition rules that specify when an object transitions to a specified storage class. I…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="s3keyfilter"><a class="header" href="#s3keyfilter">S3KeyFilter</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>rules</code></td><td><a href="#filterrule">List&lt;FilterRule&gt;</a></td><td>Yes</td><td>A list of containers for the key-value pair that defines the criteria for the filter rule.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="s3tablesdestination"><a class="header" href="#s3tablesdestination">S3TablesDestination</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>table_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) for the metadata table in the metadata table configuration. The speci…</td></tr>
+<tr><td><code>table_bucket_arn</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) for the table bucket that’s specified as the destination in the metad…</td></tr>
+<tr><td><code>table_name</code></td><td>String</td><td>Yes</td><td>The name for the metadata table in your metadata table configuration. The specified metadata table n…</td></tr>
+<tr><td><code>table_namespace</code></td><td>String</td><td>No</td><td>The table bucket namespace for the metadata table in your metadata table configuration. This value i…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="serversideencryptionbydefault"><a class="header" href="#serversideencryptionbydefault">ServerSideEncryptionByDefault</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>kms_master_key_id</code></td><td>KmsKeyId</td><td>No</td><td>AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. + *Gener…</td></tr>
+<tr><td><code>sse_algorithm</code></td><td>Enum</td><td>Yes</td><td>Server-side encryption algorithm to use for the default encryption. For directory buckets, there are…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="serversideencryptionrule"><a class="header" href="#serversideencryptionrule">ServerSideEncryptionRule</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>blocked_encryption_types</code></td><td><a href="#blockedencryptiontypes">Struct(BlockedEncryptionTypes)</a></td><td>No</td><td>A bucket-level setting for Amazon S3 general purpose buckets used to prevent the upload of new objec…</td></tr>
+<tr><td><code>bucket_key_enabled</code></td><td>Bool</td><td>No</td><td>Specifies whether Amazon S3 should use an S3 Bucket Key with server-side encryption using KMS (SSE-K…</td></tr>
+<tr><td><code>server_side_encryption_by_default</code></td><td><a href="#serversideencryptionbydefault">Struct(ServerSideEncryptionByDefault)</a></td><td>No</td><td>Specifies the default server-side encryption to apply to new objects in the bucket. If a PUT Object …</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="sourceselectioncriteria"><a class="header" href="#sourceselectioncriteria">SourceSelectionCriteria</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>replica_modifications</code></td><td><a href="#replicamodifications">Struct(ReplicaModifications)</a></td><td>No</td><td>A filter that you can specify for selection for modifications on replicas.</td></tr>
+<tr><td><code>sse_kms_encrypted_objects</code></td><td><a href="#ssekmsencryptedobjects">Struct(SseKmsEncryptedObjects)</a></td><td>No</td><td>A container for filter information for the selection of Amazon S3 objects encrypted with AWS KMS.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ssekmsencryptedobjects"><a class="header" href="#ssekmsencryptedobjects">SseKmsEncryptedObjects</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether Amazon S3 replicates objects created with server-side encryption using an AWS KMS …</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="storageclassanalysis"><a class="header" href="#storageclassanalysis">StorageClassAnalysis</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>data_export</code></td><td><a href="#dataexport">Struct(DataExport)</a></td><td>No</td><td>Specifies how data related to the storage class analysis for an Amazon S3 bucket should be exported.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="targetobjectkeyformat"><a class="header" href="#targetobjectkeyformat">TargetObjectKeyFormat</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>partitioned_prefix</code></td><td><a href="#partitionedprefix">Struct(PartitionedPrefix)</a></td><td>No</td><td></td></tr>
+<tr><td><code>simple_prefix</code></td><td>Map</td><td>No</td><td>This format defaults the prefix to the given log file prefix for delivering server access log file.</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="tiering"><a class="header" href="#tiering">Tiering</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>access_tier</code></td><td>Enum</td><td>Yes</td><td>S3 Intelligent-Tiering access tier. See [Storage class for automatically optimizing frequently and i…</td></tr>
+<tr><td><code>days</code></td><td>Int</td><td>Yes</td><td>The number of consecutive days of no access after which an object will be eligible to be transitione…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="topicconfiguration"><a class="header" href="#topicconfiguration">TopicConfiguration</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>event</code></td><td>String</td><td>Yes</td><td>The Amazon S3 bucket event about which to send notifications. For more information, see [Supported E…</td></tr>
+<tr><td><code>filter</code></td><td><a href="#notificationfilter">Struct(NotificationFilter)</a></td><td>No</td><td>The filtering rules that determine for which objects to send notifications. For example, you can cre…</td></tr>
+<tr><td><code>topic</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the Amazon SNS topic to which Amazon S3 publishes a message when i…</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="transition"><a class="header" href="#transition">Transition</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>storage_class</code></td><td>Enum</td><td>Yes</td><td>The storage class to which you want the object to transition.</td></tr>
+<tr><td><code>transition_date</code></td><td>String</td><td>No</td><td>Indicates when objects are transitioned to the specified storage class. The date value must be in IS…</td></tr>
+<tr><td><code>transition_in_days</code></td><td>Int</td><td>No</td><td>Indicates the number of days after creation when objects are transitioned to the specified storage c…</td></tr>
 </tbody>
 </table>
 </div>
