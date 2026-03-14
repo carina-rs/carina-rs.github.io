@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-cea640d6.js";
+            window.path_to_searchindex_js = "../../searchindex-dbf504ce.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -830,7 +830,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>acceleration_status</code></td><td>Enum</td><td>Yes</td><td>Specifies the transfer acceleration status of the bucket.</td></tr>
+<tr><td><code>acceleration_status</code></td><td><a href="#acceleration_status-accelerationstatus">Enum (AccelerationStatus)</a></td><td>Yes</td><td>Specifies the transfer acceleration status of the bucket.</td></tr>
 </tbody>
 </table>
 </div>
@@ -928,7 +928,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>days</code></td><td>Int</td><td>No</td><td>The number of days that you want to specify for the default retention period. If Object Lock is turn…</td></tr>
-<tr><td><code>mode</code></td><td>Enum</td><td>No</td><td>The default Object Lock retention mode you want to apply to new objects placed in the specified buck…</td></tr>
+<tr><td><code>mode</code></td><td><a href="#mode-mode">Enum (Mode)</a></td><td>No</td><td>The default Object Lock retention mode you want to apply to new objects placed in the specified buck…</td></tr>
 <tr><td><code>years</code></td><td>Int</td><td>No</td><td>The number of years that you want to specify for the default retention period. If Object Lock is tur…</td></tr>
 </tbody>
 </table>
@@ -940,7 +940,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>status</code></td><td>Enum</td><td>No</td><td>Indicates whether to replicate delete markers.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-deletemarkerreplicationstatus">Enum (DeleteMarkerReplicationStatus)</a></td><td>No</td><td>Indicates whether to replicate delete markers.</td></tr>
 </tbody>
 </table>
 </div>
@@ -953,7 +953,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>bucket_account_id</code></td><td>AwsAccountId</td><td>No</td><td>The account ID that owns the destination S3 bucket. If no account ID is provided, the owner is not v…</td></tr>
 <tr><td><code>bucket_arn</code></td><td>Arn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the bucket to which data is exported.</td></tr>
-<tr><td><code>format</code></td><td>Enum</td><td>Yes</td><td>Specifies the file format used when exporting data to Amazon S3. <em>Allowed values</em>: <code>CSV</code></td></tr>
+<tr><td><code>format</code></td><td><a href="#format-format">Enum (Format)</a></td><td>Yes</td><td>Specifies the file format used when exporting data to Amazon S3. <em>Allowed values</em>: <code>CSV</code></td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>The prefix to use when exporting data. The prefix is prepended to all results.</td></tr>
 </tbody>
 </table>
@@ -1001,7 +1001,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the S3 Intelligent-Tiering configuration.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies.</td></tr>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies the status of the configuration.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-intelligenttieringconfigurationstatus">Enum (IntelligentTieringConfigurationStatus)</a></td><td>Yes</td><td>Specifies the status of the configuration.</td></tr>
 <tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>A container for a key-value pair.</td></tr>
 <tr><td><code>tierings</code></td><td><a href="#tiering">List&lt;Tiering&gt;</a></td><td>Yes</td><td>Specifies a list of S3 Intelligent-Tiering storage class tiers in the configuration. At least one ti…</td></tr>
 </tbody>
@@ -1017,10 +1017,10 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>destination</code></td><td><a href="#destination">Struct(Destination)</a></td><td>Yes</td><td>Contains information about where to publish the inventory results.</td></tr>
 <tr><td><code>enabled</code></td><td>Bool</td><td>Yes</td><td>Specifies whether the inventory is enabled or disabled. If set to <code>True</code>, an inventory list is gen…</td></tr>
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the inventory configuration.</td></tr>
-<tr><td><code>included_object_versions</code></td><td>Enum</td><td>Yes</td><td>Object versions to include in the inventory list. If set to <code>All</code>, the list includes all the objec…</td></tr>
+<tr><td><code>included_object_versions</code></td><td><a href="#included_object_versions-includedobjectversions">Enum (IncludedObjectVersions)</a></td><td>Yes</td><td>Object versions to include in the inventory list. If set to <code>All</code>, the list includes all the objec…</td></tr>
 <tr><td><code>optional_fields</code></td><td>List&lt;<a href="#optional_fields-optionalfields">Enum (OptionalFields)</a>&gt;</td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Specifies the inventory filter prefix.</td></tr>
-<tr><td><code>schedule_frequency</code></td><td>Enum</td><td>Yes</td><td>Specifies the schedule for generating inventory results.</td></tr>
+<tr><td><code>schedule_frequency</code></td><td><a href="#schedule_frequency-schedulefrequency">Enum (ScheduleFrequency)</a></td><td>Yes</td><td>Specifies the schedule for generating inventory results.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1031,7 +1031,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>configuration_state</code></td><td>Enum</td><td>Yes</td><td>The configuration state of the inventory table, indicating whether the inventory table is enabled or…</td></tr>
+<tr><td><code>configuration_state</code></td><td><a href="#configuration_state-configurationstate">Enum (ConfigurationState)</a></td><td>Yes</td><td>The configuration state of the inventory table, indicating whether the inventory table is enabled or…</td></tr>
 <tr><td><code>encryption_configuration</code></td><td><a href="#metadatatableencryptionconfiguration">Struct(MetadataTableEncryptionConfiguration)</a></td><td>No</td><td>The encryption configuration for the inventory table.</td></tr>
 <tr><td><code>table_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) for the inventory table.</td></tr>
 <tr><td><code>table_name</code></td><td>String</td><td>No</td><td>The name of the inventory table.</td></tr>
@@ -1073,7 +1073,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>rules</code></td><td><a href="#rule">List&lt;Rule&gt;</a></td><td>Yes</td><td>A lifecycle rule for individual objects in an Amazon S3 bucket.</td></tr>
-<tr><td><code>transition_default_minimum_object_size</code></td><td>Enum</td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration. This…</td></tr>
+<tr><td><code>transition_default_minimum_object_size</code></td><td><a href="#transition_default_minimum_object_size-transitiondefaultminimumobjectsize">Enum (TransitionDefaultMinimumObjectSize)</a></td><td>No</td><td>Indicates which default minimum object size behavior is applied to the lifecycle configuration. This…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1111,7 +1111,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>table_bucket_arn</code></td><td>Arn</td><td>No</td><td>The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.</td></tr>
-<tr><td><code>table_bucket_type</code></td><td>Enum</td><td>Yes</td><td>The type of the table bucket where the metadata configuration is stored. The <code>aws</code> value indicates…</td></tr>
+<tr><td><code>table_bucket_type</code></td><td><a href="#table_bucket_type-tablebuckettype">Enum (TableBucketType)</a></td><td>Yes</td><td>The type of the table bucket where the metadata configuration is stored. The <code>aws</code> value indicates…</td></tr>
 <tr><td><code>table_namespace</code></td><td>String</td><td>No</td><td>The namespace in the table bucket where the metadata tables for a metadata configuration are stored.</td></tr>
 </tbody>
 </table>
@@ -1135,7 +1135,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>kms_key_arn</code></td><td>KmsKeyArn</td><td>No</td><td>If server-side encryption with KMSlong (KMS) keys (SSE-KMS) is specified, you must also specify the …</td></tr>
-<tr><td><code>sse_algorithm</code></td><td>Enum</td><td>Yes</td><td>The encryption type specified for a metadata table. To specify server-side encryption with KMSlong (…</td></tr>
+<tr><td><code>sse_algorithm</code></td><td><a href="#sse_algorithm-metadatatableencryptionconfigurationssealgorithm">Enum (MetadataTableEncryptionConfigurationSseAlgorithm)</a></td><td>Yes</td><td>The encryption type specified for a metadata table. To specify server-side encryption with KMSlong (…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1147,7 +1147,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>event_threshold</code></td><td><a href="#replicationtimevalue">Struct(ReplicationTimeValue)</a></td><td>No</td><td>A container specifying the time threshold for emitting the ``s3:Replication:OperationMissedThreshold…</td></tr>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the replication metrics are enabled.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-metricsstatus">Enum (MetricsStatus)</a></td><td>Yes</td><td>Specifies whether the replication metrics are enabled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1185,7 +1185,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>newer_noncurrent_versions</code></td><td>Int</td><td>No</td><td>Specifies how many noncurrent versions S3 will retain. If there are this many more recent noncurrent…</td></tr>
-<tr><td><code>storage_class</code></td><td>Enum</td><td>Yes</td><td>The class of storage used to store the object.</td></tr>
+<tr><td><code>storage_class</code></td><td><a href="#storage_class-noncurrentversiontransitionstorageclass">Enum (NoncurrentVersionTransitionStorageClass)</a></td><td>Yes</td><td>The class of storage used to store the object.</td></tr>
 <tr><td><code>transition_in_days</code></td><td>Int</td><td>Yes</td><td>Specifies the number of days an object is noncurrent before Amazon S3 can perform the associated act…</td></tr>
 </tbody>
 </table>
@@ -1256,7 +1256,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>object_ownership</code></td><td>Enum</td><td>No</td><td>Specifies an object ownership rule.</td></tr>
+<tr><td><code>object_ownership</code></td><td><a href="#object_ownership-objectownership">Enum (ObjectOwnership)</a></td><td>No</td><td>Specifies an object ownership rule.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1267,7 +1267,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>partition_date_source</code></td><td>Enum</td><td>No</td><td>Specifies the partition date source for the partitioned prefix. <code>PartitionDateSource</code> can be ``Eve…</td></tr>
+<tr><td><code>partition_date_source</code></td><td><a href="#partition_date_source-partitiondatesource">Enum (PartitionDateSource)</a></td><td>No</td><td>Specifies the partition date source for the partitioned prefix. <code>PartitionDateSource</code> can be ``Eve…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1306,7 +1306,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>days</code></td><td>Int</td><td>No</td><td>If you enable journal table record expiration, you can set the number of days to retain your journal…</td></tr>
-<tr><td><code>expiration</code></td><td>Enum</td><td>Yes</td><td>Specifies whether journal table record expiration is enabled or disabled.</td></tr>
+<tr><td><code>expiration</code></td><td><a href="#expiration-expiration">Enum (Expiration)</a></td><td>Yes</td><td>Specifies whether journal table record expiration is enabled or disabled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1318,7 +1318,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>host_name</code></td><td>String</td><td>Yes</td><td>Name of the host where requests are redirected.</td></tr>
-<tr><td><code>protocol</code></td><td>Enum</td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
+<tr><td><code>protocol</code></td><td><a href="#protocol-protocol">Enum (Protocol)</a></td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
 </tbody>
 </table>
 </div>
@@ -1331,7 +1331,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>host_name</code></td><td>String</td><td>No</td><td>The host name to use in the redirect request.</td></tr>
 <tr><td><code>http_redirect_code</code></td><td>String</td><td>No</td><td>The HTTP redirect code to use on the response. Not required if one of the siblings is present.</td></tr>
-<tr><td><code>protocol</code></td><td>Enum</td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
+<tr><td><code>protocol</code></td><td><a href="#protocol-protocol">Enum (Protocol)</a></td><td>No</td><td>Protocol to use when redirecting requests. The default is the protocol that is used in the original …</td></tr>
 <tr><td><code>replace_key_prefix_with</code></td><td>String</td><td>No</td><td>The object key prefix to use in the redirect request. For example, to redirect requests for all page…</td></tr>
 <tr><td><code>replace_key_with</code></td><td>String</td><td>No</td><td>The specific object key to use in the redirect request. For example, redirect request to ``error.htm…</td></tr>
 </tbody>
@@ -1344,7 +1344,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether Amazon S3 replicates modifications on replicas. <em>Allowed values</em>: <code>Enabled</code></td></tr>
+<tr><td><code>status</code></td><td><a href="#status-replicamodificationsstatus">Enum (ReplicaModificationsStatus)</a></td><td>Yes</td><td>Specifies whether Amazon S3 replicates modifications on replicas. <em>Allowed values</em>: <code>Enabled</code></td></tr>
 </tbody>
 </table>
 </div>
@@ -1373,7 +1373,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>encryption_configuration</code></td><td><a href="#encryptionconfiguration">Struct(EncryptionConfiguration)</a></td><td>No</td><td>Specifies encryption-related information.</td></tr>
 <tr><td><code>metrics</code></td><td><a href="#metrics">Struct(Metrics)</a></td><td>No</td><td>A container specifying replication metrics-related settings enabling replication metrics and events.</td></tr>
 <tr><td><code>replication_time</code></td><td><a href="#replicationtime">Struct(ReplicationTime)</a></td><td>No</td><td>A container specifying S3 Replication Time Control (S3 RTC), including whether S3 RTC is enabled and…</td></tr>
-<tr><td><code>storage_class</code></td><td>Enum</td><td>No</td><td>The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By def…</td></tr>
+<tr><td><code>storage_class</code></td><td><a href="#storage_class-replicationdestinationstorageclass">Enum (ReplicationDestinationStorageClass)</a></td><td>No</td><td>The storage class to use when replicating objects, such as S3 Standard or reduced redundancy. By def…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1391,7 +1391,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the object or objects to which the rule applies. The maxim…</td></tr>
 <tr><td><code>priority</code></td><td>Int</td><td>No</td><td>The priority indicates which rule has precedence whenever two or more replication rules conflict. Am…</td></tr>
 <tr><td><code>source_selection_criteria</code></td><td><a href="#sourceselectioncriteria">Struct(SourceSelectionCriteria)</a></td><td>No</td><td>A container that describes additional filters for identifying the source objects that you want to re…</td></tr>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the rule is enabled.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-replicationrulestatus">Enum (ReplicationRuleStatus)</a></td><td>Yes</td><td>Specifies whether the rule is enabled.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1427,7 +1427,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether the replication time is enabled.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-replicationtimestatus">Enum (ReplicationTimeStatus)</a></td><td>Yes</td><td>Specifies whether the replication time is enabled.</td></tr>
 <tr><td><code>time</code></td><td><a href="#replicationtimevalue">Struct(ReplicationTimeValue)</a></td><td>Yes</td><td>A container specifying the time by which replication should be complete for all objects and operatio…</td></tr>
 </tbody>
 </table>
@@ -1486,7 +1486,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>object_size_greater_than</code></td><td>String</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
 <tr><td><code>object_size_less_than</code></td><td>String</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Object key prefix that identifies one or more objects to which this rule applies. Replacement must b…</td></tr>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently bein…</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-rulestatus">Enum (RuleStatus)</a></td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently bein…</td></tr>
 <tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>
 <tr><td><code>transition</code></td><td><a href="#transition">Struct(Transition)</a></td><td>No</td><td>(Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an e…</td></tr>
 <tr><td><code>transitions</code></td><td><a href="#transition">List&lt;Transition&gt;</a></td><td>No</td><td>One or more transition rules that specify when an object transitions to a specified storage class. I…</td></tr>
@@ -1526,7 +1526,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>kms_master_key_id</code></td><td>KmsKeyId</td><td>No</td><td>AWS Key Management Service (KMS) customer managed key ID to use for the default encryption. + *Gener…</td></tr>
-<tr><td><code>sse_algorithm</code></td><td>Enum</td><td>Yes</td><td>Server-side encryption algorithm to use for the default encryption. For directory buckets, there are…</td></tr>
+<tr><td><code>sse_algorithm</code></td><td><a href="#sse_algorithm-serversideencryptionbydefaultssealgorithm">Enum (ServerSideEncryptionByDefaultSseAlgorithm)</a></td><td>Yes</td><td>Server-side encryption algorithm to use for the default encryption. For directory buckets, there are…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1562,7 +1562,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>Specifies whether Amazon S3 replicates objects created with server-side encryption using an AWS KMS …</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-ssekmsencryptedobjectsstatus">Enum (SseKmsEncryptedObjectsStatus)</a></td><td>Yes</td><td>Specifies whether Amazon S3 replicates objects created with server-side encryption using an AWS KMS …</td></tr>
 </tbody>
 </table>
 </div>
@@ -1596,7 +1596,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>access_tier</code></td><td>Enum</td><td>Yes</td><td>S3 Intelligent-Tiering access tier. See [Storage class for automatically optimizing frequently and i…</td></tr>
+<tr><td><code>access_tier</code></td><td><a href="#access_tier-accesstier">Enum (AccessTier)</a></td><td>Yes</td><td>S3 Intelligent-Tiering access tier. See [Storage class for automatically optimizing frequently and i…</td></tr>
 <tr><td><code>days</code></td><td>Int</td><td>Yes</td><td>The number of consecutive days of no access after which an object will be eligible to be transitione…</td></tr>
 </tbody>
 </table>
@@ -1621,7 +1621,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>storage_class</code></td><td>Enum</td><td>Yes</td><td>The storage class to which you want the object to transition.</td></tr>
+<tr><td><code>storage_class</code></td><td><a href="#storage_class-transitionstorageclass">Enum (TransitionStorageClass)</a></td><td>Yes</td><td>The storage class to which you want the object to transition.</td></tr>
 <tr><td><code>transition_date</code></td><td>String</td><td>No</td><td>Indicates when objects are transitioned to the specified storage class. The date value must be in IS…</td></tr>
 <tr><td><code>transition_in_days</code></td><td>Int</td><td>No</td><td>Indicates the number of days after creation when objects are transitioned to the specified storage c…</td></tr>
 </tbody>
@@ -1634,7 +1634,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>status</code></td><td>Enum</td><td>Yes</td><td>The versioning state of the bucket.</td></tr>
+<tr><td><code>status</code></td><td><a href="#status-versioningconfigurationstatus">Enum (VersioningConfigurationStatus)</a></td><td>Yes</td><td>The versioning state of the bucket.</td></tr>
 </tbody>
 </table>
 </div>
