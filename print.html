@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-338dad84.js";
+            window.path_to_searchindex_js = "searchindex-ef16c36a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -452,6 +452,19 @@ awscc.ec2.flow_log {
 </ul>
 <p>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</p>
 <h2 id="enum-values-2"><a class="header" href="#enum-values-2">Enum Values</a></h2>
+<h3 id="file_format-fileformat"><a class="header" href="#file_format-fileformat">file_format (FileFormat)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>plain-text</code></td><td><code>awscc.ec2.flow_log.FileFormat.plain_text</code></td></tr>
+<tr><td><code>parquet</code></td><td><code>awscc.ec2.flow_log.FileFormat.parquet</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>plain_text</code> or <code>FileFormat.plain_text</code></p>
 <h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -1564,6 +1577,39 @@ awscc.ec2.security_group {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the VPC for the security group.</p>
+<h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-2"><a class="header" href="#ip_protocol-ipprotocol-2">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>awscc.ec2.security_group.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>awscc.ec2.security_group.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>awscc.ec2.security_group.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>awscc.ec2.security_group.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2.security_group.IpProtocol.all</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
+<h3 id="ip_protocol-ipprotocol-1-1"><a class="header" href="#ip_protocol-ipprotocol-1-1">ip_protocol (IpProtocol)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>tcp</code></td><td><code>awscc.ec2.security_group.IpProtocol.tcp</code></td></tr>
+<tr><td><code>udp</code></td><td><code>awscc.ec2.security_group.IpProtocol.udp</code></td></tr>
+<tr><td><code>icmp</code></td><td><code>awscc.ec2.security_group.IpProtocol.icmp</code></td></tr>
+<tr><td><code>icmpv6</code></td><td><code>awscc.ec2.security_group.IpProtocol.icmpv6</code></td></tr>
+<tr><td><code>-1</code></td><td><code>awscc.ec2.security_group.IpProtocol.all</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>tcp</code> or <code>IpProtocol.tcp</code></p>
 <h2 id="struct-definitions-4"><a class="header" href="#struct-definitions-4">Struct Definitions</a></h2>
 <h3 id="egress"><a class="header" href="#egress">Egress</a></h3>
 <div class="table-wrapper">
@@ -1783,6 +1829,34 @@ awscc.ec2.subnet {
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
+<h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
+<h3 id="internet_gateway_block_mode-internetgatewayblockmode"><a class="header" href="#internet_gateway_block_mode-internetgatewayblockmode">internet_gateway_block_mode (InternetGatewayBlockMode)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>off</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.off</code></td></tr>
+<tr><td><code>block-bidirectional</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.block_bidirectional</code></td></tr>
+<tr><td><code>block-ingress</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.block_ingress</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>off</code> or <code>InternetGatewayBlockMode.off</code></p>
+<h3 id="hostname_type-hostnametype"><a class="header" href="#hostname_type-hostnametype">hostname_type (HostnameType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ip-name</code></td><td><code>awscc.ec2.subnet.HostnameType.ip_name</code></td></tr>
+<tr><td><code>resource-name</code></td><td><code>awscc.ec2.subnet.HostnameType.resource_name</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ip_name</code> or <code>HostnameType.ip_name</code></p>
 <h2 id="struct-definitions-5"><a class="header" href="#struct-definitions-5">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
 <div class="table-wrapper">
@@ -1791,7 +1865,7 @@ awscc.ec2.subnet {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+<tr><td><code>internet_gateway_block_mode</code></td><td><a href="#internet_gateway_block_mode-internetgatewayblockmode">Enum (InternetGatewayBlockMode)</a></td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
 </tbody>
 </table>
 </div>
@@ -1856,6 +1930,59 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
+<h2 id="enum-values-10"><a class="header" href="#enum-values-10">Enum Values</a></h2>
+<h3 id="appliance_mode_support-appliancemodesupport"><a class="header" href="#appliance_mode_support-appliancemodesupport">appliance_mode_support (ApplianceModeSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.ApplianceModeSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.ApplianceModeSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>ApplianceModeSupport.enable</code></p>
+<h3 id="dns_support-dnssupport"><a class="header" href="#dns_support-dnssupport">dns_support (DnsSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.DnsSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.DnsSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DnsSupport.enable</code></p>
+<h3 id="ipv6_support-ipv6support"><a class="header" href="#ipv6_support-ipv6support">ipv6_support (Ipv6Support)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.Ipv6Support.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.Ipv6Support.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>Ipv6Support.enable</code></p>
+<h3 id="security_group_referencing_support-securitygroupreferencingsupport"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.SecurityGroupReferencingSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.SecurityGroupReferencingSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>SecurityGroupReferencingSupport.enable</code></p>
 <h2 id="struct-definitions-6"><a class="header" href="#struct-definitions-6">Struct Definitions</a></h2>
 <h3 id="options-1"><a class="header" href="#options-1">Options</a></h3>
 <div class="table-wrapper">
@@ -1864,9 +1991,9 @@ awscc.ec2.subnet {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>appliance_mode_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
+<tr><td><code>appliance_mode_support</code></td><td><a href="#appliance_mode_support-appliancemodesupport">Enum (ApplianceModeSupport)</a></td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
 <tr><td><code>dns_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable</td></tr>
-<tr><td><code>ipv6_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
+<tr><td><code>ipv6_support</code></td><td><a href="#ipv6_support-ipv6support">Enum (Ipv6Support)</a></td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
 <tr><td><code>security_group_referencing_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: ena…</td></tr>
 </tbody>
 </table>
@@ -1922,7 +2049,7 @@ awscc.ec2.subnet {
 </ul>
 <h3 id="dns_support"><a class="header" href="#dns_support"><code>dns_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#dns_support-dnssupport">Enum (DnsSupport)</a></li>
+<li><strong>Type:</strong> <a href="#dns_support-dnssupport-1">Enum (DnsSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="encryption_support"><a class="header" href="#encryption_support"><code>encryption_support</code></a></h3>
@@ -1942,7 +2069,7 @@ awscc.ec2.subnet {
 </ul>
 <h3 id="security_group_referencing_support"><a class="header" href="#security_group_referencing_support"><code>security_group_referencing_support</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#security_group_referencing_support-securitygroupreferencingsupport">Enum (SecurityGroupReferencingSupport)</a></li>
+<li><strong>Type:</strong> <a href="#security_group_referencing_support-securitygroupreferencingsupport-1">Enum (SecurityGroupReferencingSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="tags-11"><a class="header" href="#tags-11"><code>tags</code></a></h3>
@@ -1960,7 +2087,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> <a href="#vpn_ecmp_support-vpnecmpsupport">Enum (VpnEcmpSupport)</a></li>
 <li><strong>Required:</strong> No</li>
 </ul>
-<h2 id="enum-values-8"><a class="header" href="#enum-values-8">Enum Values</a></h2>
+<h2 id="enum-values-11"><a class="header" href="#enum-values-11">Enum Values</a></h2>
 <h3 id="auto_accept_shared_attachments-autoacceptsharedattachments"><a class="header" href="#auto_accept_shared_attachments-autoacceptsharedattachments">auto_accept_shared_attachments (AutoAcceptSharedAttachments)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2000,7 +2127,7 @@ awscc.ec2.subnet {
 </table>
 </div>
 <p>Shorthand formats: <code>enable</code> or <code>DefaultRouteTablePropagation.enable</code></p>
-<h3 id="dns_support-dnssupport"><a class="header" href="#dns_support-dnssupport">dns_support (DnsSupport)</a></h3>
+<h3 id="dns_support-dnssupport-1"><a class="header" href="#dns_support-dnssupport-1">dns_support (DnsSupport)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -2052,7 +2179,7 @@ awscc.ec2.subnet {
 </table>
 </div>
 <p>Shorthand formats: <code>enable</code> or <code>MulticastSupport.enable</code></p>
-<h3 id="security_group_referencing_support-securitygroupreferencingsupport"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
+<h3 id="security_group_referencing_support-securitygroupreferencingsupport-1"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport-1">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -2219,7 +2346,52 @@ awscc.ec2.vpc_endpoint {
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
-<h2 id="enum-values-9"><a class="header" href="#enum-values-9">Enum Values</a></h2>
+<h2 id="enum-values-12"><a class="header" href="#enum-values-12">Enum Values</a></h2>
+<h3 id="dns_record_ip_type-dnsrecordiptype"><a class="header" href="#dns_record_ip_type-dnsrecordiptype">dns_record_ip_type (DnsRecordIpType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ipv4</code></td><td><code>awscc.ec2.vpc_endpoint.DnsRecordIpType.ipv4</code></td></tr>
+<tr><td><code>ipv6</code></td><td><code>awscc.ec2.vpc_endpoint.DnsRecordIpType.ipv6</code></td></tr>
+<tr><td><code>dualstack</code></td><td><code>awscc.ec2.vpc_endpoint.DnsRecordIpType.dualstack</code></td></tr>
+<tr><td><code>service-defined</code></td><td><code>awscc.ec2.vpc_endpoint.DnsRecordIpType.service_defined</code></td></tr>
+<tr><td><code>not-specified</code></td><td><code>awscc.ec2.vpc_endpoint.DnsRecordIpType.not_specified</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ipv4</code> or <code>DnsRecordIpType.ipv4</code></p>
+<h3 id="private_dns_only_for_inbound_resolver_endpoint-privatednsonlyforinboundresolverendpoint"><a class="header" href="#private_dns_only_for_inbound_resolver_endpoint-privatednsonlyforinboundresolverendpoint">private_dns_only_for_inbound_resolver_endpoint (PrivateDnsOnlyForInboundResolverEndpoint)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>OnlyInboundResolver</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsOnlyForInboundResolverEndpoint.OnlyInboundResolver</code></td></tr>
+<tr><td><code>AllResolvers</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsOnlyForInboundResolverEndpoint.AllResolvers</code></td></tr>
+<tr><td><code>NotSpecified</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsOnlyForInboundResolverEndpoint.NotSpecified</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>OnlyInboundResolver</code> or <code>PrivateDnsOnlyForInboundResolverEndpoint.OnlyInboundResolver</code></p>
+<h3 id="private_dns_preference-privatednspreference"><a class="header" href="#private_dns_preference-privatednspreference">private_dns_preference (PrivateDnsPreference)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>VERIFIED_DOMAINS_ONLY</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsPreference.VERIFIED_DOMAINS_ONLY</code></td></tr>
+<tr><td><code>ALL_DOMAINS</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsPreference.ALL_DOMAINS</code></td></tr>
+<tr><td><code>VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsPreference.VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS</code></td></tr>
+<tr><td><code>SPECIFIED_DOMAINS_ONLY</code></td><td><code>awscc.ec2.vpc_endpoint.PrivateDnsPreference.SPECIFIED_DOMAINS_ONLY</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>VERIFIED_DOMAINS_ONLY</code> or <code>PrivateDnsPreference.VERIFIED_DOMAINS_ONLY</code></p>
 <h3 id="ip_address_type-ipaddresstype"><a class="header" href="#ip_address_type-ipaddresstype">ip_address_type (IpAddressType)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2456,7 +2628,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the VPC.</p>
-<h2 id="enum-values-10"><a class="header" href="#enum-values-10">Enum Values</a></h2>
+<h2 id="enum-values-13"><a class="header" href="#enum-values-13">Enum Values</a></h2>
 <h3 id="instance_tenancy-instancetenancy"><a class="header" href="#instance_tenancy-instancetenancy">instance_tenancy (InstanceTenancy)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2677,7 +2849,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to the log group. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a>.</p>
-<h2 id="enum-values-11"><a class="header" href="#enum-values-11">Enum Values</a></h2>
+<h2 id="enum-values-14"><a class="header" href="#enum-values-14">Enum Values</a></h2>
 <h3 id="log_group_class-loggroupclass"><a class="header" href="#log_group_class-loggroupclass">log_group_class (LogGroupClass)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2842,7 +3014,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Information used to configure the bucket as a static website. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">Hosting Websites on Amazon S3</a>.</p>
-<h2 id="enum-values-12"><a class="header" href="#enum-values-12">Enum Values</a></h2>
+<h2 id="enum-values-15"><a class="header" href="#enum-values-15">Enum Values</a></h2>
 <h3 id="abac_status-abacstatus"><a class="header" href="#abac_status-abacstatus">abac_status (AbacStatus)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2856,6 +3028,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>Enabled</code> or <code>AbacStatus.Enabled</code></p>
+<h3 id="acceleration_status-accelerationstatus"><a class="header" href="#acceleration_status-accelerationstatus">acceleration_status (AccelerationStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.AccelerationStatus.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>awscc.s3.bucket.AccelerationStatus.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>AccelerationStatus.Enabled</code></p>
 <h3 id="access_control-accesscontrol"><a class="header" href="#access_control-accesscontrol">access_control (AccessControl)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -2875,6 +3060,110 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>AuthenticatedRead</code> or <code>AccessControl.AuthenticatedRead</code></p>
+<h3 id="status-status"><a class="header" href="#status-status">status (Status)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.Status.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.Status.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>Status.Disabled</code></p>
+<h3 id="included_object_versions-includedobjectversions"><a class="header" href="#included_object_versions-includedobjectversions">included_object_versions (IncludedObjectVersions)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>All</code></td><td><code>awscc.s3.bucket.IncludedObjectVersions.All</code></td></tr>
+<tr><td><code>Current</code></td><td><code>awscc.s3.bucket.IncludedObjectVersions.Current</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>All</code> or <code>IncludedObjectVersions.All</code></p>
+<h3 id="optional_fields-optionalfields"><a class="header" href="#optional_fields-optionalfields">optional_fields (OptionalFields)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Size</code></td><td><code>awscc.s3.bucket.OptionalFields.Size</code></td></tr>
+<tr><td><code>LastModifiedDate</code></td><td><code>awscc.s3.bucket.OptionalFields.LastModifiedDate</code></td></tr>
+<tr><td><code>StorageClass</code></td><td><code>awscc.s3.bucket.OptionalFields.StorageClass</code></td></tr>
+<tr><td><code>ETag</code></td><td><code>awscc.s3.bucket.OptionalFields.ETag</code></td></tr>
+<tr><td><code>IsMultipartUploaded</code></td><td><code>awscc.s3.bucket.OptionalFields.IsMultipartUploaded</code></td></tr>
+<tr><td><code>ReplicationStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.ReplicationStatus</code></td></tr>
+<tr><td><code>EncryptionStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.EncryptionStatus</code></td></tr>
+<tr><td><code>ObjectLockRetainUntilDate</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockRetainUntilDate</code></td></tr>
+<tr><td><code>ObjectLockMode</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockMode</code></td></tr>
+<tr><td><code>ObjectLockLegalHoldStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockLegalHoldStatus</code></td></tr>
+<tr><td><code>IntelligentTieringAccessTier</code></td><td><code>awscc.s3.bucket.OptionalFields.IntelligentTieringAccessTier</code></td></tr>
+<tr><td><code>BucketKeyStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.BucketKeyStatus</code></td></tr>
+<tr><td><code>ChecksumAlgorithm</code></td><td><code>awscc.s3.bucket.OptionalFields.ChecksumAlgorithm</code></td></tr>
+<tr><td><code>ObjectAccessControlList</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectAccessControlList</code></td></tr>
+<tr><td><code>ObjectOwner</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectOwner</code></td></tr>
+<tr><td><code>LifecycleExpirationDate</code></td><td><code>awscc.s3.bucket.OptionalFields.LifecycleExpirationDate</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Size</code> or <code>OptionalFields.Size</code></p>
+<h3 id="schedule_frequency-schedulefrequency"><a class="header" href="#schedule_frequency-schedulefrequency">schedule_frequency (ScheduleFrequency)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Daily</code></td><td><code>awscc.s3.bucket.ScheduleFrequency.Daily</code></td></tr>
+<tr><td><code>Weekly</code></td><td><code>awscc.s3.bucket.ScheduleFrequency.Weekly</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Daily</code> or <code>ScheduleFrequency.Daily</code></p>
+<h3 id="transition_default_minimum_object_size-transitiondefaultminimumobjectsize"><a class="header" href="#transition_default_minimum_object_size-transitiondefaultminimumobjectsize">transition_default_minimum_object_size (TransitionDefaultMinimumObjectSize)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>varies_by_storage_class</code></td><td><code>awscc.s3.bucket.TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></td></tr>
+<tr><td><code>all_storage_classes_128K</code></td><td><code>awscc.s3.bucket.TransitionDefaultMinimumObjectSize.all_storage_classes_128K</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>varies_by_storage_class</code> or <code>TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></p>
+<h3 id="object_lock_enabled-objectlockenabled"><a class="header" href="#object_lock_enabled-objectlockenabled">object_lock_enabled (ObjectLockEnabled)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.ObjectLockEnabled.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>ObjectLockEnabled.Enabled</code></p>
+<h3 id="status-status-1"><a class="header" href="#status-status-1">status (Status)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.Status.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>awscc.s3.bucket.Status.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>Status.Enabled</code></p>
 <h2 id="struct-definitions-9"><a class="header" href="#struct-definitions-9">Struct Definitions</a></h2>
 <h3 id="accelerateconfiguration"><a class="header" href="#accelerateconfiguration">AccelerateConfiguration</a></h3>
 <div class="table-wrapper">
@@ -2949,7 +3238,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>enabled</code></td><td>Bool</td><td>Yes</td><td>Specifies whether the inventory is enabled or disabled. If set to <code>True</code>, an inventory list is gen…</td></tr>
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the inventory configuration.</td></tr>
 <tr><td><code>included_object_versions</code></td><td>Enum</td><td>Yes</td><td>Object versions to include in the inventory list. If set to <code>All</code>, the list includes all the objec…</td></tr>
-<tr><td><code>optional_fields</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
+<tr><td><code>optional_fields</code></td><td>List&lt;<a href="#optional_fields-optionalfields">Enum (OptionalFields)</a>&gt;</td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Specifies the inventory filter prefix.</td></tr>
 <tr><td><code>schedule_frequency</code></td><td>Enum</td><td>Yes</td><td>Specifies the schedule for generating inventory results.</td></tr>
 </tbody>
@@ -3039,7 +3328,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>object_lock_enabled</code></td><td>String</td><td>No</td><td>Indicates whether this bucket has an Object Lock configuration enabled. Enable <code>ObjectLockEnabled</code>…</td></tr>
+<tr><td><code>object_lock_enabled</code></td><td><a href="#object_lock_enabled-objectlockenabled">Enum (ObjectLockEnabled)</a></td><td>No</td><td>Indicates whether this bucket has an Object Lock configuration enabled. Enable <code>ObjectLockEnabled</code>…</td></tr>
 <tr><td><code>rule</code></td><td><a href="#objectlockrule">Struct(ObjectLockRule)</a></td><td>No</td><td>Specifies the Object Lock rule for the specified object. Enable this rule when you apply ``ObjectLoc…</td></tr>
 </tbody>
 </table>
@@ -3153,7 +3442,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
   availability_zone = "ap-northeast-1a"
 }
 </code></pre>
-<h2 id="enum-values-13"><a class="header" href="#enum-values-13">Enum Values</a></h2>
+<h2 id="enum-values-16"><a class="header" href="#enum-values-16">Enum Values</a></h2>
 <p>Some attributes accept enum values. These can be specified in three formats:</p>
 <ul>
 <li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
@@ -3336,7 +3625,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>The ID of the security group.</p>
 <h3 id="ip_protocol-2"><a class="header" href="#ip_protocol-2"><code>ip_protocol</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-2">Enum (IpProtocol)</a></li>
+<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-3">Enum (IpProtocol)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>Not supported. Use IP permissions instead.</p>
@@ -3364,8 +3653,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the destination security group.</p>
-<h2 id="enum-values-14"><a class="header" href="#enum-values-14">Enum Values</a></h2>
-<h3 id="ip_protocol-ipprotocol-2"><a class="header" href="#ip_protocol-ipprotocol-2">ip_protocol (IpProtocol)</a></h3>
+<h2 id="enum-values-17"><a class="header" href="#enum-values-17">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-3"><a class="header" href="#ip_protocol-ipprotocol-3">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -3429,7 +3718,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>[Default VPC] The name of the security group. For security groups for a default VPC you can specify either the ID or the name of the security group. For security groups for a nondefault VPC, you must specify the ID of the security group.</p>
 <h3 id="ip_protocol-3"><a class="header" href="#ip_protocol-3"><code>ip_protocol</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-3">Enum (IpProtocol)</a></li>
+<li><strong>Type:</strong> <a href="#ip_protocol-ipprotocol-4">Enum (IpProtocol)</a></li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers). To specify all protocols, use -1. To specify icmpv6, use IP permissions instead. If you specify a protocol other than one of the supported values, traffic is allowed on all ports, regardless of any ports that you specify. To specify multiple rules and descriptions for the rules, use IP permissions instead.</p>
@@ -3463,8 +3752,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of the source security group.</p>
-<h2 id="enum-values-15"><a class="header" href="#enum-values-15">Enum Values</a></h2>
-<h3 id="ip_protocol-ipprotocol-3"><a class="header" href="#ip_protocol-ipprotocol-3">ip_protocol (IpProtocol)</a></h3>
+<h2 id="enum-values-18"><a class="header" href="#enum-values-18">Enum Values</a></h2>
+<h3 id="ip_protocol-ipprotocol-4"><a class="header" href="#ip_protocol-ipprotocol-4">ip_protocol (IpProtocol)</a></h3>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -3680,7 +3969,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the resource.</p>
-<h2 id="enum-values-16"><a class="header" href="#enum-values-16">Enum Values</a></h2>
+<h2 id="enum-values-19"><a class="header" href="#enum-values-19">Enum Values</a></h2>
 <h3 id="instance_tenancy-instancetenancy-1"><a class="header" href="#instance_tenancy-instancetenancy-1">instance_tenancy (InstanceTenancy)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -3775,7 +4064,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the resource.</p>
-<h2 id="enum-values-17"><a class="header" href="#enum-values-17">Enum Values</a></h2>
+<h2 id="enum-values-20"><a class="header" href="#enum-values-20">Enum Values</a></h2>
 <h3 id="acl-acl"><a class="header" href="#acl-acl">acl (ACL)</a></h3>
 <div class="table-wrapper">
 <table>

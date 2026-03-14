@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-338dad84.js";
+            window.path_to_searchindex_js = "../../searchindex-ef16c36a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -204,6 +204,59 @@
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="appliance_mode_support-appliancemodesupport"><a class="header" href="#appliance_mode_support-appliancemodesupport">appliance_mode_support (ApplianceModeSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.ApplianceModeSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.ApplianceModeSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>ApplianceModeSupport.enable</code></p>
+<h3 id="dns_support-dnssupport"><a class="header" href="#dns_support-dnssupport">dns_support (DnsSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.DnsSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.DnsSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>DnsSupport.enable</code></p>
+<h3 id="ipv6_support-ipv6support"><a class="header" href="#ipv6_support-ipv6support">ipv6_support (Ipv6Support)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.Ipv6Support.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.Ipv6Support.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>Ipv6Support.enable</code></p>
+<h3 id="security_group_referencing_support-securitygroupreferencingsupport"><a class="header" href="#security_group_referencing_support-securitygroupreferencingsupport">security_group_referencing_support (SecurityGroupReferencingSupport)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>enable</code></td><td><code>awscc.ec2.transit_gateway_attachment.SecurityGroupReferencingSupport.enable</code></td></tr>
+<tr><td><code>disable</code></td><td><code>awscc.ec2.transit_gateway_attachment.SecurityGroupReferencingSupport.disable</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>enable</code> or <code>SecurityGroupReferencingSupport.enable</code></p>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="options-1"><a class="header" href="#options-1">Options</a></h3>
 <div class="table-wrapper">
@@ -212,9 +265,9 @@
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>appliance_mode_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
+<tr><td><code>appliance_mode_support</code></td><td><a href="#appliance_mode_support-appliancemodesupport">Enum (ApplianceModeSupport)</a></td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
 <tr><td><code>dns_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable DNS Support for Vpc Attachment. Valid Values: enable</td></tr>
-<tr><td><code>ipv6_support</code></td><td>String</td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
+<tr><td><code>ipv6_support</code></td><td><a href="#ipv6_support-ipv6support">Enum (Ipv6Support)</a></td><td>No</td><td>Indicates whether to enable Ipv6 Support for Vpc Attachment. Valid Values: enable</td></tr>
 <tr><td><code>security_group_referencing_support</code></td><td>Enum</td><td>No</td><td>Indicates whether to enable Security Group referencing support for Vpc Attachment. Valid Values: ena…</td></tr>
 </tbody>
 </table>

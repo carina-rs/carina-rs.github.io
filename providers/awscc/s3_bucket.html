@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-338dad84.js";
+            window.path_to_searchindex_js = "../../searchindex-ef16c36a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -332,6 +332,19 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>Enabled</code> or <code>AbacStatus.Enabled</code></p>
+<h3 id="acceleration_status-accelerationstatus"><a class="header" href="#acceleration_status-accelerationstatus">acceleration_status (AccelerationStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.AccelerationStatus.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>awscc.s3.bucket.AccelerationStatus.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>AccelerationStatus.Enabled</code></p>
 <h3 id="access_control-accesscontrol"><a class="header" href="#access_control-accesscontrol">access_control (AccessControl)</a></h3>
 <div class="table-wrapper">
 <table>
@@ -351,6 +364,110 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </table>
 </div>
 <p>Shorthand formats: <code>AuthenticatedRead</code> or <code>AccessControl.AuthenticatedRead</code></p>
+<h3 id="status-status"><a class="header" href="#status-status">status (Status)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Disabled</code></td><td><code>awscc.s3.bucket.Status.Disabled</code></td></tr>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.Status.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Disabled</code> or <code>Status.Disabled</code></p>
+<h3 id="included_object_versions-includedobjectversions"><a class="header" href="#included_object_versions-includedobjectversions">included_object_versions (IncludedObjectVersions)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>All</code></td><td><code>awscc.s3.bucket.IncludedObjectVersions.All</code></td></tr>
+<tr><td><code>Current</code></td><td><code>awscc.s3.bucket.IncludedObjectVersions.Current</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>All</code> or <code>IncludedObjectVersions.All</code></p>
+<h3 id="optional_fields-optionalfields"><a class="header" href="#optional_fields-optionalfields">optional_fields (OptionalFields)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Size</code></td><td><code>awscc.s3.bucket.OptionalFields.Size</code></td></tr>
+<tr><td><code>LastModifiedDate</code></td><td><code>awscc.s3.bucket.OptionalFields.LastModifiedDate</code></td></tr>
+<tr><td><code>StorageClass</code></td><td><code>awscc.s3.bucket.OptionalFields.StorageClass</code></td></tr>
+<tr><td><code>ETag</code></td><td><code>awscc.s3.bucket.OptionalFields.ETag</code></td></tr>
+<tr><td><code>IsMultipartUploaded</code></td><td><code>awscc.s3.bucket.OptionalFields.IsMultipartUploaded</code></td></tr>
+<tr><td><code>ReplicationStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.ReplicationStatus</code></td></tr>
+<tr><td><code>EncryptionStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.EncryptionStatus</code></td></tr>
+<tr><td><code>ObjectLockRetainUntilDate</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockRetainUntilDate</code></td></tr>
+<tr><td><code>ObjectLockMode</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockMode</code></td></tr>
+<tr><td><code>ObjectLockLegalHoldStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectLockLegalHoldStatus</code></td></tr>
+<tr><td><code>IntelligentTieringAccessTier</code></td><td><code>awscc.s3.bucket.OptionalFields.IntelligentTieringAccessTier</code></td></tr>
+<tr><td><code>BucketKeyStatus</code></td><td><code>awscc.s3.bucket.OptionalFields.BucketKeyStatus</code></td></tr>
+<tr><td><code>ChecksumAlgorithm</code></td><td><code>awscc.s3.bucket.OptionalFields.ChecksumAlgorithm</code></td></tr>
+<tr><td><code>ObjectAccessControlList</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectAccessControlList</code></td></tr>
+<tr><td><code>ObjectOwner</code></td><td><code>awscc.s3.bucket.OptionalFields.ObjectOwner</code></td></tr>
+<tr><td><code>LifecycleExpirationDate</code></td><td><code>awscc.s3.bucket.OptionalFields.LifecycleExpirationDate</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Size</code> or <code>OptionalFields.Size</code></p>
+<h3 id="schedule_frequency-schedulefrequency"><a class="header" href="#schedule_frequency-schedulefrequency">schedule_frequency (ScheduleFrequency)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Daily</code></td><td><code>awscc.s3.bucket.ScheduleFrequency.Daily</code></td></tr>
+<tr><td><code>Weekly</code></td><td><code>awscc.s3.bucket.ScheduleFrequency.Weekly</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Daily</code> or <code>ScheduleFrequency.Daily</code></p>
+<h3 id="transition_default_minimum_object_size-transitiondefaultminimumobjectsize"><a class="header" href="#transition_default_minimum_object_size-transitiondefaultminimumobjectsize">transition_default_minimum_object_size (TransitionDefaultMinimumObjectSize)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>varies_by_storage_class</code></td><td><code>awscc.s3.bucket.TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></td></tr>
+<tr><td><code>all_storage_classes_128K</code></td><td><code>awscc.s3.bucket.TransitionDefaultMinimumObjectSize.all_storage_classes_128K</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>varies_by_storage_class</code> or <code>TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></p>
+<h3 id="object_lock_enabled-objectlockenabled"><a class="header" href="#object_lock_enabled-objectlockenabled">object_lock_enabled (ObjectLockEnabled)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.ObjectLockEnabled.Enabled</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>ObjectLockEnabled.Enabled</code></p>
+<h3 id="status-status-1"><a class="header" href="#status-status-1">status (Status)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>awscc.s3.bucket.Status.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>awscc.s3.bucket.Status.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>Status.Enabled</code></p>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="accelerateconfiguration"><a class="header" href="#accelerateconfiguration">AccelerateConfiguration</a></h3>
 <div class="table-wrapper">
@@ -425,7 +542,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>enabled</code></td><td>Bool</td><td>Yes</td><td>Specifies whether the inventory is enabled or disabled. If set to <code>True</code>, an inventory list is gen…</td></tr>
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the inventory configuration.</td></tr>
 <tr><td><code>included_object_versions</code></td><td>Enum</td><td>Yes</td><td>Object versions to include in the inventory list. If set to <code>All</code>, the list includes all the objec…</td></tr>
-<tr><td><code>optional_fields</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
+<tr><td><code>optional_fields</code></td><td>List&lt;<a href="#optional_fields-optionalfields">Enum (OptionalFields)</a>&gt;</td><td>No</td><td>Contains the optional fields that are included in the inventory results.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Specifies the inventory filter prefix.</td></tr>
 <tr><td><code>schedule_frequency</code></td><td>Enum</td><td>Yes</td><td>Specifies the schedule for generating inventory results.</td></tr>
 </tbody>
@@ -515,7 +632,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>object_lock_enabled</code></td><td>String</td><td>No</td><td>Indicates whether this bucket has an Object Lock configuration enabled. Enable <code>ObjectLockEnabled</code>…</td></tr>
+<tr><td><code>object_lock_enabled</code></td><td><a href="#object_lock_enabled-objectlockenabled">Enum (ObjectLockEnabled)</a></td><td>No</td><td>Indicates whether this bucket has an Object Lock configuration enabled. Enable <code>ObjectLockEnabled</code>…</td></tr>
 <tr><td><code>rule</code></td><td><a href="#objectlockrule">Struct(ObjectLockRule)</a></td><td>No</td><td>Specifies the Object Lock rule for the specified object. Enable this rule when you apply ``ObjectLoc…</td></tr>
 </tbody>
 </table>

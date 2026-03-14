@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-338dad84.js";
+            window.path_to_searchindex_js = "../../searchindex-ef16c36a.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -300,6 +300,34 @@ awscc.ec2.subnet {
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC the subnet is in. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="internet_gateway_block_mode-internetgatewayblockmode"><a class="header" href="#internet_gateway_block_mode-internetgatewayblockmode">internet_gateway_block_mode (InternetGatewayBlockMode)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>off</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.off</code></td></tr>
+<tr><td><code>block-bidirectional</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.block_bidirectional</code></td></tr>
+<tr><td><code>block-ingress</code></td><td><code>awscc.ec2.subnet.InternetGatewayBlockMode.block_ingress</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>off</code> or <code>InternetGatewayBlockMode.off</code></p>
+<h3 id="hostname_type-hostnametype"><a class="header" href="#hostname_type-hostnametype">hostname_type (HostnameType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ip-name</code></td><td><code>awscc.ec2.subnet.HostnameType.ip_name</code></td></tr>
+<tr><td><code>resource-name</code></td><td><code>awscc.ec2.subnet.HostnameType.resource_name</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ip_name</code> or <code>HostnameType.ip_name</code></p>
 <h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
 <h3 id="blockpublicaccessstates"><a class="header" href="#blockpublicaccessstates">BlockPublicAccessStates</a></h3>
 <div class="table-wrapper">
@@ -308,7 +336,7 @@ awscc.ec2.subnet {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>internet_gateway_block_mode</code></td><td>String</td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
+<tr><td><code>internet_gateway_block_mode</code></td><td><a href="#internet_gateway_block_mode-internetgatewayblockmode">Enum (InternetGatewayBlockMode)</a></td><td>No</td><td>The mode of VPC BPA. Options here are off, block-bidirectional, block-ingress</td></tr>
 </tbody>
 </table>
 </div>
