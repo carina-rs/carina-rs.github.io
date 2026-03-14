@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-a3e40c21.js";
+            window.path_to_searchindex_js = "searchindex-6f21f202.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-ae9d83cd.js"></script>
@@ -291,7 +291,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <h2 id="argument-reference-1"><a class="header" href="#argument-reference-1">Argument Reference</a></h2>
 <h3 id="address"><a class="header" href="#address"><code>address</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="domain"><a class="header" href="#domain"><code>domain</code></a></h3>
@@ -331,7 +331,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <p>Any tags assigned to the Elastic IP address. Updates to the <code>Tags</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="transfer_address"><a class="header" href="#transfer_address"><code>transfer_address</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</p>
@@ -399,7 +399,7 @@ awscc.ec2.flow_log {
 </ul>
 <h3 id="log_destination"><a class="header" href="#log_destination"><code>log_destination</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group, an Amazon S3 bucket, or a Kinesis Firehose stream. The value specified for this parameter depends on the value specified for LogDestinationType.</p>
@@ -628,7 +628,7 @@ awscc.ec2.ipam_pool {
 <p>The Id of the scope this pool is a part of.</p>
 <h3 id="locale"><a class="header" href="#locale"><code>locale</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
@@ -758,7 +758,7 @@ awscc.ec2.ipam_pool {
 <tbody>
 <tr><td><code>resource_id</code></td><td>String</td><td>Yes</td><td></td></tr>
 <tr><td><code>resource_owner</code></td><td>String</td><td>Yes</td><td></td></tr>
-<tr><td><code>resource_region</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>resource_region</code></td><td>Region</td><td>Yes</td><td></td></tr>
 <tr><td><code>resource_type</code></td><td>String</td><td>Yes</td><td></td></tr>
 </tbody>
 </table>
@@ -893,7 +893,7 @@ awscc.ec2.ipam_pool {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>region_name</code></td><td>String</td><td>Yes</td><td>The name of the region.</td></tr>
+<tr><td><code>region_name</code></td><td>Region</td><td>Yes</td><td>The name of the region.</td></tr>
 </tbody>
 </table>
 </div>
@@ -2191,7 +2191,7 @@ awscc.ec2.vpc_endpoint {
 <p>The Amazon Resource Name (ARN) of the service network.</p>
 <h3 id="service_region"><a class="header" href="#service_region"><code>service_region</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Describes a Region.</p>
@@ -2349,6 +2349,12 @@ awscc.ec2.vpc_peering_connection {
 }
 </code></pre>
 <h2 id="argument-reference-18"><a class="header" href="#argument-reference-18">Argument Reference</a></h2>
+<h3 id="assume_role_region"><a class="header" href="#assume_role_region"><code>assume_role_region</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Region</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided.</p>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsAccountId</li>
@@ -2357,7 +2363,7 @@ awscc.ec2.vpc_peering_connection {
 <p>The AWS account ID of the owner of the accepter VPC.</p>
 <h3 id="peer_region"><a class="header" href="#peer_region"><code>peer_region</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>
@@ -3070,7 +3076,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>role</code></td><td>String</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the IAMlong (IAM) role that Amazon S3 assumes when replicating obj…</td></tr>
+<tr><td><code>role</code></td><td>IamRoleArn</td><td>Yes</td><td>The Amazon Resource Name (ARN) of the IAMlong (IAM) role that Amazon S3 assumes when replicating obj…</td></tr>
 <tr><td><code>rules</code></td><td><a href="#replicationrule">List&lt;ReplicationRule&gt;</a></td><td>Yes</td><td>A container for one or more replication rules. A replication configuration must have at least one ru…</td></tr>
 </tbody>
 </table>

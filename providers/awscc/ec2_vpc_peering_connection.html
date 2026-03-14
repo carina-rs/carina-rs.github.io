@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a3e40c21.js";
+            window.path_to_searchindex_js = "../../searchindex-6f21f202.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -196,6 +196,12 @@ awscc.ec2.vpc_peering_connection {
 }
 </code></pre>
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
+<h3 id="assume_role_region"><a class="header" href="#assume_role_region"><code>assume_role_region</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Region</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided.</p>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsAccountId</li>
@@ -204,7 +210,7 @@ awscc.ec2.vpc_peering_connection {
 <p>The AWS account ID of the owner of the accepter VPC.</p>
 <h3 id="peer_region"><a class="header" href="#peer_region"><code>peer_region</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>

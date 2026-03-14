@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-a3e40c21.js";
+            window.path_to_searchindex_js = "../../searchindex-6f21f202.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -262,7 +262,7 @@ awscc.ec2.ipam_pool {
 <p>The Id of the scope this pool is a part of.</p>
 <h3 id="locale"><a class="header" href="#locale"><code>locale</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
@@ -392,7 +392,7 @@ awscc.ec2.ipam_pool {
 <tbody>
 <tr><td><code>resource_id</code></td><td>String</td><td>Yes</td><td></td></tr>
 <tr><td><code>resource_owner</code></td><td>String</td><td>Yes</td><td></td></tr>
-<tr><td><code>resource_region</code></td><td>String</td><td>Yes</td><td></td></tr>
+<tr><td><code>resource_region</code></td><td>Region</td><td>Yes</td><td></td></tr>
 <tr><td><code>resource_type</code></td><td>String</td><td>Yes</td><td></td></tr>
 </tbody>
 </table>
