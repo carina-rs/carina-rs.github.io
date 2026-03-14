@@ -37,7 +37,7 @@
             const path_to_root = "../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-75fd3b79.js";
+            window.path_to_searchindex_js = "../../searchindex-338dad84.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../toc-ae9d83cd.js"></script>
@@ -252,7 +252,7 @@ awscc.ec2.nat_gateway {
 <p>Secondary EIP allocation IDs. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-working-with.html">Create a NAT gateway</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="secondary_private_ip_address_count"><a class="header" href="#secondary_private_ip_address_count"><code>secondary_private_ip_address_count</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Int</li>
+<li><strong>Type:</strong> Int(1..)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating">Create a NAT gateway</a> in the <em>Amazon Virtual Private Cloud User Guide</em>. <code>SecondaryPrivateIpAddressCount</code> and <code>SecondaryPrivateIpAddresses</code> cannot be set at the same time.</p>
