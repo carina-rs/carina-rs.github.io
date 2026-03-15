@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-7ea68c18.js";
+            window.path_to_searchindex_js = "searchindex-f1bc2bb1.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -4232,8 +4232,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>noncurrent_version_expiration_in_days</code></td><td>Int</td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, betwe…</td></tr>
 <tr><td><code>noncurrent_version_transition</code></td><td><a href="#noncurrentversiontransition">Struct(NoncurrentVersionTransition)</a></td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects…</td></tr>
 <tr><td><code>noncurrent_version_transitions</code></td><td><a href="#noncurrentversiontransition">List&lt;NoncurrentVersionTransition&gt;</a></td><td>No</td><td>For buckets with versioning enabled (or suspended), one or more transition rules that specify when n…</td></tr>
-<tr><td><code>object_size_greater_than</code></td><td>String(len: ..=20)</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
-<tr><td><code>object_size_less_than</code></td><td>String(len: ..=20)</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
+<tr><td><code>object_size_greater_than</code></td><td>NumericString</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
+<tr><td><code>object_size_less_than</code></td><td>NumericString</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Object key prefix that identifies one or more objects to which this rule applies. Replacement must b…</td></tr>
 <tr><td><code>status</code></td><td><a href="#status-rulestatus">Enum (RuleStatus)</a></td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently bein…</td></tr>
 <tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>
@@ -4420,7 +4420,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </ul>
 <h3 id="website_url"><a class="header" href="#website_url"><code>website_url</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> String(uri)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="aws-provider"><a class="header" href="#aws-provider">AWS Provider</a></h1>
