@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-a3e7a07d.js";
+            window.path_to_searchindex_js = "searchindex-0b1b51b8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-ae9d83cd.js"></script>
+        <script src="toc-2a52bd42.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -2530,6 +2530,12 @@ awscc.ec2.vpc_peering_connection {
 }
 </code></pre>
 <h2 id="argument-reference-18"><a class="header" href="#argument-reference-18">Argument Reference</a></h2>
+<h3 id="assume_role_region"><a class="header" href="#assume_role_region"><code>assume_role_region</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Region</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided.</p>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsAccountId</li>
@@ -4450,6 +4456,23 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2internet_gateway"><a class="header" href="#awsec2internet_gateway">aws.ec2.internet_gateway</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::InternetGateway</code></p>
 <p>Describes an internet gateway.</p>
+<h2 id="example-24"><a class="header" href="#example-24">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let igw = aws.ec2.internet_gateway {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-24"><a class="header" href="#argument-reference-24">Argument Reference</a></h2>
 <h3 id="tags-19"><a class="header" href="#tags-19"><code>tags</code></a></h3>
 <ul>
@@ -4466,6 +4489,23 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2route_table"><a class="header" href="#awsec2route_table">aws.ec2.route_table</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::RouteTable</code></p>
 <p>Describes a route table.</p>
+<h2 id="example-25"><a class="header" href="#example-25">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let rt = aws.ec2.route_table {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-25"><a class="header" href="#argument-reference-25">Argument Reference</a></h2>
 <h3 id="vpc_id-10"><a class="header" href="#vpc_id-10"><code>vpc_id</code></a></h3>
 <ul>
@@ -4488,6 +4528,37 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2route"><a class="header" href="#awsec2route">aws.ec2.route</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::Route</code></p>
 <p>Describes a route in a route table.</p>
+<h2 id="example-26"><a class="header" href="#example-26">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let igw = aws.ec2.internet_gateway {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let rt = aws.ec2.route_table {
+  vpc_id = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let route = aws.ec2.route {
+  route_table_id         = rt.route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = igw.internet_gateway_id
+}
+</code></pre>
 <h2 id="argument-reference-26"><a class="header" href="#argument-reference-26">Argument Reference</a></h2>
 <h3 id="carrier_gateway_id-1"><a class="header" href="#carrier_gateway_id-1"><code>carrier_gateway_id</code></a></h3>
 <ul>
@@ -4583,6 +4654,34 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2security_group_egress"><a class="header" href="#awsec2security_group_egress">aws.ec2.security_group_egress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
 <p>Describes a security group rule.</p>
+<h2 id="example-27"><a class="header" href="#example-27">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let sg = aws.ec2.security_group {
+  group_name  = "carina-example-sg-egress"
+  description = "SG for egress rule example"
+  vpc_id      = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let egress = aws.ec2.security_group_egress {
+  group_id    = sg.group_id
+  description = "Allow HTTPS outbound"
+  ip_protocol = tcp
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "0.0.0.0/0"
+}
+</code></pre>
 <h2 id="argument-reference-27"><a class="header" href="#argument-reference-27">Argument Reference</a></h2>
 <h3 id="cidr_ip-2"><a class="header" href="#cidr_ip-2"><code>cidr_ip</code></a></h3>
 <ul>
@@ -4676,6 +4775,34 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2security_group_ingress"><a class="header" href="#awsec2security_group_ingress">aws.ec2.security_group_ingress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupIngress</code></p>
 <p>Describes a security group rule.</p>
+<h2 id="example-28"><a class="header" href="#example-28">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let sg = aws.ec2.security_group {
+  group_name  = "carina-example-sg-ingress"
+  description = "SG for ingress rule example"
+  vpc_id      = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let ingress = aws.ec2.security_group_ingress {
+  group_id    = sg.group_id
+  description = "Allow HTTPS from VPC"
+  ip_protocol = tcp
+  from_port   = 443
+  to_port     = 443
+  cidr_ip     = "10.0.0.0/16"
+}
+</code></pre>
 <h2 id="argument-reference-28"><a class="header" href="#argument-reference-28">Argument Reference</a></h2>
 <h3 id="cidr_ip-3"><a class="header" href="#cidr_ip-3"><code>cidr_ip</code></a></h3>
 <ul>
@@ -4775,6 +4902,25 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2security_group"><a class="header" href="#awsec2security_group">aws.ec2.security_group</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroup</code></p>
 <p>Describes a security group.</p>
+<h2 id="example-29"><a class="header" href="#example-29">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let sg = aws.ec2.security_group {
+  group_name  = "carina-example-sg"
+  description = "Example security group"
+  vpc_id      = vpc.vpc_id
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-29"><a class="header" href="#argument-reference-29">Argument Reference</a></h2>
 <h3 id="description-8"><a class="header" href="#description-8"><code>description</code></a></h3>
 <ul>
@@ -4809,6 +4955,25 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2subnet"><a class="header" href="#awsec2subnet">aws.ec2.subnet</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::Subnet</code></p>
 <p>Describes a subnet.</p>
+<h2 id="example-30"><a class="header" href="#example-30">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Environment = "example"
+  }
+}
+
+let subnet = aws.ec2.subnet {
+  vpc_id            = vpc.vpc_id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = aws.AvailabilityZone.ap_northeast_1a
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-30"><a class="header" href="#argument-reference-30">Argument Reference</a></h2>
 <h3 id="assign_ipv6_address_on_creation-1"><a class="header" href="#assign_ipv6_address_on_creation-1"><code>assign_ipv6_address_on_creation</code></a></h3>
 <ul>
@@ -4935,6 +5100,18 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <h1 id="awsec2vpc"><a class="header" href="#awsec2vpc">aws.ec2.vpc</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::VPC</code></p>
 <p>Describes a VPC.</p>
+<h2 id="example-31"><a class="header" href="#example-31">Example</a></h2>
+<pre><code class="language-crn">let vpc = aws.ec2.vpc {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+  instance_tenancy     = aws.ec2.vpc.InstanceTenancy.default
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-31"><a class="header" href="#argument-reference-31">Argument Reference</a></h2>
 <h3 id="cidr_block-4"><a class="header" href="#cidr_block-4"><code>cidr_block</code></a></h3>
 <ul>
@@ -4989,6 +5166,17 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awss3bucket"><a class="header" href="#awss3bucket">aws.s3.bucket</a></h1>
 <p>CloudFormation Type: <code>AWS::S3::Bucket</code></p>
+<h2 id="example-32"><a class="header" href="#example-32">Example</a></h2>
+<pre><code class="language-crn">let bucket = aws.s3.bucket {
+  bucket = "carina-example-s3-bucket"
+
+  versioning_status = aws.s3.bucket.VersioningStatus.Enabled
+
+  tags = {
+    Environment = "example"
+  }
+}
+</code></pre>
 <h2 id="argument-reference-32"><a class="header" href="#argument-reference-32">Argument Reference</a></h2>
 <h3 id="acl"><a class="header" href="#acl"><code>acl</code></a></h3>
 <ul>

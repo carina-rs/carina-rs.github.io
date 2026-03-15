@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>AWS Provider - Carina Documentation</title>
+        <title>awscc.ec2.flow_log - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -12,35 +12,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../css/general-2459343d.css">
-        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
-        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../../css/general-2459343d.css">
+        <link rel="stylesheet" href="../../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../.././theme/catppuccin.css">
-        <link rel="stylesheet" href="../.././theme/custom.css">
+        <link rel="stylesheet" href="../../.././theme/catppuccin.css">
+        <link rel="stylesheet" href="../../.././theme/custom.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../";
+            const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-0b1b51b8.js";
+            window.path_to_searchindex_js = "../../../searchindex-0b1b51b8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-2a52bd42.js"></script>
+        <script src="../../../toc-2a52bd42.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +107,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Carina Documentation</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,48 +174,186 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="aws-provider"><a class="header" href="#aws-provider">AWS Provider</a></h1>
-<p>The <code>aws</code> provider manages AWS resources through native AWS SDK APIs (EC2, S3).</p>
-<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
-<pre><code class="language-crn">provider aws {
-  region = aws.Region.ap_northeast_1
-}
-</code></pre>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Resources are defined using the <code>aws.&lt;resource_type&gt;</code> syntax:</p>
-<pre><code class="language-crn">let vpc = aws.ec2_vpc {
-  name       = "my-vpc"
+                        <h1 id="awsccec2flow_log"><a class="header" href="#awsccec2flow_log">awscc.ec2.flow_log</a></h1>
+<p>CloudFormation Type: <code>AWS::EC2::FlowLog</code></p>
+<p>Specifies a VPC flow log, which enables you to capture IP traffic for a specific network interface, subnet, or VPC.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let vpc = awscc.ec2.vpc {
   cidr_block = "10.0.0.0/16"
+}
+
+awscc.ec2.flow_log {
+  resource_id          = vpc.vpc_id
+  resource_type        = VPC
+  traffic_type         = ALL
+  log_destination_type = s3
+  log_destination      = "arn:aws:s3:::example-flow-logs-bucket"
+
   tags = {
-    Environment = "production"
+    Environment = "example"
   }
 }
 </code></pre>
-<p>Named resources (using <code>let</code>) can be referenced by other resources:</p>
-<pre><code class="language-crn">let subnet = aws.ec2_subnet {
-  name              = "my-subnet"
-  vpc_id            = vpc.vpc_id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "ap-northeast-1a"
-}
-</code></pre>
-<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
-<p>Some attributes accept enum values. These can be specified in three formats:</p>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
+<h3 id="deliver_cross_account_role"><a class="header" href="#deliver_cross_account_role"><code>deliver_cross_account_role</code></a></h3>
 <ul>
-<li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
-<li><strong>TypeName.value</strong>: <code>instance_tenancy = InstanceTenancy.default</code></li>
-<li><strong>Full namespace</strong>: <code>instance_tenancy = aws.ec2_vpc.InstanceTenancy.default</code></li>
+<li><strong>Type:</strong> IamRoleArn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ARN of the IAM role that allows Amazon EC2 to publish flow logs across accounts.</p>
+<h3 id="deliver_logs_permission_arn"><a class="header" href="#deliver_logs_permission_arn"><code>deliver_logs_permission_arn</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IamRoleArn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
+<h3 id="destination_options"><a class="header" href="#destination_options"><code>destination_options</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#destinationoptions">Struct(DestinationOptions)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="log_destination"><a class="header" href="#log_destination"><code>log_destination</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Arn</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group, an Amazon S3 bucket, or a Kinesis Firehose stream. The value specified for this parameter depends on the value specified for LogDestinationType.</p>
+<h3 id="log_destination_type"><a class="header" href="#log_destination_type"><code>log_destination_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#log_destination_type-logdestinationtype">Enum (LogDestinationType)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3.</p>
+<h3 id="log_format"><a class="header" href="#log_format"><code>log_format</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The fields to include in the flow log record, in the order in which they should appear.</p>
+<h3 id="log_group_name"><a class="header" href="#log_group_name"><code>log_group_name</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs. If you specify LogDestinationType as s3 or kinesis-data-firehose, do not specify DeliverLogsPermissionArn or LogGroupName.</p>
+<h3 id="max_aggregation_interval"><a class="header" href="#max_aggregation_interval"><code>max_aggregation_interval</code></a></h3>
+<ul>
+<li><strong>Type:</strong> IntEnum([60, 600])</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. You can specify 60 seconds (1 minute) or 600 seconds (10 minutes).</p>
+<h3 id="resource_id"><a class="header" href="#resource_id"><code>resource_id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The ID of the subnet, network interface, or VPC for which you want to create a flow log.</p>
+<h3 id="resource_type"><a class="header" href="#resource_type"><code>resource_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#resource_type-resourcetype">Enum (ResourceType)</a></li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The type of resource for which to create the flow log. For example, if you specified a VPC ID for the ResourceId property, specify VPC for this property.</p>
+<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags to apply to the flow logs.</p>
+<h3 id="traffic_type"><a class="header" href="#traffic_type"><code>traffic_type</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#traffic_type-traffictype">Enum (TrafficType)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic.</p>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="file_format-fileformat"><a class="header" href="#file_format-fileformat">file_format (FileFormat)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>plain-text</code></td><td><code>awscc.ec2.flow_log.FileFormat.plain_text</code></td></tr>
+<tr><td><code>parquet</code></td><td><code>awscc.ec2.flow_log.FileFormat.parquet</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>plain_text</code> or <code>FileFormat.plain_text</code></p>
+<h3 id="log_destination_type-logdestinationtype"><a class="header" href="#log_destination_type-logdestinationtype">log_destination_type (LogDestinationType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>cloud-watch-logs</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.cloud_watch_logs</code></td></tr>
+<tr><td><code>s3</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.s3</code></td></tr>
+<tr><td><code>kinesis-data-firehose</code></td><td><code>awscc.ec2.flow_log.LogDestinationType.kinesis_data_firehose</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>cloud_watch_logs</code> or <code>LogDestinationType.cloud_watch_logs</code></p>
+<h3 id="resource_type-resourcetype"><a class="header" href="#resource_type-resourcetype">resource_type (ResourceType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>NetworkInterface</code></td><td><code>awscc.ec2.flow_log.ResourceType.NetworkInterface</code></td></tr>
+<tr><td><code>Subnet</code></td><td><code>awscc.ec2.flow_log.ResourceType.Subnet</code></td></tr>
+<tr><td><code>VPC</code></td><td><code>awscc.ec2.flow_log.ResourceType.VPC</code></td></tr>
+<tr><td><code>TransitGateway</code></td><td><code>awscc.ec2.flow_log.ResourceType.TransitGateway</code></td></tr>
+<tr><td><code>TransitGatewayAttachment</code></td><td><code>awscc.ec2.flow_log.ResourceType.TransitGatewayAttachment</code></td></tr>
+<tr><td><code>RegionalNatGateway</code></td><td><code>awscc.ec2.flow_log.ResourceType.RegionalNatGateway</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>NetworkInterface</code> or <code>ResourceType.NetworkInterface</code></p>
+<h3 id="traffic_type-traffictype"><a class="header" href="#traffic_type-traffictype">traffic_type (TrafficType)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>ACCEPT</code></td><td><code>awscc.ec2.flow_log.TrafficType.ACCEPT</code></td></tr>
+<tr><td><code>ALL</code></td><td><code>awscc.ec2.flow_log.TrafficType.ALL</code></td></tr>
+<tr><td><code>REJECT</code></td><td><code>awscc.ec2.flow_log.TrafficType.REJECT</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>ACCEPT</code> or <code>TrafficType.ACCEPT</code></p>
+<h2 id="struct-definitions"><a class="header" href="#struct-definitions">Struct Definitions</a></h2>
+<h3 id="destinationoptions"><a class="header" href="#destinationoptions">DestinationOptions</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td><code>file_format</code></td><td><a href="#file_format-fileformat">Enum (FileFormat)</a></td><td>Yes</td><td></td></tr>
+<tr><td><code>hive_compatible_partitions</code></td><td>Bool</td><td>Yes</td><td></td></tr>
+<tr><td><code>per_hour_partition</code></td><td>Bool</td><td>Yes</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>
+<h3 id="id"><a class="header" href="#id"><code>id</code></a></h3>
+<ul>
+<li><strong>Type:</strong> FlowLogId</li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../providers/awscc/s3/bucket.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../providers/awscc/ec2/eip.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../providers/aws/ec2/internet_gateway.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../providers/awscc/ec2/internet_gateway.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -225,11 +363,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../providers/awscc/s3/bucket.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../providers/awscc/ec2/eip.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../providers/aws/ec2/internet_gateway.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../providers/awscc/ec2/internet_gateway.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -249,16 +387,16 @@
         </script>
 
 
-        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../../mark-09e88c2c.min.js"></script>
-        <script src="../../searcher-c2a407aa.js"></script>
+        <script src="../../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../../mark-09e88c2c.min.js"></script>
+        <script src="../../../searcher-c2a407aa.js"></script>
 
-        <script src="../../clipboard-1626706a.min.js"></script>
-        <script src="../../highlight-61f896a8.js"></script>
-        <script src="../../book-a0b12cfe.js"></script>
+        <script src="../../../clipboard-1626706a.min.js"></script>
+        <script src="../../../highlight-61f896a8.js"></script>
+        <script src="../../../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../.././theme/sidebar-filter.js"></script>
+        <script src="../../.././theme/sidebar-filter.js"></script>
 
 
 

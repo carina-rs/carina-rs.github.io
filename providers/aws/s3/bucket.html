@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>AWS Provider - Carina Documentation</title>
+        <title>aws.s3.bucket - Carina Documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -12,35 +12,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../css/general-2459343d.css">
-        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
-        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../../css/general-2459343d.css">
+        <link rel="stylesheet" href="../../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../../../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-275cfee9.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-615d99a6.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-cdf89140.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../../highlight-275cfee9.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../../tomorrow-night-615d99a6.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../../ayu-highlight-cdf89140.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../.././theme/catppuccin.css">
-        <link rel="stylesheet" href="../.././theme/custom.css">
+        <link rel="stylesheet" href="../../.././theme/catppuccin.css">
+        <link rel="stylesheet" href="../../.././theme/custom.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../../";
+            const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../searchindex-0b1b51b8.js";
+            window.path_to_searchindex_js = "../../../searchindex-0b1b51b8.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-2a52bd42.js"></script>
+        <script src="../../../toc-2a52bd42.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +107,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">Carina Documentation</h1>
 
                     <div class="right-buttons">
-                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,48 +174,157 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="aws-provider"><a class="header" href="#aws-provider">AWS Provider</a></h1>
-<p>The <code>aws</code> provider manages AWS resources through native AWS SDK APIs (EC2, S3).</p>
-<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
-<pre><code class="language-crn">provider aws {
-  region = aws.Region.ap_northeast_1
-}
-</code></pre>
-<h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
-<p>Resources are defined using the <code>aws.&lt;resource_type&gt;</code> syntax:</p>
-<pre><code class="language-crn">let vpc = aws.ec2_vpc {
-  name       = "my-vpc"
-  cidr_block = "10.0.0.0/16"
+                        <h1 id="awss3bucket"><a class="header" href="#awss3bucket">aws.s3.bucket</a></h1>
+<p>CloudFormation Type: <code>AWS::S3::Bucket</code></p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<pre><code class="language-crn">let bucket = aws.s3.bucket {
+  bucket = "carina-example-s3-bucket"
+
+  versioning_status = aws.s3.bucket.VersioningStatus.Enabled
+
   tags = {
-    Environment = "production"
+    Environment = "example"
   }
 }
 </code></pre>
-<p>Named resources (using <code>let</code>) can be referenced by other resources:</p>
-<pre><code class="language-crn">let subnet = aws.ec2_subnet {
-  name              = "my-subnet"
-  vpc_id            = vpc.vpc_id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "ap-northeast-1a"
-}
-</code></pre>
-<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
-<p>Some attributes accept enum values. These can be specified in three formats:</p>
+<h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
+<h3 id="acl"><a class="header" href="#acl"><code>acl</code></a></h3>
 <ul>
-<li><strong>Bare value</strong>: <code>instance_tenancy = default</code></li>
-<li><strong>TypeName.value</strong>: <code>instance_tenancy = InstanceTenancy.default</code></li>
-<li><strong>Full namespace</strong>: <code>instance_tenancy = aws.ec2_vpc.InstanceTenancy.default</code></li>
+<li><strong>Type:</strong> <a href="#acl-acl">Enum (ACL)</a></li>
+<li><strong>Required:</strong> No</li>
 </ul>
+<p>The canned ACL to apply to the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="bucket"><a class="header" href="#bucket"><code>bucket</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> Yes</li>
+</ul>
+<p>The name of the bucket to create. General purpose buckets - For information about bucket naming restrictions, see Bucket naming rules in the Amazon S3 User Guide. Directory buckets - When you use this operation with a directory bucket, you must use path-style requests in the format https://s3express-control.region-code.amazonaws.com/bucket-name . Virtual-hosted-style requests aren’t supported. Directory bucket names must be unique in the chosen Zone (Availability Zone or Local Zone). Bucket names must also follow the format bucket-base-name–zone-id–x-s3 (for example, DOC-EXAMPLE-BUCKET–usw2-az1–x-s3). For information about bucket naming restrictions, see Directory bucket naming rules in the Amazon S3 User Guide</p>
+<h3 id="bucket_namespace"><a class="header" href="#bucket_namespace"><code>bucket_namespace</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#bucket_namespace-bucketnamespace">Enum (BucketNamespace)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies the namespace where you want to create your general purpose bucket. When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace. Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in. For more information on bucket namespaces, see Namespaces for general purpose buckets. General purpose buckets in your account regional namespace must follow a specific naming convention. These buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with -an. Bucket names must follow the format bucket-name-prefix-accountId-region-an (for example, amzn-s3-demo-bucket-111122223333-us-west-2-an). For information about bucket naming restrictions, see Account regional namespace naming rules in the Amazon S3 User Guide. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_read"><a class="header" href="#grant_read"><code>grant_read</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_read_acp"><a class="header" href="#grant_read_acp"><code>grant_read_acp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_write"><a class="header" href="#grant_write"><code>grant_write</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.</p>
+<h3 id="grant_write_acp"><a class="header" href="#grant_write_acp"><code>grant_write_acp</code></a></h3>
+<ul>
+<li><strong>Type:</strong> String</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="object_lock_enabled_for_bucket"><a class="header" href="#object_lock_enabled_for_bucket"><code>object_lock_enabled_for_bucket</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Bool</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>Specifies whether you want S3 Object Lock to be enabled for the new bucket. This functionality is not supported for directory buckets.</p>
+<h3 id="object_ownership"><a class="header" href="#object_ownership"><code>object_ownership</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#object_ownership-objectownership">Enum (ObjectOwnership)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<h3 id="versioning_status"><a class="header" href="#versioning_status"><code>versioning_status</code></a></h3>
+<ul>
+<li><strong>Type:</strong> <a href="#versioning_status-versioningstatus">Enum (VersioningStatus)</a></li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The versioning state of the bucket.</p>
+<h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
+<ul>
+<li><strong>Type:</strong> Map</li>
+<li><strong>Required:</strong> No</li>
+</ul>
+<p>The tags for the resource.</p>
+<h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>
+<h3 id="acl-acl"><a class="header" href="#acl-acl">acl (ACL)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>authenticated-read</code></td><td><code>aws.s3.bucket.ACL.authenticated_read</code></td></tr>
+<tr><td><code>private</code></td><td><code>aws.s3.bucket.ACL.private</code></td></tr>
+<tr><td><code>public-read</code></td><td><code>aws.s3.bucket.ACL.public_read</code></td></tr>
+<tr><td><code>public-read-write</code></td><td><code>aws.s3.bucket.ACL.public_read_write</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>authenticated_read</code> or <code>ACL.authenticated_read</code></p>
+<h3 id="bucket_namespace-bucketnamespace"><a class="header" href="#bucket_namespace-bucketnamespace">bucket_namespace (BucketNamespace)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>account-regional</code></td><td><code>aws.s3.bucket.BucketNamespace.account_regional</code></td></tr>
+<tr><td><code>global</code></td><td><code>aws.s3.bucket.BucketNamespace.global</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>account_regional</code> or <code>BucketNamespace.account_regional</code></p>
+<h3 id="object_ownership-objectownership"><a class="header" href="#object_ownership-objectownership">object_ownership (ObjectOwnership)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>BucketOwnerEnforced</code></td><td><code>aws.s3.bucket.ObjectOwnership.BucketOwnerEnforced</code></td></tr>
+<tr><td><code>BucketOwnerPreferred</code></td><td><code>aws.s3.bucket.ObjectOwnership.BucketOwnerPreferred</code></td></tr>
+<tr><td><code>ObjectWriter</code></td><td><code>aws.s3.bucket.ObjectOwnership.ObjectWriter</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>BucketOwnerEnforced</code> or <code>ObjectOwnership.BucketOwnerEnforced</code></p>
+<h3 id="versioning_status-versioningstatus"><a class="header" href="#versioning_status-versioningstatus">versioning_status (VersioningStatus)</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Value</th><th>DSL Identifier</th></tr>
+</thead>
+<tbody>
+<tr><td><code>Enabled</code></td><td><code>aws.s3.bucket.VersioningStatus.Enabled</code></td></tr>
+<tr><td><code>Suspended</code></td><td><code>aws.s3.bucket.VersioningStatus.Suspended</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>Shorthand formats: <code>Enabled</code> or <code>VersioningStatus.Enabled</code></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../providers/awscc/s3/bucket.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../../providers/aws/ec2/vpc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../providers/aws/ec2/internet_gateway.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../providers/aws/sts/caller_identity.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -225,11 +334,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../providers/awscc/s3/bucket.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../../providers/aws/ec2/vpc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../providers/aws/ec2/internet_gateway.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../providers/aws/sts/caller_identity.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -249,16 +358,16 @@
         </script>
 
 
-        <script src="../../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../../mark-09e88c2c.min.js"></script>
-        <script src="../../searcher-c2a407aa.js"></script>
+        <script src="../../../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../../../mark-09e88c2c.min.js"></script>
+        <script src="../../../searcher-c2a407aa.js"></script>
 
-        <script src="../../clipboard-1626706a.min.js"></script>
-        <script src="../../highlight-61f896a8.js"></script>
-        <script src="../../book-a0b12cfe.js"></script>
+        <script src="../../../clipboard-1626706a.min.js"></script>
+        <script src="../../../highlight-61f896a8.js"></script>
+        <script src="../../../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../.././theme/sidebar-filter.js"></script>
+        <script src="../../.././theme/sidebar-filter.js"></script>
 
 
 
