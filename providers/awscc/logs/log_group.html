@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-b018cd44.js";
+            window.path_to_searchindex_js = "../../../searchindex-93271edf.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -204,6 +204,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <ul>
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Default:</strong> <code>false</code></li>
 </ul>
 <p>Indicates whether deletion protection is enabled for this log group. When enabled, deletion protection blocks all deletion operations until it is explicitly disabled.</p>
 <h3 id="field_index_policies"><a class="header" href="#field_index_policies"><code>field_index_policies</code></a></h3>
@@ -222,6 +223,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <ul>
 <li><strong>Type:</strong> <a href="#log_group_class-loggroupclass">Enum (LogGroupClass)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Default:</strong> <code>"STANDARD"</code></li>
 </ul>
 <p>Specifies the log group class for this log group. There are two classes: + The <code>Standard</code> log class supports all CWL features. + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs. For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
 <h3 id="log_group_name"><a class="header" href="#log_group_name"><code>log_group_name</code></a></h3>
