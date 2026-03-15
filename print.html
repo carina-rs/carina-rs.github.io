@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-50b75ba9.js";
+            window.path_to_searchindex_js = "searchindex-7ea68c18.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -917,7 +917,7 @@ awscc.ec2.ipam_pool {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>organizations_entity_path</code></td><td>String</td><td>Yes</td><td>An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated…</td></tr>
+<tr><td><code>organizations_entity_path</code></td><td>String(len: 1..)</td><td>Yes</td><td>An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated…</td></tr>
 </tbody>
 </table>
 </div>
@@ -944,7 +944,7 @@ awscc.ec2.ipam_pool {
 </ul>
 <h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> String(len: ..=255)</li>
 </ul>
 <h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
 <ul>
@@ -2867,7 +2867,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <p>Specifies the log group class for this log group. There are two classes: + The <code>Standard</code> log class supports all CWL features. + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs. For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
 <h3 id="log_group_name-1"><a class="header" href="#log_group_name-1"><code>log_group_name</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> String(len: 1..=512)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The name of the log group. If you don’t specify a name, CFNlong generates a unique ID for the log group.</p>
@@ -3652,7 +3652,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>allowed_methods</code></td><td>List&lt;<a href="#allowed_methods-allowedmethods">Enum (AllowedMethods)</a>&gt;</td><td>Yes</td><td>An HTTP method that you allow the origin to run. <em>Allowed values</em>: <code>GET</code></td></tr>
 <tr><td><code>allowed_origins</code></td><td><code>List&lt;String&gt;</code></td><td>Yes</td><td>One or more origins you want customers to be able to access the bucket from.</td></tr>
 <tr><td><code>exposed_headers</code></td><td><code>List&lt;String&gt;</code></td><td>No</td><td>One or more headers in the response that you want customers to be able to access from their applicat…</td></tr>
-<tr><td><code>id</code></td><td>String</td><td>No</td><td>A unique identifier for this rule. The value must be no more than 255 characters.</td></tr>
+<tr><td><code>id</code></td><td>String(len: ..=255)</td><td>No</td><td>A unique identifier for this rule. The value must be no more than 255 characters.</td></tr>
 <tr><td><code>max_age</code></td><td>Int(0..)</td><td>No</td><td>The time in seconds that your browser is to cache the preflight response for the specified resource.</td></tr>
 </tbody>
 </table>
@@ -3736,7 +3736,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>name</code></td><td>String</td><td>Yes</td><td>The object key name prefix or suffix identifying one or more objects to which the filtering rule app…</td></tr>
+<tr><td><code>name</code></td><td>String(len: ..=1024)</td><td>Yes</td><td>The object key name prefix or suffix identifying one or more objects to which the filtering rule app…</td></tr>
 <tr><td><code>value</code></td><td>String</td><td>Yes</td><td>The value that the filter searches for in object key names.</td></tr>
 </tbody>
 </table>
@@ -4136,8 +4136,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>delete_marker_replication</code></td><td><a href="#deletemarkerreplication">Struct(DeleteMarkerReplication)</a></td><td>No</td><td>Specifies whether Amazon S3 replicates delete markers. If you specify a <code>Filter</code> in your replicati…</td></tr>
 <tr><td><code>destination</code></td><td><a href="#replicationdestination">Struct(ReplicationDestination)</a></td><td>Yes</td><td>A container for information about the replication destination and its configurations including enabl…</td></tr>
 <tr><td><code>filter</code></td><td><a href="#replicationrulefilter">Struct(ReplicationRuleFilter)</a></td><td>No</td><td>A filter that identifies the subset of objects to which the replication rule applies. A <code>Filter</code> m…</td></tr>
-<tr><td><code>id</code></td><td>String</td><td>No</td><td>A unique identifier for the rule. The maximum value is 255 characters. If you don’t specify a value,…</td></tr>
-<tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the object or objects to which the rule applies. The maxim…</td></tr>
+<tr><td><code>id</code></td><td>String(len: ..=255)</td><td>No</td><td>A unique identifier for the rule. The maximum value is 255 characters. If you don’t specify a value,…</td></tr>
+<tr><td><code>prefix</code></td><td>String(len: ..=1024)</td><td>No</td><td>An object key name prefix that identifies the object or objects to which the rule applies. The maxim…</td></tr>
 <tr><td><code>priority</code></td><td>Int</td><td>No</td><td>The priority indicates which rule has precedence whenever two or more replication rules conflict. Am…</td></tr>
 <tr><td><code>source_selection_criteria</code></td><td><a href="#sourceselectioncriteria">Struct(SourceSelectionCriteria)</a></td><td>No</td><td>A container that describes additional filters for identifying the source objects that you want to re…</td></tr>
 <tr><td><code>status</code></td><td><a href="#status-replicationrulestatus">Enum (ReplicationRuleStatus)</a></td><td>Yes</td><td>Specifies whether the rule is enabled.</td></tr>
@@ -4227,13 +4227,13 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>expiration_date</code></td><td>String</td><td>No</td><td>Indicates when objects are deleted from Amazon S3 and Amazon S3 Glacier. The date value must be in I…</td></tr>
 <tr><td><code>expiration_in_days</code></td><td>Int</td><td>No</td><td>Indicates the number of days after creation when objects are deleted from Amazon S3 and Amazon S3 Gl…</td></tr>
 <tr><td><code>expired_object_delete_marker</code></td><td>Bool</td><td>No</td><td>Indicates whether Amazon S3 will remove a delete marker without any noncurrent versions. If set to t…</td></tr>
-<tr><td><code>id</code></td><td>String</td><td>No</td><td>Unique identifier for the rule. The value can’t be longer than 255 characters.</td></tr>
+<tr><td><code>id</code></td><td>String(len: ..=255)</td><td>No</td><td>Unique identifier for the rule. The value can’t be longer than 255 characters.</td></tr>
 <tr><td><code>noncurrent_version_expiration</code></td><td><a href="#noncurrentversionexpiration">Struct(NoncurrentVersionExpiration)</a></td><td>No</td><td>Specifies when noncurrent object versions expire. Upon expiration, S3 permanently deletes the noncur…</td></tr>
 <tr><td><code>noncurrent_version_expiration_in_days</code></td><td>Int</td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies the time, in days, betwe…</td></tr>
 <tr><td><code>noncurrent_version_transition</code></td><td><a href="#noncurrentversiontransition">Struct(NoncurrentVersionTransition)</a></td><td>No</td><td>(Deprecated.) For buckets with versioning enabled (or suspended), specifies when non-current objects…</td></tr>
 <tr><td><code>noncurrent_version_transitions</code></td><td><a href="#noncurrentversiontransition">List&lt;NoncurrentVersionTransition&gt;</a></td><td>No</td><td>For buckets with versioning enabled (or suspended), one or more transition rules that specify when n…</td></tr>
-<tr><td><code>object_size_greater_than</code></td><td>String</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
-<tr><td><code>object_size_less_than</code></td><td>String</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
+<tr><td><code>object_size_greater_than</code></td><td>String(len: ..=20)</td><td>No</td><td>Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than th…</td></tr>
+<tr><td><code>object_size_less_than</code></td><td>String(len: ..=20)</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than t…</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Object key prefix that identifies one or more objects to which this rule applies. Replacement must b…</td></tr>
 <tr><td><code>status</code></td><td><a href="#status-rulestatus">Enum (RuleStatus)</a></td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently bein…</td></tr>
 <tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>

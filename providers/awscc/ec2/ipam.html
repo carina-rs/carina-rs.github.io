@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-50b75ba9.js";
+            window.path_to_searchindex_js = "../../../searchindex-7ea68c18.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -281,7 +281,7 @@
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>organizations_entity_path</code></td><td>String</td><td>Yes</td><td>An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated…</td></tr>
+<tr><td><code>organizations_entity_path</code></td><td>String(len: 1..)</td><td>Yes</td><td>An AWS Organizations entity path. Build the path for the OU(s) using AWS Organizations IDs separated…</td></tr>
 </tbody>
 </table>
 </div>
@@ -308,7 +308,7 @@
 </ul>
 <h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> String(len: ..=255)</li>
 </ul>
 <h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
 <ul>
