@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-f1bc2bb1.js";
+            window.path_to_searchindex_js = "../../../searchindex-15763901.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -228,7 +228,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <p>Specifies the log group class for this log group. There are two classes: + The <code>Standard</code> log class supports all CWL features. + The <code>Infrequent Access</code> log class supports a subset of CWL features and incurs lower costs. For details about the features supported by each class, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatch_Logs_Log_Classes.html">Log classes</a></p>
 <h3 id="log_group_name"><a class="header" href="#log_group_name"><code>log_group_name</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String(len: 1..=512)</li>
+<li><strong>Type:</strong> String(pattern, len: 1..=512)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The name of the log group. If you don’t specify a name, CFNlong generates a unique ID for the log group.</p>
