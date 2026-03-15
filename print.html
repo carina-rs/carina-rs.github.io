@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-0b1b51b8.js";
+            window.path_to_searchindex_js = "searchindex-b018cd44.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -1098,7 +1098,7 @@ awscc.ec2.nat_gateway {
 <tbody>
 <tr><td><code>allocation_ids</code></td><td><code>List&lt;AllocationId&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
 <tr><td><code>availability_zone</code></td><td>AvailabilityZone</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
-<tr><td><code>availability_zone_id</code></td><td>String</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
+<tr><td><code>availability_zone_id</code></td><td>AvailabilityZoneId</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
 </tbody>
 </table>
 </div>
@@ -1725,7 +1725,7 @@ awscc.ec2.subnet {
 <p>The Availability Zone of the subnet. If you update this property, you must also update the <code>CidrBlock</code> property.</p>
 <h3 id="availability_zone_id"><a class="header" href="#availability_zone_id"><code>availability_zone_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AvailabilityZoneId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The AZ ID of the subnet.</p>
@@ -4989,7 +4989,7 @@ let subnet = aws.ec2.subnet {
 <p>The Availability Zone or Local Zone for the subnet. Default: Amazon Web Services selects one for you. If you create more than one subnet in your VPC, we do not necessarily select a different zone for each subnet. To create a subnet in a Local Zone, set this value to the Local Zone ID, for example us-west-2-lax-1a. For information about the Regions that support Local Zones, see Available Local Zones. To create a subnet in an Outpost, set this value to the Availability Zone for the Outpost and specify the Outpost ARN.</p>
 <h3 id="availability_zone_id-1"><a class="header" href="#availability_zone_id-1"><code>availability_zone_id</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> AvailabilityZoneId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The AZ ID or the Local Zone ID of the subnet.</p>
