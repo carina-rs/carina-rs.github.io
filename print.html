@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-15763901.js";
+            window.path_to_searchindex_js = "searchindex-807de144.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -4563,96 +4563,30 @@ let route = aws.ec2.route {
 }
 </code></pre>
 <h2 id="argument-reference-26"><a class="header" href="#argument-reference-26">Argument Reference</a></h2>
-<h3 id="carrier_gateway_id-1"><a class="header" href="#carrier_gateway_id-1"><code>carrier_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> CarrierGatewayId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of the carrier gateway. You can only use this option when the VPC contains a subnet which is associated with a Wavelength Zone.</p>
-<h3 id="core_network_arn-1"><a class="header" href="#core_network_arn-1"><code>core_network_arn</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Arn</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The Amazon Resource Name (ARN) of the core network.</p>
 <h3 id="destination_cidr_block-1"><a class="header" href="#destination_cidr_block-1"><code>destination_cidr_block</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify 100.68.0.18/18, we modify it to 100.68.0.0/18.</p>
-<h3 id="destination_ipv6_cidr_block-1"><a class="header" href="#destination_ipv6_cidr_block-1"><code>destination_ipv6_cidr_block</code></a></h3>
-<ul>
-<li><strong>Type:</strong> Ipv6Cidr</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
-<h3 id="destination_prefix_list_id-2"><a class="header" href="#destination_prefix_list_id-2"><code>destination_prefix_list_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> PrefixListId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a prefix list used for the destination match.</p>
-<h3 id="egress_only_internet_gateway_id-1"><a class="header" href="#egress_only_internet_gateway_id-1"><code>egress_only_internet_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> egress_only_internet_gateway_id</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>[IPv6 traffic only] The ID of an egress-only internet gateway.</p>
 <h3 id="gateway_id-1"><a class="header" href="#gateway_id-1"><code>gateway_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> GatewayId</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The ID of an internet gateway or virtual private gateway attached to your VPC.</p>
-<h3 id="instance_id-2"><a class="header" href="#instance_id-2"><code>instance_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> InstanceId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>
-<h3 id="local_gateway_id-1"><a class="header" href="#local_gateway_id-1"><code>local_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> LocalGatewayId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of the local gateway.</p>
 <h3 id="nat_gateway_id-2"><a class="header" href="#nat_gateway_id-2"><code>nat_gateway_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> nat_gateway_id</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>[IPv4 traffic only] The ID of a NAT gateway.</p>
-<h3 id="network_interface_id-1"><a class="header" href="#network_interface_id-1"><code>network_interface_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> NetworkInterfaceId</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a network interface.</p>
 <h3 id="route_table_id-5"><a class="header" href="#route_table_id-5"><code>route_table_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> route_table_id</li>
 <li><strong>Required:</strong> Yes</li>
 </ul>
 <p>The ID of the route table for the route.</p>
-<h3 id="transit_gateway_id-2"><a class="header" href="#transit_gateway_id-2"><code>transit_gateway_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> transit_gateway_id</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a transit gateway.</p>
-<h3 id="vpc_endpoint_id-1"><a class="header" href="#vpc_endpoint_id-1"><code>vpc_endpoint_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> vpc_endpoint_id</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a VPC endpoint. Supported for Gateway Load Balancer endpoints only.</p>
-<h3 id="vpc_peering_connection_id-1"><a class="header" href="#vpc_peering_connection_id-1"><code>vpc_peering_connection_id</code></a></h3>
-<ul>
-<li><strong>Type:</strong> vpc_peering_connection_id</li>
-<li><strong>Required:</strong> No</li>
-</ul>
-<p>The ID of a VPC peering connection.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="awsec2security_group_egress"><a class="header" href="#awsec2security_group_egress">aws.ec2.security_group_egress</a></h1>
 <p>CloudFormation Type: <code>AWS::EC2::SecurityGroupEgress</code></p>
@@ -4704,7 +4638,7 @@ let egress = aws.ec2.security_group_egress {
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The security group rule description.</p>
-<h3 id="destination_prefix_list_id-3"><a class="header" href="#destination_prefix_list_id-3"><code>destination_prefix_list_id</code></a></h3>
+<h3 id="destination_prefix_list_id-2"><a class="header" href="#destination_prefix_list_id-2"><code>destination_prefix_list_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
