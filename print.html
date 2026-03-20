@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-5a9d48d5.js";
+            window.path_to_searchindex_js = "searchindex-8724cb78.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -561,9 +561,9 @@ awscc.ec2.flow_log {
   description = "Example IPAM"
   tier        = free
 
-  operating_regions = [{
+  operating_region {
     region_name = "ap-northeast-1"
-  }]
+  }
 }
 
 awscc.ec2.ipam_pool {
@@ -572,9 +572,9 @@ awscc.ec2.ipam_pool {
   locale         = "ap-northeast-1"
   description    = "Example IPv4 IPAM Pool"
 
-  provisioned_cidrs = [{
+  provisioned_cidr {
     cidr = "10.0.0.0/8"
-  }]
+  }
 
   tags = {
     Environment = "example"
@@ -814,9 +814,9 @@ awscc.ec2.ipam_pool {
   description = "Example IPAM"
   tier        = free
 
-  operating_regions = [{
+  operating_region {
     region_name = "ap-northeast-1"
-  }]
+  }
 
   tags = {
     Environment = "example"
@@ -2716,7 +2716,9 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
     version = "2012-10-17"
     statement {
       effect    = "Allow"
-      principal = { service = "lambda.amazonaws.com" }
+      principal = {
+        service = "lambda.amazonaws.com"
+      }
       action    = "sts:AssumeRole"
     }
   }

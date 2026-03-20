@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-5a9d48d5.js";
+            window.path_to_searchindex_js = "../../../searchindex-8724cb78.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -186,7 +186,9 @@ For more information about roles, see <a href="https://docs.aws.amazon.com/IAM/l
     version = "2012-10-17"
     statement {
       effect    = "Allow"
-      principal = { service = "lambda.amazonaws.com" }
+      principal = {
+        service = "lambda.amazonaws.com"
+      }
       action    = "sts:AssumeRole"
     }
   }
