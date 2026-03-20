@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-807de144.js";
+            window.path_to_searchindex_js = "../../../searchindex-5a9d48d5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -387,9 +387,9 @@ awscc.ec2.vpc_endpoint {
 </thead>
 <tbody>
 <tr><td><code>dns_record_ip_type</code></td><td><a href="#dns_record_ip_type-dnsrecordiptype">Enum (DnsRecordIpType)</a></td><td>No</td><td>The DNS records created for the endpoint.</td></tr>
-<tr><td><code>private_dns_only_for_inbound_resolver_endpoint</code></td><td><a href="#private_dns_only_for_inbound_resolver_endpoint-privatednsonlyforinboundresolverendpoint">Enum (PrivateDnsOnlyForInboundResolverEndpoint)</a></td><td>No</td><td>Indicates whether to enable private DNS only for inbound endpoints. This option is available only fo…</td></tr>
-<tr><td><code>private_dns_preference</code></td><td><a href="#private_dns_preference-privatednspreference">Enum (PrivateDnsPreference)</a></td><td>No</td><td>The preference for which private domains have a private hosted zone created for and associated with …</td></tr>
-<tr><td><code>private_dns_specified_domains</code></td><td><code>List&lt;String&gt;</code> (items: 1..=10)</td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the spe…</td></tr>
+<tr><td><code>private_dns_only_for_inbound_resolver_endpoint</code></td><td><a href="#private_dns_only_for_inbound_resolver_endpoint-privatednsonlyforinboundresolverendpoint">Enum (PrivateDnsOnlyForInboundResolverEndpoint)</a></td><td>No</td><td>Indicates whether to enable private DNS only for inbound endpoints. This option is available only for services that support both gateway and interface endpoints. It routes traffic that originates from the VPC to the gateway endpoint and traffic that originates from on-premises to the interface endpoint.</td></tr>
+<tr><td><code>private_dns_preference</code></td><td><a href="#private_dns_preference-privatednspreference">Enum (PrivateDnsPreference)</a></td><td>No</td><td>The preference for which private domains have a private hosted zone created for and associated with the specified VPC. Only supported when private DNS is enabled and when the VPC endpoint type is ServiceNetwork or Resource.</td></tr>
+<tr><td><code>private_dns_specified_domains</code></td><td><code>List&lt;String&gt;</code> (items: 1..=10)</td><td>No</td><td>Indicates which of the private domains to create private hosted zones for and associate with the specified VPC. Only supported when private DNS is enabled and the private DNS preference is <code>VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS</code> or <code>SPECIFIED_DOMAINS_ONLY</code>.</td></tr>
 </tbody>
 </table>
 </div>

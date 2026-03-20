@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-807de144.js";
+            window.path_to_searchindex_js = "../../../searchindex-5a9d48d5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -315,9 +315,9 @@ awscc.ec2.nat_gateway {
 <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
 </thead>
 <tbody>
-<tr><td><code>allocation_ids</code></td><td><code>List&lt;AllocationId&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic i…</td></tr>
-<tr><td><code>availability_zone</code></td><td>AvailabilityZone</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration …</td></tr>
-<tr><td><code>availability_zone_id</code></td><td>AvailabilityZoneId</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway conf…</td></tr>
+<tr><td><code>allocation_ids</code></td><td><code>List&lt;AllocationId&gt;</code></td><td>Yes</td><td>The allocation IDs of the Elastic IP addresses (EIPs) to be used for handling outbound NAT traffic in this specific Availability Zone.</td></tr>
+<tr><td><code>availability_zone</code></td><td>AvailabilityZone</td><td>No</td><td>For regional NAT gateways only: The Availability Zone where this specific NAT gateway configuration will be active. Each AZ in a regional NAT gateway has its own configuration to handle outbound NAT traffic from that AZ. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.</td></tr>
+<tr><td><code>availability_zone_id</code></td><td>AvailabilityZoneId</td><td>No</td><td>For regional NAT gateways only: The ID of the Availability Zone where this specific NAT gateway configuration will be active. Each AZ in a regional NAT gateway has its own configuration to handle outbound NAT traffic from that AZ. Use this instead of AvailabilityZone for consistent identification of AZs across AWS Regions. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region.</td></tr>
 </tbody>
 </table>
 </div>

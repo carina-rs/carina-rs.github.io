@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-807de144.js";
+            window.path_to_searchindex_js = "../../../searchindex-5a9d48d5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -180,7 +180,7 @@
 For more information, see <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html"></a> in the <em>User Guide</em>.</p>
 <h2 id="example"><a class="header" href="#example">Example</a></h2>
 <pre><code class="language-crn">awscc.ec2.vpn_gateway {
-  type = "ipsec.1"
+  type = awscc.ec2.vpn_gateway.Type.ipsec.1
 
   tags = {
     Environment = "example"
