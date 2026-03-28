@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -196,7 +196,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="data_protection_policy"><a class="header" href="#data_protection_policy"><code>data_protection_policy</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Creates a data protection policy and assigns it to the log group. A data protection policy can help safeguard sensitive data that’s ingested by the log group by auditing and masking the sensitive log data. When a user who does not have permission to view masked data views a log event that includes masked data, the sensitive data is replaced by asterisks.</p>
@@ -230,6 +230,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <ul>
 <li><strong>Type:</strong> String(pattern, len: 1..=512)</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The name of the log group. If you don’t specify a name, CFNlong generates a unique ID for the log group.</p>
 <h3 id="resource_policy_document"><a class="header" href="#resource_policy_document"><code>resource_policy_document</code></a></h3>
@@ -246,7 +247,7 @@ You can create up to 1,000,000 log groups per Region per account. You must use t
 <p>The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1096, 1827, 2192, 2557, 2922, 3288, and 3653. To set a log group so that its log events do not expire, do not specify this property.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to the log group. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a>.</p>

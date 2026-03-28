@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -193,6 +193,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <h3 id="domain"><a class="header" href="#domain"><code>domain</code></a></h3>
 <ul>
@@ -210,11 +211,13 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <h3 id="network_border_group"><a class="header" href="#network_border_group"><code>network_border_group</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>A unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups. Use <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html">DescribeAvailabilityZones</a> to view the network border groups.</p>
 <h3 id="public_ipv4_pool"><a class="header" href="#public_ipv4_pool"><code>public_ipv4_pool</code></a></h3>
@@ -225,7 +228,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <p>The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool. Updates to the <code>PublicIpv4Pool</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Any tags assigned to the Elastic IP address. Updates to the <code>Tags</code> property may require <em>some interruptions</em>. Updates on an EIP reassociates the address on its associated resource.</p>
@@ -233,6 +236,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>

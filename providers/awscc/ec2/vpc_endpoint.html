@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -245,6 +245,7 @@ awscc.ec2.vpc_endpoint {
 <ul>
 <li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the resource configuration.</p>
 <h3 id="route_table_ids"><a class="header" href="#route_table_ids"><code>route_table_ids</code></a></h3>
@@ -263,18 +264,21 @@ awscc.ec2.vpc_endpoint {
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The name of the endpoint service.</p>
 <h3 id="service_network_arn"><a class="header" href="#service_network_arn"><code>service_network_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the service network.</p>
 <h3 id="service_region"><a class="header" href="#service_region"><code>service_region</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>Describes a Region.</p>
 <h3 id="subnet_ids"><a class="header" href="#subnet_ids"><code>subnet_ids</code></a></h3>
@@ -285,7 +289,7 @@ awscc.ec2.vpc_endpoint {
 <p>The IDs of the subnets in which to create endpoint network interfaces. You must specify this property for an interface endpoint or a Gateway Load Balancer endpoint. You can’t specify this property for a gateway endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags to associate with the endpoint.</p>
@@ -293,12 +297,14 @@ awscc.ec2.vpc_endpoint {
 <ul>
 <li><strong>Type:</strong> <a href="#vpc_endpoint_type-vpcendpointtype">Enum (VpcEndpointType)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The type of endpoint. Default: Gateway</p>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>

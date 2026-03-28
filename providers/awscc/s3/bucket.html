@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -227,6 +227,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>A name for the bucket. If you don’t specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-) and must follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">Amazon S3 bucket restrictions and limitations</a>. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Rules for naming Amazon S3 buckets</a> in the <em>Amazon S3 User Guide</em>. If you specify a name, you can’t perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you need to replace the resource, specify a new name.</p>
 <h3 id="cors_configuration"><a class="header" href="#cors_configuration"><code>cors_configuration</code></a></h3>
@@ -315,7 +316,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <p>Configuration for replicating objects in an S3 bucket. To enable replication, you must also enable versioning by using the <code>VersioningConfiguration</code> property. Amazon S3 can store replicated objects in a single destination bucket or multiple destination buckets. The destination bucket or buckets must already exist.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An arbitrary set of tags (key-value pairs) for this S3 bucket.</p>
@@ -868,7 +869,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID that identifies the analytics configuration.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>The prefix that an object must have to be included in the analytics results.</td></tr>
 <tr><td><code>storage_class_analysis</code></td><td><a href="#storageclassanalysis">Struct(StorageClassAnalysis)</a></td><td>Yes</td><td>Contains data related to access patterns to be collected and made available to analyze the tradeoffs between different storage classes.</td></tr>
-<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>The tags to use when evaluating an analytics filter. The analytics only includes objects that meet the filter’s criteria. If no filter is specified, all of the contents of the bucket are included in the analysis.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map(String)&gt;</code></td><td>No</td><td>The tags to use when evaluating an analytics filter. The analytics only includes objects that meet the filter’s criteria. If no filter is specified, all of the contents of the bucket are included in the analysis.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1015,7 +1016,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the S3 Intelligent-Tiering configuration.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies.</td></tr>
 <tr><td><code>status</code></td><td><a href="#status-intelligenttieringconfigurationstatus">Enum (IntelligentTieringConfigurationStatus)</a></td><td>Yes</td><td>Specifies the status of the configuration.</td></tr>
-<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>A container for a key-value pair.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map(String)&gt;</code></td><td>No</td><td>A container for a key-value pair.</td></tr>
 <tr><td><code>tierings</code></td><td><a href="#tiering">List&lt;Tiering&gt;</a></td><td>Yes</td><td>Specifies a list of S3 Intelligent-Tiering storage class tiers in the configuration. At least one tier must be defined in the list. At most, you can specify two tiers in the list, one for each available AccessTier: <code>ARCHIVE_ACCESS</code> and <code>DEEP_ARCHIVE_ACCESS</code>. You only need Intelligent Tiering Configuration enabled on a bucket if you want to automatically move objects stored in the Intelligent-Tiering storage class to Archive Access or Deep Archive Access tiers.</td></tr>
 </tbody>
 </table>
@@ -1174,7 +1175,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>access_point_arn</code></td><td>Arn</td><td>No</td><td>The access point that was used while performing operations on the object. The metrics configuration only includes objects that meet the filter’s criteria.</td></tr>
 <tr><td><code>id</code></td><td>String</td><td>Yes</td><td>The ID used to identify the metrics configuration. This can be any value you choose that helps you identify your metrics configuration.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>The prefix that an object must have to be included in the metrics results.</td></tr>
-<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Specifies a list of tag filters to use as a metrics configuration filter. The metrics configuration includes only objects that meet the filter’s criteria.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map(String)&gt;</code></td><td>No</td><td>Specifies a list of tag filters to use as a metrics configuration filter. The metrics configuration includes only objects that meet the filter’s criteria.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1416,7 +1417,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies.</td></tr>
-<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>An array of tags containing key and value pairs.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map(String)&gt;</code></td><td>No</td><td>An array of tags containing key and value pairs.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1429,7 +1430,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tbody>
 <tr><td><code>and</code></td><td><a href="#replicationruleandoperator">Struct(ReplicationRuleAndOperator)</a></td><td>No</td><td>A container for specifying rule filters. The filters determine the subset of objects to which the rule applies. This element is required only if you specify more than one filter. For example: + If you specify both a <code>Prefix</code> and a <code>TagFilter</code>, wrap these filters in an <code>And</code> tag. + If you specify a filter based on multiple tags, wrap the <code>TagFilter</code> elements in an <code>And</code> tag.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>An object key name prefix that identifies the subset of objects to which the rule applies. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML related object key constraints</a>.</td></tr>
-<tr><td><code>tag_filter</code></td><td>Map</td><td>No</td><td>A container for specifying a tag key and value. The rule applies only to objects that have the tag in their tag set.</td></tr>
+<tr><td><code>tag_filter</code></td><td>Map(String)</td><td>No</td><td>A container for specifying a tag key and value. The rule applies only to objects that have the tag in their tag set.</td></tr>
 </tbody>
 </table>
 </div>
@@ -1500,7 +1501,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <tr><td><code>object_size_less_than</code></td><td>NumericString(len: ..=20)</td><td>No</td><td>Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than this value in bytes. For more information about sized based rules, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html#lc-size-rules">Lifecycle configuration using size-based rules</a> in the <em>Amazon S3 User Guide</em>.</td></tr>
 <tr><td><code>prefix</code></td><td>String</td><td>No</td><td>Object key prefix that identifies one or more objects to which this rule applies. Replacement must be made for object keys containing special characters (such as carriage returns) when using XML requests. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints">XML related object key constraints</a>.</td></tr>
 <tr><td><code>status</code></td><td><a href="#status-rulestatus">Enum (RuleStatus)</a></td><td>Yes</td><td>If <code>Enabled</code>, the rule is currently being applied. If <code>Disabled</code>, the rule is not currently being applied.</td></tr>
-<tr><td><code>tag_filters</code></td><td><code>List&lt;Map&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>
+<tr><td><code>tag_filters</code></td><td><code>List&lt;Map(String)&gt;</code></td><td>No</td><td>Tags to use to identify a subset of objects to which the lifecycle rule applies.</td></tr>
 <tr><td><code>transition</code></td><td><a href="#transition">Struct(Transition)</a></td><td>No</td><td>(Deprecated.) Specifies when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don’t specify the <code>Transitions</code> property.</td></tr>
 <tr><td><code>transitions</code></td><td><a href="#transition">List&lt;Transition&gt;</a></td><td>No</td><td>One or more transition rules that specify when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. If you specify this property, don’t specify the <code>Transition</code> property.</td></tr>
 </tbody>
@@ -1598,7 +1599,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 </thead>
 <tbody>
 <tr><td><code>partitioned_prefix</code></td><td><a href="#partitionedprefix">Struct(PartitionedPrefix)</a></td><td>No</td><td></td></tr>
-<tr><td><code>simple_prefix</code></td><td>Map</td><td>No</td><td>This format defaults the prefix to the given log file prefix for delivering server access log file.</td></tr>
+<tr><td><code>simple_prefix</code></td><td>Map(String)</td><td>No</td><td>This format defaults the prefix to the given log file prefix for delivering server access log file.</td></tr>
 </tbody>
 </table>
 </div>

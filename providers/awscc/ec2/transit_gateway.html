@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -191,6 +191,7 @@
 <ul>
 <li><strong>Type:</strong> Int(1..=4294967294)</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <h3 id="association_default_route_table_id"><a class="header" href="#association_default_route_table_id"><code>association_default_route_table_id</code></a></h3>
 <ul>
@@ -231,6 +232,7 @@
 <ul>
 <li><strong>Type:</strong> <a href="#multicast_support-multicastsupport">Enum (MulticastSupport)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <h3 id="propagation_default_route_table_id"><a class="header" href="#propagation_default_route_table_id"><code>propagation_default_route_table_id</code></a></h3>
 <ul>
@@ -244,7 +246,7 @@
 </ul>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="transit_gateway_cidr_blocks"><a class="header" href="#transit_gateway_cidr_blocks"><code>transit_gateway_cidr_blocks</code></a></h3>

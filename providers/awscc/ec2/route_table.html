@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -196,7 +196,7 @@ awscc.ec2.route_table {
 <h2 id="argument-reference"><a class="header" href="#argument-reference">Argument Reference</a></h2>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Any tags assigned to the route table.</p>
@@ -204,6 +204,7 @@ awscc.ec2.route_table {
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>

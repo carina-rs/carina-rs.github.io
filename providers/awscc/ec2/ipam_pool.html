@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -207,6 +207,7 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> <a href="#address_family-addressfamily">Enum (AddressFamily)</a></li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The address family of the address space in this pool. Either IPv4 or IPv6.</p>
 <h3 id="allocation_default_netmask_length"><a class="header" href="#allocation_default_netmask_length"><code>allocation_default_netmask_length</code></a></h3>
@@ -229,7 +230,7 @@ awscc.ec2.ipam_pool {
 <p>The minimum allowed netmask length for allocations made from this pool.</p>
 <h3 id="allocation_resource_tags"><a class="header" href="#allocation_resource_tags"><code>allocation_resource_tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> <code>List&lt;Map&gt;</code></li>
+<li><strong>Type:</strong> <code>List&lt;Map(String)&gt;</code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>When specified, an allocation will not be allowed unless a resource has a matching set of tags.</p>
@@ -243,6 +244,7 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> <a href="#aws_service-awsservice">Enum (AwsService)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>Limits which service in Amazon Web Services that the pool can be used in.</p>
 <h3 id="description"><a class="header" href="#description"><code>description</code></a></h3>
@@ -254,12 +256,14 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> String</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Id of the scope this pool is a part of.</p>
 <h3 id="locale"><a class="header" href="#locale"><code>locale</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The region of this pool. If not set, this will default to “None” which will disable non-custom allocations. If the locale has been specified for the source pool, this value must match.</p>
 <h3 id="provisioned_cidrs"><a class="header" href="#provisioned_cidrs"><code>provisioned_cidrs</code></a></h3>
@@ -272,28 +276,32 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> <a href="#public_ip_source-publicipsource">Enum (PublicIpSource)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is <code>byoip</code>.</p>
 <h3 id="publicly_advertisable"><a class="header" href="#publicly_advertisable"><code>publicly_advertisable</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Bool</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>Determines whether or not address space from this pool is publicly advertised. Must be set if and only if the pool is IPv6.</p>
 <h3 id="source_ipam_pool_id"><a class="header" href="#source_ipam_pool_id"><code>source_ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Id of this pool’s source. If set, all space provisioned in this pool must be free space provisioned in the parent pool.</p>
 <h3 id="source_resource"><a class="header" href="#source_resource"><code>source_resource</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#sourceresource">Struct(SourceResource)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to this resource.</p>
@@ -398,34 +406,42 @@ awscc.ec2.ipam_pool {
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
+<p>The Amazon Resource Name (ARN) of the IPAM Pool.</p>
 <h3 id="ipam_arn"><a class="header" href="#ipam_arn"><code>ipam_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
+<p>The Amazon Resource Name (ARN) of the IPAM this pool is a part of.</p>
 <h3 id="ipam_pool_id"><a class="header" href="#ipam_pool_id"><code>ipam_pool_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamPoolId</li>
 </ul>
+<p>Id of the IPAM Pool.</p>
 <h3 id="ipam_scope_arn"><a class="header" href="#ipam_scope_arn"><code>ipam_scope_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
+<p>The Amazon Resource Name (ARN) of the scope this pool is a part of.</p>
 <h3 id="ipam_scope_type"><a class="header" href="#ipam_scope_type"><code>ipam_scope_type</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#ipam_scope_type-ipamscopetype">Enum (IpamScopeType)</a></li>
 </ul>
+<p>Determines whether this scope contains publicly routable space or space for a private network</p>
 <h3 id="pool_depth"><a class="header" href="#pool_depth"><code>pool_depth</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 </ul>
+<p>The depth of this pool in the source pool hierarchy.</p>
 <h3 id="state"><a class="header" href="#state"><code>state</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#state-state">Enum (State)</a></li>
 </ul>
+<p>The state of this pool. This can be one of the following values: “create-in-progress”, “create-complete”, “modify-in-progress”, “modify-complete”, “delete-in-progress”, or “delete-complete”</p>
 <h3 id="state_message"><a class="header" href="#state_message"><code>state_message</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
+<p>An explanation of how the pool arrived at it current state.</p>
 
                     </main>
 

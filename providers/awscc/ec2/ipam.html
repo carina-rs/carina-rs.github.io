@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -223,7 +223,7 @@
 <p>The regions IPAM is enabled for. Allows pools to be created in these regions, as well as enabling monitoring</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>An array of key-value pairs to apply to this resource.</p>
@@ -288,34 +288,42 @@
 <ul>
 <li><strong>Type:</strong> Arn</li>
 </ul>
+<p>The Amazon Resource Name (ARN) of the IPAM.</p>
 <h3 id="default_resource_discovery_association_id"><a class="header" href="#default_resource_discovery_association_id"><code>default_resource_discovery_association_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
+<p>The Id of the default association to the default resource discovery, created with this IPAM.</p>
 <h3 id="default_resource_discovery_id"><a class="header" href="#default_resource_discovery_id"><code>default_resource_discovery_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
+<p>The Id of the default resource discovery, created with this IPAM.</p>
 <h3 id="ipam_id"><a class="header" href="#ipam_id"><code>ipam_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IpamId</li>
 </ul>
+<p>Id of the IPAM.</p>
 <h3 id="private_default_scope_id"><a class="header" href="#private_default_scope_id"><code>private_default_scope_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String</li>
 </ul>
+<p>The Id of the default scope for publicly routable IP space, created with this IPAM.</p>
 <h3 id="public_default_scope_id"><a class="header" href="#public_default_scope_id"><code>public_default_scope_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> String(len: ..=255)</li>
 </ul>
+<p>The Id of the default scope for publicly routable IP space, created with this IPAM.</p>
 <h3 id="resource_discovery_association_count"><a class="header" href="#resource_discovery_association_count"><code>resource_discovery_association_count</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 </ul>
+<p>The count of resource discoveries associated with this IPAM.</p>
 <h3 id="scope_count"><a class="header" href="#scope_count"><code>scope_count</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Int</li>
 </ul>
+<p>The number of scopes that currently exist in this IPAM.</p>
 
                     </main>
 

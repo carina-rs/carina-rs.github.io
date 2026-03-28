@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -212,12 +212,14 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> AllocationId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>[Public NAT gateway only] The allocation ID of the Elastic IP address that’s associated with the NAT gateway. This property is required for a public NAT gateway and cannot be specified with a private NAT gateway.</p>
 <h3 id="availability_mode"><a class="header" href="#availability_mode"><code>availability_mode</code></a></h3>
 <ul>
 <li><strong>Type:</strong> <a href="#availability_mode-availabilitymode">Enum (AvailabilityMode)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>Indicates whether this is a zonal (single-AZ) or regional (multi-AZ) NAT gateway. A zonal NAT gateway is a NAT Gateway that provides redundancy and scalability within a single availability zone. A regional NAT gateway is a single NAT Gateway that works across multiple availability zones (AZs) in your VPC, providing redundancy, scalability and availability across all the AZs in a Region. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html">Regional NAT gateways for automatic multi-AZ expansion</a> in the <em>Amazon VPC User Guide</em>.</p>
 <h3 id="availability_zone_addresses"><a class="header" href="#availability_zone_addresses"><code>availability_zone_addresses</code></a></h3>
@@ -230,6 +232,7 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> <a href="#connectivity_type-connectivitytype">Enum (ConnectivityType)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>
 <h3 id="max_drain_duration_seconds"><a class="header" href="#max_drain_duration_seconds"><code>max_drain_duration_seconds</code></a></h3>
@@ -242,6 +245,7 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The private IPv4 address to assign to the NAT gateway. If you don’t provide an address, a private IPv4 address will be automatically assigned.</p>
 <h3 id="secondary_allocation_ids"><a class="header" href="#secondary_allocation_ids"><code>secondary_allocation_ids</code></a></h3>
@@ -266,11 +270,12 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> SubnetId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the subnet in which the NAT gateway is located.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>The tags for the NAT gateway.</p>
@@ -278,6 +283,7 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC in which the NAT gateway is located.</p>
 <h2 id="enum-values"><a class="header" href="#enum-values">Enum Values</a></h2>

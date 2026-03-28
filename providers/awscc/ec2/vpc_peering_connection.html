@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -200,41 +200,47 @@ awscc.ec2.vpc_peering_connection {
 <ul>
 <li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided.</p>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> AwsAccountId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The AWS account ID of the owner of the accepter VPC.</p>
 <h3 id="peer_region"><a class="header" href="#peer_region"><code>peer_region</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p>
 <h3 id="peer_role_arn"><a class="header" href="#peer_role_arn"><code>peer_role_arn</code></a></h3>
 <ul>
 <li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
 <h3 id="peer_vpc_id"><a class="header" href="#peer_vpc_id"><code>peer_vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.</p>
 <h3 id="tags"><a class="header" href="#tags"><code>tags</code></a></h3>
 <ul>
-<li><strong>Type:</strong> Map</li>
+<li><strong>Type:</strong> Map(String)</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <h3 id="vpc_id"><a class="header" href="#vpc_id"><code>vpc_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> VpcId</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the VPC.</p>
 <h2 id="attribute-reference"><a class="header" href="#attribute-reference">Attribute Reference</a></h2>

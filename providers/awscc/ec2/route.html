@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2f59e344.js";
+            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -220,18 +220,21 @@ awscc.ec2.route {
 <ul>
 <li><strong>Type:</strong> Ipv4Cidr</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>
 <h3 id="destination_ipv6_cidr_block"><a class="header" href="#destination_ipv6_cidr_block"><code>destination_ipv6_cidr_block</code></a></h3>
 <ul>
 <li><strong>Type:</strong> Ipv6Cidr</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>
 <h3 id="destination_prefix_list_id"><a class="header" href="#destination_prefix_list_id"><code>destination_prefix_list_id</code></a></h3>
 <ul>
 <li><strong>Type:</strong> PrefixListId</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of a prefix list used for the destination match.</p>
 <h3 id="egress_only_internet_gateway_id"><a class="header" href="#egress_only_internet_gateway_id"><code>egress_only_internet_gateway_id</code></a></h3>
@@ -274,6 +277,7 @@ awscc.ec2.route {
 <ul>
 <li><strong>Type:</strong> RouteTableId</li>
 <li><strong>Required:</strong> Yes</li>
+<li><strong>Create-only:</strong> Yes</li>
 </ul>
 <p>The ID of the route table for the route.</p>
 <h3 id="transit_gateway_id"><a class="header" href="#transit_gateway_id"><code>transit_gateway_id</code></a></h3>
