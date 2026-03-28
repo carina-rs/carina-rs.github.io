@@ -37,7 +37,7 @@
             const path_to_root = "../../../";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "../../../searchindex-2772e01c.js";
+            window.path_to_searchindex_js = "../../../searchindex-42a0f708.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../../../toc-2a52bd42.js"></script>
@@ -235,6 +235,7 @@ awscc.ec2.subnet {
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>Indicates the device position for local network interfaces in this subnet. For example, <code>1</code> indicates local network interfaces in this subnet are the secondary network interface (eth1).</p>
 <h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
@@ -242,6 +243,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv4 IPAM pool ID for the subnet.</p>
 <h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
@@ -249,6 +251,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv4 netmask length for the subnet.</p>
 <h3 id="ipv6_cidr_block"><a class="header" href="#ipv6_cidr_block"><code>ipv6_cidr_block</code></a></h3>
@@ -262,6 +265,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv6 IPAM pool ID for the subnet.</p>
 <h3 id="ipv6_native"><a class="header" href="#ipv6_native"><code>ipv6_native</code></a></h3>
@@ -276,6 +280,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Int(0..=128)</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv6 netmask length for the subnet.</p>
 <h3 id="map_public_ip_on_launch"><a class="header" href="#map_public_ip_on_launch"><code>map_public_ip_on_launch</code></a></h3>

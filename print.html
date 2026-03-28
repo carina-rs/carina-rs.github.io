@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-2772e01c.js";
+            window.path_to_searchindex_js = "searchindex-42a0f708.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -296,6 +296,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <h3 id="domain"><a class="header" href="#domain"><code>domain</code></a></h3>
 <ul>
@@ -314,6 +315,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <h3 id="network_border_group"><a class="header" href="#network_border_group"><code>network_border_group</code></a></h3>
 <ul>
@@ -339,6 +341,7 @@ For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/Use
 <li><strong>Type:</strong> Ipv4Address</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The Elastic IP address you are accepting for transfer. You can only accept one transferred address. For more information on Elastic IP address transfers, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer Elastic IP addresses</a> in the <em>Amazon Virtual Private Cloud User Guide</em>.</p>
 <h2 id="enum-values-1"><a class="header" href="#enum-values-1">Enum Values</a></h2>
@@ -1056,6 +1059,7 @@ awscc.ec2.nat_gateway {
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>
 <h3 id="private_ip_address"><a class="header" href="#private_ip_address"><code>private_ip_address</code></a></h3>
@@ -1821,6 +1825,7 @@ awscc.ec2.subnet {
 <ul>
 <li><strong>Type:</strong> Int</li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>Indicates the device position for local network interfaces in this subnet. For example, <code>1</code> indicates local network interfaces in this subnet are the secondary network interface (eth1).</p>
 <h3 id="ipv4_ipam_pool_id"><a class="header" href="#ipv4_ipam_pool_id"><code>ipv4_ipam_pool_id</code></a></h3>
@@ -1828,6 +1833,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv4 IPAM pool ID for the subnet.</p>
 <h3 id="ipv4_netmask_length"><a class="header" href="#ipv4_netmask_length"><code>ipv4_netmask_length</code></a></h3>
@@ -1835,6 +1841,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv4 netmask length for the subnet.</p>
 <h3 id="ipv6_cidr_block"><a class="header" href="#ipv6_cidr_block"><code>ipv6_cidr_block</code></a></h3>
@@ -1848,6 +1855,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv6 IPAM pool ID for the subnet.</p>
 <h3 id="ipv6_native"><a class="header" href="#ipv6_native"><code>ipv6_native</code></a></h3>
@@ -1862,6 +1870,7 @@ awscc.ec2.subnet {
 <li><strong>Type:</strong> Int(0..=128)</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>An IPv6 netmask length for the subnet.</p>
 <h3 id="map_public_ip_on_launch"><a class="header" href="#map_public_ip_on_launch"><code>map_public_ip_on_launch</code></a></h3>
@@ -2151,6 +2160,7 @@ awscc.ec2.transit_gateway_attachment {
 <ul>
 <li><strong>Type:</strong> <a href="#encryption_support-encryptionsupport">Enum (EncryptionSupport)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <h3 id="multicast_support"><a class="header" href="#multicast_support"><code>multicast_support</code></a></h3>
 <ul>
@@ -2629,6 +2639,7 @@ awscc.ec2.vpc_peering_connection {
 <li><strong>Type:</strong> Region</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The Region code to use when calling Security Token Service (STS) to assume the PeerRoleArn, if provided.</p>
 <h3 id="peer_owner_id"><a class="header" href="#peer_owner_id"><code>peer_owner_id</code></a></h3>
@@ -2650,6 +2661,7 @@ awscc.ec2.vpc_peering_connection {
 <li><strong>Type:</strong> IamRoleArn</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.</p>
 <h3 id="peer_vpc_id"><a class="header" href="#peer_vpc_id"><code>peer_vpc_id</code></a></h3>
@@ -2725,6 +2737,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Type:</strong> IpamPoolId</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The ID of an IPv4 IPAM pool you want to use for allocating this VPC’s CIDR. For more information, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>. You must specify either<code>CidrBlock</code> or <code>Ipv4IpamPoolId</code>.</p>
 <h3 id="ipv4_netmask_length-1"><a class="header" href="#ipv4_netmask_length-1"><code>ipv4_netmask_length</code></a></h3>
@@ -2732,6 +2745,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <li><strong>Type:</strong> Int(0..=32)</li>
 <li><strong>Required:</strong> No</li>
 <li><strong>Create-only:</strong> Yes</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>The netmask length of the IPv4 CIDR you want to allocate to this VPC from an Amazon VPC IP Address Manager (IPAM) pool. For more information about IPAM, see <a href="https://docs.aws.amazon.com//vpc/latest/ipam/what-is-it-ipam.html">What is IPAM?</a> in the <em>Amazon VPC IPAM User Guide</em>.</p>
 <h3 id="tags-14"><a class="header" href="#tags-14"><code>tags</code></a></h3>
@@ -3057,6 +3071,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 <ul>
 <li><strong>Type:</strong> <a href="#access_control-accesscontrol">Enum (AccessControl)</a></li>
 <li><strong>Required:</strong> No</li>
+<li><strong>Write-only:</strong> Yes</li>
 </ul>
 <p>This is a legacy property, and it is not recommended for most use cases. A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you keep ACLs disabled. For more information, see <a href="https://docs.aws.amazon.com//AmazonS3/latest/userguide/about-object-ownership.html">Controlling object ownership</a> in the <em>Amazon S3 User Guide</em>. A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl">Canned ACL</a> in the <em>Amazon S3 User Guide</em>. S3 buckets are created with ACLs disabled by default. Therefore, unless you explicitly set the <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html">AWS::S3::OwnershipControls</a> property to enable ACLs, your resource will fail to deploy with any value other than Private. Use cases requiring ACLs are uncommon. The majority of access control configurations can be successfully and more easily achieved with bucket policies. For more information, see <a href="https://docs.aws.amazon.com//AWSCloudFormation/latest/UserGuide/aws-properties-s3-policy.html">AWS::S3::BucketPolicy</a>. For examples of common policy configurations, including S3 Server Access Logs buckets and more, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html">Bucket policy examples</a> in the <em>Amazon S3 User Guide</em>.</p>
 <h3 id="analytics_configurations"><a class="header" href="#analytics_configurations"><code>analytics_configurations</code></a></h3>
