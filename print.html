@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-42a0f708.js";
+            window.path_to_searchindex_js = "searchindex-631d6550.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-2a52bd42.js"></script>
@@ -5263,31 +5263,31 @@ let subnet = aws.ec2.subnet {
 <p>Specifies the namespace where you want to create your general purpose bucket. When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace. Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in. For more information on bucket namespaces, see Namespaces for general purpose buckets. General purpose buckets in your account regional namespace must follow a specific naming convention. These buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with -an. Bucket names must follow the format bucket-name-prefix-accountId-region-an (for example, amzn-s3-demo-bucket-111122223333-us-west-2-an). For information about bucket naming restrictions, see Account regional namespace naming rules in the Amazon S3 User Guide. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_full_control"><a class="header" href="#grant_full_control"><code>grant_full_control</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_read"><a class="header" href="#grant_read"><code>grant_read</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_read_acp"><a class="header" href="#grant_read_acp"><code>grant_read_acp</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_write"><a class="header" href="#grant_write"><code>grant_write</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_write_acp"><a class="header" href="#grant_write_acp"><code>grant_write_acp</code></a></h3>
 <ul>
-<li><strong>Type:</strong> String</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.</p>
