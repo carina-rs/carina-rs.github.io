@@ -191,7 +191,7 @@ For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/usergu
 <p>The hostname type for EC2 instances launched into this subnet and how DNS A and AAAA record queries to the instances should be handled. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html">Amazon EC2 instance hostname types</a> in the <em>User Guide</em>. Available options: + EnableResourceNameDnsAAAARecord (true | false) + EnableResourceNameDnsARecord (true | false) + HostnameType (ip-name | resource-name)</p>
 <h3 id="tags"><code dir="auto">tags</code></h3>
 <ul>
-<li><strong>Type:</strong> Map(String)</li>
+<li><strong>Type:</strong> <code dir="auto">Map&#x3C;String, String></code></li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Any tags assigned to the subnet.</p>
