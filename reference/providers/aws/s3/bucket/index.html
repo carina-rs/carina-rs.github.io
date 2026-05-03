@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>aws.s3.Bucket | Carina</title><link rel="canonical"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v5.5.5"/><meta name="generator" content="Starlight v0.32.5"/><meta property="og:title" content="aws.s3.Bucket"/><meta property="og:type" content="article"/><meta property="og:url"/><meta property="og:locale" content="en"/><meta property="og:description" content="AWS S3 bucket resource reference"/><meta property="og:site_name" content="Carina"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AWS S3 bucket resource reference"/> <meta property="og:image" content="/og/reference/providers/aws/s3/bucket/index.png"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"><script>
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>aws.s3.Bucket | Carina</title><link rel="canonical"/><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v5.5.5"/><meta name="generator" content="Starlight v0.32.5"/><meta property="og:title" content="aws.s3.Bucket"/><meta property="og:type" content="article"/><meta property="og:url"/><meta property="og:locale" content="en"/><meta property="og:description" content="AWS S3 Bucket resource reference"/><meta property="og:site_name" content="Carina"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="AWS S3 Bucket resource reference"/> <meta property="og:image" content="/og/reference/providers/aws/s3/bucket/index.png"> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"><script>
 	window.StarlightThemeProvider = (() => {
 		const storedTheme =
 			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
@@ -102,31 +102,31 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 <p>Specifies the namespace where you want to create your general purpose bucket. When you create a general purpose bucket, you can choose to create a bucket in the shared global namespace or you can choose to create a bucket in your account regional namespace. Your account regional namespace is a subdivision of the global namespace that only your account can create buckets in. For more information on bucket namespaces, see Namespaces for general purpose buckets. General purpose buckets in your account regional namespace must follow a specific naming convention. These buckets consist of a bucket name prefix that you create, and a suffix that contains your 12-digit Amazon Web Services Account ID, the Amazon Web Services Region code, and ends with -an. Bucket names must follow the format bucket-name-prefix-accountId-region-an (for example, amzn-s3-demo-bucket-111122223333-us-west-2-an). For information about bucket naming restrictions, see Account regional namespace naming rules in the Amazon S3 User Guide. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_full_control"><code dir="auto">grant_full_control</code></h3>
 <ul>
-<li><strong>Type:</strong> s3_grantee</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee the read, write, read ACP, and write ACP permissions on the bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_read"><code dir="auto">grant_read</code></h3>
 <ul>
-<li><strong>Type:</strong> s3_grantee</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to list the objects in the bucket. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_read_acp"><code dir="auto">grant_read_acp</code></h3>
 <ul>
-<li><strong>Type:</strong> s3_grantee</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to read the bucket ACL. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_write"><code dir="auto">grant_write</code></h3>
 <ul>
-<li><strong>Type:</strong> s3_grantee</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to create new objects in the bucket. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects. This functionality is not supported for directory buckets.</p>
 <h3 id="grant_write_acp"><code dir="auto">grant_write_acp</code></h3>
 <ul>
-<li><strong>Type:</strong> s3_grantee</li>
+<li><strong>Type:</strong> S3Grantee</li>
 <li><strong>Required:</strong> No</li>
 </ul>
 <p>Allows grantee to write the ACL for the applicable bucket. This functionality is not supported for directory buckets.</p>
