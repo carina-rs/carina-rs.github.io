@@ -76,8 +76,8 @@ To control how AWS CloudFormation handles the bucket when the stack is deleted, 
 You can only delete empty buckets. Deletion fails for buckets that have contents.</p>
 <h2 id="example">Example</h2>
 <div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.oihtl.css"><script type="module" src="/_astro/ec.8zarh.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="crn"><code><div class="ec-line"><div class="code"><span style="--0:#FFB757">awscc.s3.Bucket</span><span style="--0:#F0F3F6"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">bucket_name </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> </span><span style="--0:#ADDCFF">'my-example-bucket'</span></div></div><div class="ec-line"><div class="code">
-</div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">versioning_configuration </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">    </span></span><span style="--0:#F0F3F6">status </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> Enabled</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">}</span></div></div><div class="ec-line"><div class="code">
-</div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">tags </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">    </span></span><span style="--0:#F0F3F6">Environment </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> </span><span style="--0:#ADDCFF">'example'</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F0F3F6">}</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="awscc.s3.Bucket {  bucket_name = &#x27;my-example-bucket&#x27;  versioning_configuration = {    status = Enabled  }  tags = {    Environment = &#x27;example&#x27;  }}"><div></div></button></div></figure></div>
+</div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">versioning_configuration </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">    </span></span><span style="--0:#F0F3F6">status </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> enabled</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">tags </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">    </span></span><span style="--0:#F0F3F6">Environment </span><span style="--0:#FF9492">=</span><span style="--0:#F0F3F6"> </span><span style="--0:#ADDCFF">'example'</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#F0F3F6">  </span></span><span style="--0:#F0F3F6">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#F0F3F6">}</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="awscc.s3.Bucket {  bucket_name = &#x27;my-example-bucket&#x27;  versioning_configuration = {    status = enabled  }  tags = {    Environment = &#x27;example&#x27;  }}"><div></div></button></div></figure></div>
 <h2 id="argument-reference">Argument Reference</h2>
 <h3 id="abac_status"><code dir="auto">abac_status</code></h3>
 <ul class="attr-meta">
@@ -238,8 +238,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.AbacStatus.Enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.AbacStatus.Disabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">AbacStatus.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.AbacStatus.enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.AbacStatus.disabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">AbacStatus.enabled</code></p>
 <h3 id="acceleration_status-accelerationstatus">acceleration_status (AccelerationStatus)</h3>
 
 
@@ -258,8 +258,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.AccelerationStatus.Enabled</code></td></tr><tr><td><code dir="auto">Suspended</code></td><td><code dir="auto">awscc.s3.Bucket.AccelerationStatus.Suspended</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">AccelerationStatus.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.AccelerationStatus.enabled</code></td></tr><tr><td><code dir="auto">Suspended</code></td><td><code dir="auto">awscc.s3.Bucket.AccelerationStatus.suspended</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">AccelerationStatus.enabled</code></p>
 <h3 id="access_control-accesscontrol">access_control (AccessControl)</h3>
 
 
@@ -302,8 +302,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">AuthenticatedRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.AuthenticatedRead</code></td></tr><tr><td><code dir="auto">AwsExecRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.AwsExecRead</code></td></tr><tr><td><code dir="auto">BucketOwnerFullControl</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.BucketOwnerFullControl</code></td></tr><tr><td><code dir="auto">BucketOwnerRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.BucketOwnerRead</code></td></tr><tr><td><code dir="auto">LogDeliveryWrite</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.LogDeliveryWrite</code></td></tr><tr><td><code dir="auto">Private</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.Private</code></td></tr><tr><td><code dir="auto">PublicRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.PublicRead</code></td></tr><tr><td><code dir="auto">PublicReadWrite</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.PublicReadWrite</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">AuthenticatedRead</code> or <code dir="auto">AccessControl.AuthenticatedRead</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">AuthenticatedRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.authenticated_read</code></td></tr><tr><td><code dir="auto">AwsExecRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.aws_exec_read</code></td></tr><tr><td><code dir="auto">BucketOwnerFullControl</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.bucket_owner_full_control</code></td></tr><tr><td><code dir="auto">BucketOwnerRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.bucket_owner_read</code></td></tr><tr><td><code dir="auto">LogDeliveryWrite</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.log_delivery_write</code></td></tr><tr><td><code dir="auto">Private</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.private</code></td></tr><tr><td><code dir="auto">PublicRead</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.public_read</code></td></tr><tr><td><code dir="auto">PublicReadWrite</code></td><td><code dir="auto">awscc.s3.Bucket.AccessControl.public_read_write</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">authenticated_read</code> or <code dir="auto">AccessControl.authenticated_read</code></p>
 <h3 id="owner-owner">owner (Owner)</h3>
 
 
@@ -318,8 +318,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Destination</code></td><td><code dir="auto">awscc.s3.Bucket.Owner.Destination</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Destination</code> or <code dir="auto">Owner.Destination</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Destination</code></td><td><code dir="auto">awscc.s3.Bucket.Owner.destination</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">destination</code> or <code dir="auto">Owner.destination</code></p>
 <h3 id="encryption_type-encryptiontype">encryption_type (EncryptionType)</h3>
 
 
@@ -338,8 +338,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">NONE</code></td><td><code dir="auto">awscc.s3.Bucket.EncryptionType.NONE</code></td></tr><tr><td><code dir="auto">SSE-C</code></td><td><code dir="auto">awscc.s3.Bucket.EncryptionType.SSE_C</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">NONE</code> or <code dir="auto">EncryptionType.NONE</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">NONE</code></td><td><code dir="auto">awscc.s3.Bucket.EncryptionType.none</code></td></tr><tr><td><code dir="auto">SSE-C</code></td><td><code dir="auto">awscc.s3.Bucket.EncryptionType.sse_c</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">none</code> or <code dir="auto">EncryptionType.none</code></p>
 <h3 id="allowed_methods-allowedmethods">allowed_methods (AllowedMethods)</h3>
 
 
@@ -370,8 +370,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">GET</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.GET</code></td></tr><tr><td><code dir="auto">PUT</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.PUT</code></td></tr><tr><td><code dir="auto">HEAD</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.HEAD</code></td></tr><tr><td><code dir="auto">POST</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.POST</code></td></tr><tr><td><code dir="auto">DELETE</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.DELETE</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">GET</code> or <code dir="auto">AllowedMethods.GET</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">GET</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.get</code></td></tr><tr><td><code dir="auto">PUT</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.put</code></td></tr><tr><td><code dir="auto">HEAD</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.head</code></td></tr><tr><td><code dir="auto">POST</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.post</code></td></tr><tr><td><code dir="auto">DELETE</code></td><td><code dir="auto">awscc.s3.Bucket.AllowedMethods.delete</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">get</code> or <code dir="auto">AllowedMethods.get</code></p>
 <h3 id="output_schema_version-outputschemaversion">output_schema_version (OutputSchemaVersion)</h3>
 
 
@@ -386,8 +386,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">V_1</code></td><td><code dir="auto">awscc.s3.Bucket.OutputSchemaVersion.V_1</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">V_1</code> or <code dir="auto">OutputSchemaVersion.V_1</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">V_1</code></td><td><code dir="auto">awscc.s3.Bucket.OutputSchemaVersion.v_1</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">v_1</code> or <code dir="auto">OutputSchemaVersion.v_1</code></p>
 <h3 id="mode-mode">mode (Mode)</h3>
 
 
@@ -406,8 +406,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">COMPLIANCE</code></td><td><code dir="auto">awscc.s3.Bucket.Mode.COMPLIANCE</code></td></tr><tr><td><code dir="auto">GOVERNANCE</code></td><td><code dir="auto">awscc.s3.Bucket.Mode.GOVERNANCE</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">COMPLIANCE</code> or <code dir="auto">Mode.COMPLIANCE</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">COMPLIANCE</code></td><td><code dir="auto">awscc.s3.Bucket.Mode.compliance</code></td></tr><tr><td><code dir="auto">GOVERNANCE</code></td><td><code dir="auto">awscc.s3.Bucket.Mode.governance</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">compliance</code> or <code dir="auto">Mode.compliance</code></p>
 <h3 id="status-deletemarkerreplicationstatus">status (DeleteMarkerReplicationStatus)</h3>
 
 
@@ -426,8 +426,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.DeleteMarkerReplicationStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.DeleteMarkerReplicationStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">DeleteMarkerReplicationStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.DeleteMarkerReplicationStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.DeleteMarkerReplicationStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">DeleteMarkerReplicationStatus.disabled</code></p>
 <h3 id="format-format">format (Format)</h3>
 
 
@@ -450,8 +450,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">CSV</code></td><td><code dir="auto">awscc.s3.Bucket.Format.CSV</code></td></tr><tr><td><code dir="auto">ORC</code></td><td><code dir="auto">awscc.s3.Bucket.Format.ORC</code></td></tr><tr><td><code dir="auto">Parquet</code></td><td><code dir="auto">awscc.s3.Bucket.Format.Parquet</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">CSV</code> or <code dir="auto">Format.CSV</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">CSV</code></td><td><code dir="auto">awscc.s3.Bucket.Format.csv</code></td></tr><tr><td><code dir="auto">ORC</code></td><td><code dir="auto">awscc.s3.Bucket.Format.orc</code></td></tr><tr><td><code dir="auto">Parquet</code></td><td><code dir="auto">awscc.s3.Bucket.Format.parquet</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">csv</code> or <code dir="auto">Format.csv</code></p>
 <h3 id="status-intelligenttieringconfigurationstatus">status (IntelligentTieringConfigurationStatus)</h3>
 
 
@@ -470,8 +470,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.IntelligentTieringConfigurationStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.IntelligentTieringConfigurationStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">IntelligentTieringConfigurationStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.IntelligentTieringConfigurationStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.IntelligentTieringConfigurationStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">IntelligentTieringConfigurationStatus.disabled</code></p>
 <h3 id="included_object_versions-includedobjectversions">included_object_versions (IncludedObjectVersions)</h3>
 
 
@@ -490,8 +490,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">All</code></td><td><code dir="auto">awscc.s3.Bucket.IncludedObjectVersions.All</code></td></tr><tr><td><code dir="auto">Current</code></td><td><code dir="auto">awscc.s3.Bucket.IncludedObjectVersions.Current</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">All</code> or <code dir="auto">IncludedObjectVersions.All</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">All</code></td><td><code dir="auto">awscc.s3.Bucket.IncludedObjectVersions.all</code></td></tr><tr><td><code dir="auto">Current</code></td><td><code dir="auto">awscc.s3.Bucket.IncludedObjectVersions.current</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">all</code> or <code dir="auto">IncludedObjectVersions.all</code></p>
 <h3 id="optional_fields-optionalfields">optional_fields (OptionalFields)</h3>
 
 
@@ -566,8 +566,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Size</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.Size</code></td></tr><tr><td><code dir="auto">LastModifiedDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.LastModifiedDate</code></td></tr><tr><td><code dir="auto">StorageClass</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.StorageClass</code></td></tr><tr><td><code dir="auto">ETag</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ETag</code></td></tr><tr><td><code dir="auto">IsMultipartUploaded</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.IsMultipartUploaded</code></td></tr><tr><td><code dir="auto">ReplicationStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ReplicationStatus</code></td></tr><tr><td><code dir="auto">EncryptionStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.EncryptionStatus</code></td></tr><tr><td><code dir="auto">ObjectLockRetainUntilDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ObjectLockRetainUntilDate</code></td></tr><tr><td><code dir="auto">ObjectLockMode</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ObjectLockMode</code></td></tr><tr><td><code dir="auto">ObjectLockLegalHoldStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ObjectLockLegalHoldStatus</code></td></tr><tr><td><code dir="auto">IntelligentTieringAccessTier</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.IntelligentTieringAccessTier</code></td></tr><tr><td><code dir="auto">BucketKeyStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.BucketKeyStatus</code></td></tr><tr><td><code dir="auto">ChecksumAlgorithm</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ChecksumAlgorithm</code></td></tr><tr><td><code dir="auto">ObjectAccessControlList</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ObjectAccessControlList</code></td></tr><tr><td><code dir="auto">ObjectOwner</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.ObjectOwner</code></td></tr><tr><td><code dir="auto">LifecycleExpirationDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.LifecycleExpirationDate</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Size</code> or <code dir="auto">OptionalFields.Size</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Size</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.size</code></td></tr><tr><td><code dir="auto">LastModifiedDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.last_modified_date</code></td></tr><tr><td><code dir="auto">StorageClass</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.storage_class</code></td></tr><tr><td><code dir="auto">ETag</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.etag</code></td></tr><tr><td><code dir="auto">IsMultipartUploaded</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.is_multipart_uploaded</code></td></tr><tr><td><code dir="auto">ReplicationStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.replication_status</code></td></tr><tr><td><code dir="auto">EncryptionStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.encryption_status</code></td></tr><tr><td><code dir="auto">ObjectLockRetainUntilDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.object_lock_retain_until_date</code></td></tr><tr><td><code dir="auto">ObjectLockMode</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.object_lock_mode</code></td></tr><tr><td><code dir="auto">ObjectLockLegalHoldStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.object_lock_legal_hold_status</code></td></tr><tr><td><code dir="auto">IntelligentTieringAccessTier</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.intelligent_tiering_access_tier</code></td></tr><tr><td><code dir="auto">BucketKeyStatus</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.bucket_key_status</code></td></tr><tr><td><code dir="auto">ChecksumAlgorithm</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.checksum_algorithm</code></td></tr><tr><td><code dir="auto">ObjectAccessControlList</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.object_access_control_list</code></td></tr><tr><td><code dir="auto">ObjectOwner</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.object_owner</code></td></tr><tr><td><code dir="auto">LifecycleExpirationDate</code></td><td><code dir="auto">awscc.s3.Bucket.OptionalFields.lifecycle_expiration_date</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">size</code> or <code dir="auto">OptionalFields.size</code></p>
 <h3 id="schedule_frequency-schedulefrequency">schedule_frequency (ScheduleFrequency)</h3>
 
 
@@ -586,8 +586,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Daily</code></td><td><code dir="auto">awscc.s3.Bucket.ScheduleFrequency.Daily</code></td></tr><tr><td><code dir="auto">Weekly</code></td><td><code dir="auto">awscc.s3.Bucket.ScheduleFrequency.Weekly</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Daily</code> or <code dir="auto">ScheduleFrequency.Daily</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Daily</code></td><td><code dir="auto">awscc.s3.Bucket.ScheduleFrequency.daily</code></td></tr><tr><td><code dir="auto">Weekly</code></td><td><code dir="auto">awscc.s3.Bucket.ScheduleFrequency.weekly</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">daily</code> or <code dir="auto">ScheduleFrequency.daily</code></p>
 <h3 id="configuration_state-configurationstate">configuration_state (ConfigurationState)</h3>
 
 
@@ -606,8 +606,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ENABLED</code></td><td><code dir="auto">awscc.s3.Bucket.ConfigurationState.ENABLED</code></td></tr><tr><td><code dir="auto">DISABLED</code></td><td><code dir="auto">awscc.s3.Bucket.ConfigurationState.DISABLED</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">ENABLED</code> or <code dir="auto">ConfigurationState.ENABLED</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ENABLED</code></td><td><code dir="auto">awscc.s3.Bucket.ConfigurationState.enabled</code></td></tr><tr><td><code dir="auto">DISABLED</code></td><td><code dir="auto">awscc.s3.Bucket.ConfigurationState.disabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">ConfigurationState.enabled</code></p>
 <h3 id="transition_default_minimum_object_size-transitiondefaultminimumobjectsize">transition_default_minimum_object_size (TransitionDefaultMinimumObjectSize)</h3>
 
 
@@ -626,7 +626,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">varies_by_storage_class</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></td></tr><tr><td><code dir="auto">all_storage_classes_128K</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionDefaultMinimumObjectSize.all_storage_classes_128K</code></td></tr></tbody></table>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">varies_by_storage_class</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></td></tr><tr><td><code dir="auto">all_storage_classes_128K</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionDefaultMinimumObjectSize.all_storage_classes_128k</code></td></tr></tbody></table>
 <p>Shorthand formats: <code dir="auto">varies_by_storage_class</code> or <code dir="auto">TransitionDefaultMinimumObjectSize.varies_by_storage_class</code></p>
 <h3 id="table_bucket_type-tablebuckettype">table_bucket_type (TableBucketType)</h3>
 
@@ -666,7 +666,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">aws:kms</code></td><td><code dir="auto">awscc.s3.Bucket.MetadataTableEncryptionConfigurationSseAlgorithm.aws:kms</code></td></tr><tr><td><code dir="auto">AES256</code></td><td><code dir="auto">awscc.s3.Bucket.MetadataTableEncryptionConfigurationSseAlgorithm.AES256</code></td></tr></tbody></table>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">aws:kms</code></td><td><code dir="auto">awscc.s3.Bucket.MetadataTableEncryptionConfigurationSseAlgorithm.aws:kms</code></td></tr><tr><td><code dir="auto">AES256</code></td><td><code dir="auto">awscc.s3.Bucket.MetadataTableEncryptionConfigurationSseAlgorithm.aes256</code></td></tr></tbody></table>
 <p>Shorthand formats: <code dir="auto">aws:kms</code> or <code dir="auto">MetadataTableEncryptionConfigurationSseAlgorithm.aws:kms</code></p>
 <h3 id="status-metricsstatus">status (MetricsStatus)</h3>
 
@@ -686,8 +686,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.MetricsStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.MetricsStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">MetricsStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.MetricsStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.MetricsStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">MetricsStatus.disabled</code></p>
 <h3 id="storage_class-noncurrentversiontransitionstorageclass">storage_class (NoncurrentVersionTransitionStorageClass)</h3>
 
 
@@ -722,8 +722,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.DEEP_ARCHIVE</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.GLACIER</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.GLACIER_IR</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.INTELLIGENT_TIERING</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.ONEZONE_IA</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.STANDARD_IA</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">DEEP_ARCHIVE</code> or <code dir="auto">NoncurrentVersionTransitionStorageClass.DEEP_ARCHIVE</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.deep_archive</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.glacier</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.glacier_ir</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.intelligent_tiering</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.onezone_ia</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.NoncurrentVersionTransitionStorageClass.standard_ia</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">deep_archive</code> or <code dir="auto">NoncurrentVersionTransitionStorageClass.deep_archive</code></p>
 <h3 id="object_lock_enabled-objectlockenabled">object_lock_enabled (ObjectLockEnabled)</h3>
 
 
@@ -738,8 +738,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectLockEnabled.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">ObjectLockEnabled.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectLockEnabled.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">ObjectLockEnabled.enabled</code></p>
 <h3 id="object_ownership-objectownership">object_ownership (ObjectOwnership)</h3>
 
 
@@ -762,8 +762,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ObjectWriter</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.ObjectWriter</code></td></tr><tr><td><code dir="auto">BucketOwnerPreferred</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.BucketOwnerPreferred</code></td></tr><tr><td><code dir="auto">BucketOwnerEnforced</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.BucketOwnerEnforced</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">ObjectWriter</code> or <code dir="auto">ObjectOwnership.ObjectWriter</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ObjectWriter</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.object_writer</code></td></tr><tr><td><code dir="auto">BucketOwnerPreferred</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.bucket_owner_preferred</code></td></tr><tr><td><code dir="auto">BucketOwnerEnforced</code></td><td><code dir="auto">awscc.s3.Bucket.ObjectOwnership.bucket_owner_enforced</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">object_writer</code> or <code dir="auto">ObjectOwnership.object_writer</code></p>
 <h3 id="partition_date_source-partitiondatesource">partition_date_source (PartitionDateSource)</h3>
 
 
@@ -782,8 +782,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">EventTime</code></td><td><code dir="auto">awscc.s3.Bucket.PartitionDateSource.EventTime</code></td></tr><tr><td><code dir="auto">DeliveryTime</code></td><td><code dir="auto">awscc.s3.Bucket.PartitionDateSource.DeliveryTime</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">EventTime</code> or <code dir="auto">PartitionDateSource.EventTime</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">EventTime</code></td><td><code dir="auto">awscc.s3.Bucket.PartitionDateSource.event_time</code></td></tr><tr><td><code dir="auto">DeliveryTime</code></td><td><code dir="auto">awscc.s3.Bucket.PartitionDateSource.delivery_time</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">event_time</code> or <code dir="auto">PartitionDateSource.event_time</code></p>
 <h3 id="expiration-expiration">expiration (Expiration)</h3>
 
 
@@ -802,8 +802,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ENABLED</code></td><td><code dir="auto">awscc.s3.Bucket.Expiration.ENABLED</code></td></tr><tr><td><code dir="auto">DISABLED</code></td><td><code dir="auto">awscc.s3.Bucket.Expiration.DISABLED</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">ENABLED</code> or <code dir="auto">Expiration.ENABLED</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ENABLED</code></td><td><code dir="auto">awscc.s3.Bucket.Expiration.enabled</code></td></tr><tr><td><code dir="auto">DISABLED</code></td><td><code dir="auto">awscc.s3.Bucket.Expiration.disabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">Expiration.enabled</code></p>
 <h3 id="protocol-protocol">protocol (Protocol)</h3>
 
 
@@ -842,8 +842,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicaModificationsStatus.Enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicaModificationsStatus.Disabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">ReplicaModificationsStatus.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicaModificationsStatus.enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicaModificationsStatus.disabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">ReplicaModificationsStatus.enabled</code></p>
 <h3 id="storage_class-replicationdestinationstorageclass">storage_class (ReplicationDestinationStorageClass)</h3>
 
 
@@ -886,8 +886,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.DEEP_ARCHIVE</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.GLACIER</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.GLACIER_IR</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.INTELLIGENT_TIERING</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.ONEZONE_IA</code></td></tr><tr><td><code dir="auto">REDUCED_REDUNDANCY</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.REDUCED_REDUNDANCY</code></td></tr><tr><td><code dir="auto">STANDARD</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.STANDARD</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.STANDARD_IA</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">DEEP_ARCHIVE</code> or <code dir="auto">ReplicationDestinationStorageClass.DEEP_ARCHIVE</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.deep_archive</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.glacier</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.glacier_ir</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.intelligent_tiering</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.onezone_ia</code></td></tr><tr><td><code dir="auto">REDUCED_REDUNDANCY</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.reduced_redundancy</code></td></tr><tr><td><code dir="auto">STANDARD</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.standard</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationDestinationStorageClass.standard_ia</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">deep_archive</code> or <code dir="auto">ReplicationDestinationStorageClass.deep_archive</code></p>
 <h3 id="status-replicationrulestatus">status (ReplicationRuleStatus)</h3>
 
 
@@ -906,8 +906,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationRuleStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationRuleStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">ReplicationRuleStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationRuleStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationRuleStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">ReplicationRuleStatus.disabled</code></p>
 <h3 id="status-replicationtimestatus">status (ReplicationTimeStatus)</h3>
 
 
@@ -926,8 +926,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationTimeStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationTimeStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">ReplicationTimeStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationTimeStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.ReplicationTimeStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">ReplicationTimeStatus.disabled</code></p>
 <h3 id="status-rulestatus">status (RuleStatus)</h3>
 
 
@@ -946,8 +946,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.RuleStatus.Enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.RuleStatus.Disabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">RuleStatus.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.RuleStatus.enabled</code></td></tr><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.RuleStatus.disabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">RuleStatus.enabled</code></p>
 <h3 id="sse_algorithm-serversideencryptionbydefaultssealgorithm">sse_algorithm (ServerSideEncryptionByDefaultSseAlgorithm)</h3>
 
 
@@ -970,7 +970,7 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">aws:kms</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms</code></td></tr><tr><td><code dir="auto">AES256</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.AES256</code></td></tr><tr><td><code dir="auto">aws:kms:dsse</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms:dsse</code></td></tr></tbody></table>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">aws:kms</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms</code></td></tr><tr><td><code dir="auto">AES256</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.aes256</code></td></tr><tr><td><code dir="auto">aws:kms:dsse</code></td><td><code dir="auto">awscc.s3.Bucket.ServerSideEncryptionByDefaultSseAlgorithm.aws:kms:dsse</code></td></tr></tbody></table>
 <p>Shorthand formats: <code dir="auto">aws:kms</code> or <code dir="auto">ServerSideEncryptionByDefaultSseAlgorithm.aws:kms</code></p>
 <h3 id="status-ssekmsencryptedobjectsstatus">status (SseKmsEncryptedObjectsStatus)</h3>
 
@@ -990,8 +990,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.SseKmsEncryptedObjectsStatus.Disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.SseKmsEncryptedObjectsStatus.Enabled</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Disabled</code> or <code dir="auto">SseKmsEncryptedObjectsStatus.Disabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Disabled</code></td><td><code dir="auto">awscc.s3.Bucket.SseKmsEncryptedObjectsStatus.disabled</code></td></tr><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.SseKmsEncryptedObjectsStatus.enabled</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">disabled</code> or <code dir="auto">SseKmsEncryptedObjectsStatus.disabled</code></p>
 <h3 id="access_tier-accesstier">access_tier (AccessTier)</h3>
 
 
@@ -1010,8 +1010,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ARCHIVE_ACCESS</code></td><td><code dir="auto">awscc.s3.Bucket.AccessTier.ARCHIVE_ACCESS</code></td></tr><tr><td><code dir="auto">DEEP_ARCHIVE_ACCESS</code></td><td><code dir="auto">awscc.s3.Bucket.AccessTier.DEEP_ARCHIVE_ACCESS</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">ARCHIVE_ACCESS</code> or <code dir="auto">AccessTier.ARCHIVE_ACCESS</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">ARCHIVE_ACCESS</code></td><td><code dir="auto">awscc.s3.Bucket.AccessTier.archive_access</code></td></tr><tr><td><code dir="auto">DEEP_ARCHIVE_ACCESS</code></td><td><code dir="auto">awscc.s3.Bucket.AccessTier.deep_archive_access</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">archive_access</code> or <code dir="auto">AccessTier.archive_access</code></p>
 <h3 id="storage_class-transitionstorageclass">storage_class (TransitionStorageClass)</h3>
 
 
@@ -1046,8 +1046,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.DEEP_ARCHIVE</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.GLACIER</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.GLACIER_IR</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.INTELLIGENT_TIERING</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.ONEZONE_IA</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.STANDARD_IA</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">DEEP_ARCHIVE</code> or <code dir="auto">TransitionStorageClass.DEEP_ARCHIVE</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">DEEP_ARCHIVE</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.deep_archive</code></td></tr><tr><td><code dir="auto">GLACIER</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.glacier</code></td></tr><tr><td><code dir="auto">GLACIER_IR</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.glacier_ir</code></td></tr><tr><td><code dir="auto">INTELLIGENT_TIERING</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.intelligent_tiering</code></td></tr><tr><td><code dir="auto">ONEZONE_IA</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.onezone_ia</code></td></tr><tr><td><code dir="auto">STANDARD_IA</code></td><td><code dir="auto">awscc.s3.Bucket.TransitionStorageClass.standard_ia</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">deep_archive</code> or <code dir="auto">TransitionStorageClass.deep_archive</code></p>
 <h3 id="status-versioningconfigurationstatus">status (VersioningConfigurationStatus)</h3>
 
 
@@ -1066,8 +1066,8 @@ You can only delete empty buckets. Deletion fails for buckets that have contents
 
 
 
-<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.VersioningConfigurationStatus.Enabled</code></td></tr><tr><td><code dir="auto">Suspended</code></td><td><code dir="auto">awscc.s3.Bucket.VersioningConfigurationStatus.Suspended</code></td></tr></tbody></table>
-<p>Shorthand formats: <code dir="auto">Enabled</code> or <code dir="auto">VersioningConfigurationStatus.Enabled</code></p>
+<table><thead><tr><th>Value</th><th>DSL Identifier</th></tr></thead><tbody><tr><td><code dir="auto">Enabled</code></td><td><code dir="auto">awscc.s3.Bucket.VersioningConfigurationStatus.enabled</code></td></tr><tr><td><code dir="auto">Suspended</code></td><td><code dir="auto">awscc.s3.Bucket.VersioningConfigurationStatus.suspended</code></td></tr></tbody></table>
+<p>Shorthand formats: <code dir="auto">enabled</code> or <code dir="auto">VersioningConfigurationStatus.enabled</code></p>
 <h2 id="struct-definitions">Struct Definitions</h2>
 <h3 id="abortincompletemultipartupload">AbortIncompleteMultipartUpload</h3>
 
