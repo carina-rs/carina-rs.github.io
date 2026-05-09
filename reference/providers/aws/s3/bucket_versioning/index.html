@@ -80,13 +80,13 @@
 <p>The bucket name.</p>
 <h3 id="status"><code dir="auto">status</code></h3>
 <ul class="attr-meta">
-<li class="meta-type"><strong>Type:</strong><span class="meta-value"> AttributeType::StringEnum { name: “VersioningStatus”.toString(), values: vec![“Enabled”.toString(), “Suspended”.toString()], namespace: Some(“aws.s3.BucketVersioning”.toString()), toDsl: None }</span></li>
+<li class="meta-type"><strong>Type:</strong><span class="meta-value"> AttributeType::StringEnum { name: “VersioningStatus”.toString(), values: vec![“Enabled”.toString(), “Suspended”.toString()], namespace: Some(“aws.s3.BucketVersioning”.toString()), dslAliases: vec![(“Enabled”.toString(), “enabled”.toString()), (“Suspended”.toString(), “suspended”.toString())] }</span></li>
 <li class="meta-required meta-req-no"><strong>Required:</strong><span class="meta-value"> No</span></li>
 </ul>
 <p>Versioning state of the bucket: Enabled or Suspended.</p>
 <h3 id="mfa_delete"><code dir="auto">mfa_delete</code></h3>
 <ul class="attr-meta">
-<li class="meta-type"><strong>Type:</strong><span class="meta-value"> AttributeType::StringEnum { name: “MFADelete”.toString(), values: vec![“Enabled”.toString(), “Disabled”.toString()], namespace: Some(“aws.s3.BucketVersioning”.toString()), toDsl: None }</span></li>
+<li class="meta-type"><strong>Type:</strong><span class="meta-value"> AttributeType::StringEnum { name: “MFADelete”.toString(), values: vec![“Enabled”.toString(), “Disabled”.toString()], namespace: Some(“aws.s3.BucketVersioning”.toString()), dslAliases: vec![(“Enabled”.toString(), “enabled”.toString()), (“Disabled”.toString(), “disabled”.toString())] }</span></li>
 <li class="meta-required meta-req-no"><strong>Required:</strong><span class="meta-value"> No</span></li>
 </ul>
 <p>MFA-delete state. Specifies whether MFA delete is enabled in the bucket versioning configuration.</p> </div> <footer class="carina-footer astro-sz7xmlte"> <div class="carina-footer-star astro-sz7xmlte" aria-hidden="true"></div> <p class="carina-footer-quote astro-sz7xmlte">
