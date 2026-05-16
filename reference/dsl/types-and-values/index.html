@@ -10,22 +10,22 @@ whether interpolation is needed.</p>
 <h4 id="single-quoted-strings-literal">Single-Quoted Strings (Literal)</h4>
 <p>Single quotes produce a literal string. <code>${...}</code> inside single quotes is <strong>not</strong>
 interpreted as interpolation — it is kept verbatim.</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> literal</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'price is ${amount}'</span><span style="color:#64748B">   # the six characters ${amount} stay as-is</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> literal</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'price is ${amount}'</span><span style="color:#64748B">   # the six characters ${amount} stay as-is</span></span>
 <span class="line"></span></code></pre>
 <p>The only escape sequences recognized inside single quotes are <code>\'</code> (single
 quote) and <code>\\</code> (backslash).</p>
 <h4 id="double-quoted-strings-interpolation">Double-Quoted Strings (Interpolation)</h4>
 <p>Double quotes support <code>${...}</code> interpolation and the full set of escape
 sequences. Use them whenever you need to embed an expression in a string.</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> env</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'prod'</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${env}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">           # => 'vpc-prod'</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "</span><span style="color:#CBD5E1">${base_cidr}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">         # => value of base_cidr</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> tag</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> "</span><span style="color:#CBD5E1">${env}</span><span style="color:#86EFAC">-</span><span style="color:#CBD5E1">${service}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">    # => 'prod-web'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> env</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'prod'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${env}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">           # => 'vpc-prod'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "</span><span style="color:#94A3B8">${base_cidr}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">         # => value of base_cidr</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> tag</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> "</span><span style="color:#94A3B8">${env}</span><span style="color:#86EFAC">-</span><span style="color:#94A3B8">${service}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">    # => 'prod-web'</span></span>
 <span class="line"></span></code></pre>
 <p>Any expression can appear inside <code>${}</code>, including function calls:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> tag</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${join('-', ['prod', 'web'])}</span><span style="color:#86EFAC">"</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> tag</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${join('-', ['prod', 'web'])}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"></span></code></pre>
 <h4 id="recommended-style">Recommended Style</h4>
 <ul>
@@ -76,29 +76,29 @@ is accepted and behaves identically to the single-quoted form.</p>
 <p>Single-quoted strings recognize only <code>\'</code> and <code>\\</code>.</p>
 <h3 id="int">Int</h3>
 <p>Integer values, optionally negative:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> port</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 443</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> offset</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> -</span><span style="color:#FEF9C3">1</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> count</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 0</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> port</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 443</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> offset</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> -</span><span style="color:#FEF9C3">1</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> count</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 0</span></span>
 <span class="line"></span></code></pre>
 <h3 id="float">Float</h3>
 <p>Floating-point values with a decimal point:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> ratio</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 0.5</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> threshold</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> -</span><span style="color:#FEF9C3">3.14</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> ratio</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 0.5</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> threshold</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> -</span><span style="color:#FEF9C3">3.14</span></span>
 <span class="line"></span></code></pre>
 <h3 id="bool">Bool</h3>
 <p>Boolean values <code>true</code> or <code>false</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> enabled</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> public</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> false</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> enabled</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> public</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> false</span></span>
 <span class="line"></span></code></pre>
 <h2 id="collection-types">Collection Types</h2>
 <h3 id="list">List</h3>
 <p>Ordered sequences enclosed in square brackets:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> zones</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'ap-northeast-1a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1c'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1d'</span><span style="color:#F1F5F9">]</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> ports</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#FEF9C3">80</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">443</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8080</span><span style="color:#F1F5F9">]</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> empty</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> []</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> zones</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'ap-northeast-1a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1c'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1d'</span><span style="color:#F1F5F9">]</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> ports</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#FEF9C3">80</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">443</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8080</span><span style="color:#F1F5F9">]</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> empty</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> []</span></span>
 <span class="line"></span></code></pre>
 <p>Lists can contain mixed types and a trailing comma is allowed:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> mixed</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> mixed</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span></span>
 <span class="line"><span style="color:#86EFAC">  'hello'</span><span style="color:#F1F5F9">,</span></span>
 <span class="line"><span style="color:#FEF9C3">  42</span><span style="color:#F1F5F9">,</span></span>
 <span class="line"><span style="color:#FDE68A">  true</span><span style="color:#F1F5F9">,</span></span>
@@ -106,16 +106,16 @@ is accepted and behaves identically to the single-quoted form.</p>
 <span class="line"></span></code></pre>
 <h3 id="map">Map</h3>
 <p>Key-value collections enclosed in curly braces. Keys are identifiers (unquoted), values are expressions:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Maps are also used for resource tags and nested configuration:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'main'</span></span>
 <span class="line"><span style="color:#F1F5F9">    Environment </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'prod'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
@@ -139,65 +139,65 @@ is accepted and behaves identically to the single-quoted form.</p>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc.InstanceTenancy.default</span></span>
 <span class="line"></span></code></pre>
 <p>Enum identifiers are used directly as attribute values without quotes:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  instance_tenancy</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc.InstanceTenancy.default</span></span>
+<span class="line"><span style="color:#94A3B8">  instance_tenancy</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc.InstanceTenancy.default</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="resource-references">Resource References</h2>
 <p>When a resource is bound with <code>let</code>, its attributes can be accessed using dot notation:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">     =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span><span style="color:#64748B">      # Reference vpc's vpc_id attribute</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">     =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span><span style="color:#64748B">      # Reference vpc's vpc_id attribute</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="chained-access">Chained Access</h3>
 <p>Dot notation can be chained for nested access:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> sg</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> network</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">security_group</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">group_id</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> sg</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">security_group</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">group_id</span></span>
 <span class="line"></span></code></pre>
 <h3 id="index-access">Index Access</h3>
 <p>Use square brackets to access list elements or map values:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> first_zone</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> zones</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">]</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> dev_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> config</span><span style="color:#F1F5F9">[</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">]</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> first_zone</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> zones</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">]</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> dev_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> config</span><span style="color:#F1F5F9">[</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">]</span></span>
 <span class="line"></span></code></pre>
 <p>Index and field access can be combined:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> subnet_id</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> subnets</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">].</span><span style="color:#CBD5E1">subnet_id</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnets</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">].</span><span style="color:#94A3B8">subnet_id</span></span>
 <span class="line"></span></code></pre>
 <h2 id="type-expressions">Type Expressions</h2>
 <p>Type expressions are used in <code>arguments</code> and <code>attributes</code> blocks in modules, and in function parameters.</p>
 <h3 id="simple-types">Simple Types</h3>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  name</span><span style="color:#F1F5F9">      : String</span></span>
-<span class="line"><span style="color:#CBD5E1">  count</span><span style="color:#F1F5F9">     : Int</span></span>
-<span class="line"><span style="color:#CBD5E1">  ratio</span><span style="color:#F1F5F9">     : Float</span></span>
-<span class="line"><span style="color:#CBD5E1">  enabled</span><span style="color:#F1F5F9">   : Bool</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#F1F5F9">: Ipv4Cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">  role_arn</span><span style="color:#F1F5F9">  : Arn</span></span>
+<span class="line"><span style="color:#94A3B8">  name</span><span style="color:#F1F5F9">      : String</span></span>
+<span class="line"><span style="color:#94A3B8">  count</span><span style="color:#F1F5F9">     : Int</span></span>
+<span class="line"><span style="color:#94A3B8">  ratio</span><span style="color:#F1F5F9">     : Float</span></span>
+<span class="line"><span style="color:#94A3B8">  enabled</span><span style="color:#F1F5F9">   : Bool</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#F1F5F9">: Ipv4Cidr</span></span>
+<span class="line"><span style="color:#94A3B8">  role_arn</span><span style="color:#F1F5F9">  : Arn</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="generic-types">Generic Types</h3>
 <p><code>list</code> and <code>map</code> accept a type parameter:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_ids</span><span style="color:#F1F5F9">  : </span><span style="color:#CBD5E1">list</span><span style="color:#F1F5F9">(String)</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_blocks</span><span style="color:#F1F5F9"> : </span><span style="color:#CBD5E1">list</span><span style="color:#F1F5F9">(Ipv4Cidr)</span></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#F1F5F9">        : </span><span style="color:#CBD5E1">map</span><span style="color:#F1F5F9">(String)</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_ids</span><span style="color:#F1F5F9">  : </span><span style="color:#94A3B8">list</span><span style="color:#F1F5F9">(String)</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_blocks</span><span style="color:#F1F5F9"> : </span><span style="color:#94A3B8">list</span><span style="color:#F1F5F9">(Ipv4Cidr)</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#F1F5F9">        : </span><span style="color:#94A3B8">map</span><span style="color:#F1F5F9">(String)</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="resource-type-references">Resource Type References</h3>
 <p>Resource types can be used as type expressions to indicate a reference:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">subnet_id</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">subnet_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="null">Null</h2>
 <p>The <code>null</code> literal represents the absence of a value. It can only appear in <a href="/reference/dsl/expressions/#validate-expressions">validate expressions</a> such as <code>require</code> statements and argument validation:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#CBD5E1">require</span><span style="color:#CBD5E1"> value</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> null</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'Value must not be null'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> value</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> null</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'Value must not be null'</span></span>
 <span class="line"></span></code></pre>  </div> </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><p class="toc-label" data-astro-cid-obewoz47>On this page</p><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#primitive-types" class="toc-link" data-toc-slug="primitive-types" data-astro-cid-obewoz47>Primitive Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#string" class="toc-link" data-toc-slug="string" data-astro-cid-obewoz47>String</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#int" class="toc-link" data-toc-slug="int" data-astro-cid-obewoz47>Int</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#float" class="toc-link" data-toc-slug="float" data-astro-cid-obewoz47>Float</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#bool" class="toc-link" data-toc-slug="bool" data-astro-cid-obewoz47>Bool</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#collection-types" class="toc-link" data-toc-slug="collection-types" data-astro-cid-obewoz47>Collection Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#list" class="toc-link" data-toc-slug="list" data-astro-cid-obewoz47>List</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#map" class="toc-link" data-toc-slug="map" data-astro-cid-obewoz47>Map</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#namespaced-identifiers" class="toc-link" data-toc-slug="namespaced-identifiers" data-astro-cid-obewoz47>Namespaced Identifiers</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-types" class="toc-link" data-toc-slug="resource-types" data-astro-cid-obewoz47>Resource Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#enum-identifiers" class="toc-link" data-toc-slug="enum-identifiers" data-astro-cid-obewoz47>Enum Identifiers</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#resource-references" class="toc-link" data-toc-slug="resource-references" data-astro-cid-obewoz47>Resource References</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#chained-access" class="toc-link" data-toc-slug="chained-access" data-astro-cid-obewoz47>Chained Access</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#index-access" class="toc-link" data-toc-slug="index-access" data-astro-cid-obewoz47>Index Access</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#type-expressions" class="toc-link" data-toc-slug="type-expressions" data-astro-cid-obewoz47>Type Expressions</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#simple-types" class="toc-link" data-toc-slug="simple-types" data-astro-cid-obewoz47>Simple Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#generic-types" class="toc-link" data-toc-slug="generic-types" data-astro-cid-obewoz47>Generic Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-type-references" class="toc-link" data-toc-slug="resource-type-references" data-astro-cid-obewoz47>Resource Type References</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#null" class="toc-link" data-toc-slug="null" data-astro-cid-obewoz47>Null</a></li></ul></nav> </div>  </main> </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="https://crates.io/crates/carina" data-astro-cid-sz7xmlte>crates.io</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </body></html> 

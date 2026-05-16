@@ -37,26 +37,26 @@
 <h2 id="neovim-setup">Neovim setup</h2>
 <h3 id="with-nvim-lspconfig">With nvim-lspconfig</h3>
 <p>Add a custom server configuration:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="lua"><code><span class="line"><span style="color:#FBBF24">local</span><span style="color:#CBD5E1"> lspconfig</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> require(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">lspconfig</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">)</span></span>
-<span class="line"><span style="color:#FBBF24">local</span><span style="color:#CBD5E1"> configs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> require(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">lspconfig.configs</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">)</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="lua"><code><span class="line"><span style="color:#FBBF24">local</span><span style="color:#94A3B8"> lspconfig</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> require(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">lspconfig</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#FBBF24">local</span><span style="color:#94A3B8"> configs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> require(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">lspconfig.configs</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">if</span><span style="color:#FBBF24"> not</span><span style="color:#CBD5E1"> configs</span><span style="color:#F1F5F9">.carina </span><span style="color:#FBBF24">then</span></span>
-<span class="line"><span style="color:#CBD5E1">  configs</span><span style="color:#F1F5F9">.carina </span><span style="color:#FBBF24">=</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    default_config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">      cmd</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> { </span><span style="color:#64748B">'</span><span style="color:#86EFAC">carina-lsp</span><span style="color:#64748B">' </span><span style="color:#F1F5F9">},</span></span>
-<span class="line"><span style="color:#CBD5E1">      filetypes</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> { </span><span style="color:#64748B">'</span><span style="color:#86EFAC">crn</span><span style="color:#64748B">' </span><span style="color:#F1F5F9">},</span></span>
-<span class="line"><span style="color:#CBD5E1">      root_dir</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> lspconfig</span><span style="color:#F1F5F9">.util.root_pattern(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">.git</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">, </span><span style="color:#64748B">'</span><span style="color:#86EFAC">main.crn</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">),</span></span>
+<span class="line"><span style="color:#FBBF24">if</span><span style="color:#FBBF24"> not</span><span style="color:#94A3B8"> configs</span><span style="color:#F1F5F9">.carina </span><span style="color:#FBBF24">then</span></span>
+<span class="line"><span style="color:#94A3B8">  configs</span><span style="color:#F1F5F9">.carina </span><span style="color:#FBBF24">=</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    default_config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">      cmd</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> { </span><span style="color:#64748B">'</span><span style="color:#86EFAC">carina-lsp</span><span style="color:#64748B">' </span><span style="color:#F1F5F9">},</span></span>
+<span class="line"><span style="color:#94A3B8">      filetypes</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> { </span><span style="color:#64748B">'</span><span style="color:#86EFAC">crn</span><span style="color:#64748B">' </span><span style="color:#F1F5F9">},</span></span>
+<span class="line"><span style="color:#94A3B8">      root_dir</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> lspconfig</span><span style="color:#F1F5F9">.util.root_pattern(</span><span style="color:#64748B">'</span><span style="color:#86EFAC">.git</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">, </span><span style="color:#64748B">'</span><span style="color:#86EFAC">main.crn</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">),</span></span>
 <span class="line"><span style="color:#F1F5F9">    },</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#FBBF24">end</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">lspconfig</span><span style="color:#F1F5F9">.carina.setup {}</span></span>
+<span class="line"><span style="color:#94A3B8">lspconfig</span><span style="color:#F1F5F9">.carina.setup {}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="file-type-detection">File type detection</h3>
 <p>Add to your Neovim configuration:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="lua"><code><span class="line"><span style="color:#CBD5E1">vim</span><span style="color:#F1F5F9">.filetype.add({</span></span>
-<span class="line"><span style="color:#CBD5E1">  extension</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    crn</span><span style="color:#FBBF24"> =</span><span style="color:#64748B"> '</span><span style="color:#86EFAC">crn</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">,</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="lua"><code><span class="line"><span style="color:#94A3B8">vim</span><span style="color:#F1F5F9">.filetype.add({</span></span>
+<span class="line"><span style="color:#94A3B8">  extension</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    crn</span><span style="color:#FBBF24"> =</span><span style="color:#64748B"> '</span><span style="color:#86EFAC">crn</span><span style="color:#64748B">'</span><span style="color:#F1F5F9">,</span></span>
 <span class="line"><span style="color:#F1F5F9">  },</span></span>
 <span class="line"><span style="color:#F1F5F9">})</span></span>
 <span class="line"></span></code></pre>

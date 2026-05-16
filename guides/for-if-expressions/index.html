@@ -6,17 +6,17 @@
 <p>A <code>for</code> expression creates multiple resources by iterating over a list or map.</p>
 <h3 id="iterating-over-a-list">Iterating over a list</h3>
 <p>The simplest form iterates over a list of values:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#CBD5E1"> env</span><span style="color:#FBBF24"> in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> env</span><span style="color:#FBBF24"> in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${env}</span><span style="color:#86EFAC">"</span></span>
-<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> env</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${env}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> env</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -24,13 +24,13 @@
 <p>This creates two VPCs, one for each environment.</p>
 <h3 id="indexed-iteration">Indexed iteration</h3>
 <p>Use the <code>(index, value)</code> form to access the iteration index:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#F1F5F9"> (</span><span style="color:#CBD5E1">i</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">env</span><span style="color:#F1F5F9">) </span><span style="color:#FBBF24">in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#F1F5F9"> (</span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">) </span><span style="color:#FBBF24">in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/8'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">i</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/8'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${env}</span><span style="color:#86EFAC">"</span></span>
-<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> env</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${env}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> env</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -38,61 +38,61 @@
 <p>The index <code>i</code> starts at 0. Here it is used with <code>cidr_subnet</code> to assign different CIDR blocks to each VPC.</p>
 <h3 id="iterating-over-a-map">Iterating over a map</h3>
 <p>Use <code>key, value</code> binding to iterate over map entries:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> cidrs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> cidrs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#CBD5E1"> name</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#CBD5E1"> cidrs</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> name</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#94A3B8"> cidrs</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${name}</span><span style="color:#86EFAC">"</span></span>
-<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> name</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${name}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> name</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="accessing-for-expression-results">Accessing for expression results</h3>
 <p>The result of a <code>for</code> expression is a list. You can access individual elements with index syntax:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#CBD5E1"> env</span><span style="color:#FBBF24"> in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> env</span><span style="color:#FBBF24"> in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">] {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${env}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${env}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Reference the first VPC's attributes</span></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">].</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
-<span class="line"><span style="color:#CBD5E1">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> vpcs</span><span style="color:#F1F5F9">[</span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">].</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
+<span class="line"><span style="color:#94A3B8">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'dev-subnet'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="local-variables-in-for-body">Local variables in for body</h3>
 <p>You can define local <code>let</code> bindings inside a <code>for</code> body:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> subnets</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#F1F5F9"> (</span><span style="color:#CBD5E1">i</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">az</span><span style="color:#F1F5F9">) </span><span style="color:#FBBF24">in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'ap-northeast-1a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1c'</span><span style="color:#F1F5F9">] {</span></span>
-<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#CBD5E1"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">i</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnets</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#F1F5F9"> (</span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">az</span><span style="color:#F1F5F9">) </span><span style="color:#FBBF24">in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'ap-northeast-1a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1c'</span><span style="color:#F1F5F9">] {</span></span>
+<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#CBD5E1"> cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">    availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> az</span></span>
+<span class="line"><span style="color:#94A3B8">    vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#94A3B8"> cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> az</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "subnet-</span><span style="color:#CBD5E1">${az}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "subnet-</span><span style="color:#94A3B8">${az}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -103,13 +103,13 @@
 <p>An <code>if</code> expression conditionally creates a resource or selects a value.</p>
 <h3 id="conditional-resources">Conditional resources</h3>
 <p>Create a resource only when a condition is true:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> enabled</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> enabled</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#CBD5E1"> enabled</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#94A3B8"> enabled</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'conditional-vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
@@ -118,33 +118,33 @@
 <p>When <code>enabled</code> is <code>false</code>, no VPC is created and the <code>let</code> binding is empty.</p>
 <h3 id="conditional-values-with-ifelse">Conditional values with if/else</h3>
 <p>Use <code>if</code>/<code>else</code> as a value expression to choose between two values:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> is_production</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> is_production</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#CBD5E1"> is_production</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'172.16.0.0/16'</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#94A3B8"> is_production</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'172.16.0.0/16'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#FBBF24"> if</span><span style="color:#CBD5E1"> is_production</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'prod-vpc'</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'dev-vpc'</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#FBBF24"> if</span><span style="color:#94A3B8"> is_production</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'prod-vpc'</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#86EFAC">'dev-vpc'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>This creates a single VPC but uses different CIDR blocks and names depending on the condition.</p>
 <h3 id="combining-for-and-if">Combining for and if</h3>
 <p>You can use <code>if</code> expressions inside <code>for</code> bodies and vice versa:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> environments</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  prd</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.2.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> environments</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  prd</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.2.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#CBD5E1"> name</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#CBD5E1"> environments</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpcs</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> name</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#94A3B8"> environments</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24">           =</span><span style="color:#CBD5E1"> cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">    enable_dns_hostnames</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#CBD5E1"> name</span><span style="color:#FBBF24"> ==</span><span style="color:#86EFAC"> 'prd'</span><span style="color:#F1F5F9"> { </span><span style="color:#FDE68A">true</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#FDE68A">false</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24">           =</span><span style="color:#94A3B8"> cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    enable_dns_hostnames</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> if</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> ==</span><span style="color:#86EFAC"> 'prd'</span><span style="color:#F1F5F9"> { </span><span style="color:#FDE68A">true</span><span style="color:#F1F5F9"> } </span><span style="color:#FBBF24">else</span><span style="color:#F1F5F9"> { </span><span style="color:#FDE68A">false</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${name}</span><span style="color:#86EFAC">"</span></span>
-<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> name</span></span>
+<span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name        </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${name}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#F1F5F9">      Environment </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> name</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>

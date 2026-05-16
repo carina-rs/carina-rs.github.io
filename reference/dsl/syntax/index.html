@@ -5,28 +5,28 @@
 <h2 id="file-structure">File Structure</h2>
 <p>A <code>.crn</code> file contains zero or more top-level statements in any order:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># Provider configuration</span></span>
-<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Backend configuration (optional)</span></span>
-<span class="line"><span style="color:#FBBF24">backend</span><span style="color:#CBD5E1"> s3</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-state-bucket'</span></span>
-<span class="line"><span style="color:#CBD5E1">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'infra/carina.state.json'</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-state-bucket'</span></span>
+<span class="line"><span style="color:#94A3B8">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'infra/carina.state.json'</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Resource declarations</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'main'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.InternetGateway</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'main'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -138,35 +138,35 @@
 <table><thead><tr><th>Statement</th><th>Purpose</th></tr></thead><tbody><tr><td><code>provider</code></td><td>Configure a cloud provider</td></tr><tr><td><code>backend</code></td><td>Configure remote state storage</td></tr><tr><td><code>let</code></td><td>Bind a name to a resource or value</td></tr><tr><td>Anonymous resource</td><td>Declare a resource without a binding</td></tr><tr><td><code>import</code> (state)</td><td>Import an existing cloud resource into state</td></tr><tr><td><code>removed</code></td><td>Remove a resource from state without deleting it</td></tr><tr><td><code>moved</code></td><td>Rename a resource in state</td></tr><tr><td><code>for</code></td><td>Iterate to create multiple resources</td></tr><tr><td><code>if</code></td><td>Conditionally create resources</td></tr><tr><td><code>fn</code></td><td>Define a reusable function</td></tr><tr><td><code>require</code></td><td>Assert a condition with an error message</td></tr><tr><td><code>arguments</code></td><td>Declare module input parameters</td></tr><tr><td><code>attributes</code></td><td>Define module output values (for callers who bind the module with <code>let</code>)</td></tr><tr><td><code>exports</code></td><td>Define values published to upstream-state consumers</td></tr><tr><td><code>use</code> (in <code>let</code> RHS)</td><td>Load a module from a directory (<code>let m = use { source = '...' }</code>)</td></tr></tbody></table>
 <h2 id="provider-block">Provider Block</h2>
 <p>Every <code>.crn</code> file that declares resources must configure at least one provider. The provider block specifies which cloud provider to use and its settings.</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Multiple providers can be configured in the same file:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> aws</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> aws.Region.ap_northeast_1</span></span>
+<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> aws</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> aws.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="named-provider-instances">Named Provider Instances</h3>
 <p>A <code>provider &#x3C;kind> { ... }</code> block declares the kind’s <em>default instance</em> — the one resources reach for when they say nothing about routing. To declare additional instances of the same kind (for example, an <code>awscc</code> provider pinned to a different region), wrap the same expression in a <code>let</code> binding:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  source</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'github.com/carina-rs/carina-provider-awscc'</span></span>
-<span class="line"><span style="color:#CBD5E1">  version</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '~0.5.0'</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24">  =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  source</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'github.com/carina-rs/carina-provider-awscc'</span></span>
+<span class="line"><span style="color:#94A3B8">  version</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '~0.5.0'</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24">  =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> us</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.us_east_1</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> us</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.us_east_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Only the kind’s default instance carries <code>source</code> / <code>version</code> / <code>revision</code>. Repeating those on a named instance is rejected by the parser: they describe <strong>how to load the provider plugin</strong>, which is a property of the kind, not of an individual instance.</p>
 <p>Resources route by attaching <code>directives { provider = &#x3C;binding> }</code>:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.s3.Bucket</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  bucket_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'tokyo-assets'</span></span>
+<span class="line"><span style="color:#94A3B8">  bucket_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'tokyo-assets'</span></span>
 <span class="line"><span style="color:#64748B">  # no directive -> kind's default instance (ap-northeast-1)</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
@@ -174,7 +174,7 @@
 <span class="line"><span style="color:#64748B">  # ...</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FBBF24">  directives</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#FBBF24">    provider</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> us</span><span style="color:#64748B">   # routes to the `us` instance (us-east-1)</span></span>
+<span class="line"><span style="color:#FBBF24">    provider</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> us</span><span style="color:#64748B">   # routes to the `us` instance (us-east-1)</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
@@ -185,9 +185,9 @@
 <h3 id="anonymous-resources">Anonymous Resources</h3>
 <p>When you do not need to reference a resource elsewhere, declare it without a binding:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'main'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -195,84 +195,84 @@
 <p>The resource is identified in state by its <code>name</code> attribute or a hash of its attributes.</p>
 <h3 id="named-resources-let-bindings">Named Resources (Let Bindings)</h3>
 <p>Use <code>let</code> to bind a name to a resource so you can reference its attributes:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'main'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
-<span class="line"><span style="color:#CBD5E1">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
+<span class="line"><span style="color:#94A3B8">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The <code>let</code> keyword is also used to bind non-resource values:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> environments</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'prod'</span><span style="color:#F1F5F9">]</span></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> environments</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'dev'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'stg'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'prod'</span><span style="color:#F1F5F9">]</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> config</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="discard-pattern">Discard Pattern</h3>
 <p>Use <code>let _ =</code> when you want to evaluate an expression but do not need to reference the result:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> _</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.VpcGatewayAttachment</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">              =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  internet_gateway_id</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> igw</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">internet_gateway_id</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> _</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.VpcGatewayAttachment</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">              =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  internet_gateway_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> igw</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">internet_gateway_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="data-sources-read-resources">Data Sources (Read Resources)</h3>
 <p>Use the <code>read</code> keyword to query existing cloud resources without managing them:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> identity</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> read</span><span style="color:#FEF9C3"> aws.sts.CallerIdentity</span><span style="color:#F1F5F9"> {}</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> identity</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> read</span><span style="color:#FEF9C3"> aws.sts.CallerIdentity</span><span style="color:#F1F5F9"> {}</span></span>
 <span class="line"></span></code></pre>
 <p>The returned value can be referenced like any other bound resource:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> identity</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> read</span><span style="color:#FEF9C3"> aws.sts.CallerIdentity</span><span style="color:#F1F5F9"> {}</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> identity</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> read</span><span style="color:#FEF9C3"> aws.sts.CallerIdentity</span><span style="color:#F1F5F9"> {}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.IpamPool</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  source_resource</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    resource_owner</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> identity</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">account_id</span></span>
+<span class="line"><span style="color:#94A3B8">  source_resource</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    resource_owner</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> identity</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">account_id</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="attributes">Attributes</h2>
 <p>Attributes are key-value pairs inside a resource block:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">           =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  enable_dns_support</span><span style="color:#FBBF24">   =</span><span style="color:#FDE68A"> true</span></span>
-<span class="line"><span style="color:#CBD5E1">  enable_dns_hostnames</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">           =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  enable_dns_support</span><span style="color:#FBBF24">   =</span><span style="color:#FDE68A"> true</span></span>
+<span class="line"><span style="color:#94A3B8">  enable_dns_hostnames</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="nested-blocks">Nested Blocks</h3>
 <p>Some resources accept nested blocks for repeated or structured configuration:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Ipam</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  tier</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> advanced</span></span>
+<span class="line"><span style="color:#94A3B8">  tier</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> advanced</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  operating_region</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    region_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<span class="line"><span style="color:#94A3B8">  operating_region</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    region_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="local-bindings-inside-blocks">Local Bindings Inside Blocks</h3>
 <p>Use <code>let</code> inside a resource block to create block-scoped variables. These are evaluated during parsing but are not sent to the provider:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#CBD5E1"> base_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> base_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> base_cidr</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> base_cidr</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#CBD5E1">${base_cidr}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${base_cidr}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="backend-block">Backend Block</h2>
 <p>The <code>backend</code> block configures where Carina stores state:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#CBD5E1"> s3</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-state-bucket'</span></span>
-<span class="line"><span style="color:#CBD5E1">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'infra/carina.state.json'</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-state-bucket'</span></span>
+<span class="line"><span style="color:#94A3B8">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'infra/carina.state.json'</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>When no backend is configured, state is stored locally in <code>carina.state.json</code>.</p>
@@ -280,14 +280,14 @@
 <h3 id="import">Import</h3>
 <p>Import an existing cloud resource into Carina’s state:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">import</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  to</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'imported_vpc'</span></span>
-<span class="line"><span style="color:#CBD5E1">  id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc-0123456789abcdef0'</span></span>
+<span class="line"><span style="color:#94A3B8">  to</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'imported_vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc-0123456789abcdef0'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'imported'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -295,24 +295,24 @@
 <h3 id="moved">Moved</h3>
 <p>Rename a resource in state without destroying and recreating it:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">moved</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'old_name'</span></span>
-<span class="line"><span style="color:#CBD5E1">  to</span><span style="color:#FBBF24">   =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'new_name'</span></span>
+<span class="line"><span style="color:#94A3B8">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'old_name'</span></span>
+<span class="line"><span style="color:#94A3B8">  to</span><span style="color:#FBBF24">   =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'new_name'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="removed">Removed</h3>
 <p>Remove a resource from Carina’s state without deleting the actual cloud resource:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">removed</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'old_vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'old_vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="upstream-state">Upstream State</h2>
 <p>Reference values exported by another Carina project:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "../network"</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "../network"</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.SecurityGroup</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> network</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p><code>source</code> is required and points at the upstream project’s directory. The path is resolved relative to the enclosing <code>.crn</code> file’s directory. Carina loads the upstream’s configuration, resolves its backend, reads its state, and exposes the values published by its <code>exports</code> block through the declared binding.</p>
@@ -365,30 +365,30 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># Hash-style line comment</span></span>
 <span class="line"><span style="color:#64748B">// Slash-style line comment</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F1F5F9">/* Block </span><span style="color:#CBD5E1">comment</span></span>
-<span class="line"><span style="color:#CBD5E1">   can</span><span style="color:#CBD5E1"> span</span><span style="color:#CBD5E1"> multiple</span><span style="color:#CBD5E1"> lines</span><span style="color:#F1F5F9"> */</span></span>
+<span class="line"><span style="color:#F1F5F9">/* Block </span><span style="color:#94A3B8">comment</span></span>
+<span class="line"><span style="color:#94A3B8">   can</span><span style="color:#94A3B8"> span</span><span style="color:#94A3B8"> multiple</span><span style="color:#94A3B8"> lines</span><span style="color:#F1F5F9"> */</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F1F5F9">/* Block </span><span style="color:#CBD5E1">comments</span><span style="color:#F1F5F9"> /* </span><span style="color:#CBD5E1">can</span><span style="color:#CBD5E1"> be</span><span style="color:#CBD5E1"> nested</span><span style="color:#F1F5F9"> */ </span><span style="color:#CBD5E1">like</span><span style="color:#CBD5E1"> this</span><span style="color:#F1F5F9"> */</span></span>
+<span class="line"><span style="color:#F1F5F9">/* Block </span><span style="color:#94A3B8">comments</span><span style="color:#F1F5F9"> /* </span><span style="color:#94A3B8">can</span><span style="color:#94A3B8"> be</span><span style="color:#94A3B8"> nested</span><span style="color:#F1F5F9"> */ </span><span style="color:#94A3B8">like</span><span style="color:#94A3B8"> this</span><span style="color:#F1F5F9"> */</span></span>
 <span class="line"></span></code></pre>
 <p>All comments are ignored by the parser.</p>
 <h2 id="user-defined-functions">User-Defined Functions</h2>
 <p>Define reusable functions with <code>fn</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#CBD5E1"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#CBD5E1">env</span><span style="color:#F1F5F9">: String, </span><span style="color:#CBD5E1">service</span><span style="color:#F1F5F9">: String): String {</span></span>
-<span class="line"><span style="color:#CBD5E1">  join</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'-'</span><span style="color:#F1F5F9">, [</span><span style="color:#CBD5E1">env</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">service</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'vpc'</span><span style="color:#F1F5F9">])</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#94A3B8"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">: String, </span><span style="color:#94A3B8">service</span><span style="color:#F1F5F9">: String): String {</span></span>
+<span class="line"><span style="color:#94A3B8">  join</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'-'</span><span style="color:#F1F5F9">, [</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">service</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'vpc'</span><span style="color:#F1F5F9">])</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#CBD5E1"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'prod'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'web'</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'prod'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'web'</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>See <a href="/reference/dsl/expressions/">Expressions</a> for details on function definitions.</p>
 <h2 id="require-statement">Require Statement</h2>
 <p>Assert conditions that must be true, with a custom error message if they fail:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#CBD5E1">require</span><span style="color:#CBD5E1"> length</span><span style="color:#F1F5F9">(</span><span style="color:#CBD5E1">subnets</span><span style="color:#F1F5F9">) > </span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'At least one subnet must be specified'</span></span>
-<span class="line"><span style="color:#CBD5E1">require</span><span style="color:#CBD5E1"> cidr_block</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> ''</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'CIDR block cannot be empty'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> length</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">subnets</span><span style="color:#F1F5F9">) > </span><span style="color:#FEF9C3">0</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'At least one subnet must be specified'</span></span>
+<span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> cidr_block</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> ''</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'CIDR block cannot be empty'</span></span>
 <span class="line"></span></code></pre>
 <p>The condition is a <a href="/reference/dsl/expressions/#validate-expressions">validate expression</a> that supports comparison operators (<code>==</code>, <code>!=</code>, <code>></code>, <code>&#x3C;</code>, <code>>=</code>, <code>&#x3C;=</code>) and logical operators (<code>&#x26;&#x26;</code>, <code>||</code>, <code>!</code>).</p>  </div> </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><p class="toc-label" data-astro-cid-obewoz47>On this page</p><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#file-structure" class="toc-link" data-toc-slug="file-structure" data-astro-cid-obewoz47>File Structure</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#top-level-construct-shapes" class="toc-link" data-toc-slug="top-level-construct-shapes" data-astro-cid-obewoz47>Top-Level Construct Shapes</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#statements" class="toc-link" data-toc-slug="statements" data-astro-cid-obewoz47>Statements</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#provider-block" class="toc-link" data-toc-slug="provider-block" data-astro-cid-obewoz47>Provider Block</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#named-provider-instances" class="toc-link" data-toc-slug="named-provider-instances" data-astro-cid-obewoz47>Named Provider Instances</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#resource-blocks" class="toc-link" data-toc-slug="resource-blocks" data-astro-cid-obewoz47>Resource Blocks</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#anonymous-resources" class="toc-link" data-toc-slug="anonymous-resources" data-astro-cid-obewoz47>Anonymous Resources</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#named-resources-let-bindings" class="toc-link" data-toc-slug="named-resources-let-bindings" data-astro-cid-obewoz47>Named Resources (Let Bindings)</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#discard-pattern" class="toc-link" data-toc-slug="discard-pattern" data-astro-cid-obewoz47>Discard Pattern</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#data-sources-read-resources" class="toc-link" data-toc-slug="data-sources-read-resources" data-astro-cid-obewoz47>Data Sources (Read Resources)</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#attributes" class="toc-link" data-toc-slug="attributes" data-astro-cid-obewoz47>Attributes</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#nested-blocks" class="toc-link" data-toc-slug="nested-blocks" data-astro-cid-obewoz47>Nested Blocks</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#local-bindings-inside-blocks" class="toc-link" data-toc-slug="local-bindings-inside-blocks" data-astro-cid-obewoz47>Local Bindings Inside Blocks</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#backend-block" class="toc-link" data-toc-slug="backend-block" data-astro-cid-obewoz47>Backend Block</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-manipulation" class="toc-link" data-toc-slug="state-manipulation" data-astro-cid-obewoz47>State Manipulation</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#import" class="toc-link" data-toc-slug="import" data-astro-cid-obewoz47>Import</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#moved" class="toc-link" data-toc-slug="moved" data-astro-cid-obewoz47>Moved</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#removed" class="toc-link" data-toc-slug="removed" data-astro-cid-obewoz47>Removed</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#upstream-state" class="toc-link" data-toc-slug="upstream-state" data-astro-cid-obewoz47>Upstream State</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#external-references-at-a-glance" class="toc-link" data-toc-slug="external-references-at-a-glance" data-astro-cid-obewoz47>External References at a Glance</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#comments" class="toc-link" data-toc-slug="comments" data-astro-cid-obewoz47>Comments</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#user-defined-functions" class="toc-link" data-toc-slug="user-defined-functions" data-astro-cid-obewoz47>User-Defined Functions</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#require-statement" class="toc-link" data-toc-slug="require-statement" data-astro-cid-obewoz47>Require Statement</a></li></ul></nav> </div>  </main> </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="https://crates.io/crates/carina" data-astro-cid-sz7xmlte>crates.io</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </body></html> 

@@ -28,10 +28,10 @@
 <p>The binary is at <code>target/release/carina</code>. Add it to your <code>PATH</code> or copy it to a directory already on your <code>PATH</code>.</p>
 <h2 id="provider-plugins">Provider plugins</h2>
 <p>Carina uses WASM-based provider plugins. When you specify a <code>source</code> and <code>version</code> in your <code>.crn</code> file, Carina automatically downloads the provider plugin from GitHub Releases on first use:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    source</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'github.com/carina-rs/carina-provider-awscc'</span></span>
-<span class="line"><span style="color:#CBD5E1">    version</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '0.5.0'</span></span>
-<span class="line"><span style="color:#CBD5E1">    region</span><span style="color:#FBBF24">  =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    source</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> 'github.com/carina-rs/carina-provider-awscc'</span></span>
+<span class="line"><span style="color:#94A3B8">    version</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '0.5.0'</span></span>
+<span class="line"><span style="color:#94A3B8">    region</span><span style="color:#FBBF24">  =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The two official providers are:</p>

@@ -6,79 +6,79 @@
 <p>A module is a directory containing one or more <code>.crn</code> files. Every <code>.crn</code> file in the directory is merged together — no filename (including <code>main.crn</code>) is privileged. Single-file modules are not supported; always point <code>use</code> at a directory.</p>
 <p>Create a file at <code>modules/network/main.crn</code> (the filename is up to you):</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#F1F5F9"> : String</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_cidr</span><span style="color:#F1F5F9">: String</span></span>
-<span class="line"><span style="color:#CBD5E1">  az</span><span style="color:#F1F5F9">         : String</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#F1F5F9"> : String</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_cidr</span><span style="color:#F1F5F9">: String</span></span>
+<span class="line"><span style="color:#94A3B8">  az</span><span style="color:#F1F5F9">         : String</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> cidr_block</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_block</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'module-vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#CBD5E1"> subnet_cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> az</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#94A3B8"> subnet_cidr</span></span>
+<span class="line"><span style="color:#94A3B8">  availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> az</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'module-subnet'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">subnet_id</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">subnet_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="arguments-block">Arguments block</h3>
 <p>The <code>arguments</code> block declares the inputs the module accepts. Each parameter has a name and a type:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#F1F5F9">: String</span></span>
-<span class="line"><span style="color:#CBD5E1">  env_name</span><span style="color:#F1F5F9">  : String</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#F1F5F9">: String</span></span>
+<span class="line"><span style="color:#94A3B8">  env_name</span><span style="color:#F1F5F9">  : String</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Supported types include <code>String</code>, <code>Bool</code>, <code>Int</code>, <code>Float</code>, <code>list(String)</code>, <code>map(String)</code>, and resource type references like <code>awscc.ec2.Vpc</code>.</p>
 <h3 id="attributes-block">Attributes block</h3>
 <p>The <code>attributes</code> block declares the outputs the module exposes to callers:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">subnet_id</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">subnet_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Each attribute has a name, an optional type annotation, and a value expression.</p>
 <h2 id="loading-and-calling-a-module">Loading and calling a module</h2>
 <p>From your root configuration, load the module with <code>use</code> and call it with arguments:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#CBD5E1">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">network</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
-<span class="line"><span style="color:#CBD5E1">  az</span><span style="color:#FBBF24">          =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
+<span class="line"><span style="color:#94A3B8">network</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
+<span class="line"><span style="color:#94A3B8">  az</span><span style="color:#FBBF24">          =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The <code>use</code> expression loads the module from its <code>source</code> directory and binds it to a name. You then call the module like a function, passing its arguments as a block.</p>
 <h2 id="accessing-module-attributes">Accessing module attributes</h2>
 <p>To use a module’s output attributes, bind the module call with <code>let</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#CBD5E1">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> net</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> network</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
-<span class="line"><span style="color:#CBD5E1">  az</span><span style="color:#FBBF24">          =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> net</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
+<span class="line"><span style="color:#94A3B8">  az</span><span style="color:#FBBF24">          =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Use module output to create another resource</span></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.RouteTable</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> net</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24">   =</span><span style="color:#F1F5F9"> { Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'my-route-table'</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> net</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24">   =</span><span style="color:#F1F5F9"> { Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'my-route-table'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The <code>net.vpc_id</code> reference accesses the <code>vpc_id</code> attribute declared in the module’s <code>attributes</code> block.</p>
@@ -90,52 +90,52 @@
 <span class="line"><span>  attributes.crn    # attributes block</span></span>
 <span class="line"><span></span></span></code></pre>
 <p>The filenames are arbitrary — <code>main.crn</code> is a convention, not a requirement. Load the module by pointing <code>use</code> at the directory:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#CBD5E1">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span></code></pre>
 <h2 id="nested-modules">Nested modules</h2>
 <p>A module can load other modules. This lets you compose infrastructure from smaller building blocks.</p>
 <p>For example, <code>modules/network_with_rt/main.crn</code> can load the network module:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#CBD5E1">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '../network'</span><span style="color:#F1F5F9"> }</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '../network'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#F1F5F9"> : String</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_cidr</span><span style="color:#F1F5F9">: String</span></span>
-<span class="line"><span style="color:#CBD5E1">  az</span><span style="color:#F1F5F9">         : String</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#F1F5F9"> : String</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_cidr</span><span style="color:#F1F5F9">: String</span></span>
+<span class="line"><span style="color:#94A3B8">  az</span><span style="color:#F1F5F9">         : String</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> net</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> network</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#CBD5E1"> cidr_block</span></span>
-<span class="line"><span style="color:#CBD5E1">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> subnet_cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">  az</span><span style="color:#FBBF24">          =</span><span style="color:#CBD5E1"> az</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> net</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#94A3B8"> cidr_block</span></span>
+<span class="line"><span style="color:#94A3B8">  subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet_cidr</span></span>
+<span class="line"><span style="color:#94A3B8">  az</span><span style="color:#FBBF24">          =</span><span style="color:#94A3B8"> az</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> rt</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.RouteTable</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> net</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> rt</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.RouteTable</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> net</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'nested-module-rt'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#F1F5F9">        : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> net</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
-<span class="line"><span style="color:#CBD5E1">  route_table_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.RouteTable</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> rt</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">route_table_id</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">        : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> net</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  route_table_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.RouteTable</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> rt</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">route_table_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p><code>source</code> paths are relative to the module file’s location.</p>
 <h2 id="using-modules-with-for-expressions">Using modules with <code>for</code> expressions</h2>
 <p>Modules can be called inside <code>for</code> expressions to create multiple instances:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> vpc_mod</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#CBD5E1">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/vpc_only'</span><span style="color:#F1F5F9"> }</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc_mod</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/vpc_only'</span><span style="color:#F1F5F9"> }</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> cidrs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
-<span class="line"><span style="color:#CBD5E1">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> cidrs</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  dev</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  stg</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.1.0.0/16'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> networks</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#CBD5E1"> name</span><span style="color:#F1F5F9">, </span><span style="color:#CBD5E1">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#CBD5E1"> cidrs</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_mod</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> cidr</span></span>
-<span class="line"><span style="color:#CBD5E1">    env_name</span><span style="color:#FBBF24">   =</span><span style="color:#CBD5E1"> name</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> networks</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> name</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#94A3B8"> cidrs</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_mod</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    env_name</span><span style="color:#FBBF24">   =</span><span style="color:#94A3B8"> name</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>

@@ -7,20 +7,20 @@
 <p>By default, state is stored locally as <code>carina.state.json</code>. For team usage, configure a remote S3 backend.</p>
 <h2 id="configuring-the-s3-backend">Configuring the S3 backend</h2>
 <p>Add a <code>backend</code> block to your <code>.crn</code> file:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#CBD5E1"> s3</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-carina-state'</span></span>
-<span class="line"><span style="color:#CBD5E1">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'production/carina.state.json'</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  bucket</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-carina-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  key</span><span style="color:#FBBF24">    =</span><span style="color:#86EFAC"> 'production/carina.state.json'</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#CBD5E1"> awscc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
+<span class="line"><span style="color:#FBBF24">provider</span><span style="color:#94A3B8"> awscc</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.Region.ap_northeast_1</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -28,11 +28,11 @@
 <p>The S3 backend stores state in the specified bucket and key. It also supports state locking to prevent concurrent modifications.</p>
 <h3 id="automatic-bucket-creation">Automatic bucket creation</h3>
 <p>By default, <code>carina apply</code> automatically creates the S3 bucket if it doesn’t exist. This lets you get started without any manual setup:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#CBD5E1"> s3</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  bucket</span><span style="color:#FBBF24">      =</span><span style="color:#86EFAC"> 'my-carina-state'</span></span>
-<span class="line"><span style="color:#CBD5E1">  key</span><span style="color:#FBBF24">         =</span><span style="color:#86EFAC"> 'production/carina.state.json'</span></span>
-<span class="line"><span style="color:#CBD5E1">  region</span><span style="color:#FBBF24">      =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
-<span class="line"><span style="color:#CBD5E1">  auto_create</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span><span style="color:#64748B">  # This is the default; can be omitted</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  bucket</span><span style="color:#FBBF24">      =</span><span style="color:#86EFAC"> 'my-carina-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  key</span><span style="color:#FBBF24">         =</span><span style="color:#86EFAC"> 'production/carina.state.json'</span></span>
+<span class="line"><span style="color:#94A3B8">  region</span><span style="color:#FBBF24">      =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<span class="line"><span style="color:#94A3B8">  auto_create</span><span style="color:#FBBF24"> =</span><span style="color:#FDE68A"> true</span><span style="color:#64748B">  # This is the default; can be omitted</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>When the bucket is auto-created, Carina:</p>
@@ -50,14 +50,14 @@
 <h2 id="importing-existing-resources">Importing existing resources</h2>
 <p>To bring an existing cloud resource under Carina management, use the <code>import</code> block:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">import</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  to</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
-<span class="line"><span style="color:#CBD5E1">  id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc-0abc123def456'</span></span>
+<span class="line"><span style="color:#94A3B8">  to</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc-0abc123def456'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -70,14 +70,14 @@
 <h2 id="moving-resources-in-state">Moving resources in state</h2>
 <p>When you rename a resource or reorganize your code, use the <code>moved</code> block to update the state without destroying and recreating the resource:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">moved</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'vpc'</span></span>
-<span class="line"><span style="color:#CBD5E1">  to</span><span style="color:#FBBF24">   =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'main_vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  to</span><span style="color:#FBBF24">   =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'main_vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
+<span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'my-vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -86,21 +86,21 @@
 <h2 id="removing-resources-from-state">Removing resources from state</h2>
 <p>To stop managing a resource without destroying it in the cloud, use the <code>removed</code> block:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">removed</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'main_vpc'</span></span>
+<span class="line"><span style="color:#94A3B8">  from</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#86EFAC"> 'main_vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>This removes the resource from Carina’s state but leaves the actual cloud resource untouched. This is useful when transferring ownership of a resource to another tool or project.</p>
 <h2 id="referencing-upstream-state">Referencing upstream state</h2>
 <p>To read outputs from another Carina project’s state, use <code>upstream_state</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#CBD5E1"> network</span><span style="color:#FBBF24"> =</span><span style="color:#CBD5E1"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "../network"</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "../network"</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.SecurityGroup</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#CBD5E1">  group_description</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'Web security group'</span></span>
-<span class="line"><span style="color:#CBD5E1">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#CBD5E1"> network</span><span style="color:#F1F5F9">.</span><span style="color:#CBD5E1">vpc_id</span></span>
+<span class="line"><span style="color:#94A3B8">  group_description</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'Web security group'</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#CBD5E1">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#F1F5F9">    Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> 'web-sg'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
