@@ -23,6 +23,16 @@
 <span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> plan.json</span></span>
 <span class="line"></span></code></pre>
 <p>When applying a saved plan, Carina checks the state lineage and serial number against the current state to detect drift since the plan was created.</p>
+<p>Before applying either a live configuration or a saved plan, Carina also
+checks the current project backend against <code>carina-backend.lock</code>. If the
+backend changed, apply refuses and points at
+<code>carina init --migrate-state .</code>; this prevents silently writing state to
+the new backend before migration is explicit. Saved-plan apply re-loads
+the project’s current <code>.crn</code> files from the plan’s recorded source path
+before running the same gate.
+Carina also rejects a saved plan whose backend configuration differs
+from the project’s current <code>backend.crn</code>; re-run <code>carina plan</code> to
+produce a fresh saved plan.</p>
 <h2 id="confirmation-flow">Confirmation Flow</h2>
 <p>When <code>--auto-approve</code> is not set, Carina follows this flow:</p>
 <ol>

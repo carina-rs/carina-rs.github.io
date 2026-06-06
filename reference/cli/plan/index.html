@@ -39,6 +39,11 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --out</span><span style="color:#86EFAC"> plan.json</span></span>
 <span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> plan.json</span></span>
 <span class="line"></span></code></pre>
+<p>If the configured backend differs from <code>carina-backend.lock</code>, <code>plan</code>
+prints a backend-drift warning, reads state from the locked old backend,
+and includes a migration-pending note before the plan summary. A saved
+plan produced in this state records the locked backend that supplied the
+state; run <code>carina init --migrate-state .</code> before applying.</p>
 <h3 id="--detailed-exitcode"><code>--detailed-exitcode</code></h3>
 <p>Change the exit code behavior:</p>
 
