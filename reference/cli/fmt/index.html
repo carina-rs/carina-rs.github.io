@@ -6,26 +6,26 @@
 <h2 id="usage">Usage</h2>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#64748B">[</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
-<p><strong>PATH</strong> defaults to <code>.</code> (current directory). May be a single <code>.crn</code> file or a directory.</p>
+<p><strong>PATH</strong> defaults to <code>.</code> (current directory). It must be a directory — single-file paths are rejected. Without <code>--recursive</code>, only the <code>.crn</code> files directly inside PATH are formatted.</p>
 <h2 id="flags">Flags</h2>
 <h3 id="--check--c"><code>--check</code>, <code>-c</code></h3>
 <p>Exit with a non-zero status if any file would be reformatted. Does not modify files. Intended for CI.</p>
 <h3 id="--diff"><code>--diff</code></h3>
-<p>Print the formatting diff to stdout instead of rewriting the file.</p>
+<p>Print the formatting diff to stdout without rewriting any files. Combine with <code>--check</code> to also exit non-zero when any file would be reformatted.</p>
 <h3 id="--recursive--r"><code>--recursive</code>, <code>-r</code></h3>
-<p>When PATH is a directory, recurse into subdirectories and format every <code>.crn</code> file found.</p>
+<p>Recurse into subdirectories of PATH and include every <code>.crn</code> file found.</p>
 <h2 id="examples">Examples</h2>
 <p>Format every <code>.crn</code> file in the current directory:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span></span>
 <span class="line"></span></code></pre>
-<p>Format a single file:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> main.crn</span></span>
+<p>Format the <code>.crn</code> files in another directory:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> infra/network</span></span>
 <span class="line"></span></code></pre>
 <p>Format every <code>.crn</code> under the current tree:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --recursive</span></span>
 <span class="line"></span></code></pre>
 <p>Show the diff without writing changes:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --diff</span><span style="color:#86EFAC"> main.crn</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --diff</span></span>
 <span class="line"></span></code></pre>
 <p>Verify formatting in CI:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --check</span><span style="color:#86EFAC"> --recursive</span></span>

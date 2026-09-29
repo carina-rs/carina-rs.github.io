@@ -97,17 +97,17 @@
 <h2 id="document-formatting">Document formatting</h2>
 <p>The LSP supports formatting <code>.crn</code> files. In VS Code, use <strong>Format Document</strong> (Shift+Alt+F). The formatter aligns attributes and applies consistent indentation.</p>
 <p>You can also format from the CLI:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#64748B"># Format a single file</span></span>
-<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> main.crn</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#64748B"># Format all .crn files in the current directory</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Format all .crn files in the current directory recursively</span></span>
 <span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --recursive</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># Check formatting without modifying files</span></span>
-<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --check</span><span style="color:#86EFAC"> main.crn</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --check</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#64748B"># Show diff of formatting changes</span></span>
-<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --diff</span><span style="color:#86EFAC"> main.crn</span></span>
+<span class="line"><span style="color:#64748B"># Show diff of formatting changes without modifying files</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">fmt</span><span style="color:#86EFAC"> --diff</span></span>
 <span class="line"></span></code></pre>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>If the LSP is not working:</p>
