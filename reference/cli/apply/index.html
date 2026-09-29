@@ -26,7 +26,7 @@
 <p>Before applying either a live configuration or a saved plan, Carina also
 checks the current project backend against <code>carina-backend.lock</code>. If the
 backend changed, apply refuses and points at
-<code>carina init --migrate-state .</code>; this prevents silently writing state to
+<code>carina init --migrate-state</code>; this prevents silently writing state to
 the new backend before migration is explicit. Saved-plan apply re-loads
 the project’s current <code>.crn</code> files from the plan’s recorded source path
 before running the same gate.

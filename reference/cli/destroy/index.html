@@ -19,7 +19,7 @@
 <h2 id="backend-drift">Backend Drift</h2>
 <p>Before destroying resources, Carina checks the current project backend
 against <code>carina-backend.lock</code>. If the backend changed, destroy refuses
-and points at <code>carina init --migrate-state .</code>; this prevents silently
+and points at <code>carina init --migrate-state</code>; this prevents silently
 reading or writing state from the new backend before migration is
 explicit.</p>
 <h2 id="examples">Examples</h2>
