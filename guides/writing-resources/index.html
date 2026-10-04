@@ -22,7 +22,7 @@
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>The resource type follows the pattern <code>&#x3C;provider>.&#x3C;service>.&#x3C;resource_type></code>. Carina derives the resource’s identity from its <code>name</code> tag or other identifying attributes.</p>
+<p>The resource type follows the pattern <code>&#x3C;provider>.&#x3C;service>.&#x3C;resource_type></code>. Carina derives an anonymous resource’s identity from configured create-only or provider identity attributes; when none are set, it uses the declaration’s attributes for the single-resource fallback.</p>
 <h2 id="named-resources-with-let">Named resources with <code>let</code></h2>
 <p>When another resource needs to reference attributes from a resource, use a <code>let</code> binding:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
@@ -36,7 +36,7 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The <code>let</code> binding gives the resource a name (<code>vpc</code>) so you can reference its attributes (like <code>vpc.vpc_id</code>) from other resources. Carina automatically determines the dependency order — the subnet will be created after the VPC.</p>
-<p>Use anonymous resources when the binding is unused. Unnecessary <code>let</code> bindings add noise.</p>
+<p>Use anonymous resources when the binding is unused. Unnecessary <code>let</code> bindings add noise. However, two or more anonymous resources of the same type in one scope must each set a create-only or identity attribute; otherwise, give them <code>let</code> bindings so their identities stay stable.</p>
 <h2 id="attribute-types">Attribute types</h2>
 <p>Resource attributes support several value types:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
