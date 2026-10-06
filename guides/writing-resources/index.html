@@ -22,7 +22,7 @@
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>The resource type follows the pattern <code>&#x3C;provider>.&#x3C;service>.&#x3C;resource_type></code>. Carina derives an anonymous resource’s identity from configured create-only or provider identity attributes; when none are set, it uses the declaration’s attributes for the single-resource fallback.</p>
+<p>The resource type follows the pattern <code>&#x3C;provider>.&#x3C;service>.&#x3C;resource_type></code>. Anonymous resources need their provider declared and loaded so its schema is available. Carina derives identity from configured create-only or provider identity attributes. When the schema is available but none of those attributes is set, identity is derived from the declaration’s attributes; only one such anonymous declaration of the same resource kind and provider instance is allowed in a scope. Use <code>let</code> bindings to disambiguate additional declarations.</p>
 <h2 id="named-resources-with-let">Named resources with <code>let</code></h2>
 <p>When another resource needs to reference attributes from a resource, use a <code>let</code> binding:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
