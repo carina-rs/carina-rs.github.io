@@ -193,7 +193,7 @@
 
 
 
-<table><thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><code>env</code></td><td><code>env(name) -> string</code></td><td>Reads an environment variable</td></tr><tr><td><code>secret</code></td><td><code>secret(value) -> secret</code></td><td>Marks a value as secret (stored as hash in state)</td></tr><tr><td><code>decrypt</code></td><td><code>decrypt(ciphertext, key?) -> string</code></td><td>Decrypts using the provider’s encryption service (e.g., AWS KMS)</td></tr></tbody></table>
+<table><thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><code>env</code></td><td><code>env(name) -> string</code></td><td>Reads an environment variable; diagnostics never display its contents</td></tr><tr><td><code>secret</code></td><td><code>secret(value) -> secret</code></td><td>Marks a value as secret (stored as hash in state)</td></tr><tr><td><code>decrypt</code></td><td><code>decrypt(ciphertext, key?) -> secret</code></td><td>Decrypts using the provider’s encryption service; the result is automatically masked and hashed in state</td></tr></tbody></table>
 <h2 id="user-defined-functions">User-defined functions</h2>
 <p>Define reusable logic with the <code>fn</code> keyword:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#94A3B8"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">: String, </span><span style="color:#94A3B8">service</span><span style="color:#F1F5F9">: String): String {</span></span>
