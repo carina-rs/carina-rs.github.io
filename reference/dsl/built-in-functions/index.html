@@ -172,7 +172,15 @@
 <h2 id="security-functions">Security Functions</h2>
 <h3 id="secret"><code>secret</code></h3>
 <p>Marks a value as secret. The value is sent to the provider, and plan output displays <code>(secret)</code> instead of the actual value. The serialized representation of <code>Secret</code> in resource state is an Argon2id hash rather than plaintext. Applying <code>secret()</code> to an already-secret value is idempotent.</p>
+<p><code>carina plan --out</code> also stores only an Argon2id hash in a typed secret
+placeholder. <code>carina apply &#x3C;plan.json></code> re-evaluates the source configuration,
+verifies that the secret is unchanged, and only then restores the plaintext
+for the provider. Change a secret by creating a new saved plan; an existing
+saved plan will refuse to apply it.</p>
 <p>Values derived from <code>secret()</code> or <code>decrypt()</code> cannot be published through <code>exports</code>; <code>carina validate</code> and <code>carina plan</code> report <code>export '&#x3C;name>' cannot hold a secret value</code>.</p>
+<p>Backend attributes also cannot use secret-derived values. Backends accept only
+ordinary configuration values, so validation rejects <code>secret()</code> and
+<code>decrypt()</code> results in a <code>backend</code> block.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>secret(value: Any) -> Secret</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.rds.DbInstance</span><span style="color:#F1F5F9"> {</span></span>
