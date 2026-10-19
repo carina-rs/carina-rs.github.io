@@ -7,6 +7,10 @@
 <p>When you run <code>carina apply</code>, Carina records each managed resource and its attributes in a state file. On subsequent runs, it compares the desired state (your <code>.crn</code> files) with the recorded state to determine what needs to change.</p>
 <p>By default, state is stored locally as <code>carina.state.json</code>. For team usage, configure a remote S3 backend.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
+<p>State format v13 gives host-owned values a reserved <code>$</code> namespace. Canonical
+enums are stored under <code>$enum</code>; user map keys that begin with <code>$</code> are escaped
+with one additional <code>$</code> and restored when state is read. Loading an older state
+file migrates legacy enum objects and <code>$</code>-prefixed user keys automatically.</p>
 <p>State format v12 upgrades old raw secret markers when the state file is read.
 An <code>_secret:argon2:&#x3C;hash></code> value from an earlier state version is bound to the
 provider, resource type, stored identity, and top-level attribute key from its

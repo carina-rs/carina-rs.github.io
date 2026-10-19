@@ -10,6 +10,10 @@
 <h2 id="flags">Flags</h2>
 <h3 id="--json"><code>--json</code></h3>
 <p>Output as JSON. With a NAME, prints <code>{"&#x3C;name>": &#x3C;value>}</code>. Without, prints the full export map.</p>
+<p>JSON export output is decoded for consumers: canonical enums are printed as
+their provider API strings, and user map keys beginning with <code>$</code> keep their
+original spelling. The state file’s raw <code>$enum</code> payloads and <code>$$</code> key escaping
+are not exposed by this command.</p>
 <h3 id="--raw"><code>--raw</code></h3>
 <p>Output the raw value without the export name or surrounding quotes. Requires a NAME. Useful for piping a single export into another command.</p>
 <h2 id="examples">Examples</h2>
