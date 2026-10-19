@@ -7,19 +7,28 @@
 <p>When you run <code>carina apply</code>, Carina records each managed resource and its attributes in a state file. On subsequent runs, it compares the desired state (your <code>.crn</code> files) with the recorded state to determine what needs to change.</p>
 <p>By default, state is stored locally as <code>carina.state.json</code>. For team usage, configure a remote S3 backend.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
+<p>State format v14 stores a redacted secret structurally as a single-key object:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$secret</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$argon2id$...</span><span style="color:#64748B">"</span><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p>Ordinary strings are always strings, even when their text starts with
+<code>_secret:</code> and otherwise looks like an older secret marker. User map keys such
+as <code>$secret</code> are stored as <code>$$secret</code> so they cannot be confused with the
+host-owned tag. Loading v13 or older state migrates legacy secret markers only
+inside current and deposed resource attributes; exported strings retain their
+literal value.</p>
 <p>State format v13 gives host-owned values a reserved <code>$</code> namespace. Canonical
 enums are stored under <code>$enum</code>; user map keys that begin with <code>$</code> are escaped
 with one additional <code>$</code> and restored when state is read. Loading an older state
 file migrates legacy enum objects and <code>$</code>-prefixed user keys automatically.</p>
-<p>State format v12 upgrades old raw secret markers when the state file is read.
+<p>The v14 loader also preserves the v12 migration for old raw secret markers.
 An <code>_secret:argon2:&#x3C;hash></code> value from an earlier state version is bound to the
 provider, resource type, stored identity, and top-level attribute key from its
-own row, then represented as the self-contained
-<code>_secret:argon2-legacy:&#x3C;row-salt-hex>:&#x3C;hash-hex></code> form. This load-time upgrade
-does not require the plaintext and does not create a resource change. The next
-state write that has the matching plaintext replaces the legacy form with a
-standard <code>_secret:$argon2id$...</code> PHC digest containing a fresh random salt and
-explicit Argon2 parameters.</p>
+own row, then stored as a <code>$secret</code> object carrying an
+<code>argon2-legacy:&#x3C;row-salt-hex>:&#x3C;hash-hex></code> digest. This load-time upgrade does
+not require the plaintext and does not create a resource change. The next state
+write that has the matching plaintext replaces the legacy digest with a
+standard <code>$argon2id$...</code> PHC digest containing a fresh random salt and explicit
+Argon2 parameters.</p>
 <h2 id="configuring-the-s3-backend">Configuring the S3 backend</h2>
 <p>Add a <code>backend</code> block to your <code>.crn</code> file:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
