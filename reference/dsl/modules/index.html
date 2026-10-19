@@ -166,6 +166,23 @@ create, update, or data-source read reaches its provider.</p>
 <span class="line"><span style="color:#94A3B8">  role_arn</span><span style="color:#F1F5F9">   : Arn</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
+<p>A structural-handle argument stays a handle inside the module, and code inside
+the module must select an attribute from it. The resource type annotation
+checks that the handle is the expected resource type:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  network</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
+<p>Passing a bare resource handle to a value parameter such as <code>String</code> is an
+error at the module call. Passing an attribute such as <code>vpc.vpc_id</code> instead
+binds a value, even when the parameter has a resource type (resource-typed
+parameters accept identifier strings for provider configurations that model
+references as IDs). Using a handle-backed parameter bare inside the module is
+also an error.</p>
 <h2 id="attributes-block">Attributes Block</h2>
 <p>The <code>attributes</code> block defines the output values that a module exposes to its caller.</p>
 <p>Each attribute has a name, an optional type, and a value expression:</p>
@@ -180,6 +197,8 @@ create, update, or data-source read reaches its provider.</p>
 <span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
+<p>An output must likewise be a value. <code>vpc_id = vpc</code> is invalid because <code>vpc</code>
+is a resource handle; expose <code>vpc.vpc_id</code> (or another attribute) instead.</p>
 <h2 id="loading-modules">Loading Modules</h2>
 <p>Use <code>use { source = '...' }</code> to load a module, then call it by name with arguments:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> use</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> './modules/network'</span><span style="color:#F1F5F9"> }</span></span>

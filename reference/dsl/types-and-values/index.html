@@ -159,6 +159,48 @@ is accepted and behaves identically to the single-quoted form.</p>
 <span class="line"><span style="color:#94A3B8">  cidr_block</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.1.0/24'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
+<p>The binding <code>vpc</code> is a structural handle, not a value. A bare handle is
+therefore invalid anywhere a value is required:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># Invalid: choose an attribute from vpc instead.</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#64748B"># Also invalid in collections, exports, and interpolation.</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> handles</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#94A3B8">vpc</span><span style="color:#F1F5F9">]</span></span>
+<span class="line"><span style="color:#94A3B8">exports</span><span style="color:#F1F5F9"> { </span><span style="color:#94A3B8">network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9"> }</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> label</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "network-</span><span style="color:#94A3B8">${vpc}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"></span></code></pre>
+<p>Use an attribute such as <code>vpc.vpc_id</code>. The same rule applies to bindings
+created by <code>for</code>, <code>if</code>, <code>use</code>, module calls, and <code>wait</code>. For a module call,
+select an output such as <code>network.vpc_id</code>.</p>
+<p>A handle may be given another name with <code>let</code>. The alias is itself a handle,
+so attribute access works through it, but using the alias bare in a value
+position is still rejected:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnet</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span><span style="color:#64748B"> # Valid: selects an attribute.</span></span>
+<span class="line"><span style="color:#94A3B8">  name</span><span style="color:#FBBF24">   =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">name</span><span style="color:#64748B">   # Valid: selects an attribute.</span></span>
+<span class="line"><span style="color:#94A3B8">  parent</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#64748B">        # Invalid: network is still a bare handle.</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
+<p>Only syntax that explicitly transports a handle accepts one directly. Examples
+are <code>directives.depends_on</code>, <code>directives.provider</code>, and function or module
+arguments. The argument itself decides what is transported: passing <code>vpc</code>
+binds the parameter as a handle, while passing <code>vpc.vpc_id</code> binds it as a
+value. A resource type annotation checks that a passed handle has the expected
+resource type; it does not turn values into handles. An untyped function
+parameter can also receive a handle:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#94A3B8"> id_of</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">resource</span><span style="color:#F1F5F9">) {</span></span>
+<span class="line"><span style="color:#94A3B8">  resource</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> id_of</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">vpc</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"></span></code></pre>
+<p>Inside the function or module, the parameter follows the same rule as the
+original argument: select an attribute from a handle before using it as a
+value. A bare <code>resource</code> in the example above is therefore invalid.</p>
 <h3 id="chained-access">Chained Access</h3>
 <p>Dot notation can be chained for nested access:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> sg</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">security_group</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">group_id</span></span>
