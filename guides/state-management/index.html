@@ -92,11 +92,13 @@ state file must move with it. There is a single answer:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">init</span><span style="color:#86EFAC"> --migrate-state</span></span>
 <span class="line"></span></code></pre>
 <p><code>init</code> compares the configured backend against the one recorded in
-<code>carina-backend.lock</code>. If they differ it copies the state from the old
-backend to the new one, verifies the copy, and rewrites the lock. A bare
-<code>carina init</code> (and any <code>plan</code>/<code>apply</code>/<code>destroy</code>) <strong>refuses</strong> when the
-backend changed, so you never silently abandon the old state — you have
-to opt in with <code>--migrate-state</code> (or revert the backend configuration).</p>
+<code>carina-backend.lock</code>. If they differ, a bare <code>carina init</code> warns and
+leaves migration pending, while <code>plan</code> warns and reads state from the old
+backend recorded in the lock. <code>apply</code>, <code>destroy</code>, and <code>state refresh</code>
+refuse to run until you opt in with <code>--migrate-state</code> (or revert the
+backend configuration), so you never silently abandon the old state.
+With <code>--migrate-state</code>, <code>init</code> copies the state to the new backend,
+verifies the copy, and rewrites the lock.</p>
 <p>A local source is deleted after the verified copy; a remote source is
 kept as a recoverable backup. Add <code>--force</code> only when a <em>different</em>
 state already exists at the new backend and you intend to replace it.</p>
