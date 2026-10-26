@@ -7,6 +7,19 @@
 <p>When you run <code>carina apply</code>, Carina records each managed resource and its attributes in a state file. On subsequent runs, it compares the desired state (your <code>.crn</code> files) with the recorded state to determine what needs to change.</p>
 <p>By default, state is stored locally as <code>carina.state.json</code>. For team usage, configure a remote S3 backend.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
+<p>State format v17 adds a top-level <code>exports_version</code> that versions the exports
+encoding separately from the rest of the state file. Readers that only need
+exports (<code>upstream_state</code> and <code>carina export</code>) check <code>exports_version</code> instead
+of the state format version, so a later state format bump does not break a
+downstream project that runs an older Carina, as long as that Carina supports
+the exports encoding. <code>exports_version</code> changes only when the encoding of
+exported values changes.</p>
+<p>This protection starts with v17 itself. A Carina that predates v17 reads
+exports through the full state format check, so it rejects a v17 state with
+“State file version 17 is newer than supported version 16”. Upgrade the projects that read an
+upstream state before applying the upstream project with v17.</p>
+<p><code>carina state lookup</code> reads resources only. To read exports from another
+project’s state, use <code>carina export --state-url &#x3C;URL></code>.</p>
 <p>State format v14 stores a redacted secret structurally as a single-key object:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$secret</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$argon2id$...</span><span style="color:#64748B">"</span><span style="color:#64748B">}</span></span>
 <span class="line"></span></code></pre>
