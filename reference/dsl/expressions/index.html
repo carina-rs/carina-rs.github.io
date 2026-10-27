@@ -96,7 +96,7 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h2 id="wait-expression">Wait Expression</h2>
-<p><code>wait</code> blocks downstream resources until a target resource reaches a condition. It is the right-hand side of a <code>let</code> binding:</p>
+<p><code>wait</code> blocks downstream resources until a target resource reaches a condition. The target must be a managed resource; data sources declared with <code>read</code> and module calls are rejected. It is the right-hand side of a <code>let</code> binding:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> cert</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> aws.acm.Certificate</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  domain_name</span><span style="color:#FBBF24">       =</span><span style="color:#86EFAC"> 'registry.example.com'</span></span>
 <span class="line"><span style="color:#94A3B8">  validation_method</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> dns</span></span>
