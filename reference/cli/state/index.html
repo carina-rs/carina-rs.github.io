@@ -6,6 +6,11 @@
 <h2 id="usage">Usage</h2>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#FBBF24"> &#x3C;</span><span style="color:#86EFAC">SUBCOMMAN</span><span style="color:#F1F5F9">D</span><span style="color:#FBBF24">></span><span style="color:#F1F5F9"> [OPTIONS]</span></span>
 <span class="line"></span></code></pre>
+<p>For project-backed inspection commands, Carina compares the configured backend
+with <code>carina-backend.lock</code>. While a backend migration is pending, <code>list</code>,
+<code>show</code>, and <code>lookup</code> print a warning to stderr and read the locked old backend.
+An explicit <code>--state-url</code> bypasses project backend resolution and reads exactly
+the supplied URL.</p>
 <h2 id="subcommands">Subcommands</h2>
 <h3 id="list"><code>list</code></h3>
 <p>List all managed resources from the state file.</p>
@@ -140,6 +145,7 @@ secret remains distinguishable from a user map whose key is <code>$secret</code>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> bucket-delete</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#FBBF24">&#x3C;</span><span style="color:#F1F5F9">BUCKET_NAME</span><span style="color:#FBBF24">></span><span style="color:#64748B"> [</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
 <p>The bucket name must match the <code>bucket</code> attribute in the backend configuration. Without <code>--force</code>, Carina prompts for confirmation by requiring the user to type the bucket name.</p>
+<p>During a pending backend migration, <code>bucket-delete</code> targets the configured NEW backend, not the OLD backend recorded in <code>carina-backend.lock</code>.</p>
 <h4 id="flags-4">Flags</h4>
 
 

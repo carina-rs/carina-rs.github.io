@@ -22,10 +22,11 @@ moving from local state to a remote backend, or changing the
 <p>Without this flag, a backend change is a warning, not a hard error:
 <code>carina init</code> still resolves provider plugins and exits successfully, but
 it leaves <code>carina-backend.lock</code> unchanged and points you at
-<code>--migrate-state</code>. <code>plan</code> also warns and reads state from the old backend
-recorded in the lock, which keeps PR-time <code>plan</code> visible across
-backend-key changes. <code>apply</code>, <code>destroy</code>, and <code>state refresh</code> refuse until
-state migration is explicit.</p>
+<code>--migrate-state</code>. Project-backed readers (<code>plan</code>, <code>state list</code>, <code>state show</code>,
+<code>state lookup</code>, <code>export</code>, and <code>upstream_state</code> consumers) also warn and read
+state from the old backend recorded in the lock. This keeps inspection and
+PR-time plans accurate across backend-key changes. Explicit <code>--state-url</code>
+reads bypass project backend selection. <code>apply</code>, <code>destroy</code>, and <code>state refresh</code> refuse until state migration is explicit.</p>
 <p>With the flag, <code>init</code> reads the state from the locked (old) backend,
 writes it to the configured backend, and verifies the copy. It then
 rewrites <code>carina-backend.lock</code> to the new address — this is the commit

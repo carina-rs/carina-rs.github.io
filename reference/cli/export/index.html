@@ -7,6 +7,10 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">export</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#64748B">[</span><span style="color:#F1F5F9">NAME</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
 <p><strong>NAME</strong> is optional. When omitted, every export is printed. When set, only the named export is printed.</p>
+<p>Without <code>--state-url</code>, Carina compares the configured backend with
+<code>carina-backend.lock</code>. While a backend migration is pending, <code>export</code> prints a
+warning to stderr and reads exports from the locked old backend. An explicit
+<code>--state-url</code> reads exactly the supplied URL instead.</p>
 <h2 id="flags">Flags</h2>
 <h3 id="--json"><code>--json</code></h3>
 <p>Output as JSON. With a NAME, prints <code>{"&#x3C;name>": &#x3C;value>}</code>. Without, prints the full export map.</p>

@@ -96,12 +96,13 @@ state file must move with it. There is a single answer:</p>
 <span class="line"></span></code></pre>
 <p><code>init</code> compares the configured backend against the one recorded in
 <code>carina-backend.lock</code>. If they differ, a bare <code>carina init</code> warns and
-leaves migration pending, while <code>plan</code> warns and reads state from the old
-backend recorded in the lock. <code>apply</code>, <code>destroy</code>, and <code>state refresh</code>
-refuse to run until you opt in with <code>--migrate-state</code> (or revert the
-backend configuration), so you never silently abandon the old state.
-With <code>--migrate-state</code>, <code>init</code> copies the state to the new backend,
-verifies the copy, and rewrites the lock.</p>
+leaves migration pending. Project-backed readers — <code>plan</code>, <code>state list</code>,
+<code>state show</code>, <code>state lookup</code>, <code>export</code>, and <code>upstream_state</code> consumers — warn
+and read state from the old backend recorded in the lock. Explicit
+<code>--state-url</code> reads bypass this selection. <code>apply</code>, <code>destroy</code>, and <code>state refresh</code> refuse to run until you opt in with <code>--migrate-state</code> (or revert the
+backend configuration), so you never silently abandon the old state. With
+<code>--migrate-state</code>, <code>init</code> copies the state to the new backend, verifies the
+copy, and rewrites the lock.</p>
 <p>A local source is deleted after the verified copy; a remote source is
 kept as a recoverable backup. Add <code>--force</code> only when a <em>different</em>
 state already exists at the new backend and you intend to replace it.</p>
@@ -171,7 +172,7 @@ and crash-recovery behavior.</p>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>The <code>upstream_state</code> expression points at an upstream project’s directory. Carina loads that directory’s configuration, resolves its backend, reads its state, and exposes the upstream’s <code>exports</code> through the <code>let</code>-bound name. In this example, <code>network.vpc_id</code> references the <code>vpc_id</code> value published by the <code>../network</code> project’s <code>exports</code> block.</p>
+<p>The <code>upstream_state</code> expression points at an upstream project’s directory. Carina loads that directory’s configuration, resolves its backend, reads its state, and exposes the upstream’s <code>exports</code> through the <code>let</code>-bound name. If that project has a pending backend migration, Carina warns and reads its locked old backend. In this example, <code>network.vpc_id</code> references the <code>vpc_id</code> value published by the <code>../network</code> project’s <code>exports</code> block.</p>
 <p><code>source</code> is required and resolved relative to the enclosing <code>.crn</code> file’s directory. The upstream directory must contain a valid Carina configuration (one or more <code>.crn</code> files — no filename is privileged) with an <code>exports</code> block that publishes the values consumers need.</p>
 <h2 id="state-cli-commands">State CLI commands</h2>
 <p>Carina provides several CLI commands for inspecting and managing state:</p>
