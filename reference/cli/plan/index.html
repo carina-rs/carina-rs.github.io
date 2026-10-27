@@ -93,6 +93,96 @@ state; run <code>carina init --migrate-state</code> before applying.</p>
 <p>Output the plan as structured JSON instead of human-readable text. The output uses the same format as <code>--out</code> (PlanFile), including effects, resource definitions, and current states. Secrets are redacted.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --json</span></span>
 <span class="line"></span></code></pre>
+<h3 id="--image-file"><code>--image &#x3C;FILE></code></h3>
+<p>Write the plan as a dependency-graph image, in addition to the normal text,
+<code>--json</code>, or <code>--tui</code> output. The format is chosen by the file extension:
+<code>.svg</code> or <code>.png</code> (case-insensitive). Any other extension is rejected before
+planning starts.</p>
+<p>The image is meant for reviewing a plan where the text output is hard to scan,
+such as a pull request:</p>
+<ul>
+<li>Each changed resource is a card colored by its effect (create, update,
+replace, delete, and so on). Update cards list the names of the changed
+attributes; replace cards list the attributes that force the replacement.</li>
+<li>Cards are laid out left to right in apply order. Cards in the same column
+have no ordering dependency on each other and can run in parallel. Solid
+arrows mean “runs before”.</li>
+<li>Resources downstream of a replace or delete are highlighted with a halo,
+so the blast radius of a destructive change is visible at a glance.</li>
+<li>Dashed edges mean “references” and impose no ordering. Unchanged resources
+appear only when they connect two changed resources. A module call with no
+changes is collapsed into a single card.</li>
+<li>Resources inside a module call are grouped in a box labelled with the call.</li>
+<li>The header shows per-effect counts, with replace and destroy counts in bold,
+and the state lineage and serial the plan was computed against.</li>
+</ul>
+<p>The image never contains attribute values, so it can be shared without
+exposing secrets.</p>
+<p>The image is written last, after everything else in the command has
+succeeded, so a failed <code>plan</code> never leaves a fresh image behind. The image is
+rendered before the <code>--out</code> file is saved: if rendering fails, the command
+exits with code <code>1</code> and writes neither file. Only an I/O error while writing
+the image file itself can happen after <code>--out</code> has been saved. PNG output is
+limited to 64 megapixels; for very large plans, use <code>.svg</code> instead.</p>
+<p><code>--image</code> does not change exit codes: with <code>--detailed-exitcode</code>, the exit
+code is the same as without <code>--image</code>.</p>
+<p>PNG output uses an embedded font, so it renders identically on every machine,
+including CI runners without any fonts installed.</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --image</span><span style="color:#86EFAC"> plan.png</span></span>
+<span class="line"></span></code></pre>
+<p>In GitHub Actions, keep exit code <code>2</code> (changes present) from failing the job,
+fail it on a real error (<code>1</code>), and post the image to the pull request with
+<code>gh pr comment --attach</code> (GitHub CLI 2.99.0 or later):</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#64748B">-</span><span style="color:#86EFAC"> id</span><span style="color:#64748B">:</span><span style="color:#86EFAC"> plan</span></span>
+<span class="line"><span style="color:#86EFAC">  run</span><span style="color:#64748B">:</span><span style="color:#FBBF24"> |</span></span>
+<span class="line"><span style="color:#86EFAC">    set +e</span></span>
+<span class="line"><span style="color:#86EFAC">    carina plan --detailed-exitcode --image plan.png</span></span>
+<span class="line"><span style="color:#86EFAC">    code=$?</span></span>
+<span class="line"><span style="color:#86EFAC">    echo "exitcode=$code" >> "$GITHUB_OUTPUT"</span></span>
+<span class="line"><span style="color:#86EFAC">    [ "$code" -ne 1 ]</span></span>
+<span class="line"><span style="color:#64748B">-</span><span style="color:#86EFAC"> if</span><span style="color:#64748B">:</span><span style="color:#86EFAC"> steps.plan.outputs.exitcode == '2'</span></span>
+<span class="line"><span style="color:#86EFAC">  env</span><span style="color:#64748B">:</span></span>
+<span class="line"><span style="color:#86EFAC">    GH_TOKEN</span><span style="color:#64748B">:</span><span style="color:#86EFAC"> ${{ secrets.PLAN_COMMENT_TOKEN }}</span></span>
+<span class="line"><span style="color:#86EFAC">  run</span><span style="color:#64748B">:</span><span style="color:#86EFAC"> gh pr comment "${{ github.event.pull_request.number }}" --attach 'plan.png#carina plan'</span></span>
+<span class="line"></span></code></pre>
+<p>The workflow’s own <code>GITHUB_TOKEN</code> cannot upload attachments: the upload
+endpoint answers <code>404</code> to it even with <code>contents</code>, <code>issues</code>, and
+<code>pull-requests</code> write permissions. Store a classic personal access token with
+the <code>repo</code> scope, from a user with write access to the repository, as a secret
+(<code>PLAN_COMMENT_TOKEN</code> above).</p>
+<h3 id="--image-inline"><code>--image-inline</code></h3>
+<p>Display the dependency graph directly in an image-capable terminal after the
+normal text plan. Carina renders the graph as PNG and uses the Kitty graphics
+protocol in Kitty and Ghostty, or the iTerm2 inline-image protocol in iTerm2
+and WezTerm. In Kitty-compatible terminals, an image wider than the terminal
+is scaled down to the available columns.</p>
+<p>Any other terminal, including tmux, and output that is not a terminal are
+rejected before planning starts; use <code>--image &#x3C;FILE></code> there. <code>--image-inline</code>
+cannot be combined with <code>--json</code>, which keeps stdout as JSON, or <code>--tui</code>,
+which owns the terminal. It can be combined with <code>--image &#x3C;FILE></code> to display
+the graph and save it in one run.</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --image-inline</span></span>
+<span class="line"></span></code></pre>
+<h3 id="--image-theme-theme"><code>--image-theme &#x3C;THEME></code></h3>
+<p>Select the palette used by <code>--image</code> and <code>--image-inline</code>. The accepted values
+are <code>light</code>, <code>dark</code>, and <code>auto</code>.</p>
+<p>When this option is omitted, SVG and PNG files use the light palette, while
+inline terminal images use <code>auto</code>. An explicit <code>light</code> or <code>dark</code> value applies
+to every requested image output. For an SVG file, <code>auto</code> embeds both palettes
+and switches them with <code>@media (prefers-color-scheme: dark)</code>. For inline
+output, <code>auto</code> queries the terminal background and falls back to light if the
+terminal does not reply. PNG colors are fixed at render time, so combining a
+PNG file with explicit <code>--image-theme auto</code> is rejected before planning starts.</p>
+<p>For a GitHub page or pull-request description, render separate light and dark
+PNGs and select between them with <code>&#x3C;picture></code>:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --image-theme</span><span style="color:#86EFAC"> light</span><span style="color:#86EFAC"> --image</span><span style="color:#86EFAC"> plan-light.png</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --image-theme</span><span style="color:#86EFAC"> dark</span><span style="color:#86EFAC"> --image</span><span style="color:#86EFAC"> plan-dark.png</span></span>
+<span class="line"></span></code></pre>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#64748B">&#x3C;</span><span style="color:#F1F5F9">picture</span><span style="color:#64748B">></span></span>
+<span class="line"><span style="color:#64748B">  &#x3C;</span><span style="color:#F1F5F9">source media</span><span style="color:#64748B">=</span><span style="color:#64748B">"</span><span style="color:#86EFAC">(prefers-color-scheme: dark)</span><span style="color:#64748B">"</span><span style="color:#F1F5F9"> srcset</span><span style="color:#64748B">=</span><span style="color:#64748B">"</span><span style="color:#86EFAC">plan-dark.png</span><span style="color:#64748B">"</span><span style="color:#64748B">></span></span>
+<span class="line"><span style="color:#64748B">  &#x3C;</span><span style="color:#F1F5F9">img src</span><span style="color:#64748B">=</span><span style="color:#64748B">"</span><span style="color:#86EFAC">plan-light.png</span><span style="color:#64748B">"</span><span style="color:#F1F5F9"> alt</span><span style="color:#64748B">=</span><span style="color:#64748B">"</span><span style="color:#86EFAC">carina plan</span><span style="color:#64748B">"</span><span style="color:#64748B">></span></span>
+<span class="line"><span style="color:#64748B">&#x3C;/</span><span style="color:#F1F5F9">picture</span><span style="color:#64748B">></span></span>
+<span class="line"></span></code></pre>
 <h3 id="--check-iam"><code>--check-iam</code></h3>
 <p>Before showing the plan, check whether the AWS caller identity (the role that will run <code>apply</code>) has the IAM actions the providers declare for the planned effects. Carina uses <code>iam:SimulatePrincipalPolicy</code>, and falls back to reading the role’s policies (<code>iam:GetRolePolicy</code>, <code>iam:ListAttachedRolePolicies</code>) when simulation is denied. Missing actions are reported per effect as warnings; the plan does not fail. If the caller identity or its policies cannot be read, the check is skipped with a warning.</p>
 <h3 id="--strict-iam"><code>--strict-iam</code></h3>
@@ -122,4 +212,4 @@ state; run <code>carina init --migrate-state</code> before applying.</p>
 <li><strong>Delete</strong> (<code>-</code>) — resource to be removed</li>
 <li><strong>Replace</strong> (<code>+/-</code>) — resource that must be destroyed and recreated</li>
 </ul>
-<p>A summary line shows the total count of each effect type.</p>  </div> </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><p class="toc-label" data-astro-cid-obewoz47>On this page</p><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#usage" class="toc-link" data-toc-slug="usage" data-astro-cid-obewoz47>Usage</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#flags" class="toc-link" data-toc-slug="flags" data-astro-cid-obewoz47>Flags</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--detail-level" class="toc-link" data-toc-slug="--detail-level" data-astro-cid-obewoz47>--detail &lt;LEVEL&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--tui" class="toc-link" data-toc-slug="--tui" data-astro-cid-obewoz47>--tui</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--out-file" class="toc-link" data-toc-slug="--out-file" data-astro-cid-obewoz47>--out &lt;FILE&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--detailed-exitcode" class="toc-link" data-toc-slug="--detailed-exitcode" data-astro-cid-obewoz47>--detailed-exitcode</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--refresh-bool" class="toc-link" data-toc-slug="--refresh-bool" data-astro-cid-obewoz47>--refresh &lt;BOOL&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--json" class="toc-link" data-toc-slug="--json" data-astro-cid-obewoz47>--json</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--check-iam" class="toc-link" data-toc-slug="--check-iam" data-astro-cid-obewoz47>--check-iam</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--strict-iam" class="toc-link" data-toc-slug="--strict-iam" data-astro-cid-obewoz47>--strict-iam</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-locking" class="toc-link" data-toc-slug="state-locking" data-astro-cid-obewoz47>State Locking</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#examples" class="toc-link" data-toc-slug="examples" data-astro-cid-obewoz47>Examples</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#output-format" class="toc-link" data-toc-slug="output-format" data-astro-cid-obewoz47>Output Format</a></li></ul></nav> </div>  </main> </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="https://crates.io/crates/carina" data-astro-cid-sz7xmlte>crates.io</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </body></html> 
+<p>A summary line shows the total count of each effect type.</p>  </div> </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><p class="toc-label" data-astro-cid-obewoz47>On this page</p><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#usage" class="toc-link" data-toc-slug="usage" data-astro-cid-obewoz47>Usage</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#flags" class="toc-link" data-toc-slug="flags" data-astro-cid-obewoz47>Flags</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--detail-level" class="toc-link" data-toc-slug="--detail-level" data-astro-cid-obewoz47>--detail &lt;LEVEL&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--tui" class="toc-link" data-toc-slug="--tui" data-astro-cid-obewoz47>--tui</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--out-file" class="toc-link" data-toc-slug="--out-file" data-astro-cid-obewoz47>--out &lt;FILE&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--detailed-exitcode" class="toc-link" data-toc-slug="--detailed-exitcode" data-astro-cid-obewoz47>--detailed-exitcode</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--refresh-bool" class="toc-link" data-toc-slug="--refresh-bool" data-astro-cid-obewoz47>--refresh &lt;BOOL&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--json" class="toc-link" data-toc-slug="--json" data-astro-cid-obewoz47>--json</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--image-file" class="toc-link" data-toc-slug="--image-file" data-astro-cid-obewoz47>--image &lt;FILE&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--image-inline" class="toc-link" data-toc-slug="--image-inline" data-astro-cid-obewoz47>--image-inline</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--image-theme-theme" class="toc-link" data-toc-slug="--image-theme-theme" data-astro-cid-obewoz47>--image-theme &lt;THEME&gt;</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--check-iam" class="toc-link" data-toc-slug="--check-iam" data-astro-cid-obewoz47>--check-iam</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#--strict-iam" class="toc-link" data-toc-slug="--strict-iam" data-astro-cid-obewoz47>--strict-iam</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-locking" class="toc-link" data-toc-slug="state-locking" data-astro-cid-obewoz47>State Locking</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#examples" class="toc-link" data-toc-slug="examples" data-astro-cid-obewoz47>Examples</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#output-format" class="toc-link" data-toc-slug="output-format" data-astro-cid-obewoz47>Output Format</a></li></ul></nav> </div>  </main> </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="https://crates.io/crates/carina" data-astro-cid-sz7xmlte>crates.io</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </body></html> 
