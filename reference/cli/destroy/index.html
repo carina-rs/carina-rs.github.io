@@ -13,7 +13,7 @@
 <h3 id="--lock-bool"><code>--lock &#x3C;BOOL></code></h3>
 <p>Enable or disable state locking during the destroy. Defaults to <code>true</code>. Disable only when you know no other process is touching the same state.</p>
 <h3 id="--refresh-bool"><code>--refresh &#x3C;BOOL></code></h3>
-<p>Refresh state from the cloud provider before computing the destroy plan. Defaults to <code>true</code>.</p>
+<p>Refresh managed-resource state from the cloud provider before computing the destroy plan. Defaults to <code>true</code>. When set to <code>false</code>, Carina uses cached managed-resource state. Destroy does not evaluate data sources because they do not contribute managed objects to the destroy set.</p>
 <h3 id="--force"><code>--force</code></h3>
 <p>Destroy even resources that have <code>prevent_destroy = true</code> in their <code>directives</code> block.</p>
 <h3 id="--parallelism-n"><code>--parallelism &#x3C;N></code></h3>

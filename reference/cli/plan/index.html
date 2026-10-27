@@ -85,8 +85,8 @@ state; run <code>carina init --migrate-state</code> before applying.</p>
 <table><thead><tr><th>Exit code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>No changes needed</td></tr><tr><td><code>1</code></td><td>Error occurred</td></tr><tr><td><code>2</code></td><td>Changes are present (only with <code>--detailed-exitcode</code>)</td></tr></tbody></table></div>
 <p>This is useful in CI pipelines to detect whether changes exist without parsing output.</p>
 <h3 id="--refresh-bool"><code>--refresh &#x3C;BOOL></code></h3>
-<p>Refresh state from the cloud provider before planning. Defaults to <code>true</code>.</p>
-<p>When set to <code>false</code>, Carina uses cached state and prints a warning. The plan may not reflect actual infrastructure.</p>
+<p>Refresh managed-resource state from the cloud provider before planning. Defaults to <code>true</code>.</p>
+<p>When set to <code>false</code>, Carina uses cached state for managed resources and prints a warning. Data sources are queries rather than managed objects, so Carina always reads them regardless of this flag. The plan may not reflect the actual managed infrastructure.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --refresh=false</span></span>
 <span class="line"></span></code></pre>
 <h3 id="--json"><code>--json</code></h3>

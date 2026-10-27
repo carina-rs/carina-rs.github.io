@@ -57,7 +57,7 @@ produce a fresh saved plan.</p>
 <h2 id="confirmation-flow">Confirmation Flow</h2>
 <p>When <code>--auto-approve</code> is not set, Carina follows this flow:</p>
 <ol>
-<li>Refreshes state from the cloud provider for all managed resources</li>
+<li>Refreshes state from the cloud provider for all managed resources and reads all data sources</li>
 <li>Computes and displays the execution plan</li>
 <li>If no changes are needed, prints “No changes needed.” and exits</li>
 <li>Prompts: “Do you want to perform these actions?”</li>
@@ -66,6 +66,7 @@ produce a fresh saved plan.</p>
 <li>Saves the final state to the backend</li>
 <li>Prints a summary of results</li>
 </ol>
+<p>When <code>carina apply</code> creates a plan directly from a configuration directory, data sources are always read. Likewise, <code>carina plan --refresh=false</code> skips only managed-resource refresh before writing a saved plan; it still reads every data source.</p>
 <h2 id="error-handling">Error Handling</h2>
 <ul>
 <li>If an effect fails, Carina refreshes the resource state from the provider to capture any partial changes</li>
