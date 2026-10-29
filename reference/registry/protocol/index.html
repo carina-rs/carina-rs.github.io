@@ -649,28 +649,8 @@ artifact bundle; otherwise only without docs.</p>
 <p>Nor would keeping the promise remedy the cases it was written for. Deletion does not recall bytes that were already downloaded and cached; for a credential baked into a published binary the remedy is rotating the credential, and for a malicious or mistaken release it is yank plus a fixed version. The only remedy deletion adds over yank is that registry-hosted bytes stop being fetchable at all (bytes a version serves from the publisher’s origin were never the registry’s to remove). Even that is felt only by parties fetching outside pinned resolutions, since a conforming client never chooses a yanked version. It is no help against a secret, which must be assumed harvested the moment it was published. Pinned clients experience deletion purely as breakage. The one harm yank cannot undo, occupation of the name, deletion cannot undo either: <code>(namespace, name)</code> stays tombstoned to its first owner (§8) whether the versions exist or not.</p>
 <p><strong>Out-of-band removal (non-normative).</strong> A registry operator may nonetheless be compelled to remove published objects — a takedown the operator cannot refuse, content that cannot remain hosted. That is an administrative action outside this protocol, not an operation of it: no API performs it, publish credentials cannot trigger it, and this document does not specify its procedure. The client-side defenses make no exception for it either — to a client, a provider whose listing or download objects disappeared is indistinguishable from an attack or data loss, and it fails closed (§2, §3). That consequence is accepted, not accidental: every pinned resolution of the removed provider breaks, and an operator who removes content does so knowing this protocol will not soften it.</p>
 <h2 id="api-call-flow">API Call Flow</h2>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Client                          Registry                        GitHub Releases</span></span>
-<span class="line"><span>  |                                |                                |</span></span>
-<span class="line"><span>  |  GET /.well-known/carina.json  |                                |</span></span>
-<span class="line"><span>  |------------------------------->|                                |</span></span>
-<span class="line"><span>  |  {"providers.v1": "/v1/..."}   |                                |</span></span>
-<span class="line"><span>  |&#x3C;-------------------------------|                                |</span></span>
-<span class="line"><span>  |                                |                                |</span></span>
-<span class="line"><span>  |  GET /v1/providers/ns/name/versions                             |</span></span>
-<span class="line"><span>  |------------------------------->|                                |</span></span>
-<span class="line"><span>  |  {"versions": [...]}           |                                |</span></span>
-<span class="line"><span>  |&#x3C;-------------------------------|                                |</span></span>
-<span class="line"><span>  |                                |                                |</span></span>
-<span class="line"><span>  |  GET /v1/providers/ns/name/0.3.0/download                      |</span></span>
-<span class="line"><span>  |------------------------------->|                                |</span></span>
-<span class="line"><span>  |  {"download_url": "..."}       |                                |</span></span>
-<span class="line"><span>  |&#x3C;-------------------------------|                                |</span></span>
-<span class="line"><span>  |                                                                 |</span></span>
-<span class="line"><span>  |  GET (download_url)                                             |</span></span>
-<span class="line"><span>  |---------------------------------------------------------------->|</span></span>
-<span class="line"><span>  |  &#x3C;WASM binary>                                                  |</span></span>
-<span class="line"><span>  |&#x3C;----------------------------------------------------------------|</span></span>
-<span class="line"><span></span></span></code></pre>
+<p>A client resolves and downloads a provider with three registry calls, then fetches the binary directly from the release host. Solid arrows are requests; dashed arrows are responses.</p>
+<img src="/images/registry-api-call-flow.svg" alt="Sequence diagram: the client requests /.well-known/carina.json, the version list and the download endpoint from the registry, then downloads the WASM binary from download_url on GitHub Releases" width="780" height="488" style="width:100%;height:auto">
 <h2 id="provider-metadata-registry-side">Provider Metadata (Registry-side)</h2>
 <p>Metadata that the registry holds for each provider. In the initial implementation, this is managed as JSON files.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>providers/</span></span>
