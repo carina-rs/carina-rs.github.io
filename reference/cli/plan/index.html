@@ -35,7 +35,7 @@
 <h3 id="--tui"><code>--tui</code></h3>
 <p>Display the plan in an interactive TUI (terminal user interface) mode. Allows navigating resources and viewing attribute details in a structured layout.</p>
 <h3 id="--out-file"><code>--out &#x3C;FILE></code></h3>
-<p>Save the plan to a JSON file for later use with <code>carina apply</code>. The saved plan includes the effects, resource definitions, provider configurations, and state metadata for drift detection.</p>
+<p>Save the plan to a JSON file for later use with <code>carina apply</code>. The saved plan includes the effects, resource definitions, provider configurations, state metadata for drift detection, and the identity (SHA-256, source and version) and schema fingerprints of the providers it was computed with. Re-run <code>carina plan --out</code> after re-installing or upgrading a provider: <code>carina apply</code> rejects a saved plan whose providers no longer match (see <a href="/reference/cli/apply/#applying-a-saved-plan">Applying a Saved Plan</a>).</p>
 <p>Saved plans never contain secret plaintext. Carina stores each secret as a
 typed placeholder containing only an Argon2id hash, including secrets nested
 inside lists or maps and values derived from <code>decrypt()</code> or other expressions.

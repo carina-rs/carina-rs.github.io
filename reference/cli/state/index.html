@@ -122,7 +122,7 @@ secret remains distinguishable from a user map whose key is <code>$secret</code>
 <p><code>state lookup</code> reads resources only; to read values from an <code>exports</code> block, use <a href="/reference/cli/export/"><code>carina export</code></a>.</p>
 <p>Shell completions are supported for both resource names and attribute names.</p>
 <h3 id="refresh"><code>refresh</code></h3>
-<p>Refresh state from cloud providers without planning or applying. Reads the current state of all managed resources from the providers and updates the state file.</p>
+<p>Refresh state from cloud providers without planning or applying. Reads the current state of all managed resources from the providers and updates the state file. Every provider must load before the refresh starts. Progress is shown the same way as for <code>carina apply</code> (see <a href="/reference/cli/apply/#progress-output">Progress output</a>).</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> refresh</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#64748B">[</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
 <h4 id="flags-3">Flags</h4>
@@ -144,7 +144,7 @@ secret remains distinguishable from a user map whose key is <code>$secret</code>
 <p>Delete the state bucket. This is a destructive operation that removes the bucket and all state history.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> bucket-delete</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#FBBF24">&#x3C;</span><span style="color:#F1F5F9">BUCKET_NAME</span><span style="color:#FBBF24">></span><span style="color:#64748B"> [</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
-<p>The bucket name must match the <code>bucket</code> attribute in the backend configuration. Without <code>--force</code>, Carina prompts for confirmation by requiring the user to type the bucket name.</p>
+<p>The bucket name must match the <code>bucket</code> attribute in the backend configuration. The configuration and its providers must load successfully; Carina checks this before asking for confirmation. Without <code>--force</code>, Carina prompts for confirmation by requiring the user to type the bucket name.</p>
 <p>During a pending backend migration, <code>bucket-delete</code> targets the configured NEW backend, not the OLD backend recorded in <code>carina-backend.lock</code>.</p>
 <h4 id="flags-4">Flags</h4>
 <div class="table-scroll">
