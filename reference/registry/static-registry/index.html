@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-losip7nv> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Static Registry Layout | Carina</title><meta name="description" content="How to run a Carina provider registry from static files: which files to serve at which paths, and what they must contain."><meta property="og:title" content="Static Registry Layout | Carina"><meta property="og:description" content="How to run a Carina provider registry from static files: which files to serve at which paths, and what they must contain."><meta property="og:type" content="website"><meta property="og:image" content="https://carina-rs.dev/og/reference/registry/static-registry.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Static Registry Layout | Carina"><meta name="twitter:description" content="How to run a Carina provider registry from static files: which files to serve at which paths, and what they must contain."><meta name="twitter:image" content="https://carina-rs.dev/og/reference/registry/static-registry.png"><link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" href="/_astro/core-concepts.Cq4o5XLK.css">
+<style>.toc[data-astro-cid-obewoz47]{font-size:var(--text-sm)}.toc-label[data-astro-cid-obewoz47]{font-family:var(--font-sans);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--toc-label-color);margin:0 0 var(--space-3)}.toc-list[data-astro-cid-obewoz47]{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:var(--space-1)}.toc-link[data-astro-cid-obewoz47]{display:block;padding:var(--space-1) 0;color:var(--toc-link-color);text-decoration:none;line-height:1.4;transition:color .15s ease}.toc-link[data-astro-cid-obewoz47]:hover{color:var(--toc-link-hover-color)}.toc-link[data-astro-cid-obewoz47][data-current=true]{color:var(--toc-link-current-color)}.toc-depth-3[data-astro-cid-obewoz47]{padding-left:var(--space-4)}.doc-grid[data-astro-cid-xichhuew]{display:grid;grid-template-columns:16rem minmax(0,1fr) 14rem;gap:var(--space-8);max-width:80rem;margin:0 auto;padding:var(--space-8) var(--space-6)}.doc-main[data-astro-cid-xichhuew]{min-width:0;overflow-wrap:break-word}.doc-header[data-astro-cid-xichhuew]{margin-bottom:var(--space-8)}.doc-header[data-astro-cid-xichhuew] h1[data-astro-cid-xichhuew]{font-family:var(--font-display);font-size:clamp(2rem,8vw,3rem);font-weight:700;letter-spacing:-.01em;color:var(--page-title-color);margin:0 0 var(--space-3)}.doc-lede[data-astro-cid-xichhuew]{font-size:var(--text-lg);color:var(--fg3);margin:0}.doc-body[data-astro-cid-xichhuew]{color:var(--page-body-color);line-height:var(--lh-body)}.doc-body[data-astro-cid-xichhuew] h2{position:relative;margin-top:4rem;padding-top:1.25rem;margin-bottom:var(--space-4);scroll-margin-top:var(--space-8);font-size:1.55rem;font-weight:700}.doc-body[data-astro-cid-xichhuew] h2:before{content:"";position:absolute;top:0;left:0;width:3rem;height:1px;background:var(--accent);opacity:.55}.doc-body[data-astro-cid-xichhuew] h3{margin-top:var(--space-6);margin-bottom:var(--space-3);scroll-margin-top:var(--space-8)}.doc-body[data-astro-cid-xichhuew] p{margin:0 0 var(--space-4)}.doc-body[data-astro-cid-xichhuew] ul,.doc-body[data-astro-cid-xichhuew] ol{margin:0 0 var(--space-4);padding-left:var(--space-6)}.doc-body[data-astro-cid-xichhuew] li{margin:var(--space-1) 0}.doc-body[data-astro-cid-xichhuew] pre{background:var(--code-block-bg);border:1px solid var(--code-block-border);border-radius:var(--radius);padding:var(--space-4);overflow-x:auto;margin:var(--space-4) 0}.doc-body[data-astro-cid-xichhuew] code{background:var(--code-inline-bg);color:var(--code-inline-color);padding:.1em .35em;border-radius:var(--radius-sm);font-size:.9em}.doc-body[data-astro-cid-xichhuew] pre code{background:transparent;padding:0;color:var(--code-block-text)}.doc-body[data-astro-cid-xichhuew] .table-scroll{margin:var(--space-4) 0}.doc-body[data-astro-cid-xichhuew] table{border-collapse:collapse;margin:0;width:100%;font-size:var(--text-sm)}.doc-body[data-astro-cid-xichhuew] th,.doc-body[data-astro-cid-xichhuew] td{border:1px solid var(--border);padding:var(--space-2) var(--space-3);text-align:left}.doc-body[data-astro-cid-xichhuew] th{background:var(--bg-raise);color:var(--fg1);font-weight:600}@media (max-width: 64rem){.doc-grid[data-astro-cid-xichhuew]{grid-template-columns:14rem minmax(0,1fr)}.doc-grid[data-astro-cid-xichhuew]>.toc{display:none}}@media (max-width: 48rem){.doc-grid[data-astro-cid-xichhuew]{grid-template-columns:1fr}.doc-grid[data-astro-cid-xichhuew]>.sidebar{display:none}}
+.sidebar[data-astro-cid-ssfzsv2f]{padding:var(--space-2) 0;background:var(--sidebar-bg)}.sidebar-section[data-astro-cid-ssfzsv2f]+.sidebar-section[data-astro-cid-ssfzsv2f]{margin-top:var(--space-6)}.sidebar-section-title[data-astro-cid-ssfzsv2f]{font-family:var(--font-sans);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sidebar-group-head-color);margin:0 0 var(--space-3)}.sidebar-list[data-astro-cid-ssfzsv2f]{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1px}.sidebar-link[data-astro-cid-ssfzsv2f]{display:block;padding:var(--space-2) var(--space-3);border-left:2px solid transparent;color:var(--sidebar-link-color);text-decoration:none;font-size:var(--text-sm);line-height:1.4;transition:color .15s ease,background-color .15s ease}.sidebar-link[data-astro-cid-ssfzsv2f]:hover{color:var(--sidebar-link-hover-color)}.sidebar-link[data-astro-cid-ssfzsv2f].active{color:var(--sidebar-link-active-color);background:var(--sidebar-link-active-bg);border-left-color:var(--sidebar-link-active-border)}.sidebar-subgroup[data-astro-cid-ssfzsv2f]+.sidebar-subgroup[data-astro-cid-ssfzsv2f]{margin-top:var(--space-4)}.sidebar-subgroup-title[data-astro-cid-ssfzsv2f]{font-family:var(--font-sans);font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sidebar-group-head-color);opacity:.75;margin:var(--space-3) 0 var(--space-2)}.site-footer[data-astro-cid-sz7xmlte]{margin-top:var(--space-12);padding:var(--space-6) var(--space-6)}.site-footer-inner[data-astro-cid-sz7xmlte]{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}.copyright[data-astro-cid-sz7xmlte]{margin:0;color:var(--footer-meta-color);font-size:var(--text-xs)}.footer-links[data-astro-cid-sz7xmlte]{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-xs);color:var(--footer-meta-color)}.footer-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{color:var(--footer-quote-color);text-decoration:none;transition:color .15s ease}.footer-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:var(--accent)}.footer-links[data-astro-cid-sz7xmlte] .sep[data-astro-cid-sz7xmlte]{color:var(--footer-meta-color)}@media (max-width: 50rem){.site-footer-inner[data-astro-cid-sz7xmlte]{justify-content:center;text-align:center}}body{margin:0;min-height:100vh}.layout[data-astro-cid-losip7nv]{display:grid;grid-template-columns:280px 1fr;max-width:1280px;margin:0 auto;min-height:calc(100vh - 264px)}.layout[data-astro-cid-losip7nv].no-sidebar{grid-template-columns:1fr}.main[data-astro-cid-losip7nv]{padding:var(--space-8) var(--space-6);min-width:0}.main[data-astro-cid-losip7nv]:not(.has-sidebar){padding:0}@media (max-width: 50rem){.layout[data-astro-cid-losip7nv]{grid-template-columns:1fr}}
+</style><script type="module">const r=document.querySelectorAll(".toc-link");if(r.length){const o=new Map;r.forEach(t=>{const e=t.dataset.tocSlug;e&&o.set(e,t)});const c=new IntersectionObserver(t=>{for(const e of t){const n=o.get(e.target.id);n&&e.isIntersecting&&(r.forEach(i=>i.removeAttribute("data-current")),n.setAttribute("data-current","true"))}},{rootMargin:"0px 0px -70% 0px"});document.querySelectorAll("article h2[id], article h3[id]").forEach(t=>c.observe(t))}
+</script></head><body data-astro-cid-losip7nv> <header class="topbar" data-astro-cid-axxsutmj> <div class="topbar-inner" data-astro-cid-axxsutmj> <a href="/" class="brand" aria-label="Carina home" data-astro-cid-axxsutmj> <span class="brand-star" aria-hidden="true" data-astro-cid-axxsutmj>★</span> <span class="brand-name" data-astro-cid-axxsutmj>Carina</span> </a> <nav class="topbar-nav" aria-label="Primary" data-astro-cid-axxsutmj> <a href="/reference/dsl/syntax/" data-astro-cid-axxsutmj>Reference</a> <a href="https://registry.carina-rs.dev/providers/index.html" class="external" data-astro-cid-axxsutmj>Providers →</a> <a href="https://github.com/carina-rs/carina" class="external" data-astro-cid-axxsutmj>GitHub →</a> </nav> </div> </header>  <div class="layout no-sidebar" data-astro-cid-losip7nv>  <main class="main" data-astro-cid-losip7nv>  <div class="doc-grid" data-astro-cid-xichhuew> <aside class="sidebar" data-astro-cid-ssfzsv2f> <div class="sidebar-section" data-astro-cid-ssfzsv2f> <h3 class="sidebar-section-title" data-astro-cid-ssfzsv2f>Getting Started</h3> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/getting-started/installation/" class="sidebar-link" data-astro-cid-ssfzsv2f> Installation </a> </li><li data-astro-cid-ssfzsv2f> <a href="/getting-started/quick-start/" class="sidebar-link" data-astro-cid-ssfzsv2f> Quick Start </a> </li><li data-astro-cid-ssfzsv2f> <a href="/getting-started/core-concepts/" class="sidebar-link" data-astro-cid-ssfzsv2f> Core Concepts </a> </li> </ul>  </div><div class="sidebar-section" data-astro-cid-ssfzsv2f> <h3 class="sidebar-section-title" data-astro-cid-ssfzsv2f>Guides</h3> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/guides/writing-resources/" class="sidebar-link" data-astro-cid-ssfzsv2f> Writing Resources </a> </li><li data-astro-cid-ssfzsv2f> <a href="/guides/using-modules/" class="sidebar-link" data-astro-cid-ssfzsv2f> Using Modules </a> </li><li data-astro-cid-ssfzsv2f> <a href="/guides/state-management/" class="sidebar-link" data-astro-cid-ssfzsv2f> State Management </a> </li><li data-astro-cid-ssfzsv2f> <a href="/guides/for-if-expressions/" class="sidebar-link" data-astro-cid-ssfzsv2f> For/If Expressions </a> </li><li data-astro-cid-ssfzsv2f> <a href="/guides/functions/" class="sidebar-link" data-astro-cid-ssfzsv2f> Functions </a> </li><li data-astro-cid-ssfzsv2f> <a href="/guides/lsp-setup/" class="sidebar-link" data-astro-cid-ssfzsv2f> LSP Setup </a> </li> </ul>  </div><div class="sidebar-section" data-astro-cid-ssfzsv2f> <h3 class="sidebar-section-title" data-astro-cid-ssfzsv2f>Reference</h3>  <div class="sidebar-subgroup" data-astro-cid-ssfzsv2f> <h4 class="sidebar-subgroup-title" data-astro-cid-ssfzsv2f>DSL</h4> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/reference/dsl/syntax/" class="sidebar-link" data-astro-cid-ssfzsv2f> Syntax </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/dsl/types-and-values/" class="sidebar-link" data-astro-cid-ssfzsv2f> Types &amp; Values </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/dsl/expressions/" class="sidebar-link" data-astro-cid-ssfzsv2f> Expressions </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/dsl/built-in-functions/" class="sidebar-link" data-astro-cid-ssfzsv2f> Built-in Functions </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/dsl/modules/" class="sidebar-link" data-astro-cid-ssfzsv2f> Modules </a> </li> </ul> </div><div class="sidebar-subgroup" data-astro-cid-ssfzsv2f> <h4 class="sidebar-subgroup-title" data-astro-cid-ssfzsv2f>CLI</h4> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/reference/cli/global-options/" class="sidebar-link" data-astro-cid-ssfzsv2f> Global options </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/init/" class="sidebar-link" data-astro-cid-ssfzsv2f> init </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/validate/" class="sidebar-link" data-astro-cid-ssfzsv2f> validate </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/plan/" class="sidebar-link" data-astro-cid-ssfzsv2f> plan </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/apply/" class="sidebar-link" data-astro-cid-ssfzsv2f> apply </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/destroy/" class="sidebar-link" data-astro-cid-ssfzsv2f> destroy </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/fmt/" class="sidebar-link" data-astro-cid-ssfzsv2f> fmt </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/lint/" class="sidebar-link" data-astro-cid-ssfzsv2f> lint </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/state/" class="sidebar-link" data-astro-cid-ssfzsv2f> state </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/force-unlock/" class="sidebar-link" data-astro-cid-ssfzsv2f> force-unlock </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/providers/" class="sidebar-link" data-astro-cid-ssfzsv2f> providers </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/module/" class="sidebar-link" data-astro-cid-ssfzsv2f> module </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/export/" class="sidebar-link" data-astro-cid-ssfzsv2f> export </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/docs/" class="sidebar-link" data-astro-cid-ssfzsv2f> docs </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/skills/" class="sidebar-link" data-astro-cid-ssfzsv2f> skills </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/cli/completions/" class="sidebar-link" data-astro-cid-ssfzsv2f> completions </a> </li> </ul> </div><div class="sidebar-subgroup" data-astro-cid-ssfzsv2f> <h4 class="sidebar-subgroup-title" data-astro-cid-ssfzsv2f>Registry</h4> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/reference/registry/protocol/" class="sidebar-link" data-astro-cid-ssfzsv2f> Protocol </a> </li><li data-astro-cid-ssfzsv2f> <a href="/reference/registry/static-registry/" class="sidebar-link active" aria-current="page" data-astro-cid-ssfzsv2f> Static Registry Layout </a> </li> </ul> </div> </div><div class="sidebar-section" data-astro-cid-ssfzsv2f> <h3 class="sidebar-section-title" data-astro-cid-ssfzsv2f>Providers</h3> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="https://registry.carina-rs.dev/providers/carina-rs/aws" class="sidebar-link external" data-astro-cid-ssfzsv2f> carina-rs/aws → </a> </li><li data-astro-cid-ssfzsv2f> <a href="https://registry.carina-rs.dev/providers/carina-rs/awscc" class="sidebar-link external" data-astro-cid-ssfzsv2f> carina-rs/awscc → </a> </li> </ul> <div class="sidebar-subgroup" data-astro-cid-ssfzsv2f> <h4 class="sidebar-subgroup-title" data-astro-cid-ssfzsv2f>Writing a Provider</h4> <ul class="sidebar-list" data-astro-cid-ssfzsv2f> <li data-astro-cid-ssfzsv2f> <a href="/providers/writing/overview/" class="sidebar-link" data-astro-cid-ssfzsv2f> Overview </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/getting-started/" class="sidebar-link" data-astro-cid-ssfzsv2f> Your First Provider </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/schemas/" class="sidebar-link" data-astro-cid-ssfzsv2f> Schemas </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/implementing-operations/" class="sidebar-link" data-astro-cid-ssfzsv2f> Implementing Operations </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/testing/" class="sidebar-link" data-astro-cid-ssfzsv2f> Testing </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/versioning/" class="sidebar-link" data-astro-cid-ssfzsv2f> Versioning </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/docs-bundle/" class="sidebar-link" data-astro-cid-ssfzsv2f> Docs Bundle </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/publishing/" class="sidebar-link" data-astro-cid-ssfzsv2f> Publishing </a> </li><li data-astro-cid-ssfzsv2f> <a href="/providers/writing/registries/" class="sidebar-link" data-astro-cid-ssfzsv2f> Registries </a> </li> </ul> </div> </div> </aside>  <article class="doc-main" data-astro-cid-xichhuew> <header class="doc-header" data-astro-cid-xichhuew> <h1 data-astro-cid-xichhuew>Static Registry Layout</h1> <p class="doc-lede" data-astro-cid-xichhuew>How to run a Carina provider registry from static files: which files to serve at which paths, and what they must contain.</p> </header> <div class="doc-body" data-astro-cid-xichhuew>  <!-- derived-from ./protocol.md#1-service-discovery -->
+<!-- derived-from ./protocol.md#2-list-provider-versions -->
+<!-- derived-from ./protocol.md#3-get-provider-version -->
+<!-- derived-from ./protocol.md#4-resolve-provider-revision -->
+<!-- derived-from ./protocol.md#provider-documentation -->
+<p>A Carina provider registry can be run without any server software. Everything a client reads is a fixed file at a fixed path, so a registry can be a set of files served by a static HTTPS host: an object store bucket behind a CDN, a static site host, or a web server. This document says which files to put where and what they must contain. The normative contract is the <a href="/reference/registry/protocol/">Registry Protocol</a> (<code>protocol.md</code>); this document restates the parts a static host needs and does not change them. When the two disagree, <code>protocol.md</code> wins and this document is wrong. Where the current <code>carina</code> CLI is stricter or looser than the protocol, this document says so explicitly.</p>
+<p>The integrity of what you serve does not depend on the host. The client recomputes the SHA-256 of every provider binary, verifies its Sigstore signature when one is present, and pins what it saw in <code>carina-providers.lock</code> (protocol §3 “Client verification”). A static registry is therefore a distribution layer: it decides which versions exist and where their bytes are, and the client checks everything else.</p>
+<p>What a static registry does not have is the official registry’s publish API (protocol §7): no OIDC-authenticated publish, no namespace ownership checks, no server-enforced immutability. You write the files yourself, and keeping published files unchanged is your responsibility (protocol §9).</p>
+<h2 id="choosing-a-hostname">Choosing a hostname</h2>
+<p>Users name your registry in the provider block of their configuration:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="hcl"><code><span class="line"><span style="color:#FEF9C3">provider</span><span style="color:#94A3B8"> aws</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  source  </span><span style="color:#FBBF24">=</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">registry.example.com/carina-rs/aws</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#94A3B8">  version </span><span style="color:#FBBF24">=</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">0.7.3</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p>The hostname is part of the provider’s identity: the client records it in <code>carina-providers.lock</code>, and <code>registry.example.com/carina-rs/aws</code> is a different provider from the same name on any other host (protocol §5). Changing the hostname later is a migration for every user, not a configuration change. Choose a hostname you will keep.</p>
+<p>The registry must own the root of that hostname, because discovery is always fetched from <code>https://{hostname}/.well-known/carina.json</code>. A site served under a subpath, such as a project page at <code>user.github.io/repo/</code>, cannot be a registry. The host must also let you set <code>Content-Type</code> per path (see “Content-Type and caching”); a host that only infers types from file extensions, such as GitHub Pages, cannot serve the extensionless JSON files correctly. Static site generators that drop dot-directories silently remove <code>/.well-known/</code>; disable that processing.</p>
+<h2 id="files-and-paths">Files and paths</h2>
+<p>All paths are relative to <code>https://{hostname}/</code>. <code>{namespace}</code> and <code>{name}</code> are the provider address. <code>{version}</code> is the version string exactly as listed in the listing. <code>{revision}</code> is a branch, tag or commit SHA that users reference with <code>revision</code> (protocol §4).</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Path</th><th>Required</th><th>Content</th></tr></thead><tbody><tr><td><code>/.well-known/carina.json</code></td><td>yes, once per host</td><td>Discovery document (protocol §1)</td></tr><tr><td><code>/v1/providers/{namespace}/{name}/versions</code></td><td>yes, per provider</td><td>Listing: the provider’s versions (§2)</td></tr><tr><td><code>/v1/providers/{namespace}/{name}/{version}/download</code></td><td>yes, per listed version</td><td>Download document: where the binary is and its digest (§3)</td></tr><tr><td><code>/v1/providers/{namespace}/{name}/{version}/sigstore.json</code></td><td>when the version is signed</td><td>The binary’s Sigstore bundle</td></tr><tr><td><code>/v1/providers/{namespace}/{name}/{version}/docs.sigstore.json</code></td><td>when the version is signed and has <code>docs</code></td><td>The docs archive’s Sigstore bundle</td></tr><tr><td><code>/v1/providers/{namespace}/{name}/revisions/{revision}/download</code></td><td>optional</td><td>Revision document (§4)</td></tr><tr><td>the provider binary</td><td>yes</td><td>Named by <code>download_url</code></td></tr><tr><td>the docs archive</td><td>optional</td><td>Named by <code>docs.download_url</code></td></tr><tr><td><code>/providers/...</code></td><td>optional</td><td>Documentation pages for people</td></tr></tbody></table></div>
+<p>The binary and the docs archive can be anywhere reachable by unauthenticated HTTPS GET; they need not be on your host, and a release asset URL works. The binary’s <code>sigstore.json</code> path is a convention: <code>signature.bundle_url</code> can point elsewhere. The path of the docs archive’s Sigstore bundle is fixed by the protocol (§3, <code>docs.signature</code>).</p>
+<p>Three of these paths have no file extension: <code>versions</code>, <code>download</code> and the revision <code>download</code>. Name the files exactly that, and see “Content-Type and caching” for how they must be served.</p>
+<p>The <code>/v1/providers/</code> prefix is the value of <code>providers.v1</code> in the discovery document. You may choose another prefix. Make it a relative path or an absolute URL on the same origin as the discovery document. The protocol allows a cross-origin value only when it matches a federation configuration pinned in the client’s lock (protocol §1); the current CLI refuses any cross-origin value.</p>
+<p>A path that does not exist must answer <code>404</code>. When a user configures more than one registry, the client moves on to the next one only after a <code>404</code> or <code>410</code>; any other status, including <code>403</code>, stops resolution (protocol §5). Object stores commonly answer <code>403</code> for missing keys unless the reader may list the bucket, so check this on your host.</p>
+<p>The host must serve everything over HTTPS and send HSTS, for example <code>Strict-Transport-Security: max-age=31536000</code> (protocol §1). The discovery URL must answer <code>2xx</code> directly: the client does not follow redirects on that fetch and treats a redirect as a failed discovery. Other fetches may redirect to another HTTPS URL. The current CLI accepts only certificates that chain to the public web PKI roots it bundles; a private certificate authority is not trusted.</p>
+<p>Version strings are used verbatim in paths. Avoid semver build metadata (<code>1.0.0+build.5</code>): the <code>+</code> reaches the host unencoded, and some hosts, including S3’s REST endpoint, decode it as a space and answer <code>404</code>.</p>
+<h2 id="required-content">Required content</h2>
+<p>The examples below are the files in <a href="https://github.com/carina-rs/carina/tree/main/docs/registry/static-registry-example/minimal"><code>docs/registry/static-registry-example/minimal/</code></a>, as served at <code>https://registry.example.com/</code>. They describe the real <code>carina-provider-aws</code> v0.7.3 release, so the digest is genuine and the set installs as is.</p>
+<h3 id="discovery-document">Discovery document</h3>
+<!-- example: minimal/.well-known/carina.json -->
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">providers.v1</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">/v1/providers/</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p><code>providers.v1</code> is the only field the client reads. The client pins its resolved value, the absolute URL it resolves to, in the lock on first use and refuses a later change; moving the API base afterwards needs every user to run the discovery re-pin operation (protocol §2 “Operator recovery operations”). Choose it once.</p>
+<h3 id="listing">Listing</h3>
+<!-- example: minimal/v1/providers/carina-rs/aws/versions -->
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">versions</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">    {</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">version</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">0.7.3</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">protocols</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">1</span><span style="color:#64748B">"</span><span style="color:#64748B">]</span><span style="color:#64748B"> }</span></span>
+<span class="line"><span style="color:#64748B">  ]</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><code>versions</code></td><td>yes</td><td>Every published version, newest first by semver precedence</td></tr><tr><td><code>versions[].version</code></td><td>yes</td><td>The semantic version. A version with a pre-release component (<code>0.0.0-main.12.1.gabc123</code>) is a pre-release; anything else is stable</td></tr><tr><td><code>versions[].protocols</code></td><td>yes</td><td>Provider protocol versions the binary speaks; <code>["1"]</code> today</td></tr><tr><td><code>versions[].yanked</code></td><td>optional</td><td><code>true</code> withdraws the version from new resolutions (see “Yanking a version”)</td></tr></tbody></table></div>
+<p>Never remove a version from the listing. A lock that pins it would stop resolving; withdraw it with <code>yanked</code> instead (protocol §9).</p>
+<h3 id="download-document">Download document</h3>
+<!-- example: minimal/v1/providers/carina-rs/aws/0.7.3/download -->
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">protocols</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">1</span><span style="color:#64748B">"</span><span style="color:#64748B">],</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">filename</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">carina-provider-aws-v0.7.3.wasm</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">download_url</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">https://github.com/carina-rs/carina-provider-aws/releases/download/v0.7.3/carina-provider-aws-v0.7.3.wasm</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">shasum</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">54dc14eff22c308a7657f5b602c0c4510d31e71bad598e40e654d8c3090b824f</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">shasum_authored_by</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">registry</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><code>protocols</code></td><td>yes</td><td>Same as in the listing</td></tr><tr><td><code>filename</code></td><td>yes</td><td>The binary’s file name</td></tr><tr><td><code>download_url</code></td><td>yes</td><td>HTTPS URL of the <code>.wasm</code>, answering <code>200</code>. Prefer a URL whose content can never change (a release asset or a digest-addressed path)</td></tr><tr><td><code>shasum</code></td><td>yes</td><td>Lowercase hex SHA-256 of the exact bytes at <code>download_url</code>. Compute it from the bytes you serve, for example with <code>shasum -a 256 provider.wasm</code></td></tr><tr><td><code>shasum_authored_by</code></td><td>yes</td><td><code>"registry"</code>: you computed <code>shasum</code> from the bytes, rather than copying a value someone else supplied</td></tr></tbody></table></div>
+<p>The client downloads <code>download_url</code>, recomputes the SHA-256 and refuses the binary on any mismatch. It also pins <code>shasum</code> in the lock, so the bytes behind a published version must never change. If you need different bytes, publish a new version. The current CLI does not read <code>protocols</code>, <code>filename</code> or <code>shasum_authored_by</code>, but the protocol requires them; include them.</p>
+<h3 id="revision-documents">Revision documents</h3>
+<p>Serve these only if your users reference providers by <code>revision</code>. A revision document is a download document with one more field, <code>version</code>, naming the listed version the revision resolves to. Unlike a version’s download document it is mutable: after every publish and yank, recompute each revision file by the rules of protocol §4 (“Server-side resolution”). In short, a branch <code>b</code> resolves to the newest non-yanked pre-release <code>0.0.0-{b}.{number}.…</code>, and a tag <code>v{X}</code> resolves to the listed stable version <code>X</code>.</p>
+<h2 id="content-type-and-caching">Content-Type and caching</h2>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Path</th><th><code>Content-Type</code></th><th>Suggested <code>Cache-Control</code></th></tr></thead><tbody><tr><td><code>/.well-known/carina.json</code></td><td><code>application/json</code></td><td><code>public, max-age=60</code></td></tr><tr><td><code>.../versions</code></td><td><code>application/json</code></td><td><code>public, max-age=60</code></td></tr><tr><td><code>.../{version}/download</code></td><td><code>application/json</code></td><td><code>public, max-age=31536000, immutable</code></td></tr><tr><td><code>.../{version}/sigstore.json</code>, <code>.../docs.sigstore.json</code></td><td><code>application/json</code></td><td><code>public, max-age=31536000, immutable</code></td></tr><tr><td><code>.../revisions/{revision}/download</code></td><td><code>application/json</code></td><td><code>public, max-age=60</code></td></tr><tr><td>the <code>.wasm</code>, if you host it</td><td><code>application/wasm</code></td><td><code>public, max-age=31536000, immutable</code></td></tr><tr><td>the docs archive, if you host it</td><td><code>application/gzip</code></td><td><code>public, max-age=31536000, immutable</code></td></tr><tr><td>documentation pages</td><td><code>text/html; charset=utf-8</code></td><td><code>public, max-age=60</code></td></tr></tbody></table></div>
+<p>The extensionless JSON files are the thing static hosts most often get wrong. Most hosts infer the type from the extension and fall back to <code>application/octet-stream</code> or <code>text/plain</code> for a name like <code>versions</code>. Set the type explicitly: as object metadata in an object store, or with a per-path header rule on a static site host. <code>aws s3 sync</code> cannot infer it for extensionless names, and its <code>--content-type</code> applies to every file in the run, so upload the extensionless JSON files in a run of their own (<code>--exclude '*' --include '*/versions' --include '*/download'</code>) or with <code>aws s3 cp</code> per file. The protocol requires <code>application/json</code>; the current CLI does not check the type, but other clients and tools may.</p>
+<p>The cache lifetimes follow from what may change. The listing and the revision documents change whenever you publish or yank, so keep their lifetime short. A version’s download document and its bundles never change once published, so they can be cached forever. If your CDN supports purging, purge only the paths you changed.</p>
+<h2 id="publishing-a-version">Publishing a version</h2>
+<p>Upload in this order, so that no client sees a listed version whose files are missing:</p>
+<ol>
+<li>The binary, if you host it, and its <code>sigstore.json</code> if it is signed; the docs archive and <code>docs.sigstore.json</code>, if the version has docs.</li>
+<li>The version’s <code>download</code> document.</li>
+<li>The listing, with the new version added, <code>sequence</code> increased and <code>valid_until</code> renewed if you use them.</li>
+<li>Any revision documents the new version changes.</li>
+<li>Purge the listing and revision paths from your CDN, if it caches them.</li>
+</ol>
+<p>Uploading the listing first lets a client resolve a version whose <code>download</code> is still missing, and a CDN may cache that <code>404</code> under a path you marked immutable.</p>
+<h2 id="yanking-a-version">Yanking a version</h2>
+<p>Set <code>"yanked": true</code> on the version’s entry in the listing, increase <code>sequence</code> if you use it, and re-upload the listing. Keep the version’s <code>download</code> document and its binary unchanged: locks that already pin the version still need them. Recompute any revision document that resolved to the yanked version. A yank cannot be undone; clients that have seen it refuse a listing that drops the flag (see below).</p>
+<h2 id="optional-fields">Optional fields</h2>
+<p>A static registry can start with only the fields above and add the security fields later. The client applies each check only when its field is present, and from the first time it sees certain fields for a provider it requires them forever (see “Once added, never removed”). The full example in <a href="https://github.com/carina-rs/carina/tree/main/docs/registry/static-registry-example/full"><code>docs/registry/static-registry-example/full/</code></a> adds <code>sequence</code>, <code>generated_at</code>, <code>valid_until</code> and <code>signature</code>. Its <code>valid_until</code> was a week ahead when it was written and its <code>bundle_url</code> names <code>registry.example.com</code>, so regenerate those for your own host rather than copying them.</p>
+<!-- example: full/v1/providers/carina-rs/aws/versions -->
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">sequence</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FEF9C3"> 1</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">generated_at</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">2026-10-28T00:00:00Z</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">valid_until</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">2026-11-04T00:00:00Z</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">versions</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">    {</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">version</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">0.7.3</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">protocols</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">1</span><span style="color:#64748B">"</span><span style="color:#64748B">]</span><span style="color:#64748B"> }</span></span>
+<span class="line"><span style="color:#64748B">  ]</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<!-- example: full/v1/providers/carina-rs/aws/0.7.3/download -->
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">protocols</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">1</span><span style="color:#64748B">"</span><span style="color:#64748B">],</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">filename</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">carina-provider-aws-v0.7.3.wasm</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">download_url</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">https://github.com/carina-rs/carina-provider-aws/releases/download/v0.7.3/carina-provider-aws-v0.7.3.wasm</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">shasum</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">54dc14eff22c308a7657f5b602c0c4510d31e71bad598e40e654d8c3090b824f</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">shasum_authored_by</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">registry</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">signature</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#64748B">    "</span><span style="color:#86EFAC">type</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">sigstore-bundle</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">    "</span><span style="color:#86EFAC">certificate_identity</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">https://github.com/carina-rs/carina-provider-aws/.github/workflows/release.yml@refs/tags/v0.7.3</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">    "</span><span style="color:#86EFAC">certificate_oidc_issuer</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">https://token.actions.githubusercontent.com</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">    "</span><span style="color:#86EFAC">bundle_url</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">https://registry.example.com/v1/providers/carina-rs/aws/0.7.3/sigstore.json</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">  }</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Where</th><th>When present</th><th>When absent</th></tr></thead><tbody><tr><td><code>sequence</code></td><td>listing</td><td>The client refuses a listing whose <code>sequence</code> is lower than the one it last resolved with, so an old listing cannot hide a newer version</td><td>No rollback check</td></tr><tr><td><code>valid_until</code></td><td>listing</td><td>An RFC 3339 time. The client refuses the listing after it</td><td>No expiry check</td></tr><tr><td><code>generated_at</code></td><td>listing</td><td>An RFC 3339 time, informational: when you produced the listing</td><td>Nothing changes</td></tr><tr><td><code>yanked: true</code></td><td>a listing entry</td><td>The version is no longer chosen for new resolutions</td><td>The version is selectable</td></tr><tr><td><code>signature</code></td><td>download document</td><td>The client verifies the Sigstore bundle at <code>bundle_url</code> and pins the signer</td><td>No signature check</td></tr><tr><td><code>transparency_log</code></td><td>download document</td><td>Reserved for a checksum transparency log that does not exist yet (protocol §3). Leave it out</td><td>—</td></tr><tr><td><code>docs</code></td><td>download document</td><td>Points to the version’s docs archive (protocol “Documentation provenance”)</td><td>The version has no documentation</td></tr></tbody></table></div>
+<h3 id="once-added-never-removed">Once added, never removed</h3>
+<p>The client records in the lock, per provider, whether it has seen <code>sequence</code>, <code>valid_until</code>, <code>signature</code> and <code>transparency_log</code>. If a later response omits a field the lock says was present, the client refuses it as a downgrade attack; a genuine registry never loses a field. Adding one of these fields is therefore a one-way decision for that provider: from then on every listing, and every download document you publish, must carry it. Because presence is recorded per provider, not per version, this also reaches back: once a client has resolved a signed version, it refuses the provider’s earlier unsigned versions too, and their download documents cannot be changed to add a signature. Start signing from a provider’s first version if you can. This is why <code>transparency_log</code> should be left out: adding it would bind you to a field nothing yet fills.</p>
+<p>If you stop serving a field anyway, every client that resolved the provider while the field was present refuses it from then on. For a dropped <code>valid_until</code> or <code>signature</code> there is no client-side recovery. The protocol’s recovery operations reset only the <code>sequence</code> ordering, the pinned signer and the discovery pin (protocol §2 “Operator recovery operations”), and deleting the lock entry is not a sanctioned way out.</p>
+<p>Two fields are sticky per version rather than per provider. Once a client has seen <code>yanked: true</code> on a version, a listing that serves that version without the flag is refused, so a yank cannot be undone (protocol §9). Once a client that reads documentation has seen <code>docs</code> on a version, a download document for that version without <code>docs</code> is treated as a failed documentation check, which warns rather than refuses (protocol “Documentation provenance”). The current CLI does not read <code>docs</code>.</p>
+<h3 id="sequence-is-a-counter"><code>sequence</code> is a counter</h3>
+<p>Increase <code>sequence</code> whenever the versions in the listing or their <code>yanked</code> flags change, and never reuse or lower a value. Re-serving the same versions with renewed <code>generated_at</code> and <code>valid_until</code> keeps the same <code>sequence</code>. Increase it in small steps, as a counter: the client also refuses a <code>sequence</code> that jumps implausibly far ahead of the one it last saw (protocol §2 “Fast-forward guard”; the current CLI refuses jumps of more than 1,000,000), so a timestamp is not a usable <code>sequence</code>.</p>
+<h3 id="valid_until-must-be-renewed-before-it-passes"><code>valid_until</code> must be renewed before it passes</h3>
+<p>A listing past its <code>valid_until</code> is refused, even if nothing else changed. This bounds how long someone can keep serving a frozen old listing. It also means a static registry that sets <code>valid_until</code> must regenerate and re-upload every provider’s listing on a schedule, before the time passes, for as long as the provider exists. Pick a window you can renew reliably, for example a seven-day validity renewed daily, so that a missed run does not take every user down. If you cannot run a scheduled job, do not set <code>valid_until</code>: once set, it cannot be dropped.</p>
+<h3 id="signatures-come-from-the-providers-release">Signatures come from the provider’s release</h3>
+<p>You do not create the signature; the provider’s release workflow does. It signs the binary keylessly with Sigstore and produces a bundle containing the certificate, the signature and an inline Rekor inclusion proof, which the client verifies offline. You host that bundle and point <code>signature.bundle_url</code> at it.</p>
+<p>All four <code>signature</code> fields are required. <code>type</code> must be <code>"sigstore-bundle"</code>. <code>certificate_identity</code> and <code>certificate_oidc_issuer</code> must be present, but they are descriptive: the client reads the signer from the certificate, never from these fields, so copy them from the certificate for readers.</p>
+<p>On the first signed version it sees for a provider, the client pins the signer: the source repository and, separately for stable and pre-release versions, the workflow (protocol §3 “Signer identity”). Later versions must be signed by the same signer. For a stable version the certificate must also have been made at the tag <code>refs/tags/v{version}</code>, so a stable release must be built from a tag named after its version. The certificate must carry the Fulcio extensions for the OIDC issuer, the source repository ID, its owner ID and the source ref; GitHub Actions certificates do.</p>
+<h3 id="documentation">Documentation</h3>
+<p><code>docs</code> is allowed only on stable versions. It has the shape protocol §3 defines: <code>download_url</code> and <code>shasum</code> of the docs archive (the protocol’s “docs bundle”, a gzip tar of Markdown), and, when the version is signed, <code>docs.signature</code> over the archive, signed in the same release run as the binary. On a signed version, <code>docs</code> without <code>docs.signature</code> fails documentation verification.</p>
+<p>The client does not read anything under <code>/providers/</code>. The official registry renders human-readable pages there from each version’s docs archive (protocol “Provider Documentation”); a static registry may serve its own HTML at those paths, or nothing.</p>
+<h2 id="checking-a-file-set">Checking a file set</h2>
+<p>For the host:</p>
+<ul>
+<li><code>/.well-known/carina.json</code> answers <code>2xx</code> with no redirect, over HTTPS with HSTS, as <code>application/json</code>, with a same-origin <code>providers.v1</code>.</li>
+<li>A path that does not exist answers <code>404</code>.</li>
+</ul>
+<p>For every provider:</p>
+<ul>
+<li>The listing and every download document parse as JSON and are served as <code>application/json</code>.</li>
+<li>Every version in the listing has a download document, and the SHA-256 of the bytes at its <code>download_url</code> equals its <code>shasum</code>.</li>
+<li>Any field from “Once added, never removed” that the provider has ever served is still present, and no version that was ever yanked has lost the flag.</li>
+</ul>
+<p>The example sets in <a href="https://github.com/carina-rs/carina/tree/main/docs/registry/static-registry-example"><code>docs/registry/static-registry-example/</code></a> were run once, byte for byte, through the <code>carina init</code> verification of the current CLI with an in-process registry. That run had no network, so it did not cover the TLS and header requirements above. Its results:</p>
+<ul>
+<li>The minimal set installs.</li>
+<li>The full set installs offline and pins its signer.</li>
+<li>After the full set, dropping <code>sequence</code>, <code>signature</code> or <code>valid_until</code> is each refused as a downgrade.</li>
+<li>An expired <code>valid_until</code>, a binary that does not match <code>shasum</code>, and a cross-origin <code>providers.v1</code> are each refused.</li>
+</ul>
+<p>A test in the carina repository (<code>carina-provider-resolver/tests/static_registry_examples.rs</code>) keeps the examples inlined above identical to those files.</p>  </div> </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><p class="toc-label" data-astro-cid-obewoz47>On this page</p><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#choosing-a-hostname" class="toc-link" data-toc-slug="choosing-a-hostname" data-astro-cid-obewoz47>Choosing a hostname</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#files-and-paths" class="toc-link" data-toc-slug="files-and-paths" data-astro-cid-obewoz47>Files and paths</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#required-content" class="toc-link" data-toc-slug="required-content" data-astro-cid-obewoz47>Required content</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#discovery-document" class="toc-link" data-toc-slug="discovery-document" data-astro-cid-obewoz47>Discovery document</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#listing" class="toc-link" data-toc-slug="listing" data-astro-cid-obewoz47>Listing</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#download-document" class="toc-link" data-toc-slug="download-document" data-astro-cid-obewoz47>Download document</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#revision-documents" class="toc-link" data-toc-slug="revision-documents" data-astro-cid-obewoz47>Revision documents</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#content-type-and-caching" class="toc-link" data-toc-slug="content-type-and-caching" data-astro-cid-obewoz47>Content-Type and caching</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#publishing-a-version" class="toc-link" data-toc-slug="publishing-a-version" data-astro-cid-obewoz47>Publishing a version</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#yanking-a-version" class="toc-link" data-toc-slug="yanking-a-version" data-astro-cid-obewoz47>Yanking a version</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#optional-fields" class="toc-link" data-toc-slug="optional-fields" data-astro-cid-obewoz47>Optional fields</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#once-added-never-removed" class="toc-link" data-toc-slug="once-added-never-removed" data-astro-cid-obewoz47>Once added, never removed</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#sequence-is-a-counter" class="toc-link" data-toc-slug="sequence-is-a-counter" data-astro-cid-obewoz47>sequence is a counter</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#valid_until-must-be-renewed-before-it-passes" class="toc-link" data-toc-slug="valid_until-must-be-renewed-before-it-passes" data-astro-cid-obewoz47>valid_until must be renewed before it passes</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#signatures-come-from-the-providers-release" class="toc-link" data-toc-slug="signatures-come-from-the-providers-release" data-astro-cid-obewoz47>Signatures come from the provider’s release</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#documentation" class="toc-link" data-toc-slug="documentation" data-astro-cid-obewoz47>Documentation</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#checking-a-file-set" class="toc-link" data-toc-slug="checking-a-file-set" data-astro-cid-obewoz47>Checking a file set</a></li></ul></nav> </div>  </main> </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </body></html> 
