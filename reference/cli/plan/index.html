@@ -208,6 +208,9 @@ PNGs and select between them with <code>&#x3C;picture></code>:</p>
 <span class="line"></span></code></pre>
 <h2 id="state-locking">State Locking</h2>
 <p><code>plan</code> does not acquire the state lock, so it never blocks or is blocked by other runs. Because a concurrent <code>apply</code> or <code>destroy</code> can change state while the plan is computed, <code>plan</code> re-reads state just before display. If the state’s serial or lineage changed (or the state was removed), it prints a warning to stderr that the plan may be stale and still shows the plan. <code>--out</code> still writes the plan file; applying a stale saved plan is caught by the lineage/serial check in <code>carina apply</code>.</p>
+<p>When a destroy and create have matching configured create-only values, <code>plan</code>
+also warns on stderr about a possible state move; see
+<a href="/guides/state-management/#moving-resources-in-state">Moving resources in state</a>.</p>
 <h2 id="examples">Examples</h2>
 <p>Plan from the current directory:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span></span>
