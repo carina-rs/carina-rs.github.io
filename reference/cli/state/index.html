@@ -88,21 +88,171 @@ restores user map keys exactly as authored, including keys that start with
 
 
 
-<table><thead><tr><th>Flag</th><th>Description</th></tr></thead><tbody><tr><td><code>--state-url &#x3C;URL></code></td><td>Read state directly from a URL, bypassing <code>.crn</code> / backend resolution. Mutually exclusive with PATH</td></tr><tr><td><code>--tui</code></td><td>Display state in interactive TUI mode</td></tr><tr><td><code>--json</code></td><td>Output the raw state-file JSON</td></tr></tbody></table></div>
-<p><code>state show --json</code> is a state-file inspection command, so its output retains
-the persisted state-file encoding. Canonical enums use a <code>$enum</code> host payload,
-redacted secrets use a <code>$secret</code> host payload, and each user map key beginning
-with <code>$</code> has one additional leading <code>$</code> (for example, <code>$secret</code> is stored as
-<code>$$secret</code>). This differs intentionally from the decoded output of
-<code>state lookup --json</code>.</p>
+<table><thead><tr><th>Flag</th><th>Description</th></tr></thead><tbody><tr><td><code>--state-url &#x3C;URL></code></td><td>Read state directly from a URL, bypassing <code>.crn</code> / backend resolution. Mutually exclusive with PATH</td></tr><tr><td><code>--tui</code></td><td>Display state in interactive TUI mode</td></tr><tr><td><code>--json</code></td><td>Output the versioned public JSON document described below</td></tr></tbody></table></div>
+<h4 id="json-output-schema-v1">JSON output schema v1</h4>
+<p><code>state show --json</code> returns a public inspection document that is independent
+of the on-disk state format:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">schema_version</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FEF9C3"> 1</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">state</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">present</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">resources</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">    {</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">binding</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">vpc</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">identity</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">main-vpc</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">provider</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">awscc</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">resource_type</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">ec2.Vpc</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">protected</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FDE68A"> false</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">current</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">kind</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">applied</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">identifier</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">vpc-0123456789abcdef0</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">attributes</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#64748B">          "</span><span style="color:#86EFAC">cidr_block</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">10.0.0.0/16</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">        }</span></span>
+<span class="line"><span style="color:#64748B">      },</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">deposed</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">        {</span></span>
+<span class="line"><span style="color:#64748B">          "</span><span style="color:#86EFAC">identifier</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">vpc-0fedcba9876543210</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">        }</span></span>
+<span class="line"><span style="color:#64748B">      ]</span></span>
+<span class="line"><span style="color:#64748B">    }</span></span>
+<span class="line"><span style="color:#64748B">  ]</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p>The top-level fields are:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>schema_version</code></td><td>Version of this public JSON contract. Consumers must check it before reading other fields. A version bump indicates an incompatible contract change.</td></tr><tr><td><code>state</code></td><td><code>present</code> when a state file was loaded, or <code>absent</code> when the configured backend has no state file.</td></tr><tr><td><code>resources</code></td><td>Resource rows in state order. This is empty when <code>state</code> is <code>absent</code> or when the present state contains no resources.</td></tr></tbody></table></div>
+<p>Each resource object has these fields:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>binding</code></td><td>DSL binding for the resource, or <code>null</code> for an anonymous resource.</td></tr><tr><td><code>identity</code></td><td>Stable Carina resource identity stored in state.</td></tr><tr><td><code>provider</code></td><td>Provider name, such as <code>awscc</code>.</td></tr><tr><td><code>resource_type</code></td><td>Provider resource type, such as <code>ec2.Vpc</code>.</td></tr><tr><td><code>protected</code></td><td>Whether Carina protects the resource from deletion.</td></tr><tr><td><code>current</code></td><td>Current-generation status, identifier, and attributes.</td></tr><tr><td><code>deposed</code></td><td>One object per older replacement generation still pending deletion. Each object contains its provider-side <code>identifier</code>.</td></tr></tbody></table></div>
+<p>The <code>current</code> object has these fields:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>kind</code></td><td>One of the closed set described below.</td></tr><tr><td><code>identifier</code></td><td>Provider-side identifier when one is known, including during an in-flight create; otherwise <code>null</code>.</td></tr><tr><td><code>attributes</code></td><td>Sorted attribute object containing ordinary JSON values. It is empty for kinds that do not carry current attributes.</td></tr></tbody></table></div>
+<p>The closed <code>current.kind</code> set in schema version 1 is:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Kind</th><th>Meaning</th></tr></thead><tbody><tr><td><code>applied</code></td><td>A completed current resource instance with a provider identifier.</td></tr><tr><td><code>none</code></td><td>The row has no current instance, but may retain deposed generations.</td></tr><tr><td><code>create_in_flight</code></td><td>The provider accepted a create that has not completed.</td></tr><tr><td><code>missing_identifier</code></td><td>A legacy or malformed current instance has attributes but no provider identifier.</td></tr></tbody></table></div>
+<p>Strings, numbers, booleans, lists, and maps are emitted as ordinary JSON.
+Canonical enums use their provider API string. Persisted host encodings and
+secret digests are never emitted. A secret or accepted write-only value is
+always replaced by this marker:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span><span style="color:#64748B">"</span><span style="color:#86EFAC">redacted</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FDE68A"> true</span><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p>User map keys are restored as authored, including keys beginning with <code>$</code>;
+those keys are ordinary user data, not persisted <code>$enum</code> or <code>$secret</code> host
+payloads.</p>
+<p>When the configured backend has no state file, <code>state show --json</code> exits 0 and
+prints:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span><span style="color:#64748B">"</span><span style="color:#86EFAC">schema_version</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FEF9C3">1</span><span style="color:#64748B">,</span><span style="color:#64748B">"</span><span style="color:#86EFAC">state</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B">"</span><span style="color:#86EFAC">absent</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B">"</span><span style="color:#86EFAC">resources</span><span style="color:#64748B">"</span><span style="color:#64748B">:[]}</span></span>
+<span class="line"></span></code></pre>
+<p>Backend, read, migration, and parse failures remain errors and exit non-zero.
+Non-JSON <code>state show</code> output is unchanged.</p>
 <h3 id="lookup"><code>lookup</code></h3>
 <p>Look up resource attributes from the state file.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> lookup</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#FBBF24">&#x3C;</span><span style="color:#F1F5F9">QUERY</span><span style="color:#FBBF24">></span><span style="color:#64748B"> [</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
-<p><strong>QUERY</strong> can be:</p>
+<p><strong>QUERY</strong> can select:</p>
 <ul>
-<li><code>&#x3C;binding_or_name></code> — returns all attributes as a JSON object</li>
-<li><code>&#x3C;binding_or_name>.&#x3C;attribute></code> — returns a single attribute value</li>
+<li><code>&#x3C;binding_or_name></code> — a whole resource</li>
+<li><code>&#x3C;binding_or_name>.&#x3C;attribute></code> — one current attribute</li>
 </ul>
 <p>The query is matched against resource bindings and resource identities, picking the longest one that is a prefix of the query, so a module-prefixed binding such as <code>r.distribution</code> resolves <code>r.distribution.id</code>. On a tie, a binding wins over an identity.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#64748B"># Get all attributes of a resource</span></span>
@@ -111,12 +261,25 @@ with <code>$</code> has one additional leading <code>$</code> (for example, <cod
 <span class="line"><span style="color:#64748B"># Get a specific attribute</span></span>
 <span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> lookup</span><span style="color:#86EFAC"> my_bucket.bucket</span></span>
 <span class="line"></span></code></pre>
-<p>Single attribute values are returned as raw values (no quotes for strings), suitable for shell usage. Use <code>--json</code> to always output JSON.</p>
-<p>Lookup output is decoded for use as ordinary JSON: canonical enums are their
-provider API strings, <code>$</code>-prefixed user keys are unescaped, and redacted
-secrets are the fixed string <code>(secret)</code>. It never emits the raw <code>$enum</code>,
-<code>$secret</code>, or <code>$$</code> state-file representation. Consequently, a real redacted
-secret remains distinguishable from a user map whose key is <code>$secret</code>.</p>
+<p>Without <code>--json</code>, single attribute values are returned as raw values (no
+quotes for strings), suitable for shell usage. Human-readable lookup output is
+unchanged.</p>
+<p>With <code>--json</code>, lookup uses the same schema version 1 conversion as
+<code>state show --json</code>:</p>
+<ul>
+<li>A whole-resource lookup returns that resource object, beginning with
+<code>binding</code> and ending with <code>deposed</code>. It does not wrap the object in the
+top-level document.</li>
+<li>An attribute lookup returns that value from <code>current.attributes</code>, including
+the <code>{"redacted": true}</code> marker for a secret or accepted write-only value.</li>
+<li>A whole-resource lookup of an in-flight create returns the resource object
+with <code>current.kind</code> set to <code>create_in_flight</code>. Looking up one of its
+attributes remains an error.</li>
+</ul>
+<p>Lookup requires an existing state and a matching resource, so an absent state
+remains an error. Canonical enums and user map keys use the same decoded forms
+as <code>state show --json</code>; persisted <code>$enum</code>, <code>$secret</code>, and <code>$$</code> encodings are
+never exposed.</p>
 <h4 id="flags-2">Flags</h4>
 <div class="table-scroll">
 
@@ -197,6 +360,7 @@ secret remains distinguishable from a user map whose key is <code>$secret</code>
 Canonical enums are stored as <code>$enum</code> payloads and redacted secrets as
 <code>$secret</code> payloads, while user keys beginning with <code>$</code> are escaped by adding
 one leading <code>$</code>. Carina decodes that representation when values are shown
-through human output, <code>state lookup --json</code>, exports, or <code>upstream_state</code>;
-decoded display views render a redacted secret as <code>(secret)</code>. Only
-<code>state show --json</code> exposes the raw file encoding.</p>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="toc-header" data-astro-cid-obewoz47><button type="button" class="rail-toggle toc-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle data-astro-cid-obewoz47><svg class="toc-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-obewoz47><rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-obewoz47></rect><path d="M15 3v18" data-astro-cid-obewoz47></path><polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-obewoz47></polyline><polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-obewoz47></polyline></svg></button><p class="toc-label" data-astro-cid-obewoz47>On this page</p></div><div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#usage" class="toc-link" data-toc-slug="usage" data-astro-cid-obewoz47>Usage</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#subcommands" class="toc-link" data-toc-slug="subcommands" data-astro-cid-obewoz47>Subcommands</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#list" class="toc-link" data-toc-slug="list" data-astro-cid-obewoz47>list</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#show" class="toc-link" data-toc-slug="show" data-astro-cid-obewoz47>show</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#lookup" class="toc-link" data-toc-slug="lookup" data-astro-cid-obewoz47>lookup</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#refresh" class="toc-link" data-toc-slug="refresh" data-astro-cid-obewoz47>refresh</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#bucket-delete" class="toc-link" data-toc-slug="bucket-delete" data-astro-cid-obewoz47>bucket-delete</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#related-commands" class="toc-link" data-toc-slug="related-commands" data-astro-cid-obewoz47>Related Commands</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#force-unlock" class="toc-link" data-toc-slug="force-unlock" data-astro-cid-obewoz47>force-unlock</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-file-format" class="toc-link" data-toc-slug="state-file-format" data-astro-cid-obewoz47>State File Format</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
+through public output, exports, or <code>upstream_state</code>. Human-readable state
+output renders a redacted secret as <code>(secret)</code>; schema version 1 JSON uses
+<code>{"redacted": true}</code>. The persisted representation is an internal storage
+detail and is not the <code>state show --json</code> contract.</p>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="toc-header" data-astro-cid-obewoz47><button type="button" class="rail-toggle toc-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle data-astro-cid-obewoz47><svg class="toc-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-obewoz47><rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-obewoz47></rect><path d="M15 3v18" data-astro-cid-obewoz47></path><polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-obewoz47></polyline><polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-obewoz47></polyline></svg></button><p class="toc-label" data-astro-cid-obewoz47>On this page</p></div><div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#usage" class="toc-link" data-toc-slug="usage" data-astro-cid-obewoz47>Usage</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#subcommands" class="toc-link" data-toc-slug="subcommands" data-astro-cid-obewoz47>Subcommands</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#list" class="toc-link" data-toc-slug="list" data-astro-cid-obewoz47>list</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#show" class="toc-link" data-toc-slug="show" data-astro-cid-obewoz47>show</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#lookup" class="toc-link" data-toc-slug="lookup" data-astro-cid-obewoz47>lookup</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#refresh" class="toc-link" data-toc-slug="refresh" data-astro-cid-obewoz47>refresh</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#bucket-delete" class="toc-link" data-toc-slug="bucket-delete" data-astro-cid-obewoz47>bucket-delete</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#related-commands" class="toc-link" data-toc-slug="related-commands" data-astro-cid-obewoz47>Related Commands</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#force-unlock" class="toc-link" data-toc-slug="force-unlock" data-astro-cid-obewoz47>force-unlock</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-file-format" class="toc-link" data-toc-slug="state-file-format" data-astro-cid-obewoz47>State File Format</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
