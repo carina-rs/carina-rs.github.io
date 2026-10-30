@@ -361,6 +361,7 @@ equal to a bare name.</p>
 <h2 id="other-schema-settings">Other schema settings</h2>
 <ul>
 <li><code>as_data_source()</code> declares a data source instead of a managed resource; the host reads it and never creates, updates or deletes it.</li>
+<li><code>AttributeSchema::optional(...).keyed_partial_update("key")</code> declares a list-of-structs attribute whose API updates only the keyed elements it receives. The named field must exist and have scalar string type. When an authored element is omitted later, Carina records a state-only release and leaves the remote value unchanged; users must write the API’s default value explicitly to reset it.</li>
 <li>The replacement settings tell the host what happens when a replacement creates the new resource before deleting the old one (<code>create_before_destroy</code>). <code>with_unique_name_attribute(name)</code> names the attribute the API requires to be unique, and the host gives the new resource a temporary value while both exist. <code>with_coexisting_replacement()</code> declares that the two can exist side by side without any change. The default, <code>with_conflicting_replacement()</code>, means they cannot, so <code>create_before_destroy</code> on that resource type is an error at plan time.</li>
 <li><code>with_operation_config(OperationConfig { .. })</code> sets per-operation timeouts and retry counts for this resource type.</li>
 <li><code>with_default_wait_timeout</code> and <code>with_default_wait_interval</code> set the defaults for a <code>wait</code> block on this resource type.</li>
