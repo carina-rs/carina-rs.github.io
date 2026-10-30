@@ -23,9 +23,9 @@
 <h2 id="the-protocol-version">The protocol version</h2>
 <p>The host and the provider talk through a versioned protocol. <code>carina-provider-protocol</code> defines two numbers: <code>PROTOCOL_VERSION</code>, the version this build speaks, and <code>MIN_SUPPORTED_PROTOCOL_VERSION</code>, the oldest protocol version the host still loads from a provider. The SDK writes the version it was built with into the provider’s <code>info</code> response; you never set it yourself.</p>
 <p>Every time Carina starts a provider, for <code>validate</code>, <code>plan</code>, <code>apply</code> or any other command that uses it, it checks that version first and refuses to go further if it is out of range. <code>carina init</code> only downloads and records the provider without starting it, so a mismatch shows up at the first command after <code>init</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 10 but this host requires at least version 12; rebuild the provider against the current carina protocol</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 12 but this host requires at least version 13; rebuild the provider against the current carina protocol</span></span>
 <span class="line"><span></span></span></code></pre>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 13 but this host supports up to version 12; upgrade carina to load this provider</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 14 but this host supports up to version 13; upgrade carina to load this provider</span></span>
 <span class="line"><span></span></span></code></pre>
 <p>Since v0.5.0, the first release that checks the version, every release has set the minimum equal to the protocol version it speaks, so a provider has to be built for exactly the protocol version of the Carina that loads it:</p>
 <div class="table-scroll">
@@ -53,7 +53,27 @@
 
 
 
-<table><thead><tr><th>Carina release</th><th>Protocol version</th><th>Oldest provider protocol it loads</th></tr></thead><tbody><tr><td>v0.7.0</td><td>12</td><td>12</td></tr><tr><td>v0.6.0</td><td>10</td><td>10</td></tr><tr><td>v0.5.0</td><td>10</td><td>10</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Carina release</th><th>Protocol version</th><th>Oldest provider protocol it loads</th></tr></thead><tbody><tr><td>Next release after v0.9.0 (unreleased)</td><td>13</td><td>13</td></tr><tr><td>v0.9.0</td><td>12</td><td>12</td></tr><tr><td>v0.8.0</td><td>12</td><td>12</td></tr><tr><td>v0.7.1</td><td>12</td><td>12</td></tr><tr><td>v0.7.0</td><td>12</td><td>12</td></tr><tr><td>v0.6.0</td><td>10</td><td>10</td></tr><tr><td>v0.5.0</td><td>10</td><td>10</td></tr></tbody></table></div>
 <p>Rejecting an older provider is deliberate. A protocol bump changes what crosses the boundary, and accepting a provider from the other side of the change would lose information without any error. Protocol 12, for example, added a required <code>write_only</code> flag to nested struct fields in schemas. An older Carina would have ignored that flag from a newer provider, treated every nested field as not write-only, and planned updates that never converge. The other direction would have been just as bad, so the flag is required: a provider built for an older protocol sends schemas without it, and a newer Carina could not even decode them. <a href="https://github.com/carina-rs/carina/blob/main/docs/protocol.md">docs/protocol.md</a> lists what each version changed.</p>
 <h2 id="when-the-protocol-changes">When the protocol changes</h2>
 <p>When a Carina release raises the protocol version, a provider built for the old version stops loading in that release. To support it:</p>

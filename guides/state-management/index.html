@@ -25,6 +25,12 @@
 <p>By default, state is stored locally as <code>carina.state.json</code>. Use <code>backend local { path = '...' }</code> to store it at another local path, and configure the S3 backend for team usage.</p>
 <p><code>apply</code> and <code>destroy</code> save state while effects run, not only at the end, so an interrupted run (Ctrl+C, a killed CI job) keeps the results of the operations that already finished. A create that the cloud accepted but that did not finish is recorded as in flight, and the next plan resumes it instead of creating the resource a second time.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
+<p>State format v20 records a token-less <code>create_outcome_unknown</code> row when an
+initial create fails after a request may have reached the cloud but before the
+provider returns an identifier or continuation. Carina does not refresh,
+destroy, or re-create that address automatically. If the resource exists, add
+the import block shown by <code>carina plan</code>. If it does not exist, remove only that
+recovery row with <code>carina state forget &#x3C;TYPE> &#x3C;IDENTITY></code> and then plan again.</p>
 <p>State format v17 adds a top-level <code>exports_version</code> that versions the exports
 encoding separately from the rest of the state file. Readers that only need
 exports (<code>upstream_state</code> and <code>carina export</code>) check <code>exports_version</code> instead

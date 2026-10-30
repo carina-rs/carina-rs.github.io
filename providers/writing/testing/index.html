@@ -172,7 +172,7 @@
 <span class="line"><span style="color:#64748B">    }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B">    #[</span><span style="color:#F1F5F9">test</span><span style="color:#64748B">]</span></span>
-<span class="line"><span style="color:#FBBF24">    fn</span><span style="color:#F1F5F9"> rejected_retry_is_undetermined_not_untracked</span><span style="color:#64748B">()</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#FBBF24">    fn</span><span style="color:#F1F5F9"> rejected_retry_preserves_the_continuation</span><span style="color:#64748B">()</span><span style="color:#64748B"> {</span></span>
 <span class="line"><span style="color:#94A3B8">        let</span><span style="color:#94A3B8"> provider</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> WidgetProvider</span><span style="color:#64748B"> {</span></span>
 <span class="line"><span style="color:#94A3B8">            api</span><span style="color:#FBBF24">:</span><span style="color:#F1F5F9"> api_failing_with</span><span style="color:#64748B">(</span><span style="color:#F1F5F9">vec!</span><span style="color:#64748B">[</span></span>
 <span class="line"><span style="color:#F1F5F9">                ApiError</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">Unknown</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">timeout</span><span style="color:#64748B">"</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">into</span><span style="color:#64748B">()),</span></span>
@@ -194,7 +194,17 @@
 <span class="line"><span style="color:#94A3B8">            pending</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">token</span><span style="color:#64748B">,</span></span>
 <span class="line"><span style="color:#64748B">        )</span></span>
 <span class="line"><span style="color:#FBBF24">        .</span><span style="color:#F1F5F9">expect_err</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">a rejected retry must not succeed</span><span style="color:#64748B">"</span><span style="color:#64748B">);</span></span>
-<span class="line"><span style="color:#F1F5F9">        assert!</span><span style="color:#64748B">(</span><span style="color:#F1F5F9">matches!</span><span style="color:#64748B">(</span><span style="color:#FBBF24">*</span><span style="color:#94A3B8">verdict</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> WirePollVerdict</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">Undetermined</span><span style="color:#64748B">(</span><span style="color:#94A3B8">_</span><span style="color:#64748B">)));</span></span>
+<span class="line"><span style="color:#94A3B8">        let</span><span style="color:#FEF9C3"> WirePollVerdict</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">InFlight</span><span style="color:#64748B">(</span><span style="color:#94A3B8">in_flight</span><span style="color:#64748B">)</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> *</span><span style="color:#94A3B8">verdict</span><span style="color:#FBBF24"> else</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">            panic!</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">expected an in-flight verdict</span><span style="color:#64748B">"</span><span style="color:#64748B">)</span></span>
+<span class="line"><span style="color:#64748B">        };</span></span>
+<span class="line"><span style="color:#FBBF24">        match</span><span style="color:#94A3B8"> in_flight</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">pending</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">token </span><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#FEF9C3">            CreateToken</span><span style="color:#FBBF24">::</span><span style="color:#FEF9C3">Starting</span><span style="color:#64748B"> {</span><span style="color:#94A3B8"> client_token</span><span style="color:#64748B"> }</span><span style="color:#FBBF24"> =></span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">                assert_eq!</span><span style="color:#64748B">(</span><span style="color:#94A3B8">client_token</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">token-1</span><span style="color:#64748B">"</span><span style="color:#64748B">);</span></span>
+<span class="line"><span style="color:#64748B">            }</span></span>
+<span class="line"><span style="color:#FEF9C3">            CreateToken</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">Operation</span><span style="color:#64748B">(</span><span style="color:#94A3B8">operation</span><span style="color:#64748B">)</span><span style="color:#FBBF24"> =></span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#F1F5F9">                panic!</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">expected the starting continuation, got </span><span style="color:#64748B">{</span><span style="color:#86EFAC">operation</span><span style="color:#64748B">}"</span><span style="color:#64748B">);</span></span>
+<span class="line"><span style="color:#64748B">            }</span></span>
+<span class="line"><span style="color:#64748B">        }</span></span>
 <span class="line"><span style="color:#64748B">    }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B">    #[</span><span style="color:#F1F5F9">test</span><span style="color:#64748B">]</span></span>
@@ -271,7 +281,7 @@
 <span class="line"><span style="color:#64748B">    }</span></span>
 <span class="line"><span style="color:#64748B">}</span></span>
 <span class="line"></span></code></pre>
-<p>Test the classification as well as the happy path. Tests like <code>create_with_unknown_outcome_is_retried_with_the_same_client_token</code> and <code>rejected_retry_is_undetermined_not_untracked</code> are what keep a later change from turning an ambiguous failure into <code>untracked</code> and losing track of a real resource.</p>
+<p>Test the classification as well as the happy path. Tests like <code>create_with_unknown_outcome_is_retried_with_the_same_client_token</code> and <code>rejected_retry_preserves_the_continuation</code> are what keep a later change from turning an ambiguous failure into <code>untracked</code> and losing track of a real resource.</p>
 <h2 id="acceptance-tests">Acceptance tests</h2>
 <p>Unit tests cannot tell you whether a resource converges: whether, after <code>apply</code>, the attributes the provider returns from <code>read</code> match the configuration so that the next plan is empty. That needs the real API.</p>
 <p>The official providers keep acceptance tests in an <code>acceptance-tests/</code> directory, one directory per resource type with one or more <code>.crn</code> configurations, and a script that runs each one through a full cycle:</p>
