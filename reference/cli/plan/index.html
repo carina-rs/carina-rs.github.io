@@ -108,6 +108,38 @@ state; run <code>carina init --migrate-state</code> before applying.</p>
 <span class="line"></span></code></pre>
 <h3 id="--json"><code>--json</code></h3>
 <p>Output the plan as structured JSON instead of human-readable text. The output uses the same format as <code>--out</code> (PlanFile), including effects, resource definitions, and current states. Secrets are redacted.</p>
+<p>The top-level <code>persisted_directive_changes</code> array records directive-only state
+updates. It includes a desired resource only when that resource has no
+mutating execution-plan effect; directives for resources being created,
+updated, replaced, moved, or otherwise mutated are written by the normal
+apply path and are not duplicated here. <code>resource_id</code> is the full routed
+identity used for matching. Field names are limited to <code>force_delete</code>,
+<code>create_before_destroy</code>, <code>prevent_destroy</code>, <code>depends_on</code>, and
+<code>provider_instance</code>. Boolean fields use JSON booleans, <code>depends_on</code> uses an
+array, <code>provider_instance</code> uses a string or <code>null</code>, and <code>prevent_destroy</code> uses
+its tagged tri-state object:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">persisted_directive_changes</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">    {</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">resource_id</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">provider</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">mock</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">resource_type</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">test.default_prevent_destroy</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">identity</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">account</span><span style="color:#64748B">"</span></span>
+<span class="line"><span style="color:#64748B">      },</span></span>
+<span class="line"><span style="color:#64748B">      "</span><span style="color:#86EFAC">fields</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> [</span></span>
+<span class="line"><span style="color:#64748B">        {</span></span>
+<span class="line"><span style="color:#64748B">          "</span><span style="color:#86EFAC">name</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">prevent_destroy</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">          "</span><span style="color:#86EFAC">from</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">kind</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">unspecified</span><span style="color:#64748B">"</span><span style="color:#64748B"> },</span></span>
+<span class="line"><span style="color:#64748B">          "</span><span style="color:#86EFAC">to</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> {</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">kind</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">explicit</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">value</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#FDE68A"> false</span><span style="color:#64748B"> }</span></span>
+<span class="line"><span style="color:#64748B">        }</span></span>
+<span class="line"><span style="color:#64748B">      ]</span></span>
+<span class="line"><span style="color:#64748B">    }</span></span>
+<span class="line"><span style="color:#64748B">  ]</span></span>
+<span class="line"><span style="color:#64748B">}</span></span>
+<span class="line"></span></code></pre>
+<p>The array is required in saved-plan format 35, even when it is empty. Applying
+a saved plan recomputes it against locked state and refuses the plan if the
+typed IDs or values differ.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --json</span></span>
 <span class="line"></span></code></pre>
 <h3 id="--image-file"><code>--image &#x3C;FILE></code></h3>

@@ -281,7 +281,7 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="directives">Directives</h3>
-<p>A <code>directives</code> block inside a resource carries Carina-side instructions (<code>depends_on</code>, <code>create_before_destroy</code>, <code>prevent_destroy</code>, <code>force_delete</code>, <code>provider</code>, <code>ignore_changes</code>). It is never sent to the provider. See the <a href="/reference/dsl/directives/">directives reference</a> for the full list and the <code>ignore_changes</code> path rules.</p>
+<p>A <code>directives</code> block inside a resource carries Carina-side instructions (<code>depends_on</code>, <code>create_before_destroy</code>, <code>prevent_destroy</code>, <code>force_delete</code>, <code>provider</code>, <code>ignore_changes</code>). In provider protocol 13, only delete requests carry the resolved provider-visible directives. See the <a href="/reference/dsl/directives/">directives reference</a> for the full list, schema-default destruction protection, and the <code>ignore_changes</code> path rules.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.s3.Bucket</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  bucket_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'my-bucket'</span></span>
 <span class="line"></span>
