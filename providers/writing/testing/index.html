@@ -286,7 +286,7 @@
 <p>Unit tests cannot tell you whether a resource converges: whether, after <code>apply</code>, the attributes the provider returns from <code>read</code> match the configuration so that the next plan is empty. That needs the real API.</p>
 <p>The official providers keep acceptance tests in an <code>acceptance-tests/</code> directory, one directory per resource type with one or more <code>.crn</code> configurations, and a script that runs each one through a full cycle:</p>
 <ol>
-<li><code>carina init</code> installs the component under test. Run it again after every rebuild; otherwise the test runs the copy installed earlier.</li>
+<li><code>carina init</code> installs the component under test. Run it again after every rebuild; otherwise the test runs the copy installed earlier. On that init, an unchanged egress declaration carries consent forward without a prompt, while a changed declaration shows the diff and asks again.</li>
 <li><code>carina apply --auto-approve</code> creates the resources.</li>
 <li><code>carina plan --detailed-exitcode</code> must exit with <code>0</code>. It exits with <code>2</code> when the plan has changes, which means the resource does not converge, usually because <code>read</code> returns a value in a different form than the configuration or leaves an attribute out.</li>
 <li><code>carina destroy --auto-approve</code> removes everything.</li>
