@@ -202,7 +202,7 @@
 <h2 id="the-sandbox">The sandbox</h2>
 <p>A provider runs with no filesystem access. It sees only these environment variables:</p>
 <ul>
-<li><code>HOME</code>, <code>RUST_LOG</code> and <code>CARINA_WASI_HTTP_TRACE</code>, for every provider. Setting <code>CARINA_WASI_HTTP_TRACE=1</code> prints every request’s headers to stderr, including authorization headers, so do not use it with real credentials or in shared logs.</li>
+<li><code>HOME</code>, <code>RUST_LOG</code> and <code>CARINA_WASI_HTTP_TRACE</code>, for every provider. Setting <code>CARINA_WASI_HTTP_TRACE=1</code> prints every request’s header names to stderr, shows values only for a fixed allowlist of non-credential headers (<code>host</code>, <code>content-type</code>, <code>content-length</code>, <code>transfer-encoding</code>, <code>expect</code>, <code>user-agent</code>, <code>x-amz-date</code>), redacts all other header values, and removes userinfo, fragments and query values from URIs.</li>
 <li><code>AWS_REGION</code>, <code>AWS_DEFAULT_REGION</code>, and <code>AWS_ENDPOINT_URL</code>, only for an AWS-kind provider. AWS credential variables are never passed; the AWS world receives credentials through its typed import.</li>
 <li><code>GITHUB_TOKEN</code>, only when the same user-owned record exists for the exact <code>carina-rs/github</code> artifact (including its official GitHub source), or for a matching local build explicitly granted the <code>github</code> kind.</li>
 </ul>
