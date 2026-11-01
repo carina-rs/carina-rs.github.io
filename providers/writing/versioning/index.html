@@ -23,9 +23,9 @@
 <h2 id="the-protocol-version">The protocol version</h2>
 <p>The host and the provider talk through a versioned protocol. <code>carina-provider-protocol</code> defines two numbers: <code>PROTOCOL_VERSION</code>, the version this build speaks, and <code>MIN_SUPPORTED_PROTOCOL_VERSION</code>, the oldest protocol version the host still loads from a provider. The SDK writes the version it was built with into the provider’s <code>info</code> response; you never set it yourself.</p>
 <p>Every time Carina starts a provider, for <code>validate</code>, <code>plan</code>, <code>apply</code> or any other command that uses it, it checks that version first and refuses to go further if it is out of range. <code>carina init</code> only downloads and records the provider without starting it, so a mismatch shows up at the first command after <code>init</code>:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 15 but this host requires at least version 16; rebuild the provider against the current carina protocol</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 16 but this host requires at least version 17; rebuild the provider against the current carina protocol</span></span>
 <span class="line"><span></span></span></code></pre>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 17 but this host supports up to version 16; upgrade carina to load this provider</span></span>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>provider 'hello' was built against protocol version 18 but this host supports up to version 17; upgrade carina to load this provider</span></span>
 <span class="line"><span></span></span></code></pre>
 <p>Since v0.5.0, the first release that checks the version, every release has set the minimum equal to the protocol version it speaks, so a provider has to be built for exactly the protocol version of the Carina that loads it:</p>
 <div class="table-scroll">
@@ -83,8 +83,13 @@
 
 
 
-<table><thead><tr><th>Carina release</th><th>Protocol version</th><th>Oldest provider protocol it loads</th></tr></thead><tbody><tr><td>Next release after v0.9.0 (unreleased)</td><td>16</td><td>16</td></tr><tr><td>Development snapshot after v0.9.0 (unreleased)</td><td>15</td><td>15</td></tr><tr><td>Development snapshot after v0.9.0 (unreleased)</td><td>14</td><td>14</td></tr><tr><td>v0.9.0</td><td>12</td><td>12</td></tr><tr><td>v0.8.0</td><td>12</td><td>12</td></tr><tr><td>v0.7.1</td><td>12</td><td>12</td></tr><tr><td>v0.7.0</td><td>12</td><td>12</td></tr><tr><td>v0.6.0</td><td>10</td><td>10</td></tr><tr><td>v0.5.0</td><td>10</td><td>10</td></tr></tbody></table></div>
-<p>Only protocol 16 is current. Protocols 14 and 15 were development snapshots, and their changes remain part of protocol 16:</p>
+
+
+
+
+
+<table><thead><tr><th>Carina release</th><th>Protocol version</th><th>Oldest provider protocol it loads</th></tr></thead><tbody><tr><td>Next release after v0.9.0 (unreleased)</td><td>17</td><td>17</td></tr><tr><td>Development snapshot after v0.9.0 (unreleased)</td><td>16</td><td>16</td></tr><tr><td>Development snapshot after v0.9.0 (unreleased)</td><td>15</td><td>15</td></tr><tr><td>Development snapshot after v0.9.0 (unreleased)</td><td>14</td><td>14</td></tr><tr><td>v0.9.0</td><td>12</td><td>12</td></tr><tr><td>v0.8.0</td><td>12</td><td>12</td></tr><tr><td>v0.7.1</td><td>12</td><td>12</td></tr><tr><td>v0.7.0</td><td>12</td><td>12</td></tr><tr><td>v0.6.0</td><td>10</td><td>10</td></tr><tr><td>v0.5.0</td><td>10</td><td>10</td></tr></tbody></table></div>
+<p>Only protocol 17 is current. Protocols 14 through 16 were development snapshots, and their changes remain part of protocol 17:</p>
 <div class="table-scroll">
 
 
@@ -106,7 +111,12 @@
 
 
 
-<table><thead><tr><th>Development protocol</th><th>Change</th></tr></thead><tbody><tr><td>16</td><td>Required identity mode field; declared identity hashing and nested create-only diffing.</td></tr><tr><td>15</td><td>Create-progress variants, poll finality, and separate read-back budgets.</td></tr><tr><td>14</td><td>Host-resolved AWS credentials through the typed AWS world.</td></tr></tbody></table></div>
+
+
+
+
+<table><thead><tr><th>Development protocol</th><th>Change</th></tr></thead><tbody><tr><td>17</td><td>Required list element policy and canonical-value uniqueness validation.</td></tr><tr><td>16</td><td>Required identity mode field; declared identity hashing and nested create-only diffing.</td></tr><tr><td>15</td><td>Create-progress variants, poll finality, and separate read-back budgets.</td></tr><tr><td>14</td><td>Host-resolved AWS credentials through the typed AWS world.</td></tr></tbody></table></div>
+<p>Protocol 17 requires every list schema record to declare whether duplicates are allowed. The host checks unique lists during validation, planning, and LSP diagnostics, using canonical element values. Providers built for protocol 16 must be rebuilt against the updated SDK.</p>
 <p>Rejecting an older provider is deliberate. A protocol bump changes what crosses the boundary, and accepting a provider from the other side of the change would lose information without any error. Protocol 16, for example, replaces the schema’s identity boolean with a required closed mode and changes identity from an extra create-only hash input to the complete set of hash inputs. Version-15 providers could set the boolean on mutable attributes, so a version-16 host rejects them before schema decoding and asks for a rebuild. Protocol 12 similarly added a required <code>write_only</code> flag to nested struct fields. <a href="https://github.com/carina-rs/carina/blob/main/docs/protocol.md">docs/protocol.md</a> lists what each version changed.</p>
 <h2 id="when-the-protocol-changes">When the protocol changes</h2>
 <p>When a Carina release raises the protocol version, a provider built for the old version stops loading in that release. To support it:</p>

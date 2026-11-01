@@ -170,11 +170,58 @@ equal to a bare name.</p>
 <li>Scalars: <code>string()</code>, <code>int()</code>, <code>float()</code>, <code>bool()</code>, <code>duration()</code>.</li>
 <li>Refined scalars carry extra rules: <code>refined_string(identity, pattern, length, to_dsl)</code>, <code>refined_int(identity, range)</code> and <code>refined_float(identity, range)</code>, plus the <code>_with_validator</code> forms described in <a href="#validators-and-type-identities">Validators and type identities</a>.</li>
 <li>Collections: <code>list(inner)</code>, <code>unordered_list(inner)</code> for lists whose order the API does not keep, <code>map(value)</code> and <code>map_with_key(key, value)</code>.</li>
+<li>Refined lists: <code>refined_list(element_type, ordered, length, elements)</code>, with an explicit <code>ListElements::AllowDuplicates</code> or <code>ListElements::Unique</code> policy.</li>
 <li>Enums: <code>enum_(identity, values, dsl_aliases, validate, to_dsl)</code>.</li>
 <li>Structs: <code>struct_(name, fields)</code>, with fields built from <code>StructField</code>.</li>
 <li>Unions: <code>union(members)</code>, for a value that may take one of several shapes.</li>
 <li>References: <code>ref_(name)</code> points at a definition registered with <code>ResourceSchema::with_def</code>, which is how recursive shapes are written.</li>
 </ul>
+<p>Use <code>ListElements::Unique</code> when the API requires distinct elements. Ordering,
+length, and uniqueness are independent: an ordered list can still require
+unique elements, and a minimum length can reject an empty list. For example:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#FBBF24">use</span><span style="color:#F1F5F9"> carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">core</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">schema</span><span style="color:#FBBF24">::</span><span style="color:#64748B">{</span></span>
+<span class="line"><span style="color:#FEF9C3">    AttributeSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> AttributeType</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> ListElements</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> ResourceSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> TypeIdentity</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#94A3B8">let</span><span style="color:#94A3B8"> claim_key</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> AttributeType</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">enum_</span><span style="color:#64748B">(</span></span>
+<span class="line"><span style="color:#F1F5F9">    TypeIdentity</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">new</span><span style="color:#64748B">(</span><span style="color:#FEF9C3">Some</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">github</span><span style="color:#64748B">"</span><span style="color:#64748B">),</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">actions</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">OidcSubject</span><span style="color:#64748B">"</span><span style="color:#64748B">],</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">ClaimKey</span><span style="color:#64748B">"</span><span style="color:#64748B">),</span></span>
+<span class="line"><span style="color:#FEF9C3">    Some</span><span style="color:#64748B">(</span><span style="color:#F1F5F9">vec!</span><span style="color:#64748B">[</span><span style="color:#64748B">"</span><span style="color:#86EFAC">repo</span><span style="color:#64748B">"</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">into</span><span style="color:#64748B">(),</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">context</span><span style="color:#64748B">"</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">into</span><span style="color:#64748B">()]),</span></span>
+<span class="line"><span style="color:#FEF9C3">    Vec</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">new</span><span style="color:#64748B">(),</span></span>
+<span class="line"><span style="color:#FEF9C3">    None</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#FEF9C3">    None</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">);</span></span>
+<span class="line"><span style="color:#94A3B8">let</span><span style="color:#94A3B8"> schema</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> ResourceSchema</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">new</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">actions.OidcSubject</span><span style="color:#64748B">"</span><span style="color:#64748B">)</span></span>
+<span class="line"><span style="color:#FBBF24">    .</span><span style="color:#F1F5F9">attribute</span><span style="color:#64748B">(</span><span style="color:#F1F5F9">AttributeSchema</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">required</span><span style="color:#64748B">(</span></span>
+<span class="line"><span style="color:#64748B">        "</span><span style="color:#86EFAC">claim_keys</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#F1F5F9">        AttributeType</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">refined_list</span><span style="color:#64748B">(</span></span>
+<span class="line"><span style="color:#94A3B8">            claim_key</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#FDE68A">            true</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#FEF9C3">            Some</span><span style="color:#64748B">((</span><span style="color:#FEF9C3">Some</span><span style="color:#64748B">(</span><span style="color:#FEF9C3">1</span><span style="color:#64748B">),</span><span style="color:#FEF9C3"> None</span><span style="color:#64748B">)),</span></span>
+<span class="line"><span style="color:#FEF9C3">            ListElements</span><span style="color:#FBBF24">::</span><span style="color:#FEF9C3">Unique</span><span style="color:#64748B">,</span></span>
+<span class="line"><span style="color:#64748B">        ),</span></span>
+<span class="line"><span style="color:#64748B">    )</span><span style="color:#FBBF24">.</span><span style="color:#F1F5F9">build</span><span style="color:#64748B">())</span></span>
+<span class="line"><span style="color:#FBBF24">    .</span><span style="color:#F1F5F9">validate</span><span style="color:#64748B">()</span></span>
+<span class="line"><span style="color:#FBBF24">    .</span><span style="color:#F1F5F9">expect</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">the subject schema is valid</span><span style="color:#64748B">"</span><span style="color:#64748B">);</span></span>
+<span class="line"></span></code></pre>
+<p>The shared schema validator enforces this declaration for authored desired
+values and provider configuration in <code>carina validate</code>, planning, and LSP
+diagnostics. It compares canonical values, so <code>[repo, repo]</code> and
+<code>[repo, github.actions.OidcSubject.ClaimKey.repo]</code> both fail. Enum aliases
+resolve to the same API value before comparison. Canonicalization preserves
+integer versus float spellings and struct block aliases versus canonical field
+keys, so those spellings compare as distinct. Strings, integers, and nested
+values also support uniqueness.</p>
+<p>Elements containing secrets, environment-derived (diagnostic-sensitive) values,
+or unresolved values are excluded from duplicate comparison; known,
+nonsensitive elements in the same list are still checked. A secret wrapping the
+whole list is also excluded. Provider read-back, persisted state values, and
+wait-condition right-hand sides are not checked for uniqueness. List length
+constraints still apply in all these cases. <code>list()</code> and <code>unordered_list()</code>
+allow duplicates.</p>
+<p>Protocol v17 requires every list schema JSON record to carry <code>elements</code> as
+<code>"allow_duplicates"</code> or <code>"unique"</code>, including ordinary lists. There is no
+default at decode. Rebuild providers against the updated SDK before loading
+them with a v17 host.</p>
 <p>Struct fields use the same three constructors as attributes, <code>StructField::optional</code>, <code>StructField::required</code> and <code>StructField::provider_populated</code>:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#FBBF24">use</span><span style="color:#F1F5F9"> carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">core</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">schema</span><span style="color:#FBBF24">::</span><span style="color:#64748B">{</span></span>
 <span class="line"><span style="color:#FEF9C3">    AttributeSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> AttributeType</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> ResourceSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> StructField</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> TypeIdentity</span><span style="color:#64748B">,</span></span>
