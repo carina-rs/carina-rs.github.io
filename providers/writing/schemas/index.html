@@ -457,11 +457,30 @@ destruction protection at the schema:</p>
 <span class="line"><span style="color:#FBBF24">    .</span><span style="color:#F1F5F9">validate</span><span style="color:#64748B">()</span></span>
 <span class="line"><span style="color:#FBBF24">    .</span><span style="color:#F1F5F9">expect</span><span style="color:#64748B">(</span><span style="color:#64748B">"</span><span style="color:#86EFAC">the schema is valid</span><span style="color:#64748B">"</span><span style="color:#64748B">);</span></span>
 <span class="line"></span></code></pre>
-<p>Carina then rejects deletion and replacement unless the user writes the
-literal opt-out <code>directives { prevent_destroy = false }</code>. Resource schemas are
+<p>Carina then rejects deletion and replacement unless the user sets
+<code>prevent_destroy</code> to a value that resolves to <code>false</code>, for example
+<code>directives { prevent_destroy = false }</code>. Resource schemas are
 unprotected by default, so use this builder only where deletion has unusually
 severe consequences. The required boolean is transported in protocol-v16
 schema JSON; an older provider that omits it fails during schema loading.</p>
+<p>A module argument default that resolves to <code>false</code> cannot disable this schema
+protection. Validation requires the caller to pass the argument explicitly,
+such as <code>protect = false</code>. Any contributing default keeps a value defaulted,
+including through nested argument expressions, function calls, conditional value
+expressions, and coalescing. Loop directives and module-call arguments inherit
+the iterable’s default origin only when they reference a loop variable.
+Combining an explicit value with a defaulted value retains all the contributing
+defaults. Diagnostics name every contributing default and identify the calls
+that omitted its argument.</p>
+<p>Literal <code>prevent_destroy = false</code> remains an explicit opt-out inside loops over
+defaulted iterables. A structural condition that selects whether a resource or
+module call exists does not supply the body’s values, so it does not make a
+literal opt-out defaulted either. Reading a loop variable from a defaulted list
+or map still carries that iterable’s default origin.</p>
+<p>An argument whose default refers to another argument remains defaulted even if
+that other argument was passed explicitly. The caller can replace the dependent
+default by passing that argument itself. Types without schema-default protection
+and the other boolean directives keep their usual resolved-value behavior.</p>
 <h2 id="the-validated-schema">The validated schema</h2>
 <p><code>ResourceSchema</code> is a draft. <code>validate()</code> checks the whole draft and returns a <code>ValidatedResourceSchema</code>, the only type that <code>CarinaProvider::schemas</code> accepts. It reports every problem it finds at once, each with the schema path where it occurred:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#FBBF24">use</span><span style="color:#F1F5F9"> carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">core</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">schema</span><span style="color:#FBBF24">::</span><span style="color:#64748B">{</span></span>
