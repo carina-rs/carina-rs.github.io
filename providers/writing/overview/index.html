@@ -45,7 +45,7 @@
 
 
 <table><thead><tr><th>World</th><th>Use it when</th></tr></thead><tbody><tr><td><code>carina-provider</code></td><td>The provider needs no network access.</td></tr><tr><td><code>carina-provider-with-http</code></td><td>The provider calls an HTTP API through <code>wasi:http</code> and declares the hosts it may reach.</td></tr><tr><td><code>carina-provider-aws</code></td><td>An AWS-kind provider needs <code>wasi:http</code> plus host-resolved AWS base credentials.</td></tr></tbody></table></div>
-<p>You do not write WIT bindings by hand. The <code>carina-plugin-sdk</code> crate defines a <code>CarinaProvider</code> trait, and its <code>export_provider!</code> macro generates the bindings and connects them to your implementation. The SDK re-exports the request and schema types from <code>carina-provider-protocol</code>.</p>
+<p>The <code>carina-plugin-sdk</code> crate defines a <code>CarinaProvider</code> trait and supplies bindings generated in Carina-owned crates from the SDK revision’s WIT and binding generator. Its <code>export_provider!</code> macro connects those bindings to your implementation. Your provider needs no WIT submodule, <code>wit-bindgen</code> dependency, or direct dependency on the binding crates. The SDK re-exports the request and schema types from <code>carina-provider-protocol</code>.</p>
 <p><code>export_provider!(MyProvider)</code> exports <code>carina-provider</code>. To export <code>carina-provider-with-http</code>, declare every hostname the provider may contact:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#F1F5F9">carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">export_provider!</span><span style="color:#64748B">(</span></span>
 <span class="line"><span style="color:#FEF9C3">    MyProvider</span><span style="color:#64748B">,</span></span>
@@ -53,7 +53,7 @@
 <span class="line"><span style="color:#94A3B8">    egress</span><span style="color:#FBBF24">:</span><span style="color:#64748B"> [</span><span style="color:#64748B">"</span><span style="color:#86EFAC">api.example.com</span><span style="color:#64748B">"</span><span style="color:#64748B">,</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">*.service.example.com</span><span style="color:#64748B">"</span><span style="color:#64748B">],</span></span>
 <span class="line"><span style="color:#64748B">);</span></span>
 <span class="line"></span></code></pre>
-<p>Add the <code>wasi</code> crate (version 0.14) to the provider’s <code>wasm32</code> dependencies, because the generated bindings refer to it. The SDK’s <code>carina_plugin_sdk::wasi_http::send_request</code> then sends an <code>http::Request</code> through the host.</p>
+<p>The SDK supplies the WASI imports. Its <code>carina_plugin_sdk::wasi_http::send_request</code> sends an <code>http::Request</code> through the host. Add a direct <code>wasi</code> dependency only if your own code calls WASI APIs.</p>
 <p>The HTTP form embeds a versioned <code>carina:egress</code> custom section in the component. The declaration is mandatory. The host reads it from the exact bytes being loaded and permits only consented patterns:</p>
 <ul>
 <li><code>api.example.com</code> matches exactly that host.</li>

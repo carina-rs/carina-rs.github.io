@@ -112,7 +112,7 @@
 <p>When a Carina release raises the protocol version, a provider built for the old version stops loading in that release. To support it:</p>
 <ol>
 <li>Update the SDK dependency’s <code>rev</code> to a carina commit that speaks the new version.</li>
-<li>Check out the <code>carina-plugin-wit</code> submodule at the commit that carina pins at that revision, as in <a href="/providers/writing/getting-started/#project-layout">Your First Provider</a>.</li>
+<li>If you also depend directly on other Carina crates, pin them to that same revision. The SDK supplies the matching WIT bindings and binding generator; your provider does not need a separate WIT checkout or generator dependency.</li>
 <li>Rebuild and fix what no longer compiles. Protocol changes are usually visible as type changes in the SDK, so most of the work shows up as compile errors.</li>
 <li>Release a new version of the provider, and say in its release notes which Carina release it needs.</li>
 </ol>
