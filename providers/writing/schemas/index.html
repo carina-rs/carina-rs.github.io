@@ -218,10 +218,10 @@ whole list is also excluded. Provider read-back, persisted state values, and
 wait-condition right-hand sides are not checked for uniqueness. List length
 constraints still apply in all these cases. <code>list()</code> and <code>unordered_list()</code>
 allow duplicates.</p>
-<p>Protocol v17 requires every list schema JSON record to carry <code>elements</code> as
+<p>Since protocol v17, every list schema JSON record must carry <code>elements</code> as
 <code>"allow_duplicates"</code> or <code>"unique"</code>, including ordinary lists. There is no
-default at decode. Rebuild providers against the updated SDK before loading
-them with the current v18 host.</p>
+default at decode. Rebuild providers against the current SDK before loading
+them with the current host.</p>
 <p>Struct fields use the same three constructors as attributes, <code>StructField::optional</code>, <code>StructField::required</code> and <code>StructField::provider_populated</code>:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#FBBF24">use</span><span style="color:#F1F5F9"> carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">core</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">schema</span><span style="color:#FBBF24">::</span><span style="color:#64748B">{</span></span>
 <span class="line"><span style="color:#FEF9C3">    AttributeSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> AttributeType</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> ResourceSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> StructField</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> TypeIdentity</span><span style="color:#64748B">,</span></span>
@@ -461,7 +461,7 @@ destruction protection at the schema:</p>
 <code>prevent_destroy</code> to a value that resolves to <code>false</code>, for example
 <code>directives { prevent_destroy = false }</code>. Resource schemas are
 unprotected by default, so use this builder only where deletion has unusually
-severe consequences. The required boolean is transported in protocol-v16
+severe consequences. The required boolean is transported in protocol-v19
 schema JSON; an older provider that omits it fails during schema loading.</p>
 <p>A module argument default that resolves to <code>false</code> cannot disable this schema
 protection. Validation requires the caller to pass the argument explicitly,
