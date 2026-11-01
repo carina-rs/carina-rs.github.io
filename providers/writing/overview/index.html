@@ -152,14 +152,53 @@
 <h2 id="short-calls-the-host-waits">Short calls; the host waits</h2>
 <p>Every call must return quickly. The host stops a call whose WebAssembly code has computed for more than 30 seconds in total (time spent waiting in host I/O, such as an HTTP request or a clock sleep, does not count), stops any call that is still running 60 minutes after it began, and limits each HTTP request’s connect, first-byte and between-bytes waits to 30 seconds each. A stopped call also breaks that provider instance, so its later calls in the same run fail. A provider never sleeps or polls inside a call. When a create or update has not finished, the provider returns a pending result that carries a token it defines, an <code>operation</code> or <code>read-back</code> phase, and a hint for when to ask again. Delete pending is phase-less because delete has no post-apply read-back. The host then calls <code>poll_create</code>, <code>poll_update</code> or <code>poll_delete</code> with the original request and that token, until the operation finishes or the resource’s time budget (15 minutes by default) runs out.</p>
 <p>Post-create and post-update reads have a separate host-owned budget. It starts at the first <code>read-back</code> pending result, defaults to two minutes, and is clipped to the operation’s original deadline, so it never extends the operation. A resource schema can set a non-zero <code>operation_config.read_back.timeout_secs</code>. The host marks the one poll at the active deadline as <code>final-attempt</code> in <code>poll_create</code>, <code>resume_create</code>, and <code>poll_update</code>. The phase of the continuation sent that request controls the result: pending after a final attempt sent to an <code>operation</code> continuation is over budget, even if the response moves to <code>read-back</code>; pending in either phase after a final attempt sent to a <code>read-back</code> continuation is a protocol violation. Returning from <code>read-back</code> to <code>operation</code> at any time is also a violation. Do not put attempt counters in a read-back token—the host owns the deadline and finality.</p>
-<p>A pending create is also saved in state. If Carina is interrupted, the next apply calls <code>resume_create</code> with the saved token instead of creating the resource again. The token is stored and passed around, so it must hold only what the provider needs to find the operation again, never request values or secrets. State retains the token and identifier but not poll scheduling metadata, so the first resumed call’s inbound phase and delay are non-authoritative; recover the real phase from the token or cloud operation, and set it on any pending result you return.</p>
+<p>A pending create is also saved in state. If Carina is interrupted, the next apply calls <code>resume_create</code> with the saved token instead of creating the resource again. The token is stored and passed around, so it must hold only what the provider needs to find the operation again, never request values or secrets. State retains the token and identifier but no poll scheduling metadata, so the host sends <code>operating</code> on the first resume call. A saved read-back token with an identifier can resume from a fresh provider instance through an identifier-bearing handle. Its next pending or preserved result reports read-back progress. SDK dispatch rejects only a backward transition: host progress is read-back while the token is operation-phase. For create poll and resume this returns <code>Undetermined</code> and keeps the previous continuation; update decoding rejects the same backward pairing. An identifier-less read-back token ends create polling with <code>READ_BACK_WITHOUT_IDENTIFIER</code>.</p>
 <p>Create results go through a typestate in the SDK, so a provider must say what it knows. There is no conversion from a plain error into a create result; every failure has to be classified:</p>
 <ul>
 <li><code>untracked</code> means nothing was created. Use it only when you know the API never accepted the request, for example when local validation failed or the API rejected it outright. Carina keeps no record of the resource.</li>
-<li>If the request may have reached the API but you have no identifier (a timeout, or a server error with no ID), return <code>CreateAttempt::pending(token, sent, poll_after_secs)</code>, which carries no identifier, and settle it in <code>poll_create</code>. If a call has a usable continuation but stops with an error, preserve it with the signature for that handle: <code>CreateAttempt::preserve(token, sent, poll_after_secs, error)</code>, or <code>PollAttempt::preserve(token, poll_after_secs, error)</code>, <code>ResumeAttempt::preserve(token, poll_after_secs, error)</code>, <code>IssuedCreate::preserve(token, poll_after_secs, error)</code>, or <code>ResumedCreate::preserve(token, poll_after_secs, error)</code>. Carina then keeps the attempt and the error instead of forgetting a resource that may exist.</li>
-<li>Call <code>issued</code> as soon as you see the resource’s identifier. An <code>IssuedCreate</code> can then end or transition through <code>succeeded</code>, <code>partial</code>, <code>failed</code>, <code>discarded</code>, <code>pending</code>, <code>pending_read_back</code>, <code>preserve</code>, or <code>canonicalize</code>; only an explicit <code>discarded</code> leaves no record. <code>canonicalize</code> replaces the provisional identifier and returns a finishing handle that cannot go back to pending.</li>
+<li>If the request may have reached the API but you have no identifier (a timeout, or a server error with no ID), return <code>pending</code> with an operation payload and settle it in <code>poll_create</code>. When a usable continuation also has an error to report, return <code>preserve</code>. Carina keeps the attempt and the error.</li>
+<li>Call <code>issued</code> as soon as you see the resource’s identifier. An <code>IssuedCreate</code> can then end or transition through <code>succeeded</code>, <code>partial</code>, <code>failed</code>, <code>discarded</code>, <code>pending</code>, <code>preserve</code>, or <code>canonicalize</code>; only an explicit <code>discarded</code> leaves no record. <code>canonicalize</code> replaces the provisional identifier and returns a finishing handle that cannot go back to pending.</li>
 <li><code>discarded</code> means the provider removed the resource it had created, so Carina keeps no record of it. If the resource may still exist, report it with <code>failed</code> instead.</li>
 </ul>
+<p>Create and update tokens implement <code>PhasedToken</code> with an associated operation payload <code>type Operation</code>, an infallible <code>from_operation</code>, a consuming <code>into_operation</code>, and a borrowed <code>operation</code> view. The default <code>phase()</code> derives <code>Operation</code> from <code>Some</code> and <code>ReadBack</code> from <code>None</code>; providers do not write a second phase match. Identifier-bearing <code>pending</code> and <code>preserve</code> accept the full token. Handles without an identifier take <code>T::Operation</code> directly, and <code>Poll::Unissued</code> / <code>Resume::Unissued</code> carry that payload. Provider code constructs operation payloads without a fallible wrapper; only SDK dispatch narrows host tokens. Updates use <code>Pending::new(token, poll_after_secs)</code> and derive their phase through <code>Pending::phase()</code>. <code>Never</code> implements the trait for providers that never defer an operation.</p>
+<p>For a token type <code>T: PhasedToken</code>, the continuation signatures are:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Handle</th><th><code>pending</code></th><th><code>preserve</code></th></tr></thead><tbody><tr><td><code>CreateAttempt</code></td><td><code>(T::Operation, Sent, u32) -> CreateStep&#x3C;T></code></td><td><code>(T::Operation, Sent, u32, ProviderError) -> CreateVerdict&#x3C;T></code></td></tr><tr><td><code>PollAttempt</code></td><td><code>(T::Operation, u32) -> CreateStep&#x3C;T></code></td><td><code>(T::Operation, u32, ProviderError) -> PollVerdict&#x3C;T></code></td></tr><tr><td><code>ResumeAttempt</code></td><td><code>(T::Operation, u32) -> ResumeStep&#x3C;T></code></td><td><code>(T::Operation, u32, ProviderError) -> ResumeVerdict&#x3C;T></code></td></tr><tr><td><code>IssuedCreate</code></td><td><code>(T, u32) -> CreateStep&#x3C;T></code></td><td><code>(T, u32, ProviderError) -> CreateVerdict&#x3C;T></code></td></tr><tr><td><code>ResumedCreate</code></td><td><code>(T, u32) -> ResumeStep&#x3C;T></code></td><td><code>(T, u32, ProviderError) -> ResumeVerdict&#x3C;T></code></td></tr></tbody></table></div>
+<p>Each method consumes its handle. The <code>u32</code> is the poll delay in seconds.</p>
 <h2 id="the-sandbox">The sandbox</h2>
 <p>A provider runs with no filesystem access. It sees only these environment variables:</p>
 <ul>
