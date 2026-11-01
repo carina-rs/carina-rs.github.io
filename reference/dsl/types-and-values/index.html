@@ -266,8 +266,10 @@ therefore invalid anywhere a value is required:</p>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> label</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "network-</span><span style="color:#94A3B8">${vpc}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"></span></code></pre>
 <p>Use an attribute such as <code>vpc.vpc_id</code>. The same rule applies to bindings
-created by <code>for</code>, <code>if</code>, <code>use</code>, module calls, and <code>wait</code>. For a module call,
-select an output such as <code>network.vpc_id</code>.</p>
+created by <code>for</code>, <code>if</code>, <code>use</code>, module calls, and <code>wait</code>. A module output may
+itself be a handle: if a module declares <code>attributes { vpc = vpc }</code>, then
+<code>network.vpc</code> is the handle and <code>network.vpc.vpc_id</code> is a value selected from
+the underlying resource.</p>
 <p>A handle may be given another name with <code>let</code>. The alias is itself a handle,
 so attribute access works through it, but using the alias bare in a value
 position is still rejected:</p>
@@ -280,12 +282,13 @@ position is still rejected:</p>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Only syntax that explicitly transports a handle accepts one directly. Examples
-are <code>directives.depends_on</code>, <code>directives.provider</code>, and function or module
-arguments. The argument itself decides what is transported: passing <code>vpc</code>
-binds the parameter as a handle, while passing <code>vpc.vpc_id</code> binds it as a
-value. A resource type annotation checks that a passed handle has the expected
-resource type; it does not turn values into handles. An untyped function
-parameter can also receive a handle:</p>
+are a module <code>attributes</code> entry, <code>directives.depends_on</code>,
+<code>wait.depends_on</code>, <code>directives.provider</code>, and function or module arguments.
+The argument itself decides what is transported: passing <code>vpc</code> binds the
+parameter as a handle, while passing <code>vpc.vpc_id</code> binds it as a value. A
+resource type annotation accepts only a matching handle; it does not turn a
+string or identity value into a handle. An untyped function parameter can also
+receive a handle:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#94A3B8"> id_of</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">resource</span><span style="color:#F1F5F9">) {</span></span>
 <span class="line"><span style="color:#94A3B8">  resource</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -344,12 +347,26 @@ value. A bare <code>resource</code> in the example above is therefore invalid.</
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="resource-type-references">Resource Type References</h3>
-<p>Resource types can be used as type expressions to indicate a reference:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">   : </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
-<span class="line"><span style="color:#94A3B8">  subnet_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Subnet</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">subnet_id</span></span>
+<p>Resource types used as type expressions mean resource handles. They are not
+aliases for the resource’s ID or another string attribute:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  network</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">awscc.ec2.Vpc</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  network</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
+<p>A matching bare resource or module handle can satisfy <code>awscc.ec2.Vpc</code>. A
+<code>String</code>, <code>vpc.vpc_id</code>, or even the typed identity value
+<code>aws.ec2.Vpc.Id</code> cannot. When the boundary should carry the ID value, annotate
+it with the identity type instead:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">attributes</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">aws.ec2.Vpc.Id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
+<p>Resource handles may cross module boundaries in the same expanded graph, but
+they cannot be stored in <code>exports</code> or read through <code>upstream_state</code>.</p>
 <h2 id="null">Null</h2>
 <p>The <code>null</code> literal represents the absence of a value. It can only appear in <a href="/reference/dsl/expressions/#validate-expressions">validate expressions</a> such as <code>require</code> statements and argument validation:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> value</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> null</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'Value must not be null'</span></span>

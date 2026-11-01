@@ -27,10 +27,35 @@
 <h3 id="state-format-upgrades">State format upgrades</h3>
 <p>State format v20 records a token-less <code>create_outcome_unknown</code> row when an
 initial create fails after a request may have reached the cloud but before the
-provider returns an identifier or continuation. Carina does not refresh,
-destroy, or re-create that address automatically. If the resource exists, add
-the import block shown by <code>carina plan</code>. If it does not exist, remove only that
+provider returns an identifier or continuation. It also makes
+<code>prevent_destroy</code> tri-state, preserving the difference between an omitted
+directive and an explicit <code>false</code> so provider-schema defaults can protect an
+unspecified resource. Carina does not refresh, destroy, or re-create a
+token-less unknown address automatically. If the resource exists, add the
+import block shown by <code>carina plan</code>. If it does not exist, remove only that
 recovery row with <code>carina state forget &#x3C;TYPE> &#x3C;IDENTITY></code> and then plan again.</p>
+<p>State format v21 stores current and deposed dependency metadata as complete,
+typed resource IDs instead of binding-name strings. When Carina reads a v20
+file, it classifies every legacy dependency against state rows and the current
+expanded resource graph. A missing or ambiguous name on a configured row is a
+migration error. An orphan or deposed row retains every known edge and prints
+a warning for each unknown name before rewrite; unknown names are displayed,
+never silently dropped or persisted in v21.</p>
+<p>You can test this migration against a copy without changing either the copy or
+the configured backend:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">cp </span><span style="color:#86EFAC">carina.state.json</span><span style="color:#86EFAC"> /tmp/carina-state-migration-check.json</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> migrate</span><span style="color:#94A3B8"> \</span></span>
+<span class="line"><span style="color:#86EFAC">  --check</span><span style="color:#86EFAC"> /absolute/path/to/infra</span><span style="color:#94A3B8"> \</span></span>
+<span class="line"><span style="color:#86EFAC">  --state-url</span><span style="color:#86EFAC"> /tmp/carina-state-migration-check.json</span></span>
+<span class="line"></span></code></pre>
+<p><code>state migrate --check</code> performs the same graph-aware classification as
+plan/apply without credentials, provider initialization, CRUD or data-source
+calls, upstream-state reads, backend access, locks, network access, cache
+writes, or state writes. It loads schema metadata only from exact installed
+provider artifacts. Repeat <code>--provider-schema KIND=/absolute/provider.wasm</code>
+to select explicit artifacts; this metadata-only path also understands
+released protocol-v12 schema signatures. A successful run reports configured
+rows plus orphan/deposed warnings and confirms that no state was written.</p>
 <p>State format v17 adds a top-level <code>exports_version</code> that versions the exports
 encoding separately from the rest of the state file. Readers that only need
 exports (<code>upstream_state</code> and <code>carina export</code>) check <code>exports_version</code> instead
@@ -227,6 +252,11 @@ as in the example above.</p>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>The <code>upstream_state</code> expression points at an upstream project’s directory. Carina loads that directory’s configuration, resolves its backend, reads its state, and exposes the upstream’s <code>exports</code> through the <code>let</code>-bound name. If that project has a pending backend migration, Carina warns and reads its locked old backend. In this example, <code>network.vpc_id</code> references the <code>vpc_id</code> value published by the <code>../network</code> project’s <code>exports</code> block.</p>
+<p>Exports and <code>upstream_state</code> are value-only state boundaries. A module may
+expose a same-stack resource handle through <code>attributes</code>, but an <code>exports</code>
+entry whose declared or inferred type is a resource handle is rejected. Export
+an ID, ARN, or another resource attribute value instead; no handle is written
+to state.</p>
 <p><code>source</code> is required and resolved relative to the enclosing <code>.crn</code> file’s directory. The upstream directory must contain a valid Carina configuration (one or more <code>.crn</code> files — no filename is privileged) with an <code>exports</code> block that publishes the values consumers need.</p>
 <h2 id="state-cli-commands">State CLI commands</h2>
 <p>Carina provides several CLI commands for inspecting and managing state:</p>
