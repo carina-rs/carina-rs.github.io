@@ -24,6 +24,8 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#F1F5F9"> [OPTIONS] </span><span style="color:#64748B">[</span><span style="color:#F1F5F9">PATH</span><span style="color:#64748B">]</span></span>
 <span class="line"></span></code></pre>
 <p><strong>PATH</strong> defaults to <code>.</code> (current directory). It must be a directory containing one or more <code>.crn</code> files — single-file paths are rejected.</p>
+<p>KMS references may require <code>kms:DescribeKey</code> during planning, independently of
+<code>--check-iam</code>. See <a href="/guides/aws-credentials/#kms-reference-planning-permissions">KMS reference planning permissions</a>, including key-policy authorization and first-use initialization of AWS-managed keys.</p>
 <h2 id="flags">Flags</h2>
 <h3 id="--detail-level"><code>--detail &#x3C;LEVEL></code></h3>
 <p>Controls how much detail is shown in plan output.</p>

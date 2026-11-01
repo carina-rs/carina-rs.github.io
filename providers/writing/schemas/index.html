@@ -221,7 +221,7 @@ allow duplicates.</p>
 <p>Protocol v17 requires every list schema JSON record to carry <code>elements</code> as
 <code>"allow_duplicates"</code> or <code>"unique"</code>, including ordinary lists. There is no
 default at decode. Rebuild providers against the updated SDK before loading
-them with a v17 host.</p>
+them with the current v18 host.</p>
 <p>Struct fields use the same three constructors as attributes, <code>StructField::optional</code>, <code>StructField::required</code> and <code>StructField::provider_populated</code>:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="rust"><code><span class="line"><span style="color:#FBBF24">use</span><span style="color:#F1F5F9"> carina_plugin_sdk</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">core</span><span style="color:#FBBF24">::</span><span style="color:#F1F5F9">schema</span><span style="color:#FBBF24">::</span><span style="color:#64748B">{</span></span>
 <span class="line"><span style="color:#FEF9C3">    AttributeSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> AttributeType</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> ResourceSchema</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> StructField</span><span style="color:#64748B">,</span><span style="color:#FEF9C3"> TypeIdentity</span><span style="color:#64748B">,</span></span>
