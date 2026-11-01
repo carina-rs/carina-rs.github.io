@@ -324,7 +324,96 @@ value. A bare <code>resource</code> in the example above is therefore invalid.</
 <span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#F1F5F9">    : </span><span style="color:#FEF9C3">aws.ec2.Vpc.Id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>Primitive type names are PascalCase (<code>String</code>, not <code>string</code>). Besides the primitives, built-in types such as <code>Ipv4Cidr</code>, <code>Ipv4Address</code>, <code>Ipv6Cidr</code>, and <code>Ipv6Address</code> are always available, and providers register their own dotted types (for example <code>aws.Arn</code> or <code>aws.ec2.Vpc.Id</code>). An unknown type name is an error.</p>
+<p>Primitive type names are PascalCase (<code>String</code>, not <code>string</code>). The built-in refinements below are always available. Providers also register their own dotted types (for example <code>aws.Arn</code> or <code>aws.ec2.Vpc.Id</code>). An unknown type name is an error.</p>
+<h3 id="built-in-types">Built-in Types</h3>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th>Base</th><th>Accepted values</th></tr></thead><tbody><tr><td><code>DomainName</code></td><td>String</td><td>DNS names with at least two labels; at most 253 characters excluding one trailing dot.</td></tr><tr><td><code>Email</code></td><td>String</td><td>Email addresses with a non-empty local part and a dotted domain.</td></tr><tr><td><code>HttpResponseStatusCode</code></td><td>String</td><td>Three-digit HTTP status codes in 2XX, 4XX, or 5XX.</td></tr><tr><td><code>HttpsUrl</code></td><td>String</td><td>Absolute URLs starting with lowercase <code>https://</code>, without userinfo.</td></tr><tr><td><code>Ipv4Address</code></td><td>String</td><td>IPv4 addresses such as <code>192.0.2.1</code>.</td></tr><tr><td><code>Ipv4Cidr</code></td><td>String</td><td>IPv4 CIDR blocks such as <code>192.0.2.0/24</code>.</td></tr><tr><td><code>Ipv6Address</code></td><td>String</td><td>IPv6 addresses such as <code>2001:db8::1</code>.</td></tr><tr><td><code>Ipv6Cidr</code></td><td>String</td><td>IPv6 CIDR blocks such as <code>2001:db8::/32</code>.</td></tr><tr><td><code>PositiveInt</code></td><td>Int</td><td>Integers greater than zero.</td></tr><tr><td><code>RedirectHost</code></td><td>String</td><td>Redirect hosts of 1–128 characters, allowing <code>#{host}</code>.</td></tr><tr><td><code>RedirectPath</code></td><td>String</td><td>Redirect paths of 1–128 characters starting with <code>/</code>, allowing host, port, and path placeholders.</td></tr><tr><td><code>RedirectPort</code></td><td>String</td><td>Decimal ports in 1–65535, or <code>#{port}</code>.</td></tr><tr><td><code>RedirectProtocol</code></td><td>String</td><td><code>HTTP</code>, <code>HTTPS</code>, or <code>#{protocol}</code>.</td></tr><tr><td><code>RedirectQuery</code></td><td>String</td><td>Redirect queries of at most 128 characters, allowing protocol, host, port, path, and query placeholders.</td></tr><tr><td><code>WildcardDomainName</code></td><td>String</td><td>DomainName values with an optional leftmost <code>*.</code>; the full name is at most 253 characters excluding one trailing dot.</td></tr></tbody></table></div>
+<p><code>DomainName</code> and <code>WildcardDomainName</code> accept uppercase letters, punycode, and numeric labels, including a numeric last label and dotted-IPv4-looking strings. Numeric labels deliberately match ACM’s domain-name regex. Underscores are rejected, so these types are unsuitable for Route53 record names such as <code>_acme-challenge</code> or <code>_dmarc</code>.</p>
+<p><code>HttpsUrl</code> accepts single-label hosts such as <code>localhost</code>, trailing-dot FQDNs such as <code>https://example.com.</code>, IPv4 addresses, and bracketed IPv6 addresses. A host whose last label is decimal digits or <code>0x</code>/<code>0X</code> followed by zero or more hex digits must be a canonical dotted-quad IPv4 address; forms such as <code>https://123</code> and <code>https://0x7f.1</code> are rejected. DNS labels have a 63-character limit, but the host has no 253-character cap. RFC 6570 templates such as <code>{proxy}</code> are rejected, so use another type for API Gateway HTTP integration URIs that contain templates. Attribute schemas may impose additional length or URL restrictions.</p>
 <h3 id="generic-types">Generic Types</h3>
 <p><code>list</code> and <code>map</code> accept a type parameter:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
@@ -370,4 +459,4 @@ they cannot be stored in <code>exports</code> or read through <code>upstream_sta
 <h2 id="null">Null</h2>
 <p>The <code>null</code> literal represents the absence of a value. It can only appear in <a href="/reference/dsl/expressions/#validate-expressions">validate expressions</a> such as <code>require</code> statements and argument validation:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> value</span><span style="color:#F1F5F9"> !</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> null</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'Value must not be null'</span></span>
-<span class="line"></span></code></pre>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="rail-header rail-header-end" data-astro-cid-mhegfnpm> <button type="button" class="rail-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle="" data-astro-cid-mhegfnpm> <svg class="rail-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-mhegfnpm> <rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-mhegfnpm></rect> <path d="M15 3v18" data-astro-cid-mhegfnpm></path> <polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-mhegfnpm></polyline> <polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-mhegfnpm></polyline> </svg> </button> <p class="rail-label" data-astro-cid-mhegfnpm>On this page</p> </div> <div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#primitive-types" class="toc-link" data-toc-slug="primitive-types" data-astro-cid-obewoz47>Primitive Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#string" class="toc-link" data-toc-slug="string" data-astro-cid-obewoz47>String</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#int" class="toc-link" data-toc-slug="int" data-astro-cid-obewoz47>Int</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#float" class="toc-link" data-toc-slug="float" data-astro-cid-obewoz47>Float</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#bool" class="toc-link" data-toc-slug="bool" data-astro-cid-obewoz47>Bool</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#duration" class="toc-link" data-toc-slug="duration" data-astro-cid-obewoz47>Duration</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#collection-types" class="toc-link" data-toc-slug="collection-types" data-astro-cid-obewoz47>Collection Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#list" class="toc-link" data-toc-slug="list" data-astro-cid-obewoz47>List</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#map" class="toc-link" data-toc-slug="map" data-astro-cid-obewoz47>Map</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#namespaced-identifiers" class="toc-link" data-toc-slug="namespaced-identifiers" data-astro-cid-obewoz47>Namespaced Identifiers</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-types" class="toc-link" data-toc-slug="resource-types" data-astro-cid-obewoz47>Resource Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#enum-identifiers" class="toc-link" data-toc-slug="enum-identifiers" data-astro-cid-obewoz47>Enum Identifiers</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#resource-references" class="toc-link" data-toc-slug="resource-references" data-astro-cid-obewoz47>Resource References</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#chained-access" class="toc-link" data-toc-slug="chained-access" data-astro-cid-obewoz47>Chained Access</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#index-access" class="toc-link" data-toc-slug="index-access" data-astro-cid-obewoz47>Index Access</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#type-expressions" class="toc-link" data-toc-slug="type-expressions" data-astro-cid-obewoz47>Type Expressions</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#simple-types" class="toc-link" data-toc-slug="simple-types" data-astro-cid-obewoz47>Simple Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#generic-types" class="toc-link" data-toc-slug="generic-types" data-astro-cid-obewoz47>Generic Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#string-literal-unions" class="toc-link" data-toc-slug="string-literal-unions" data-astro-cid-obewoz47>String Literal Unions</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#struct-types" class="toc-link" data-toc-slug="struct-types" data-astro-cid-obewoz47>Struct Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-type-references" class="toc-link" data-toc-slug="resource-type-references" data-astro-cid-obewoz47>Resource Type References</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#null" class="toc-link" data-toc-slug="null" data-astro-cid-obewoz47>Null</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
+<span class="line"></span></code></pre>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> <nav class="footer-links" aria-label="Footer" data-astro-cid-sz7xmlte> <a href="https://github.com/carina-rs/carina" data-astro-cid-sz7xmlte>GitHub</a> <span class="sep" aria-hidden="true" data-astro-cid-sz7xmlte>·</span> <a href="/reference/dsl/syntax/" data-astro-cid-sz7xmlte>Docs</a> </nav> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="rail-header rail-header-end" data-astro-cid-mhegfnpm> <button type="button" class="rail-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle="" data-astro-cid-mhegfnpm> <svg class="rail-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-mhegfnpm> <rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-mhegfnpm></rect> <path d="M15 3v18" data-astro-cid-mhegfnpm></path> <polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-mhegfnpm></polyline> <polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-mhegfnpm></polyline> </svg> </button> <p class="rail-label" data-astro-cid-mhegfnpm>On this page</p> </div> <div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#primitive-types" class="toc-link" data-toc-slug="primitive-types" data-astro-cid-obewoz47>Primitive Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#string" class="toc-link" data-toc-slug="string" data-astro-cid-obewoz47>String</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#int" class="toc-link" data-toc-slug="int" data-astro-cid-obewoz47>Int</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#float" class="toc-link" data-toc-slug="float" data-astro-cid-obewoz47>Float</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#bool" class="toc-link" data-toc-slug="bool" data-astro-cid-obewoz47>Bool</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#duration" class="toc-link" data-toc-slug="duration" data-astro-cid-obewoz47>Duration</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#collection-types" class="toc-link" data-toc-slug="collection-types" data-astro-cid-obewoz47>Collection Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#list" class="toc-link" data-toc-slug="list" data-astro-cid-obewoz47>List</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#map" class="toc-link" data-toc-slug="map" data-astro-cid-obewoz47>Map</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#namespaced-identifiers" class="toc-link" data-toc-slug="namespaced-identifiers" data-astro-cid-obewoz47>Namespaced Identifiers</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-types" class="toc-link" data-toc-slug="resource-types" data-astro-cid-obewoz47>Resource Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#enum-identifiers" class="toc-link" data-toc-slug="enum-identifiers" data-astro-cid-obewoz47>Enum Identifiers</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#resource-references" class="toc-link" data-toc-slug="resource-references" data-astro-cid-obewoz47>Resource References</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#chained-access" class="toc-link" data-toc-slug="chained-access" data-astro-cid-obewoz47>Chained Access</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#index-access" class="toc-link" data-toc-slug="index-access" data-astro-cid-obewoz47>Index Access</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#type-expressions" class="toc-link" data-toc-slug="type-expressions" data-astro-cid-obewoz47>Type Expressions</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#simple-types" class="toc-link" data-toc-slug="simple-types" data-astro-cid-obewoz47>Simple Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#built-in-types" class="toc-link" data-toc-slug="built-in-types" data-astro-cid-obewoz47>Built-in Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#generic-types" class="toc-link" data-toc-slug="generic-types" data-astro-cid-obewoz47>Generic Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#string-literal-unions" class="toc-link" data-toc-slug="string-literal-unions" data-astro-cid-obewoz47>String Literal Unions</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#struct-types" class="toc-link" data-toc-slug="struct-types" data-astro-cid-obewoz47>Struct Types</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#resource-type-references" class="toc-link" data-toc-slug="resource-type-references" data-astro-cid-obewoz47>Resource Type References</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#null" class="toc-link" data-toc-slug="null" data-astro-cid-obewoz47>Null</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
