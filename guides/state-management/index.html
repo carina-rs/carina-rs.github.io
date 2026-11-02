@@ -230,6 +230,7 @@ as in the example above.</p>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>This removes the resource from Carina’s state but leaves the actual cloud resource untouched. This is useful when transferring ownership of a resource to another tool or project.</p>
+<p><code>carina destroy</code> and <code>carina state refresh</code> treat the resource the same way: they drop it from state without reading it from the provider or deleting it in the cloud.</p>
 <h2 id="referencing-upstream-state">Referencing upstream state</h2>
 <p>To read outputs from another Carina project’s state, use <code>upstream_state</code>. The upstream project publishes values with an <code>exports</code> block:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># ../network/exports.crn</span></span>
