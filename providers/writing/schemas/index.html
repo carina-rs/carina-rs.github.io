@@ -461,7 +461,7 @@ destruction protection at the schema:</p>
 <code>prevent_destroy</code> to a value that resolves to <code>false</code>, for example
 <code>directives { prevent_destroy = false }</code>. Resource schemas are
 unprotected by default, so use this builder only where deletion has unusually
-severe consequences. The required boolean is transported in protocol-v19
+severe consequences. The required boolean is transported in protocol-v20
 schema JSON; an older provider that omits it fails during schema loading.</p>
 <p>A module argument default that resolves to <code>false</code> cannot disable this schema
 protection. Validation requires the caller to pass the argument explicitly,
