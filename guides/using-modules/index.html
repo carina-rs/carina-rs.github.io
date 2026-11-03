@@ -121,15 +121,13 @@ known resource type.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># modules/consumer/arguments.crn</span></span>
 <span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  validation_record</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">aws.route53.RecordSet</span></span>
+<span class="line"><span style="color:#94A3B8">  certificate</span><span style="color:#F1F5F9">: </span><span style="color:#FEF9C3">aws.acm.Certificate</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#64748B"># modules/consumer/main.crn</span></span>
-<span class="line"><span style="color:#FEF9C3">aws.acm.CertificateValidation</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#64748B">  # ...</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#FBBF24">  directives</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#94A3B8">    depends_on</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#94A3B8">validation_record</span><span style="color:#F1F5F9">]</span></span>
-<span class="line"><span style="color:#F1F5F9">  }</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> ready</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> wait</span><span style="color:#94A3B8"> certificate</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  until</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> certificate</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">status</span><span style="color:#FBBF24"> ==</span><span style="color:#FEF9C3"> aws.acm.Certificate.Status.issued</span></span>
+<span class="line"><span style="color:#94A3B8">  depends_on</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> [</span><span style="color:#94A3B8">validation_record</span><span style="color:#F1F5F9">]</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>If a producer declares

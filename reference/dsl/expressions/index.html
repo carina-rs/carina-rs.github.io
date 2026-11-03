@@ -73,11 +73,11 @@ attribute from that output before using it as a value.</p>
 <h3 id="local-bindings-in-for-body">Local Bindings in For Body</h3>
 <p><code>let</code> bindings can be used inside a <code>for</code> body to compute intermediate values:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> networks</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#94A3B8"> name</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">cidr</span><span style="color:#FBBF24"> in</span><span style="color:#94A3B8"> cidrs</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">cidr</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">1</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> subnet_bits</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 8</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#94A3B8">  network</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24">  =</span><span style="color:#94A3B8"> cidr</span></span>
-<span class="line"><span style="color:#94A3B8">    subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> subnet_cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    subnet_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">cidr</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">subnet_bits</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">1</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"><span style="color:#94A3B8">    az</span><span style="color:#FBBF24">          =</span><span style="color:#86EFAC"> 'ap-northeast-1a'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -213,7 +213,7 @@ that resource changes, the wait is ordered after its effect.</p>
 <span class="line"></span></code></pre>
 <p>Access on a value that is already known is evaluated immediately. Access whose base depends on a resource or upstream value is deferred until that value is available.</p>
 <h2 id="coalesce-operator">Coalesce Operator (<code>??</code>)</h2>
-<p><code>ref ?? default</code> uses the referenced value when it exists and <code>default</code> when it is absent. The left side must be a reference or access chain (<code>up.accounts</code>, <code>vpc.tags</code>); both sides are type-checked, so a default of the wrong type is rejected by <code>validate</code>.</p>
+<p><code>ref ?? default</code> uses the referenced value when it exists and <code>default</code> when it is absent. The left side may be a value expression (<code>up.accounts</code>, <code>vpc.tags</code>, or a literal); both sides are type-checked, so a default of the wrong type is rejected by <code>validate</code>. A known concrete value is returned immediately, while unresolved references retain fallback behavior.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> orgs</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '../organizations'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -303,7 +303,7 @@ that resource changes, the wait is ordered after its effect.</p>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> join</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'-'</span><span style="color:#F1F5F9">, [</span><span style="color:#86EFAC">'prod'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'web'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'vpc'</span><span style="color:#F1F5F9">])</span></span>
 <span class="line"></span></code></pre>
 <h3 id="partial-application">Partial Application</h3>
-<p>When a built-in function is called with fewer arguments than it expects, it returns a closure that captures the provided arguments. The closure waits for the remaining arguments before executing.</p>
+<p>A built-in with multiple required arguments returns a closure when called with at least one argument but fewer than its required arity. The closure captures the provided arguments and waits for the remaining arguments before executing. Zero-argument calls fail; a pipe such as <code>value |> upper()</code> supplies the piped argument.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#64748B"># split expects 2 args: split(separator, string)</span></span>
 <span class="line"><span style="color:#64748B"># Providing only 1 creates a closure</span></span>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> split_by_comma</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> split</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">','</span><span style="color:#F1F5F9">)</span></span>

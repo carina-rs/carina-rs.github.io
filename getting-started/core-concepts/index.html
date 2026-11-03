@@ -69,7 +69,7 @@
 <p>The workflow is always:</p>
 <ol>
 <li><strong>Init</strong> — <code>carina init</code> installs the provider plugins the configuration declares</li>
-<li><strong>Validate</strong> — <code>carina validate</code> checks syntax and schema without cloud access</li>
+<li><strong>Validate</strong> — <code>carina validate</code> checks syntax and schema without provider API calls; configurations that evaluate <code>decrypt()</code> also call AWS KMS</li>
 <li><strong>Plan</strong> — <code>carina plan</code> computes the diff between desired state (<code>.crn</code> files) and current state</li>
 <li><strong>Apply</strong> — <code>carina apply</code> executes the plan</li>
 </ol>
@@ -123,13 +123,14 @@ a budget whose nested budget name is its natural key while its notification
 list is also create-only. When a schema declares no identity paths, Carina uses
 configured top-level create-only values as the compatibility fallback.</p>
 <p>Two anonymous resources of the same type and provider route cannot have equal
-declared identity values; use <code>let</code> to name at least one of them. Every declared
-identity value must be available as written material or an authored expression
-at plan time. Carina canonicalizes a written value and hashes references and
+declared identity values; use <code>let</code> to name at least one of them. Required
+identity paths need a stable value or authored expression at plan time.
+Carina canonicalizes a written value and hashes references and
 composite expressions over references and literals by their authored spelling,
-so <code>"/zones/${zone.id}"</code> has a stable address before the zone exists. An absent
-value or an expression containing an unknown or unavailable leaf cannot produce
-an anonymous address; write the value or give the resource a name with <code>let</code>.</p>
+so <code>"/zones/${zone.id}"</code> has a stable address before the zone exists. An omitted
+<code>identity_when_present</code> path contributes a distinct absent marker. A written
+unknown or unavailable value, or an expression containing one, cannot produce
+an anonymous address; write a stable value or give the resource a name with <code>let</code>.</p>
 <p>When a provider first adds identity declarations, an existing state row may
 still have the address produced by the older create-only rule, including one
 that hashed a reference expression. Carina matches that row by the identity

@@ -37,7 +37,7 @@
 <span class="line"></span></code></pre>
 <p>Make sure the <code>carina-lsp</code> binary is in your <code>PATH</code>.</p>
 <h3 id="provider-schemas">Provider schemas</h3>
-<p>Resource types, attributes, and schema-based diagnostics come from the provider plugins installed in the configuration directory. The LSP loads the plugins that <code>carina init</code> installed under <code>.carina/providers/</code>; it does not download them itself. Run <code>carina init</code> in the directory first. Until then the LSP reports the missing provider as a diagnostic, and it picks the plugin up once it is installed, without restarting the editor.</p>
+<p>Resource types, attributes, and schema-based diagnostics come from the configured provider plugins. For registry/GitHub providers, run <code>carina init</code> in the configuration directory so the LSP can load the installed artifact under <code>.carina/providers/</code>; it does not download providers itself. Until then the LSP reports the missing provider as a diagnostic, and it picks the plugin up once it is installed, without restarting the editor. For <code>file://</code> providers, the LSP loads the source component directly and watches that source for changes.</p>
 <h2 id="vs-code-setup">VS Code setup</h2>
 <p>The Carina extension is not published to the VS Code marketplace. Build it from the repository and install the <code>.vsix</code>:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">make </span><span style="color:#86EFAC">vscode-package</span></span>
@@ -48,7 +48,7 @@
 <span class="line"><span style="color:#64748B">  "</span><span style="color:#86EFAC">carina.server.path</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B"> "</span><span style="color:#86EFAC">/path/to/carina-lsp</span><span style="color:#64748B">"</span></span>
 <span class="line"><span style="color:#64748B">}</span></span>
 <span class="line"></span></code></pre>
-<p>The extension also provides syntax highlighting and turns on format-on-save for <code>.crn</code> files. Install it with <code>code --install-extension</code>, not by copying <code>editors/vscode/</code> into <code>~/.vscode/extensions/</code>: a copied directory lacks its npm dependencies and the language client silently fails to start.</p>
+<p>The extension also provides syntax highlighting and turns on format-on-save for <code>.crn</code> files. Install the packaged <code>.vsix</code> with <code>code --install-extension</code>, not by copying <code>editors/vscode/</code> into <code>~/.vscode/extensions/</code>: if client dependencies are missing, the extension reports an error and the language server does not start.</p>
 <p>For TextMate, <code>editors/carina.tmbundle</code> provides the same syntax highlighting.</p>
 <h2 id="neovim-setup">Neovim setup</h2>
 <h3 id="with-nvim-lspconfig">With nvim-lspconfig</h3>
@@ -101,7 +101,7 @@
 <h2 id="code-actions">Code actions</h2>
 <p>The LSP offers quick fixes for selected diagnostics. Open the code-actions menu (in VS Code: light-bulb / <code>Ctrl+.</code>) on a diagnostic to apply one.</p>
 <ul>
-<li><strong>Insert canonical enum identifier</strong> — when an attribute’s value does not match any variant of its enum type, the LSP offers one code action per candidate that replaces the offending value with the canonical namespaced identifier (e.g. <code>aws.s3.Bucket.VersioningStatus.enabled</code>). Both bare-identifier mismatches and quoted string literals are supported.</li>
+<li><strong>Insert canonical enum identifier</strong> — when an attribute’s value does not match any variant of its enum type, the LSP offers one code action per candidate that replaces the offending value with the canonical namespaced identifier (e.g. <code>aws.s3.BucketVersioning.VersioningStatus.enabled</code>). Both bare-identifier mismatches and quoted string literals are supported.</li>
 </ul>
 <h2 id="semantic-tokens">Semantic tokens</h2>
 <p>The LSP emits semantic tokens for richer syntax highlighting beyond what the TextMate grammar can express:</p>

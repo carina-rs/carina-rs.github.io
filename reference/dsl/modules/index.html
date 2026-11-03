@@ -260,6 +260,7 @@ resource-typed module argument or <code>depends_on</code>.</p>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.SecurityGroup</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  group_description</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'Example security group'</span></span>
 <span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> net</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
@@ -278,10 +279,11 @@ you like.</p>
 <span class="line"><span>  arguments.crn   # merged in as peers</span></span>
 <span class="line"><span>  attributes.crn</span></span>
 <span class="line"><span></span></span></code></pre>
-<p>The merged module must declare at least one <code>arguments</code> or <code>attributes</code>
-block; a directory with neither is not treated as a module.</p>
+<p>The merged module must declare at least one argument parameter or output
+attribute. Empty <code>arguments</code> or <code>attributes</code> blocks do not make a directory a module.</p>
 <p>Single-file sources (<code>use { source = "./modules/network.crn" }</code>) are <strong>not supported</strong>:
-the loader returns <code>NotADirectory</code> for any path that is not a directory.
+the loader returns <code>NotADirectory</code> for an existing file source. A missing or
+inaccessible source returns its underlying I/O error.
 If your module is currently a single <code>.crn</code> file, move it into a directory of
 its own.</p>
 <h2 id="module-resolution">Module Resolution</h2>

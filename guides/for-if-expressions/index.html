@@ -104,15 +104,15 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> subnets</span><span style="color:#FBBF24"> =</span><span style="color:#FBBF24"> for</span><span style="color:#F1F5F9"> (</span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">az</span><span style="color:#F1F5F9">) </span><span style="color:#FBBF24">in</span><span style="color:#F1F5F9"> [</span><span style="color:#86EFAC">'ap-northeast-1a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'ap-northeast-1c'</span><span style="color:#F1F5F9">] {</span></span>
-<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> cidr</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "subnet-</span><span style="color:#94A3B8">${az}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">  awscc.ec2.Subnet</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">    vpc_id</span><span style="color:#FBBF24">            =</span><span style="color:#94A3B8"> vpc</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
-<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#94A3B8"> cidr</span></span>
+<span class="line"><span style="color:#94A3B8">    cidr_block</span><span style="color:#FBBF24">        =</span><span style="color:#94A3B8"> cidr_subnet</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'10.0.0.0/16'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">8</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">i</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"><span style="color:#94A3B8">    availability_zone</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> az</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#94A3B8">    tags</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
-<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#86EFAC"> "subnet-</span><span style="color:#94A3B8">${az}</span><span style="color:#86EFAC">"</span></span>
+<span class="line"><span style="color:#F1F5F9">      Name </span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> name</span></span>
 <span class="line"><span style="color:#F1F5F9">    }</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>

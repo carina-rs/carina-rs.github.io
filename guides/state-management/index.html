@@ -23,7 +23,7 @@
 <h2 id="how-state-works">How state works</h2>
 <p>When you run <code>carina apply</code>, Carina records each managed resource and its attributes in a state file. On subsequent runs, it compares the desired state (your <code>.crn</code> files) with the recorded state to determine what needs to change.</p>
 <p>By default, state is stored locally as <code>carina.state.json</code>. Use <code>backend local { path = '...' }</code> to store it at another local path, and configure the S3 backend for team usage.</p>
-<p><code>apply</code> and <code>destroy</code> save state while effects run, not only at the end, so an interrupted run (Ctrl+C, a killed CI job) keeps the results of the operations that already finished. A create that the cloud accepted but that did not finish is recorded as in flight, and the next plan resumes it instead of creating the resource a second time.</p>
+<p><code>apply</code> and <code>destroy</code> checkpoint cumulative state while effects run. After interruption, the last durable checkpoint retains completed work; later work may require recovery. A create with a persisted continuation can be resumed.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
 <p>State format v20 records a token-less <code>create_outcome_unknown</code> row when an
 initial create fails after a request may have reached the cloud but before the
@@ -130,7 +130,7 @@ Argon2 parameters.</p>
 <li>Registers the bucket as a <strong>protected resource</strong> in state, preventing it from being accidentally modified or destroyed</li>
 </ol>
 <p><code>carina plan</code> shows the upcoming bucket creation as a bootstrap plan before the main resource plan.</p>
-<p>To disable auto-creation and require the bucket to exist beforehand, set <code>auto_create = false</code>. If the bucket is missing, <code>carina plan</code> and <code>carina apply</code> will fail with an error.</p>
+<p>Set <code>auto_create = false</code> to disable implicit bucket creation. A missing bucket is an error unless a matching <code>aws.s3.Bucket</code> is explicitly declared for bootstrap.</p>
 <p>To delete an auto-created state bucket, use:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> bucket-delete</span><span style="color:#FBBF24"> &#x3C;</span><span style="color:#86EFAC">bucket-nam</span><span style="color:#F1F5F9">e</span><span style="color:#FBBF24">></span><span style="color:#86EFAC"> --force</span></span>
 <span class="line"></span></code></pre>

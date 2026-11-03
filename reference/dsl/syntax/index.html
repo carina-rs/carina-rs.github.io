@@ -222,7 +222,7 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>Omitting <code>directives.provider</code> keeps the resource on the kind’s default instance. The default instance is identified by the absence of a binding name; it is not surfaced as a completion candidate at the value position of <code>directives { provider = | }</code> for the same reason.</p>
-<p>State files persist the routing decision on each resource’s identifier (the <code>provider_instance</code> field on <code>ResourceId</code> / <code>Directives</code>, written in state v3 and later). Existing state files written before named-instance support continue to load: the field defaults to <code>null</code> and serialises back out only when non-null.</p>
+<p>State files persist the routing decision on each resource’s identifier (the <code>provider_instance</code> field on <code>ResourceId</code> / <code>Directives</code>). Existing state files written before named-instance support continue to load: the field defaults to <code>null</code> and serialises back out only when non-null.</p>
 <h2 id="resource-blocks">Resource Blocks</h2>
 <p>Resources represent cloud infrastructure objects. A resource block specifies the provider, service, and resource type using dot notation, followed by a block of attributes.</p>
 <h3 id="anonymous-resources">Anonymous Resources</h3>
@@ -235,7 +235,7 @@
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>If the schema declares identity paths, Carina generates the resource’s state identity from only those values; paths may name top-level attributes or nested struct fields whose leaf is a scalar or enum. Other create-only values can force replacement without changing the address. Written values are schema-canonicalized. References and composite expressions over references and literals are hashed by their deterministic authored spelling, so their addresses stay stable after apply-time resolution; generated names hash a separately typed prefix. An absent value or an expression containing an unknown or unavailable leaf is an error: write the value or bind the resource with <code>let</code>. A schema with no declared identity falls back to configured top-level create-only attributes and, when none are configured, to the resource’s other attributes. Multiple resources using that attribute-derived fallback are rejected as ambiguous. Equal declared identity values, including equal expression spellings plus equal written values, are also rejected.</p>
+<p>If the schema declares identity paths, Carina generates the resource’s state identity from only those values; paths may name top-level attributes or nested struct fields whose leaf is a scalar or enum. Other create-only values can force replacement without changing the address. Written values are schema-canonicalized. References and composite expressions over references and literals are hashed by their deterministic authored spelling, so their addresses stay stable after apply-time resolution; generated names hash a separately typed prefix. A missing required identity value or a written expression containing an unknown or unavailable leaf is an error: write the value or bind the resource with <code>let</code>. An omitted optional <code>identity_when_present()</code> value contributes an absence marker. A schema with no declared identity falls back to configured top-level create-only attributes and, when none are configured, to the resource’s other attributes. Multiple resources using that attribute-derived fallback are rejected as ambiguous. Equal declared identity values, including equal expression spellings plus equal written values, are also rejected.</p>
 <h3 id="named-resources-let-bindings">Named Resources (Let Bindings)</h3>
 <p>Use <code>let</code> to bind a name to a resource so you can reference its attributes:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> vpc</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
@@ -275,8 +275,13 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> identity</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> read</span><span style="color:#FEF9C3"> aws.sts.CallerIdentity</span><span style="color:#F1F5F9"> {}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.IpamPool</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  address_family</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> ipv4</span></span>
+<span class="line"><span style="color:#94A3B8">  ipam_scope_id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ipam-scope-0123456789abcdef0'</span></span>
 <span class="line"><span style="color:#94A3B8">  source_resource</span><span style="color:#FBBF24"> =</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">    resource_owner</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> identity</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">account_id</span></span>
+<span class="line"><span style="color:#94A3B8">    resource_id</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc-0123456789abcdef0'</span></span>
+<span class="line"><span style="color:#94A3B8">    resource_region</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'ap-northeast-1'</span></span>
+<span class="line"><span style="color:#94A3B8">    resource_type</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'vpc'</span></span>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
@@ -309,7 +314,7 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <h3 id="local-bindings-inside-blocks">Local Bindings Inside Blocks</h3>
-<p>Use <code>let</code> inside a resource block to create block-scoped variables. These are evaluated during parsing but are not sent to the provider:</p>
+<p>Use <code>let</code> inside a resource block to create block-scoped variables. These bindings are substituted into attributes, and their expressions may remain deferred until their inputs resolve. The local names are not sent as provider attributes:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FEF9C3">awscc.ec2.Vpc</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#FBBF24">  let</span><span style="color:#94A3B8"> base_cidr</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '10.0.0.0/16'</span></span>
 <span class="line"></span>
@@ -367,6 +372,7 @@ for loop-element addresses and plan-time move hints.</p>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FEF9C3">awscc.ec2.SecurityGroup</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  group_description</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'Example security group'</span></span>
 <span class="line"><span style="color:#94A3B8">  vpc_id</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> network</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">vpc_id</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
@@ -408,7 +414,7 @@ for loop-element addresses and plan-time move hints.</p>
 
 
 
-<table><thead><tr><th>Construct</th><th>When</th><th>What</th><th>From</th></tr></thead><tbody><tr><td><code>let m = use { source = '...' }</code></td><td>parse time</td><td>DSL source (a module)</td><td>local directory</td></tr><tr><td><code>let x = read &#x3C;type> { }</code></td><td>plan time</td><td>current cloud state</td><td>Cloud API (data source)</td></tr><tr><td><code>import { to = ..., id = ... }</code></td><td>apply time</td><td>an existing cloud resource, adopted into state</td><td>Cloud API + state backend</td></tr><tr><td><code>let x = upstream_state { source = '...' }</code></td><td>plan time</td><td>another Carina project’s <code>exports</code></td><td>state backend</td></tr></tbody></table></div>
+<table><thead><tr><th>Construct</th><th>When</th><th>What</th><th>From</th></tr></thead><tbody><tr><td><code>let m = use { source = '...' }</code></td><td>parse time</td><td>DSL source (a module)</td><td>local directory</td></tr><tr><td><code>let x = read &#x3C;type> { }</code></td><td>plan time when inputs are known; otherwise apply time</td><td>current cloud state</td><td>Cloud API (data source)</td></tr><tr><td><code>import { to = ..., id = ... }</code></td><td>apply time</td><td>an existing cloud resource, adopted into state</td><td>Cloud API + state backend</td></tr><tr><td><code>let x = upstream_state { source = '...' }</code></td><td>plan time</td><td>another Carina project’s <code>exports</code></td><td>state backend</td></tr></tbody></table></div>
 <p>The shape differences track these semantic differences:</p>
 <ul>
 <li><code>use</code> and <code>upstream_state</code> both name an external location via a <code>source</code> attribute and share their shape accordingly.</li>
