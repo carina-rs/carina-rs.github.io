@@ -82,10 +82,10 @@ results there.</p>
 <span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> plan.json</span></span>
 <span class="line"></span></code></pre>
 <p>If the configured backend differs from <code>carina-backend.lock</code>, <code>plan</code>
-prints a backend-drift warning, reads state from the locked old backend,
-and includes a migration-pending note before the plan summary. A saved
-plan produced in this state records the locked backend that supplied the
-state; run <code>carina init --migrate-state</code> before applying.</p>
+prints a backend-drift warning to stderr and reads state from the locked old
+backend. In ordinary text output, the migration-pending note follows the plan
+summary. A saved plan produced in this state records the locked backend that
+supplied the state; run <code>carina init --migrate-state</code> before applying.</p>
 <h3 id="--detailed-exitcode"><code>--detailed-exitcode</code></h3>
 <p>Change the exit code behavior:</p>
 <div class="table-scroll">
@@ -109,11 +109,11 @@ state; run <code>carina init --migrate-state</code> before applying.</p>
 
 
 
-<table><thead><tr><th>Exit code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>No changes needed</td></tr><tr><td><code>1</code></td><td>Error occurred</td></tr><tr><td><code>2</code></td><td>Changes are present (only with <code>--detailed-exitcode</code>)</td></tr></tbody></table></div>
-<p>This is useful in CI pipelines to detect whether changes exist without parsing output.</p>
+<table><thead><tr><th>Exit code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>0</code></td><td>No mutating execution-plan effects; export/directive-only changes may still exist</td></tr><tr><td><code>1</code></td><td>Error occurred</td></tr><tr><td><code>2</code></td><td>Mutating execution-plan effects are present (only with <code>--detailed-exitcode</code>)</td></tr></tbody></table></div>
+<p>This is useful in CI pipelines to detect mutating execution-plan effects without parsing output.</p>
 <h3 id="--refresh-bool"><code>--refresh &#x3C;BOOL></code></h3>
 <p>Refresh managed-resource state from the cloud provider before planning. Defaults to <code>true</code>.</p>
-<p>When set to <code>false</code>, Carina uses cached state for managed resources and prints a warning. Data sources are queries rather than managed objects, so Carina always reads them regardless of this flag. The plan may not reflect the actual managed infrastructure.</p>
+<p>When set to <code>false</code>, Carina uses cached state for managed resources and prints a warning. Data-source reads are independent of this flag: available inputs are queried, while reads depending on new or unresolved resources are deferred to apply. The plan may not reflect the actual managed infrastructure.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --refresh=false</span></span>
 <span class="line"></span></code></pre>
 <h3 id="--json"><code>--json</code></h3>
@@ -243,7 +243,7 @@ PNGs and select between them with <code>&#x3C;picture></code>:</p>
 <span class="line"><span style="color:#64748B">&#x3C;/</span><span style="color:#F1F5F9">picture</span><span style="color:#64748B">></span></span>
 <span class="line"></span></code></pre>
 <h3 id="--check-iam"><code>--check-iam</code></h3>
-<p>Before showing the plan, check whether the AWS caller identity (the role that will run <code>apply</code>) has the IAM actions the providers declare for the planned effects. Carina uses <code>iam:SimulatePrincipalPolicy</code>, and falls back to reading the role’s policies (<code>iam:GetRolePolicy</code>, <code>iam:ListAttachedRolePolicies</code>) when simulation is denied. Missing actions are reported per effect as warnings; the plan does not fail. If the caller identity or its policies cannot be read, the check is skipped with a warning.</p>
+<p>Before showing the plan, check whether the AWS identity from the host’s default credential chain has the IAM actions the providers declare for the planned effects. Provider-instance <code>assume_role</code> identities are not selected by this check, so its caller may differ from the identity executing <code>apply</code>. Carina uses <code>iam:SimulatePrincipalPolicy</code>, and falls back to reading the role’s policies (<code>iam:GetRolePolicy</code>, <code>iam:ListAttachedRolePolicies</code>) when simulation is denied. Missing actions are reported per effect as warnings; the plan does not fail. If the caller identity or its policies cannot be read, the check is skipped with a warning.</p>
 <h3 id="--strict-iam"><code>--strict-iam</code></h3>
 <p>With <code>--check-iam</code>, exit with code <code>1</code> instead of warning when permissions are missing. Requires <code>--check-iam</code>.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --check-iam</span><span style="color:#86EFAC"> --strict-iam</span></span>

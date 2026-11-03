@@ -35,7 +35,7 @@
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> --lock=false</span></span>
 <span class="line"></span></code></pre>
 <h3 id="--parallelism-n"><code>--parallelism &#x3C;N></code></h3>
-<p>Maximum number of provider operations run concurrently. Defaults to <code>8</code>.</p>
+<p>Maximum number of effects executed concurrently. Defaults to <code>8</code>. Preparatory refresh and data-source reads have a separate concurrency limit of <code>5</code>.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> --parallelism=2</span></span>
 <span class="line"></span></code></pre>
 <h3 id="--accept-legacy-name-overrides"><code>--accept-legacy-name-overrides</code></h3>
@@ -48,7 +48,8 @@
 <p>When applying a saved plan, Carina checks the state lineage and serial number against the current state to detect drift since the plan was created.</p>
 <p>A saved plan also records the providers it was computed with: for each provider, the SHA-256 of its WebAssembly component with its locked source and version (or <code>file</code> for a <code>file://</code> source), and a fingerprint of the schema of every resource type the plan touches. <code>carina apply &#x3C;plan></code> loads the providers named in the plan and compares both before it reads any resource or runs any effect. If a provider was re-installed or rebuilt since the plan was made (for example after <code>carina init --upgrade</code>, with a different lock file, or after rebuilding a <code>file://</code> component), or a resource type’s schema changed, apply stops with <code>Provider artifact mismatch</code> or <code>Provider schema mismatch</code> and shows the <code>carina plan --out</code> command to re-run.</p>
 <p>Saved plans are tied to the plan-file format of the Carina version that wrote them. A plan written by another version is rejected with <code>Unsupported plan file version</code>; create it again with <code>carina plan --out</code>.</p>
-<p>The current saved-plan format is 39, superseding 38. It retains resolved
+<p>The current saved-plan format is <code>40</code>, superseding <code>39</code>. It adds the
+absolute source locator and canonical source identity. It retains resolved
 lifecycle directive values and per-element loop expressions, and carries
 complete resolved dependency addresses and the legacy dependency migration
 classification that apply checks against locked state before writing state
@@ -63,9 +64,11 @@ verifies the re-evaluated plaintext against the digest, including for resource
 attributes, provider configuration, and deferred templates. The provider then
 receives the rehydrated plaintext, while state stores the exact digest carried
 by the plan placeholder. If a secret changed or can no longer be found, apply stops
-before any planned provider mutation or state write and asks you to run
-<code>carina plan --out</code> again. A secret that came through a module call is matched
-to that call by its position in the source, not by its name. Apply therefore also
+before planned provider mutations and asks you to run
+<code>carina plan --out</code> again. A required state-format migration or legacy
+data-source cleanup may already have been persisted under the lock. A secret
+that came through a module call is matched to that call by its position in the
+source, not by its name. Apply therefore also
 stops if such a call has moved since the plan was made, for example when a line
 was added above it or its file was renamed. The error names the call’s file and
 line. Saved-plan verification may perform additional
@@ -85,7 +88,7 @@ produce a fresh saved plan.</p>
 <h2 id="confirmation-flow">Confirmation Flow</h2>
 <p>When <code>--auto-approve</code> is not set, Carina follows this flow:</p>
 <ol>
-<li>Refreshes state from the cloud provider for all managed resources and reads all data sources</li>
+<li>Refreshes state from the cloud provider for all managed resources and reads data sources whose inputs are available; reads depending on new or unresolved resources are deferred to apply execution</li>
 <li>Computes and displays the execution plan</li>
 <li>If no changes are needed, prints “No changes needed.” and exits</li>
 <li>Prompts: “Do you want to perform these actions?”</li>
@@ -94,7 +97,7 @@ produce a fresh saved plan.</p>
 <li>Saves the final state to the backend</li>
 <li>Prints a summary of results</li>
 </ol>
-<p>When <code>carina apply</code> creates a plan directly from a configuration directory, data sources are always read. Likewise, <code>carina plan --refresh=false</code> skips only managed-resource refresh before writing a saved plan; it still reads every data source.</p>
+<p>When <code>carina apply</code> creates a plan directly from a configuration directory, it reads data sources whose inputs are available and defers reads depending on new or unresolved resources to apply execution. Likewise, <code>carina plan --refresh=false</code> skips only managed-resource refresh before writing a saved plan; it preserves this data-source read and deferral behavior.</p>
 <h2 id="progress-output">Progress Output</h2>
 <p>When stderr is a terminal, Carina shows a spinner for each running effect. Otherwise (for example in CI), it prints plain lines without colors or cursor movement. In plain mode, an effect that is still running after 30 seconds without printing anything gets a line such as <code>… Still running: Create aws.acm.Certificate cert [1m 30s elapsed]</code>, repeated every 30 seconds, so a long create does not look stalled. An effect that reports its own wait progress gets this line only after 60 seconds of silence. The same applies to <code>carina destroy</code> and <code>carina state refresh</code>.</p>
 <h2 id="error-handling">Error Handling</h2>
@@ -102,7 +105,7 @@ produce a fresh saved plan.</p>
 <li>If an effect fails, Carina refreshes the resource state from the provider to capture any partial changes</li>
 <li>If a create fails after the provider reported the new resource’s identifier, the identifier is still recorded in state. When Carina could read the resource back, the note says <code>resource created; recorded in state, the next apply completes it</code>. When it could not, the note says the provider reported the identifier but the resource could not be observed, with the reason; the next <code>carina plan</code> checks it again</li>
 <li>State is written incrementally while effects run, so results of completed effects survive even if the process is killed before the final save</li>
-<li>The state file is always saved after execution, even if some effects failed, to prevent state drift</li>
+<li>Carina attempts to save final state even when effects fail, while it still owns the state lock. If lock ownership is lost, it stops without a final save; cancellation cleanup can also exhaust its flush budget. Previously persisted checkpoints remain available</li>
 <li>Failed, partial, skipped and interrupted effects are reported in the summary (e.g., “3 succeeded, 1 failed, 1 skipped, 1 outcome unknown”). An effect that was still running when apply stopped is shown as <code>? &#x3C;effect> - interrupted (outcome unknown)</code>; run <code>carina plan</code> to see what it left behind</li>
 <li>Exit codes: <code>0</code> on success; <code>1</code> on an error or when any effect failed, was skipped or was interrupted; <code>2</code> when the only problem is creates that completed partially; <code>130</code> when cancelled with Ctrl+C</li>
 </ul>

@@ -232,7 +232,11 @@ of the on-disk state format:</p>
 
 
 
-<table><thead><tr><th>Kind</th><th>Meaning</th></tr></thead><tbody><tr><td><code>applied</code></td><td>A completed current resource instance with a provider identifier.</td></tr><tr><td><code>none</code></td><td>The row has no current instance, but may retain deposed generations.</td></tr><tr><td><code>create_in_flight</code></td><td>The provider accepted a create that has not completed.</td></tr><tr><td><code>missing_identifier</code></td><td>A legacy or malformed current instance has attributes but no provider identifier.</td></tr></tbody></table></div>
+
+
+
+
+<table><thead><tr><th>Kind</th><th>Meaning</th></tr></thead><tbody><tr><td><code>applied</code></td><td>A completed current resource instance with a provider identifier.</td></tr><tr><td><code>none</code></td><td>The row has no current instance, but may retain deposed generations.</td></tr><tr><td><code>create_in_flight</code></td><td>The provider accepted a create that has not completed.</td></tr><tr><td><code>create_outcome_unknown</code></td><td>The create may have reached the provider, but no provider identifier or resumable token is known. Its <code>identifier</code> is <code>null</code> and <code>attributes</code> is <code>{}</code>.</td></tr><tr><td><code>missing_identifier</code></td><td>A legacy or malformed current instance has attributes but no provider identifier.</td></tr></tbody></table></div>
 <p>Strings, numbers, booleans, lists, and maps are emitted as ordinary JSON.
 Canonical enums use their provider API string. Persisted host encodings and
 secret digests are never emitted. A secret or accepted write-only value is
@@ -354,9 +358,11 @@ trust suffix is the credential class (<code>aws</code> for both AWS providers), 
 metadata-only checker does not receive credentials. Released protocol-v12
 provider artifacts are supported on this command’s metadata-only path; normal
 plan/apply provider loading remains on the current protocol.</p>
-<p>A successful check reports the number of classified rows and any
-orphan/deposed warnings, followed by <code>no state was written</code>. A missing or
-ambiguous dependency on a row still present in configuration is an error. For
+<p>A successful legacy-state check reports the number of classified rows and any
+orphan/deposed warnings, followed by <code>no state was written</code>. Already-current
+state prints <code>State dependency migration check passed: state is already version 21.</code>
+and exits successfully. A missing or ambiguous dependency on a row still present
+in configuration is an error. For
 an orphan or deposed row, known ordering edges remain usable and every
 unresolved legacy name is printed as a warning.</p>
 <p>The check cannot classify rows owned by a deferred loop over <code>upstream_state</code>
@@ -448,7 +454,7 @@ create normally.</p>
 <ul>
 <li><strong>lineage</strong> — unique identifier for the state, used for drift detection</li>
 <li><strong>serial</strong> — incrementing version number</li>
-<li><strong>resources</strong> — list of managed resources with their provider, type, identity, binding, attributes, and dependency bindings</li>
+<li><strong>resources</strong> — list of managed resources with their provider, type, identity, binding, attributes, and complete resolved dependency addresses (including provider-instance routing)</li>
 <li><strong>exports</strong> — values published by the <code>exports</code> block</li>
 <li><strong>exports_version</strong> — version of the exports encoding, independent of the state format version, so older Carina versions can still read exports from a newer state file</li>
 </ul>

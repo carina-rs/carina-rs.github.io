@@ -35,7 +35,7 @@
 <p>Destroy even resources protected by an explicit <code>prevent_destroy = true</code> or by
 their provider schema’s destruction-protection default.</p>
 <h3 id="--parallelism-n"><code>--parallelism &#x3C;N></code></h3>
-<p>Maximum number of provider operations run concurrently. Defaults to <code>8</code>.</p>
+<p>Maximum number of destroy effects executed concurrently. Defaults to <code>8</code>. The preparatory refresh phase has a separate concurrency limit of <code>5</code>.</p>
 <h2 id="progress-and-errors">Progress and Errors</h2>
 <p>Every provider must load before destroy starts. Progress is shown the same way as for <code>carina apply</code>: spinners on a terminal, and plain lines with a periodic <code>… Still running</code> line otherwise (see <a href="/reference/cli/apply/#progress-output">Progress output</a>).</p>
 <h2 id="backend-drift">Backend Drift</h2>

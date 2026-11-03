@@ -45,7 +45,7 @@
 
 <table><thead><tr><th>Flag</th><th>Description</th></tr></thead><tbody><tr><td><code>--tui</code></td><td>Display module info in interactive TUI mode</td></tr></tbody></table></div>
 <h4 id="output-format">Output Format</h4>
-<p>When the directory declares an <code>arguments</code> or <code>attributes</code> block, it is shown as a module signature:</p>
+<p>When the directory declares at least one argument or exported attribute, it is shown as a module signature:</p>
 <ul>
 <li><strong>Module name</strong> — derived from the module’s directory name</li>
 <li><strong>ARGUMENTS</strong> — parameters declared in the <code>arguments</code> block, with type, default or <code>(required)</code>, and description</li>
@@ -71,7 +71,7 @@
 <span class="line"><span>  security_group_id: awscc.ec2.SecurityGroup</span></span>
 <span class="line"><span>  instance_id: awscc.ec2.Instance</span></span>
 <span class="line"><span></span></span></code></pre>
-<p>Otherwise the directory is treated as a root configuration and the output shows <code>File: &#x3C;name></code> with <code>IMPORTS</code> and <code>CREATES</code> sections.</p>
+<p>Otherwise the directory is treated as a root configuration and the output shows <code>File: &#x3C;name></code> with <code>IMPORTS</code> and <code>CREATES</code> sections. Empty <code>arguments {}</code> / <code>attributes {}</code> blocks alone still produce root-configuration output.</p>
 <h3 id="list"><code>list</code></h3>
 <p>List all imported modules in a configuration.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">module</span><span style="color:#86EFAC"> list</span><span style="color:#F1F5F9"> [PATH]</span></span>
