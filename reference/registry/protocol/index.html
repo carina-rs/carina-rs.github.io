@@ -796,7 +796,7 @@ artifact bundle; otherwise only without docs.</p>
 <span class="line"><span>  data-sources/</span></span>
 <span class="line"><span>    ami.md                 # one page per data source</span></span>
 <span class="line"><span></span></span></code></pre>
-<p>A docs bundle is valid only if all of the following hold. The registry checks every rule at publish (§7) and refuses an invalid bundle rather than repairing it.</p>
+<p>A docs bundle is valid only if all of the following hold. The registry checks every rule at publish (§7) and refuses an invalid bundle rather than repairing it. Its validator and renderer are published as <a href="https://github.com/carina-rs/carina-docs-bundle">carina-docs-bundle</a>, whose <code>check</code> command applies these rules to a local archive.</p>
 <ul>
 <li>It is exactly one gzip member holding a POSIX tar archive (<code>ustar</code> or <code>pax</code>), and nothing but zero bytes follows the tar end-of-archive marker.</li>
 <li>Every entry is a regular file or a directory. Symbolic links, hard links, device files, FIFOs and GNU long-name or long-link entries (<code>././@LongLink</code>) are invalid; a provider whose paths exceed the <code>ustar</code> limit writes <code>pax</code> (<code>tar --format=pax</code>). pax global headers (<code>g</code>) are invalid. pax extended headers (<code>x</code>) are metadata, not entries, and do not count toward the entry limit; each is at most 64 KiB; every rule here, including path normalization and the size limits, applies to an entry’s effective <code>path</code> and <code>size</code>, which are the pax values when given.</li>
