@@ -50,7 +50,20 @@
 
 
 
-<table><thead><tr><th>Effect</th><th>Meaning</th></tr></thead><tbody><tr><td><strong>Create</strong></td><td>Provision a new resource</td></tr><tr><td><strong>Update</strong></td><td>Modify an existing resource in place</td></tr><tr><td><strong>Delete</strong></td><td>Remove a resource</td></tr><tr><td><strong>Replace</strong></td><td>Delete and recreate a resource (when a create-only property changes)</td></tr><tr><td><strong>Read</strong></td><td>Query an existing resource without managing it (data source)</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Effect</th><th>Meaning</th></tr></thead><tbody><tr><td><strong>Create</strong></td><td>Provision a new resource</td></tr><tr><td><strong>Update</strong></td><td>Modify an existing resource in place</td></tr><tr><td><strong>Delete</strong></td><td>Remove a resource</td></tr><tr><td><strong>Read</strong></td><td>Query an existing resource without managing it (data source)</td></tr><tr><td><strong>Import</strong></td><td>Adopt an existing cloud resource into state (<code>import</code> block)</td></tr><tr><td><strong>Remove</strong></td><td>Drop a resource from state without deleting it in the cloud (<code>removed</code> block)</td></tr><tr><td><strong>Move</strong></td><td>Rename a resource in state without destroying and recreating it (<code>moved</code> block)</td></tr><tr><td><strong>Wait</strong></td><td>Poll a managed resource until a condition holds before its dependents run (<code>wait</code> expression); not stored in state</td></tr></tbody></table></div>
+<p>There is no separate Replace effect. When a create-only property changes, the plan holds a <strong>Delete</strong> and a <strong>Create</strong> for the same resource, and <code>carina plan</code> shows the pair as one “replace” line.</p>
 <p>Effects are values you can inspect before anything is executed. Running <code>carina plan</code> produces a Plan; running <code>carina apply</code> executes it.</p>
 <h2 id="plan-before-apply">Plan before apply</h2>
 <p>The workflow is always:</p>

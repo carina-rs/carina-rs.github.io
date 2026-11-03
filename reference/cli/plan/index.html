@@ -160,7 +160,7 @@ planning starts.</p>
 <p>The image is meant for reviewing a plan where the text output is hard to scan,
 such as a pull request:</p>
 <ul>
-<li>Each changed resource is a card colored by its effect (create, update,
+<li>Each changed resource is a card colored by its action (create, update,
 replace, delete, and so on). Update cards list the names of the changed
 attributes; replace cards list the attributes that force the replacement.</li>
 <li>Cards are laid out left to right in apply order. Cards in the same column
@@ -172,7 +172,7 @@ so the blast radius of a destructive change is visible at a glance.</li>
 appear only when they connect two changed resources. A module call with no
 changes is collapsed into a single card.</li>
 <li>Resources inside a module call are grouped in a box labelled with the call.</li>
-<li>The header shows per-effect counts, with replace and destroy counts in bold,
+<li>The header shows per-action counts, with replace and destroy counts in bold,
 and the state lineage and serial the plan was computed against.</li>
 </ul>
 <p>The image never contains attribute values, so it can be shared without
@@ -267,16 +267,17 @@ also warns on stderr about a possible state move; see
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">plan</span><span style="color:#86EFAC"> --detailed-exitcode</span></span>
 <span class="line"></span></code></pre>
 <h2 id="output-format">Output Format</h2>
-<p>The plan output shows each resource with its effect type:</p>
+<p>The plan output shows each resource with the action Carina will take:</p>
 <ul>
 <li><strong>Create</strong> (<code>+</code>) — new resource to be created</li>
 <li><strong>Update</strong> (<code>~</code>) — existing resource with attribute changes</li>
 <li><strong>Delete</strong> (<code>-</code>) — resource to be removed</li>
-<li><strong>Replace</strong> (<code>+/-</code>) — resource that must be destroyed and recreated</li>
+<li><strong>Replace</strong> (<code>+/-</code>) — resource that must be destroyed and recreated; the plan
+holds a Delete and a Create for it, shown together as one line</li>
 <li><strong>Release</strong> (<code>!</code>) — an omitted key is no longer authored by the configuration,
 but the remote value is left unchanged because the API does not reset omitted keys</li>
 </ul>
-<p>A summary line shows the total count of each effect type. Releases have their own
+<p>A summary line shows the total count of each action. Releases have their own
 <code>to release</code> count; a plan containing only releases is not reported as “No changes.”</p>
 <h2 id="keyed-partial-update-list-releases">Keyed partial-update list releases</h2>
 <p>Some provider list attributes are maps in list form: every element has a key,
