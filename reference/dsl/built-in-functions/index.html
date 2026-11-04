@@ -140,7 +140,7 @@
 <span class="line"></span></code></pre>
 <h2 id="numeric-functions">Numeric Functions</h2>
 <h3 id="min"><code>min</code></h3>
-<p>Returns the smaller of two numbers. If both are integers, returns an integer. If either is a float, returns a float.</p>
+<p>Returns the smaller of two numbers, comparing their exact values without rounding integers. If both are integers, returns an integer. If either is a float, returns a float; if the selected integer cannot be represented exactly as a float, returns an error.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>min(a: Number, b: Number) -> Number</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">min</span><span style="color:#F1F5F9">(</span><span style="color:#FEF9C3">3</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">5</span><span style="color:#F1F5F9">)      </span><span style="color:#64748B"># => 3</span></span>
@@ -148,7 +148,7 @@
 <span class="line"><span style="color:#94A3B8">min</span><span style="color:#F1F5F9">(</span><span style="color:#FEF9C3">1</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">2.5</span><span style="color:#F1F5F9">)    </span><span style="color:#64748B"># => 1.0</span></span>
 <span class="line"></span></code></pre>
 <h3 id="max"><code>max</code></h3>
-<p>Returns the larger of two numbers. If both are integers, returns an integer. If either is a float, returns a float.</p>
+<p>Returns the larger of two numbers, comparing their exact values without rounding integers. If both are integers, returns an integer. If either is a float, returns a float; if the selected integer cannot be represented exactly as a float, returns an error.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>max(a: Number, b: Number) -> Number</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">max</span><span style="color:#F1F5F9">(</span><span style="color:#FEF9C3">3</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">5</span><span style="color:#F1F5F9">)      </span><span style="color:#64748B"># => 5</span></span>
