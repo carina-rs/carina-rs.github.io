@@ -46,6 +46,31 @@ sequences. Use them whenever you need to embed an expression in a string.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> tag</span><span style="color:#FBBF24">  =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${upper(env)}</span><span style="color:#86EFAC">"</span></span>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "vpc-</span><span style="color:#94A3B8">${join('-', ['prod', 'web'])}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">   # => 'vpc-prod-web'</span></span>
 <span class="line"></span></code></pre>
+<p>An interpolated string builds a string in place, the same way a literal
+does. It can therefore go into an attribute of a named string type, such as
+an IAM role name, even when part of it is only known after apply. Carina
+checks the resolved string against that type’s constraints at plan and
+apply time. The rule is the same whether the interpolation is written
+directly in the attribute or bound to a <code>let</code> first. A value that is only
+known to be a plain <code>String</code>, such as a <code>String</code> module argument, is not
+accepted by a named string type.</p>
+<p>A string that consists of nothing but one reference, <code>"${x}"</code>, is not a new
+string: when <code>x</code> has a string type, <code>"${x}"</code> has exactly the type of <code>x</code> and
+is checked as if you had written <code>x</code>. Wrapping a plain <code>String</code> in <code>"${...}"</code>
+therefore does not let it into a named string type. When <code>x</code> is a number or
+a boolean, <code>"${x}"</code> still converts it to a string, and a named string type
+checks the converted value.</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> suffix</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> source</span><span style="color:#F1F5F9">.</span><span style="color:#94A3B8">value</span><span style="color:#64748B">                     # String, known after apply</span></span>
+<span class="line"><span style="color:#FEF9C3">awscc.iam.RolePolicy</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  role_name</span><span style="color:#FBBF24">   =</span><span style="color:#86EFAC"> 'app'</span></span>
+<span class="line"><span style="color:#94A3B8">  policy_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "</span><span style="color:#94A3B8">${suffix}</span><span style="color:#86EFAC">-inline"</span><span style="color:#64748B">            # accepted; checked once resolved</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#FEF9C3">awscc.iam.RolePolicy</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  role_name</span><span style="color:#FBBF24">   =</span><span style="color:#86EFAC"> 'app'</span></span>
+<span class="line"><span style="color:#94A3B8">  policy_name</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> "</span><span style="color:#94A3B8">${suffix}</span><span style="color:#86EFAC">"</span><span style="color:#64748B">                   # rejected, same as policy_name = suffix</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
 <h4 id="recommended-style">Recommended Style</h4>
 <ul>
 <li><strong>Use single quotes</strong> for literal strings that do not need interpolation
