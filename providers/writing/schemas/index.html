@@ -171,6 +171,7 @@ written.</p>
 <li>Refined scalars carry extra rules: <code>refined_string(identity, pattern, length, to_dsl)</code>, <code>refined_int(identity, range)</code> and <code>refined_float(identity, range)</code>, plus the <code>_with_validator</code> forms described in <a href="#validators-and-type-identities">Validators and type identities</a>.</li>
 <li>Collections: <code>list(inner)</code>, <code>unordered_list(inner)</code> for lists whose order the API does not keep, <code>map(value)</code> and <code>map_with_key(key, value)</code>.</li>
 <li>Refined lists: <code>refined_list(element_type, ordered, length, elements)</code>, with an explicit <code>ListElements::AllowDuplicates</code> or <code>ListElements::Unique</code> policy.</li>
+<li>Refined maps: <code>refined_map(key, value, length)</code>, where <code>length</code> bounds the number of entries.</li>
 <li>Enums: <code>enum_(identity, values, dsl_aliases, validate, to_dsl)</code>.</li>
 <li>Structs: <code>struct_(name, fields)</code>, with fields built from <code>StructField</code>.</li>
 <li>Unions: <code>union(members)</code>, for a value that may take one of several shapes.</li>
