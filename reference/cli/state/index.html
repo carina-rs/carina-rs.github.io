@@ -355,9 +355,11 @@ Local provider trust remains an explicit global option. For example, an
 <span class="line"></span></code></pre>
 <p>Supply overrides only for provider kinds declared by that directory. The
 trust suffix is the credential class (<code>aws</code> for both AWS providers), but the
-metadata-only checker does not receive credentials. Released protocol-v12
-provider artifacts are supported on this command’s metadata-only path; normal
-plan/apply provider loading remains on the current protocol.</p>
+metadata-only checker does not receive credentials. It requires providers built
+for the current protocol (24), just like normal plan/apply loading. Older
+artifacts, including released protocol-v12 providers, are rejected with a
+protocol-version error because their schemas do not declare pattern match
+modes. Rebuild the providers against the current SDK before running the check.</p>
 <p>A successful legacy-state check reports the number of classified rows and any
 orphan/deposed warnings, followed by <code>no state was written</code>. Already-current
 state prints <code>State dependency migration check passed: state is already version 21.</code>
