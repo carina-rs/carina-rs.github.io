@@ -133,6 +133,9 @@
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
+<p>Collection operations use the information they need. <code>length</code> can count a list with pending elements, and <code>keys</code> can return a known map’s keys while its values await apply. <code>values</code>, <code>concat</code>, <code>lookup</code>, and <code>map</code> preserve pending selected values and their dependencies. <code>flatten</code> needs the inner collection shapes for the level it flattens. Scalar operations such as <code>join</code> need their element values before evaluation.</p>
+<p>A secret passed through a typed function parameter or return keeps its input timing. A <code>String</code> annotation does not force a secret containing a resource reference to evaluate during validation.</p>
+<p>This does not make an arbitrary provider output’s membership known. A loop over <code>keys(resource.tags)</code> still requires the map’s keys to be available at that loop’s supported expansion boundary.</p>
 <h3 id="numeric-functions">Numeric functions</h3>
 <div class="table-scroll">
 

@@ -66,6 +66,7 @@
 <span class="line"><span style="color:#F1F5F9">[</span><span style="color:#86EFAC">'a'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'b'</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'c'</span><span style="color:#F1F5F9">] </span><span style="color:#FBBF24">|></span><span style="color:#94A3B8"> join</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'-'</span><span style="color:#F1F5F9">) </span><span style="color:#64748B"># => 'a-b-c' (pipe form)</span></span>
 <span class="line"><span style="color:#94A3B8">join</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">', '</span><span style="color:#F1F5F9">, [</span><span style="color:#86EFAC">'hello'</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">42</span><span style="color:#F1F5F9">])     </span><span style="color:#64748B"># => 'hello, 42'</span></span>
 <span class="line"></span></code></pre>
+<p>Collection membership and element values can become available separately. <code>length</code> and <code>keys</code> can compute from known membership even when elements or values still await apply. Collection-producing functions preserve those pending leaves and their dependency selectors; <code>flatten</code> additionally needs each inner shape at the level being flattened. <code>join</code> requires known scalar elements.</p>
 <h2 id="list-functions">List Functions</h2>
 <h3 id="concat"><code>concat</code></h3>
 <p>Appends items to a list. Data-last argument order for pipe compatibility. The result is <code>base_list</code> followed by <code>items</code>.</p>
@@ -189,6 +190,7 @@
 <h2 id="security-functions">Security Functions</h2>
 <h3 id="secret"><code>secret</code></h3>
 <p>Marks a value as secret. The value is sent to the provider, and plan output displays <code>(secret)</code> instead of the actual value. The serialized representation of <code>Secret</code> in resource state is an Argon2id hash rather than plaintext. Applying <code>secret()</code> to an already-secret value is idempotent.</p>
+<p>Secret values become available when their inputs do. For example, <code>upper(secret(resource.identifier))</code> waits for the identifier while keeping the result protected.</p>
 <p><code>carina plan --out</code> also stores only an Argon2id hash in a typed secret
 placeholder. <code>carina apply &#x3C;plan.json></code> re-evaluates the source configuration,
 verifies that the secret is unchanged, and only then restores the plaintext

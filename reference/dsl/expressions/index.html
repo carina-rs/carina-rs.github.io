@@ -213,7 +213,7 @@ that resource changes, the wait is ordered after its effect.</p>
 <span class="line"></span></code></pre>
 <p>Access on a value that is already known is evaluated immediately. Access whose base depends on a resource or upstream value is deferred until that value is available.</p>
 <h2 id="coalesce-operator">Coalesce Operator (<code>??</code>)</h2>
-<p><code>ref ?? default</code> uses the referenced value when it exists and <code>default</code> when it is absent. The left side may be a value expression (<code>up.accounts</code>, <code>vpc.tags</code>, or a literal); both sides are type-checked, so a default of the wrong type is rejected by <code>validate</code>. A known concrete value is returned immediately, while unresolved references retain fallback behavior.</p>
+<p><code>ref ?? default</code> uses the referenced value when it exists and <code>default</code> when it is absent. The left side may be a value expression (<code>up.accounts</code>, <code>vpc.tags</code>, or a literal); both sides are type-checked, so a default of the wrong type is rejected by <code>validate</code>. A recursively known value is returned immediately, while unresolved references retain fallback behavior.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> orgs</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> upstream_state</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  source</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> '../organizations'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
@@ -248,6 +248,9 @@ that resource changes, the wait is ordered after its effect.</p>
 
 
 <table><thead><tr><th>Left side</th><th>Result</th></tr></thead><tbody><tr><td>Exists (an upstream export, or a resource attribute that has a value)</td><td>The referenced value</td></tr><tr><td>Absent (the loaded upstream state does not export it, or the attribute is unset)</td><td><code>default</code></td></tr><tr><td>Not known yet (upstream state not available, or a value computed during apply)</td><td>Deferred; resolved at apply time</td></tr></tbody></table></div>
+<p>A secret attribute whose inputs are still pending also keeps <code>??</code> deferred; secrecy does not establish that its value is ready.</p>
+<p>An unknown value is not absence. An incomplete read, an unavailable upstream state, a wrong collection kind, or a failed computation cannot select the default. The default is evaluated only after a definitive missing selection; an unused failing default stays lazy.</p>
+<p>A list or map can have known membership while some elements remain pending; that membership can drive managed-resource expansion. During parsing, a concrete left value is selected when its presence is already established. A computed collection can retain <code>??</code> until its references are resolved. When the left operand still needs selection, such as a reference, <code>??</code> retains its alternatives until presence or definitive absence is established; it evaluates the default only when selected.</p>
 <p>Without <code>??</code>, iterating over an export that the upstream state does not have is an error. <code>??</code> chains are right-associative: <code>a ?? b ?? c</code> is <code>a ?? (b ?? c)</code>.</p>
 <h2 id="pipe-operator">Pipe Operator (<code>|></code>)</h2>
 <p>The pipe operator passes the result of the left expression as the last argument to the function on the right. This enables readable left-to-right data transformations.</p>
