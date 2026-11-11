@@ -33,17 +33,15 @@
 <p>Each archive has a matching <code>.sha256</code> file, and <code>checksums-sha256.txt</code> lists them all.</p>
 <p>Stable tags (<code>vX.Y.Z</code>) publish the latest release and update Homebrew. Release candidates (<code>vX.Y.Z-rc.N</code>) appear on the <a href="https://github.com/carina-rs/carina/releases">releases page</a> rather than <code>/releases/latest</code>, and do not update Homebrew. To install one, use its version (for example <code>0.14.0-rc.1</code>) for <code>&#x3C;VERSION></code> above.</p>
 <h2 id="build-from-source">Build from source</h2>
-<p>Prerequisites:</p>
-<ul>
-<li><strong>Rust toolchain</strong> (stable) — install via <a href="https://rustup.rs/">rustup</a></li>
-<li><strong>wasm32-wasip2 target</strong> — required for building provider plugins</li>
-</ul>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">rustup </span><span style="color:#86EFAC">target</span><span style="color:#86EFAC"> add</span><span style="color:#86EFAC"> wasm32-wasip2</span></span>
-<span class="line"></span></code></pre>
+<p>Install <a href="https://rustup.rs/">rustup</a> (1.28.0 or newer). Rustup automatically reads
+<code>rust-toolchain.toml</code> to select the pinned Rust toolchain, <code>clippy</code>, <code>rustfmt</code> and
+<code>wasm32-wasip2</code> target. Toolchain upgrades are explicit pull requests that edit
+that one file.</p>
 <p>Clone the repository (with the WIT definitions submodule) and build in release mode:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">git </span><span style="color:#86EFAC">clone</span><span style="color:#86EFAC"> https://github.com/carina-rs/carina.git</span></span>
 <span class="line"><span style="color:#F1F5F9">cd </span><span style="color:#86EFAC">carina</span></span>
 <span class="line"><span style="color:#F1F5F9">git </span><span style="color:#86EFAC">submodule</span><span style="color:#86EFAC"> update</span><span style="color:#86EFAC"> --init</span><span style="color:#86EFAC"> --recursive</span></span>
+<span class="line"><span style="color:#F1F5F9">rustup </span><span style="color:#86EFAC">toolchain</span><span style="color:#86EFAC"> install</span></span>
 <span class="line"><span style="color:#F1F5F9">cargo </span><span style="color:#86EFAC">build</span><span style="color:#86EFAC"> --release</span></span>
 <span class="line"></span></code></pre>
 <p>The binaries are at <code>target/release/carina</code> and <code>target/release/carina-lsp</code>. Add them to your <code>PATH</code> or copy it to a directory already on your <code>PATH</code>.</p>
