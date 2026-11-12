@@ -175,6 +175,12 @@ attribute from that output before using it as a value.</p>
 
 
 <table><thead><tr><th>Field</th><th>Required</th><th>Meaning</th></tr></thead><tbody><tr><td><code>until</code></td><td>yes</td><td>Condition polled against the target, in the form <code>&#x3C;target>.&#x3C;attribute> == &#x3C;value></code></td></tr><tr><td><code>depends_on</code></td><td>no</td><td>Managed-resource handles that must complete before polling starts</td></tr><tr><td><code>timeout</code></td><td>no</td><td>A <a href="/reference/dsl/types-and-values/#duration">duration</a>; defaults to the target schema’s wait timeout, or 5 minutes</td></tr></tbody></table></div>
+<p>The comparison value accepts string literals, integers, floats, booleans,
+durations, and enum identifiers.</p>
+<p>Strings in a <code>wait</code> condition must be literals. Double-quoted interpolation
+(<code>${...}</code>) is rejected. Single-quoted <code>${...}</code> text and escaped <code>\${...}</code> in
+double quotes remain literal text. As in <code>require</code> conditions, string escapes
+are compared as authored, without unescaping.</p>
 <p>Attributes read through the wait binding (<code>cert_issued.certificate_arn</code>) are the target’s attributes, but a resource that references them is not created until the wait succeeds. Reference the target directly (<code>cert.certificate_arn</code>) to skip the wait. A wait is not stored in state.</p>
 <p><code>depends_on</code> accepts local handles and resource-handle module outputs. For
 example, a consumer module can declare
@@ -360,6 +366,12 @@ the parameter bare is invalid.</p>
 <span class="line"></span></code></pre>
 <h2 id="validate-expressions">Validate Expressions</h2>
 <p>Validate expressions are boolean expressions used in <code>arguments</code> blocks for input validation and in <code>require</code> statements. They support comparison and logical operators.</p>
+<p>Strings in these conditions must be literals. Double-quoted interpolation
+(<code>${...}</code>) is rejected, including in function arguments. Single-quoted <code>${...}</code>
+text and escaped <code>\${</code> in double-quoted strings remain literal text. Condition
+strings retain their authored escape sequences without unescaping them.
+The message following a <code>require</code> condition must also be a literal without
+interpolation; a message is required.</p>
 <h3 id="comparison-operators">Comparison Operators</h3>
 <div class="table-scroll">
 
