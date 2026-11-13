@@ -164,6 +164,14 @@ shown when the condition is false:</p>
 reference every argument declared by the module. An undeclared name is an
 error during validation, even when one of the declared argument values is
 still unresolved.</p>
+<p>In a configuration directory with no <code>arguments</code> or <code>attributes</code> blocks, a
+<code>require</code> condition has no arguments in scope. It may use constants and
+supported constraint functions, but cannot reference directory <code>let</code> bindings
+or resources. Root requirements are always checked during validation. See
+<a href="/reference/dsl/syntax/#require-statement">Require Statement</a>.</p>
+<p>When validated directly, a directory containing either module declaration
+block keeps its <code>require</code> conditions unevaluated as a template, including
+when the block is empty.</p>
 <h3 id="when-constraints-run">When Constraints Run</h3>
 <p>Carina checks a constraint when its input value becomes known:</p>
 <ul>
@@ -179,6 +187,13 @@ successful apply is an error.</li>
 <p>Pending constraints remain attached to the module call and are checked again
 at later resolution boundaries. This matters when an update or replacement
 publishes a value that differs from the value available during planning.</p>
+<p>Saving a plan requires successful validation of root requirements. Saved-plan
+apply reloads current source to check backend drift. Plans that need secret
+verification also validate the current configuration, so both directory and
+module requirements must still pass. Plans without secrets apply the saved
+snapshot without rechecking the current source’s requirements. Pending module
+constraints in that snapshot are still checked when their inputs resolve.
+Plans with an unsupported format version must be regenerated.</p>
 <p>Resource schema value constraints follow the same value-time rule. Carina
 checks authored literal values first, then re-checks reference values against
 schema <code>pattern</code>, <code>length</code>, and numeric <code>range</code> constraints when those values
@@ -279,8 +294,9 @@ you like.</p>
 <span class="line"><span>  arguments.crn   # merged in as peers</span></span>
 <span class="line"><span>  attributes.crn</span></span>
 <span class="line"><span></span></span></code></pre>
-<p>The merged module must declare at least one argument parameter or output
-attribute. Empty <code>arguments</code> or <code>attributes</code> blocks do not make a directory a module.</p>
+<p>To be called as a module, the merged directory must declare at least one
+argument parameter or output attribute. Empty <code>arguments</code> or <code>attributes</code>
+blocks alone do not make it callable.</p>
 <p>Single-file sources (<code>use { source = "./modules/network.crn" }</code>) are <strong>not supported</strong>:
 the loader returns <code>NotADirectory</code> for an existing file source. A missing or
 inaccessible source returns its underlying I/O error.

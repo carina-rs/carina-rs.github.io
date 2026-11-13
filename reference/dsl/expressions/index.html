@@ -442,7 +442,9 @@ interpolation; a message is required.</p>
 <span class="line"><span style="color:#F1F5F9">  }</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
-<p>Function calls can be used in validate expressions:</p>
+<p>Use <code>length</code> in validate expressions. Root <code>require</code> conditions also accept
+<code>len</code> as an alias. Evaluating other direct function calls, including <code>env</code>
+and user-defined functions, produces an error:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  name</span><span style="color:#F1F5F9">: String {</span></span>
 <span class="line"><span style="color:#94A3B8">    validation</span><span style="color:#F1F5F9"> {</span></span>
@@ -462,6 +464,15 @@ argument. To compare two or more module arguments, use a module-level
 <span class="line"></span>
 <span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> min_size</span><span style="color:#F1F5F9"> &#x3C;</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> max_size</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'min_size must not exceed max_size'</span></span>
 <span class="line"></span></code></pre>
+<p>At the root of a configuration directory, <code>require</code> has no arguments in scope.
+Use literal booleans, integers, floats, durations, strings, or <code>null</code>, together
+with operators, parentheses, <code>len</code>, and <code>length</code>. A condition must return a
+boolean. <code>len</code> and <code>length</code> count string bytes; constraint strings retain
+their authored escape spelling, so <code>length("a\nb")</code> is <code>4</code>. Collection literals
+are not part of validate expressions; field access and indexing require a module
+argument as their base. Root references to lets, resources, or other names
+are errors, including in a branch that would otherwise short-circuit.
+Root requirements are always decided during validation.</p>
 <p>Validate expressions are evaluated when their referenced values become known.
 Literal arguments are checked during validation; reference values are checked
 during planning or, for values produced by an upstream effect, during apply
