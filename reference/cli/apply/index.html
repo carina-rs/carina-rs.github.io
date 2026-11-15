@@ -120,7 +120,7 @@ produce a fresh saved plan.</p>
 <li>Exit codes: <code>0</code> on success; <code>1</code> on an error or when any effect failed, was skipped or was interrupted; <code>2</code> when the only problem is creates that completed partially; <code>130</code> when cancelled with Ctrl+C</li>
 </ul>
 <h3 id="state-locking-errors">State Locking Errors</h3>
-<p>If the state is already locked by another process, Carina displays the lock holder and lock ID, and suggests using <code>carina force-unlock</code> if the lock is stale.</p>
+<p>If the state is already locked by another process, Carina displays the lock holder, lock ID, operation, and last update and expiry times in UTC. The message explains that a previous run may have been interrupted before releasing the lock; if so, the lock expires on its own at the displayed time. A running process keeps extending its lock’s expiry. If no other run is using the state, it suggests <code>carina force-unlock</code> to release the lock sooner.</p>
 <h2 id="bootstrap">Bootstrap</h2>
 <p>When an S3 backend is configured but the bucket does not yet exist, <code>carina apply</code> automatically bootstraps the state bucket before applying other changes. The bucket resource can be defined in the <code>.crn</code> configuration, or Carina will auto-create it if <code>auto_create</code> is enabled (the default).</p>
 <h2 id="examples">Examples</h2>
