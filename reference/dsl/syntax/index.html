@@ -334,6 +334,36 @@
 <span class="line"><span style="color:#F1F5F9">}</span></span>
 <span class="line"></span></code></pre>
 <p>When no backend is configured, state is stored locally in <code>carina.state.json</code>.</p>
+<p>The GitHub.com backend requires all three fields:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> github</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  repository</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'owner/infra-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  branch</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'carina-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  path</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'states/prod/carina.state.json'</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
+<p>The repository and explicit branch must already exist. Concrete expressions
+such as <code>env()</code> are accepted; unresolved and secret values are rejected.
+<code>repository</code> is an <code>owner/repo</code> slug. <code>branch</code> must be non-empty and may contain
+<code>/</code>. <code>path</code> is a non-empty relative repository path with no empty or <code>..</code>
+segments, and cannot end in <code>.lock</code>; <code>&#x3C;path>.lock</code> holds the lease.</p>
+<p>Read-only state and export commands also accept
+<code>github://owner/repo/path/to/state.json?branch=states%2Fprod</code>. The <code>branch</code>
+parameter is required and percent-decoded. Unknown query keys and duplicate
+<code>branch</code> parameters are errors. Credentials use non-empty <code>GITHUB_TOKEN</code>,
+then <code>gh auth token --hostname github.com</code>. Require Contents read/write on the
+state repository, or Contents read for upstream and exports consumers.</p>
+<p>Recommend one branch per independently applied state. The hard limit is
+10,000,000 decoded bytes (10 MB), with no splitting. GitHub keeps every version
+in history: use a private repository with narrow access. Plaintext values,
+provider-populated outputs, and resume tokens of unfinished creates remain in
+history; values written as secrets are hashed. Once committed, values cannot
+be removed from every copy, including other people’s clones. S3 by default
+keeps only the latest state.</p>
+<p>Concurrency is measured, not guaranteed by GitHub documentation: over 50 trials
+of simultaneous creates of the same lock file and 50 trials of simultaneous
+updates with the same SHA, each trial had exactly one winner and a 409 loser.
+See <a href="/guides/state-management/#configuring-the-github-backend">GitHub backend and history</a>
+for the protocol’s limits and retention policy.</p>
 <h2 id="state-manipulation">State Manipulation</h2>
 <h3 id="import">Import</h3>
 <p>Import an existing cloud resource into Carina’s state. The address in <code>to</code> names the binding of the resource that adopts it:</p>

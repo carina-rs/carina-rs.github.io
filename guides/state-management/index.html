@@ -139,9 +139,204 @@ Argon2 parameters.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> bucket-delete</span><span style="color:#FBBF24"> &#x3C;</span><span style="color:#86EFAC">bucket-nam</span><span style="color:#F1F5F9">e</span><span style="color:#FBBF24">></span><span style="color:#86EFAC"> --force</span></span>
 <span class="line"></span></code></pre>
 <p>This is a destructive operation that removes the bucket and all state history.</p>
+<h2 id="configuring-the-github-backend">Configuring the GitHub backend</h2>
+<p>Store state in an existing GitHub.com repository and branch:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> github</span><span style="color:#F1F5F9"> {</span></span>
+<span class="line"><span style="color:#94A3B8">  repository</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'owner/infra-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  branch</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'carina-state'</span></span>
+<span class="line"><span style="color:#94A3B8">  path</span><span style="color:#FBBF24"> =</span><span style="color:#86EFAC"> 'states/prod/carina.state.json'</span></span>
+<span class="line"><span style="color:#F1F5F9">}</span></span>
+<span class="line"></span></code></pre>
+<p>All three fields are required. Concrete expressions such as <code>env()</code> are
+accepted. The repository and branch must already exist; Carina never creates
+them or chooses a default branch. The path must be relative, with no empty or
+<code>..</code> segments, and must not end in <code>.lock</code>. Carina stores its lease at
+<code>&#x3C;path>.lock</code>. Only <code>api.github.com</code> is supported.</p>
+<p>Branch names are passed to GitHub as-is. GitHub rejects invalid ref names.</p>
+<p>Authentication uses a non-empty <code>GITHUB_TOKEN</code>, otherwise
+<code>gh auth token --hostname github.com</code>. Grant Contents read/write on the
+state repository. Read-only consumers of <code>upstream_state</code>, exports, or state
+commands need only Contents read. The token is kept outside backend
+configuration, backend locks, and saved plans.</p>
+<p>Carina trims surrounding ASCII whitespace from either credential source.
+A whitespace-only <code>GITHUB_TOKEN</code> falls back to <code>gh</code>; control characters left
+inside a token cause a credential error without displaying the token.
+For fine-grained tokens, include the state repository in the repository selection.
+The token must be allowed to push directly to the state branch. Rulesets or
+branch protection must not block its direct pushes, including by requiring
+changes through a pull request.</p>
+<p>State and lease reads fail closed when Contents access is uncertain. If the path
+returns 404, Carina makes one additional root Contents request at the same
+commit. Only HTTP 200 proves Contents is readable and allows the path to be
+treated as absent, including an empty root returning <code>[]</code>. Branch visibility
+alone is insufficient; root HTTP 403/404 produces a Contents read permission
+error, while other failures retain their API status.</p>
+<p>For read-only access without a configuration directory, use:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> show</span><span style="color:#86EFAC"> --state-url</span><span style="color:#64748B"> '</span><span style="color:#86EFAC">github://owner/infra-state/states/prod/carina.state.json?branch=carina-state</span><span style="color:#64748B">'</span></span>
+<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">export</span><span style="color:#86EFAC"> --state-url</span><span style="color:#64748B"> '</span><span style="color:#86EFAC">github://owner/infra-state/states/prod/carina.state.json?branch=states%2Fprod</span><span style="color:#64748B">'</span></span>
+<span class="line"></span></code></pre>
+<p>The first URL uses the block’s <code>carina-state</code> branch. The second shows
+percent-encoding for a different branch named <code>states/prod</code>.
+The <code>branch</code> query parameter is required. Percent-encode <code>/</code> in branch names
+as <code>%2F</code>. These URLs never acquire a lock or modify state. Offline
+<code>state migrate --check</code> accepts only a local copy, not a GitHub URL.</p>
+<p>Use one branch per independently applied state. State and lease writes
+use the Contents API with the observed blob SHA; mutations of different paths
+on one branch can also conflict. Carina retries branch contention a bounded
+number of times, and stops on a changed target or an unexpected response.
+The maximum state size is 10,000,000 decoded bytes (10 MB), checked on reads
+and before writes. Larger states fail with a size error; they are not split.</p>
+<h3 id="measured-concurrency-not-a-github-guarantee">Measured concurrency, not a GitHub guarantee</h3>
+<p>The concurrency behavior is measured, not guaranteed by GitHub’s
+documentation. In experiments on November 14, 2026, simultaneous creates
+of the same lock file had exactly one winner in 50 of 50 trials, and
+simultaneous updates using the same blob SHA had exactly one winner in
+50 of 50 trials. Every loser returned HTTP 409. Simultaneous creates of
+different paths on the same branch also conflicted in 50 of 50 trials.
+These observations do not establish a guarantee during incidents or future
+GitHub changes. Blob SHAs identify content, not monotonically increasing
+generations, and checking the lease and writing state are separate requests.</p>
+<p>M1 (measured November 15, 2026): GitHub ignores the SHA precondition when the
+file is absent. A PUT carrying a deleted file’s SHA recreates it with HTTP 201,
+so a SHA precondition cannot detect a deletion.</p>
+<p>Carina verifies that an acknowledged mutation’s commit remains on the branch
+with one compare request. A later commit on the same history is accepted;
+a competing history is an unexpected outcome. This check does not prevent
+later changes to the branch or file. Only the comparison’s status and ahead/
+behind counts are parsed. Compare responses have their own 1 MiB body
+limit, separate from the state size limit. If that limit is exceeded, Carina
+reports that the write was committed but could not be verified; it retains
+the acknowledged state SHA for the next save. A November 15, 2026 measurement
+across six commits adding 0.9–20 MB files returned 32,493 bytes: GitHub omitted
+their large patches, though smaller text diffs do include patches.</p>
+<p>When a renewal of an existing lease returns 201, Carina reports that the lock
+is no longer held and attempts to delete the recreated lease using its returned
+SHA. An expired lease that disappears during acquisition may still be created.
+When a state write expected an existing file but returns 201, Carina reports
+a concurrent-deletion conflict and keeps the created state file.</p>
+<p>Locked state saves, including cleanup saves, require more than 65 seconds
+remaining on the observed lease: 60 seconds plus a fixed 5-second clock-skew
+allowance. This adds no request and does not change the cleanup time budget.
+It narrows the expiry window; a force-unlock or takeover can still happen
+between the ownership check and the state PUT. Removal of a recreated lease
+can also fail or race with another client, and does not undo a successor’s
+work during that window.</p>
+<p>If a mutation returns HTTP 500, 502, 503, or 504, Carina attempts to reconcile
+it within the operation deadline, as it does for a lost transport reply. If
+the outcome remains uncertain or a mutation times out, Carina returns the
+error and remembers the uncertain write in memory. A mismatched blob
+acknowledgement also retains this uncertainty. The next mutation in the same
+process resolves it with a Contents metadata read (plus the root access check
+if the path is absent): a blob SHA matching the exact sent bytes is treated
+as our write. Observing the prior SHA means the PUT has not committed yet;
+it can still commit after that observation. Carina keeps the pending sent SHA
+until it is observed or superseded. If a later conditional mutation conflicts
+and observes that pending SHA, Carina adopts it and retries the same mutation
+within the existing retry limit and deadline. This also lets release delete
+our own late renewal, checking both the pending SHA and our lock UUID.
+A different SHA remains a conflict. An acquisition or renewal recovered this
+way recognizes its own lock UUID. Other lost replies
+can also be recovered within the original deadline. For a release or
+force-unlock with a lost reply, an absent lease or a different lock UUID
+confirms release and preserves any successor’s lease.</p>
+<p>An existing state must be loaded by the backend before it can be replaced.
+A fresh backend may create an absent state; discovering an existing blob SHA
+during a save or raw export does not authorize replacing its contents.
+Releasing an already absent lease succeeds. A force-unlock that confirms the
+lease is absent returns <code>LockNotFound</code>; recovery of an earlier lost DELETE
+reply still follows the release rule above.</p>
+<p>Accepted limitation: if a mutation reply is lost while another client
+force-unlocks or deletes in the same window, matching bytes are treated as our
+write even if the PUT recreated a deleted path. Subsequent state writes still
+carry a SHA precondition, so one of the competing writers loses.</p>
+<h3 id="cancellation-cleanup-limits">Cancellation cleanup limits</h3>
+<p>The first shutdown signal stops new provider work and lets in-flight work drain.
+The second signal prioritizes state and lock cleanup and starts these limits:</p>
+<div class="table-scroll">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Backend</th><th>State flush</th><th>Total cleanup</th><th>Backend I/O limit during cleanup</th></tr></thead><tbody><tr><td>Local</td><td>1s</td><td>2s</td><td>Local file operations</td></tr><tr><td>S3</td><td>1s</td><td>2s</td><td>300ms per request, one attempt</td></tr><tr><td>GitHub</td><td>5s</td><td>8s</td><td>4.5s per save; 3s reserved for lock release</td></tr></tbody></table></div>
+<p>Commands without a published mutation backend keep the 2s total. A late state
+flush receives only the time remaining since the second signal. When its limit
+expires, Carina attempts lock release. GitHub bounds each save and release by
+the time remaining until 500ms before the supervisor deadline. A third signal
+exits immediately.</p>
+<p>Whenever a dispatched state save’s outcome is unknown, cleanup reports that
+the save could not be confirmed and tells you to run <code>carina state refresh</code>.
+This includes timeouts, lost transport replies, server errors, and failed
+post-commit verification. A definite write denial still reports a state flush
+failure.</p>
+<p>GitHub writes each state or lock change as a separate commit. Measured GitHub
+latencies were PUT p50 0.93s, p95 1.33s, max 1.88s; DELETE p50
+0.85s; GET p50 0.28s. With an inline lease, a cleanup locked save with a
+cached state SHA takes 3 requests (lease GET, conditional state PUT, compare),
+and release takes 3 (lease GET, conditional DELETE, compare). A cold save
+that discovers absent state takes 6, including a branch snapshot, state
+metadata GET, and a root Contents readability proof. Before the inline-lease
+optimization these paths took 4, 4, and 7, respectively. Split lease reads,
+404 fallback, retries, and uncertain-outcome reconciliation can require more.
+An experiment confirmed that the Contents API accepts the qualified
+<code>refs/heads/&#x3C;branch></code> ref for both <code>main</code> and <code>exp/slash-branch</code>, returning
+HTTP 200 and the same blob SHA as the short ref. This lets the inline lease
+read use a qualified branch ref without an extra request. The ownership and
+TTL check, SHA preconditions, and post-write reachability compare remain in place.</p>
+<p>GitHub Actions sends SIGINT, then SIGTERM 7.5s later, then SIGKILL 2.5s
+after SIGTERM. Carina’s cleanup limit starts at the second signal, so Actions
+can cut off GitHub’s 8s cleanup with SIGKILL. The longer GitHub limit is
+intentional given the measured request costs; it cannot extend the runner’s
+external deadline.</p>
+<p>After a cut-off, run <code>carina state refresh</code> to reconcile state with the provider.
+A cancelled run can leave its lock behind. The next run then reports:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>State is locked by &#x3C;who> (lock ID: &#x3C;id>, operation: apply, last updated &#x3C;time>, expires &#x3C;time>).</span></span>
+<span class="line"><span>A previous run may have been stopped before it released the lock (for example, a CI job cancelled during cleanup); if so, the lock expires on its own at &#x3C;time>.</span></span>
+<span class="line"><span>If no other run is using this state, run: `carina force-unlock &#x3C;id>`</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Either wait for the 60-minute lease to expire or, once the previous process
+has stopped, run the <code>carina force-unlock &#x3C;id></code> command it shows. Refresh
+uses the state lock too, so resolve a leftover lock first.</p>
+<h3 id="state-history-is-kept">State history is kept</h3>
+<p>Keep the state repository <strong>private, with narrow access</strong>. Every version stays
+in Git history. Once committed, a value cannot be removed from every copy,
+including other people’s clones; deleting it from the latest state does not
+erase earlier versions. This retention is an explicit user decision, without
+whole-state encryption.</p>
+<p>State contains the following:</p>
+<ul>
+<li><strong>Plain text:</strong> values not written as secrets, provider-populated outputs,
+and resume tokens of unfinished creates.</li>
+<li><strong>Hashed:</strong> values written as secrets.</li>
+</ul>
+<p>S3 by default keeps only the latest state. GitHub retains every committed
+state and lease version, including values later changed or removed.</p>
 <h2 id="moving-state-to-a-different-backend">Moving state to a different backend</h2>
 <!-- derived-from ../reference/cli/init.md -->
-<p>When you change the <code>backend</code> block — switching from local state to S3,
+<p>When you change the <code>backend</code> block — switching between local, S3, and GitHub,
 or changing the <code>key</code> while reorganizing component directories — the
 state file must move with it. There is a single answer:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">init</span><span style="color:#86EFAC"> --migrate-state</span></span>
@@ -288,4 +483,4 @@ to state.</p>
 <p>Carina locks state during <code>apply</code> and <code>destroy</code> to prevent concurrent modifications, with both backends: the local backend writes a lock file next to the state file, and the S3 backend writes a <code>&#x3C;key>.lock</code> object. <code>plan</code> does not take the lock; it warns if the state changed while it was planning. A running operation keeps renewing its lock, and a lock left behind by a crashed run expires after an hour and can then be taken over. To release a stuck lock sooner, use <code>carina force-unlock &#x3C;lock-id></code>.</p>
 <p>You can disable locking with the <code>--lock=false</code> flag:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">apply</span><span style="color:#86EFAC"> --lock=false</span></span>
-<span class="line"></span></code></pre>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="rail-header rail-header-end" data-astro-cid-mhegfnpm> <button type="button" class="rail-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle="" data-astro-cid-mhegfnpm> <svg class="rail-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-mhegfnpm> <rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-mhegfnpm></rect> <path d="M15 3v18" data-astro-cid-mhegfnpm></path> <polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-mhegfnpm></polyline> <polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-mhegfnpm></polyline> </svg> </button> <p class="rail-label" data-astro-cid-mhegfnpm>On this page</p> </div> <div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#how-state-works" class="toc-link" data-toc-slug="how-state-works" data-astro-cid-obewoz47>How state works</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#state-format-upgrades" class="toc-link" data-toc-slug="state-format-upgrades" data-astro-cid-obewoz47>State format upgrades</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#configuring-the-s3-backend" class="toc-link" data-toc-slug="configuring-the-s3-backend" data-astro-cid-obewoz47>Configuring the S3 backend</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#automatic-bucket-creation" class="toc-link" data-toc-slug="automatic-bucket-creation" data-astro-cid-obewoz47>Automatic bucket creation</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#moving-state-to-a-different-backend" class="toc-link" data-toc-slug="moving-state-to-a-different-backend" data-astro-cid-obewoz47>Moving state to a different backend</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#importing-existing-resources" class="toc-link" data-toc-slug="importing-existing-resources" data-astro-cid-obewoz47>Importing existing resources</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#moving-resources-in-state" class="toc-link" data-toc-slug="moving-resources-in-state" data-astro-cid-obewoz47>Moving resources in state</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#moving-a-let-bound-resource-into-a-for-loop" class="toc-link" data-toc-slug="moving-a-let-bound-resource-into-a-for-loop" data-astro-cid-obewoz47>Moving a let-bound resource into a for loop</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#removing-resources-from-state" class="toc-link" data-toc-slug="removing-resources-from-state" data-astro-cid-obewoz47>Removing resources from state</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#referencing-upstream-state" class="toc-link" data-toc-slug="referencing-upstream-state" data-astro-cid-obewoz47>Referencing upstream state</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-cli-commands" class="toc-link" data-toc-slug="state-cli-commands" data-astro-cid-obewoz47>State CLI commands</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-locking" class="toc-link" data-toc-slug="state-locking" data-astro-cid-obewoz47>State locking</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
+<span class="line"></span></code></pre>  </div> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="site-footer-inner" data-astro-cid-sz7xmlte> <p class="copyright" data-astro-cid-sz7xmlte>© 2026 Carina contributors · MIT License</p> </div> </footer>  </article> <nav class="toc" aria-label="On this page" data-astro-cid-obewoz47><div class="rail-header rail-header-end" data-astro-cid-mhegfnpm> <button type="button" class="rail-toggle" aria-expanded="true" aria-controls="doc-toc-content" aria-label="Hide on this page" data-toc-toggle="" data-astro-cid-mhegfnpm> <svg class="rail-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" data-astro-cid-mhegfnpm> <rect x="3" y="3" width="18" height="18" rx="2" data-astro-cid-mhegfnpm></rect> <path d="M15 3v18" data-astro-cid-mhegfnpm></path> <polyline class="chevron-close" points="8 9 11 12 8 15" data-astro-cid-mhegfnpm></polyline> <polyline class="chevron-open" points="11 9 8 12 11 15" data-astro-cid-mhegfnpm></polyline> </svg> </button> <p class="rail-label" data-astro-cid-mhegfnpm>On this page</p> </div> <div id="doc-toc-content" class="toc-content" data-astro-cid-obewoz47><ul class="toc-list" data-astro-cid-obewoz47><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#how-state-works" class="toc-link" data-toc-slug="how-state-works" data-astro-cid-obewoz47>How state works</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#state-format-upgrades" class="toc-link" data-toc-slug="state-format-upgrades" data-astro-cid-obewoz47>State format upgrades</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#configuring-the-s3-backend" class="toc-link" data-toc-slug="configuring-the-s3-backend" data-astro-cid-obewoz47>Configuring the S3 backend</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#automatic-bucket-creation" class="toc-link" data-toc-slug="automatic-bucket-creation" data-astro-cid-obewoz47>Automatic bucket creation</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#configuring-the-github-backend" class="toc-link" data-toc-slug="configuring-the-github-backend" data-astro-cid-obewoz47>Configuring the GitHub backend</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#measured-concurrency-not-a-github-guarantee" class="toc-link" data-toc-slug="measured-concurrency-not-a-github-guarantee" data-astro-cid-obewoz47>Measured concurrency, not a GitHub guarantee</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#cancellation-cleanup-limits" class="toc-link" data-toc-slug="cancellation-cleanup-limits" data-astro-cid-obewoz47>Cancellation cleanup limits</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#state-history-is-kept" class="toc-link" data-toc-slug="state-history-is-kept" data-astro-cid-obewoz47>State history is kept</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#moving-state-to-a-different-backend" class="toc-link" data-toc-slug="moving-state-to-a-different-backend" data-astro-cid-obewoz47>Moving state to a different backend</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#importing-existing-resources" class="toc-link" data-toc-slug="importing-existing-resources" data-astro-cid-obewoz47>Importing existing resources</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#moving-resources-in-state" class="toc-link" data-toc-slug="moving-resources-in-state" data-astro-cid-obewoz47>Moving resources in state</a></li><li class="toc-item toc-depth-3" data-astro-cid-obewoz47><a href="#moving-a-let-bound-resource-into-a-for-loop" class="toc-link" data-toc-slug="moving-a-let-bound-resource-into-a-for-loop" data-astro-cid-obewoz47>Moving a let-bound resource into a for loop</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#removing-resources-from-state" class="toc-link" data-toc-slug="removing-resources-from-state" data-astro-cid-obewoz47>Removing resources from state</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#referencing-upstream-state" class="toc-link" data-toc-slug="referencing-upstream-state" data-astro-cid-obewoz47>Referencing upstream state</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-cli-commands" class="toc-link" data-toc-slug="state-cli-commands" data-astro-cid-obewoz47>State CLI commands</a></li><li class="toc-item toc-depth-2" data-astro-cid-obewoz47><a href="#state-locking" class="toc-link" data-toc-slug="state-locking" data-astro-cid-obewoz47>State locking</a></li></ul></div></nav> </div>  </main> </div>  </body></html>  
