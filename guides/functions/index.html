@@ -213,7 +213,11 @@
 
 
 
-<table><thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><code>env</code></td><td><code>env(name) -> String</code></td><td>Reads an environment variable; diagnostics never display its contents</td></tr><tr><td><code>secret</code></td><td><code>secret(value) -> Secret</code></td><td>Marks a value as secret (stored as hash in state)</td></tr><tr><td><code>decrypt</code></td><td><code>decrypt(ciphertext, key?) -> Secret</code></td><td>Decrypts base64 ciphertext with host-side AWS KMS; returns a masked secret stored as a hash in state</td></tr></tbody></table></div>
+<table><thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><code>env</code></td><td><code>env(name) -> String</code></td><td>Reads an environment variable as an ordinary string</td></tr><tr><td><code>secret</code></td><td><code>secret(value) -> Secret</code></td><td>Marks a value as secret (stored as hash in state)</td></tr><tr><td><code>decrypt</code></td><td><code>decrypt(ciphertext, key?) -> Secret</code></td><td>Decrypts base64 ciphertext with host-side AWS KMS; returns a masked secret stored as a hash in state</td></tr></tbody></table></div>
+<p><code>env()</code> returns an ordinary string that can appear in diagnostics and plan output.
+An environment variable that must stay hidden is written <code>secret(env('NAME'))</code>:</p>
+<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> password</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> secret</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'DB_PASSWORD'</span><span style="color:#F1F5F9">))</span></span>
+<span class="line"></span></code></pre>
 <h2 id="user-defined-functions">User-defined functions</h2>
 <p>Define reusable logic with the <code>fn</code> keyword:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">fn</span><span style="color:#94A3B8"> tag_name</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">: String, </span><span style="color:#94A3B8">service</span><span style="color:#F1F5F9">: String): String {</span></span>

@@ -181,11 +181,14 @@
 <h2 id="environment-functions">Environment Functions</h2>
 <h3 id="env"><code>env</code></h3>
 <p>Reads an environment variable. Returns an error if the variable is not set.</p>
-<p>Environment values behave like ordinary strings in expressions, plans, providers, and state. To prevent accidental disclosure, diagnostics identify an environment-derived value only by type (for example, <code>got string</code>) and never include its contents. Use <code>secret(env(...))</code> when the value must also be masked in plans and hashed in state.</p>
+<p><code>env()</code> returns an ordinary string that can appear in diagnostics and plan output
+and is stored as plaintext in state. An environment variable that must stay hidden
+is written <code>secret(env('NAME'))</code>; this masks the value and hashes it in state.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>env(name: String) -> String</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> home</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> env</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'HOME'</span><span style="color:#F1F5F9">)</span></span>
 <span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> db_host</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> env</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'DB_HOST'</span><span style="color:#F1F5F9">)</span></span>
+<span class="line"><span style="color:#FBBF24">let</span><span style="color:#94A3B8"> password</span><span style="color:#FBBF24"> =</span><span style="color:#94A3B8"> secret</span><span style="color:#F1F5F9">(</span><span style="color:#94A3B8">env</span><span style="color:#F1F5F9">(</span><span style="color:#86EFAC">'DB_PASSWORD'</span><span style="color:#F1F5F9">))</span></span>
 <span class="line"></span></code></pre>
 <h2 id="security-functions">Security Functions</h2>
 <h3 id="secret"><code>secret</code></h3>
