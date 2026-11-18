@@ -148,7 +148,7 @@ cross a state boundary. Export an identity value such as
 <span class="line"></span></code></pre>
 <p>A <code>validation</code> block is local to the argument that contains it. Its
 <code>condition</code> may reference that argument, but not another argument in the same
-module. Use a module-level <code>require</code> when a rule relates multiple arguments.</p>
+module. Use a <code>require</code> inside the <code>arguments</code> block when a rule relates multiple arguments.</p>
 <h3 id="require-constraints">Require Constraints</h3>
 <p>A <code>require</code> statement declares an invariant across any of the module’s
 arguments. It consists of a boolean condition followed by the error message
@@ -156,22 +156,22 @@ shown when the condition is false:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">arguments</span><span style="color:#F1F5F9"> {</span></span>
 <span class="line"><span style="color:#94A3B8">  min_size</span><span style="color:#F1F5F9">: Int</span></span>
 <span class="line"><span style="color:#94A3B8">  max_size</span><span style="color:#F1F5F9">: Int</span></span>
+<span class="line"><span style="color:#94A3B8">  require</span><span style="color:#94A3B8"> min_size</span><span style="color:#F1F5F9"> &#x3C;</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> max_size</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'min_size must not exceed max_size'</span></span>
 <span class="line"><span style="color:#F1F5F9">}</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:#94A3B8">require</span><span style="color:#94A3B8"> min_size</span><span style="color:#F1F5F9"> &#x3C;</span><span style="color:#FBBF24">=</span><span style="color:#94A3B8"> max_size</span><span style="color:#F1F5F9">, </span><span style="color:#86EFAC">'min_size must not exceed max_size'</span></span>
 <span class="line"></span></code></pre>
 <p>Unlike an argument-local <code>validation</code> block, a <code>require</code> condition can
 reference every argument declared by the module. An undeclared name is an
 error during validation, even when one of the declared argument values is
 still unresolved.</p>
-<p>In a configuration directory with no <code>arguments</code> or <code>attributes</code> blocks, a
-<code>require</code> condition has no arguments in scope. It may use constants and
-supported constraint functions, but cannot reference directory <code>let</code> bindings
-or resources. Root requirements are always checked during validation. See
-<a href="/reference/dsl/syntax/#require-statement">Require Statement</a>.</p>
-<p>When validated directly, a directory containing either module declaration
-block keeps its <code>require</code> conditions unevaluated as a template, including
-when the block is empty.</p>
+<p>Requirements are members of <code>arguments</code> blocks and may appear before or after
+parameters. Their scope includes arguments from all blocks and sibling files
+in the module directory. A <code>require</code> at statement position outside an
+<code>arguments</code> block reports “<code>require</code> must be written inside an <code>arguments</code>
+block” at the keyword. Nested positions, including inside an <code>if</code>, <code>for</code>,
+function, resource, <code>attributes</code>, <code>exports</code>, or per-argument block, produce an
+ordinary syntax error. Root configurations cannot contain <code>arguments</code> blocks.</p>
+<p>When a module directory is validated directly, its requirements remain
+unevaluated until the module is called.</p>
 <h3 id="when-constraints-run">When Constraints Run</h3>
 <p>Carina checks a constraint when its input value becomes known:</p>
 <ul>
@@ -187,10 +187,9 @@ successful apply is an error.</li>
 <p>Pending constraints remain attached to the module call and are checked again
 at later resolution boundaries. This matters when an update or replacement
 publishes a value that differs from the value available during planning.</p>
-<p>Saving a plan requires successful validation of root requirements. Saved-plan
-apply reloads current source to check backend drift. Plans that need secret
-verification also validate the current configuration, so both directory and
-module requirements must still pass. Plans without secrets apply the saved
+<p>Saved-plan apply reloads current source to check backend drift. Plans that need
+secret verification also validate the current configuration, so module
+requirements must still pass. Plans without secrets apply the saved
 snapshot without rechecking the current source’s requirements. Pending module
 constraints in that snapshot are still checked when their inputs resolve.
 Plans with an unsupported format version must be regenerated.</p>
@@ -296,7 +295,8 @@ you like.</p>
 <span class="line"><span></span></span></code></pre>
 <p>To be called as a module, the merged directory must declare at least one
 argument parameter or output attribute. Empty <code>arguments</code> or <code>attributes</code>
-blocks alone do not make it callable.</p>
+blocks, or an <code>arguments</code> block containing only requirements, do not make it
+callable. Calling such a directory reports <code>Module not found</code>.</p>
 <p>Single-file sources (<code>use { source = "./modules/network.crn" }</code>) are <strong>not supported</strong>:
 the loader returns <code>NotADirectory</code> for an existing file source. A missing or
 inaccessible source returns its underlying I/O error.

@@ -79,7 +79,8 @@
 <h2 id="autocompletion">Autocompletion</h2>
 <p>The LSP provides context-aware completions:</p>
 <ul>
-<li><strong>Top-level keywords</strong>: <code>provider</code>, <code>backend</code>, <code>let</code>, <code>let use</code>, <code>import</code>, <code>read</code>, <code>fn</code>, <code>arguments</code>, <code>attributes</code>, <code>exports</code>, <code>moved</code>, <code>removed</code>, <code>require</code>, <code>upstream_state</code>, <code>wait</code></li>
+<li><strong>Top-level keywords</strong>: <code>provider</code>, <code>backend</code>, <code>let</code>, <code>let use</code>, <code>import</code>, <code>read</code>, <code>fn</code>, <code>arguments</code>, <code>attributes</code>, <code>exports</code>, <code>moved</code>, <code>removed</code>, <code>upstream_state</code>, <code>wait</code></li>
+<li><strong>Argument requirements</strong>: Inside an <code>arguments</code> block, complete <code>require</code> alongside parameter declarations</li>
 <li><strong>Resource types</strong>: Type <code>awscc.</code> to see available services, then <code>awscc.ec2.</code> to see resource types</li>
 <li><strong>Attributes</strong>: Inside a resource block, get completions for all valid attributes</li>
 <li><strong>Attribute values</strong>: For enum-typed attributes, get valid value completions</li>
