@@ -25,41 +25,21 @@
 <p>By default, state is stored locally as <code>carina.state.json</code>. Use <code>backend local { path = '...' }</code> to store it at another local path, and configure the S3 backend for team usage.</p>
 <p><code>apply</code> and <code>destroy</code> checkpoint cumulative state while effects run. After interruption, the last durable checkpoint retains completed work; later work may require recovery. A create with a persisted continuation can be resumed.</p>
 <h3 id="state-format-upgrades">State format upgrades</h3>
-<p>State format v20 records a token-less <code>create_outcome_unknown</code> row when an
-initial create fails after a request may have reached the cloud but before the
-provider returns an identifier or continuation. It also makes
-<code>prevent_destroy</code> tri-state, preserving the difference between an omitted
-directive and an explicit <code>false</code> so provider-schema defaults can protect an
-unspecified resource. Carina does not refresh, destroy, or re-create a
-token-less unknown address automatically. If the resource exists, add the
-import block shown by <code>carina plan</code>. If it does not exist, remove only that
-recovery row with <code>carina state forget &#x3C;TYPE> &#x3C;IDENTITY></code> and then plan again.</p>
-<p>State format v21 stores current and deposed dependency metadata as complete,
-typed resource IDs instead of binding-name strings. When Carina reads a v20
-file, it classifies every legacy dependency against state rows and the current
-expanded resource graph. A missing or ambiguous name on a configured row is a
-migration error. An orphan or deposed row retains every known edge and prints
-a warning for each unknown name before rewrite; unknown names are displayed,
-never silently dropped or persisted in v21.</p>
-<p>You can test this migration against a copy without changing either the copy or
-the configured backend:</p>
-<pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#F1F5F9">cp </span><span style="color:#86EFAC">carina.state.json</span><span style="color:#86EFAC"> /tmp/carina-state-migration-check.json</span></span>
-<span class="line"><span style="color:#F1F5F9">carina </span><span style="color:#86EFAC">state</span><span style="color:#86EFAC"> migrate</span><span style="color:#94A3B8"> \</span></span>
-<span class="line"><span style="color:#86EFAC">  --check</span><span style="color:#86EFAC"> /absolute/path/to/infra</span><span style="color:#94A3B8"> \</span></span>
-<span class="line"><span style="color:#86EFAC">  --state-url</span><span style="color:#86EFAC"> /tmp/carina-state-migration-check.json</span></span>
-<span class="line"></span></code></pre>
-<p><code>state migrate --check</code> performs the same graph-aware classification as
-plan/apply without credentials, provider initialization, CRUD or data-source
-calls, upstream-state reads, backend access, locks, network access, cache
-writes, or state writes. It loads schema metadata only from exact installed
-provider artifacts. Repeat <code>--provider-schema KIND=/absolute/provider.wasm</code>
-to select explicit artifacts. The check requires providers built for the
-current protocol (28), including on this metadata-only path. Older artifacts,
-including released protocol-v12 providers, are rejected with a protocol-version
-error because their schemas do not declare pattern match modes. Rebuild them
-against the current SDK before checking the migration. A successful run reports
-configured rows plus orphan/deposed warnings and confirms that no state was
-written.</p>
+<p>Carina’s full-state commands read and write state format v21 only. State at v20 or older must be
+rewritten once with carina v0.15.0: run <code>carina apply</code> or <code>carina state refresh</code>
+with that release, then retry with the current binary. The state body version
+is checked before exports-version validation and resource-row decoding.
+<code>carina state migrate</code> has been removed. Saved plans from earlier builds must be regenerated with
+<code>carina plan --out</code>.</p>
+<p>Current and deposed dependency metadata and persisted <code>depends_on</code> directives
+store complete managed resource IDs. Current instances distinguish applied
+resources, resumable creates, missing identifiers, deposed-only rows, and
+<code>create_outcome_unknown</code> recovery rows. A token-less unknown create may have
+reached the cloud; Carina does not refresh, destroy, or re-create it automatically.
+If the resource exists, add the import block shown by <code>carina plan</code>. If it does
+not exist, use <code>carina state forget &#x3C;TYPE> &#x3C;IDENTITY></code> and plan again.
+<code>prevent_destroy</code> distinguishes an unspecified directive from explicit <code>false</code>,
+so provider-schema defaults can protect an unspecified resource.</p>
 <p>State format v17 adds a top-level <code>exports_version</code> that versions the exports
 encoding separately from the rest of the state file. Readers that only need
 exports (<code>upstream_state</code> and <code>carina export</code>) check <code>exports_version</code> instead
@@ -67,34 +47,25 @@ of the state format version, so a later state format bump does not break a
 downstream project that runs an older Carina, as long as that Carina supports
 the exports encoding. <code>exports_version</code> changes only when the encoding of
 exported values changes.</p>
-<p>This protection starts with v17 itself. A Carina that predates v17 reads
-exports through the full state format check, so it rejects a v17 state with
-“State file version 17 is newer than supported version 16”. Upgrade the projects that read an
-upstream state before applying the upstream project with v17.</p>
+<p>Whenever <code>exports_version</code> is present, exports-only reads do not inspect the
+state body version or decode resource rows. This keeps v17 and later state,
+including future state body versions, readable when their exports encoding is
+supported. Exports-only reads always require <code>exports_version</code>, regardless of
+the state body version.</p>
 <p><code>carina state lookup</code> reads resources only. To read exports from another
 project’s state, use <code>carina export --state-url &#x3C;URL></code>.</p>
-<p>State format v14 stores a redacted secret structurally as a single-key object:</p>
+<p>Redacted secrets are stored structurally as single-key objects:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#64748B">{</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$secret</span><span style="color:#64748B">"</span><span style="color:#64748B">:</span><span style="color:#64748B">"</span><span style="color:#86EFAC">$argon2id$...</span><span style="color:#64748B">"</span><span style="color:#64748B">}</span></span>
 <span class="line"></span></code></pre>
-<p>Ordinary strings are always strings, even when their text starts with
-<code>_secret:</code> and otherwise looks like an older secret marker. User map keys such
-as <code>$secret</code> are stored as <code>$$secret</code> so they cannot be confused with the
-host-owned tag. Loading v13 or older state migrates legacy secret markers only
-inside current and deposed resource attributes; exported strings retain their
-literal value.</p>
-<p>State format v13 gives host-owned values a reserved <code>$</code> namespace. Canonical
-enums are stored under <code>$enum</code>; user map keys that begin with <code>$</code> are escaped
-with one additional <code>$</code> and restored when state is read. Loading an older state
-file migrates legacy enum objects and <code>$</code>-prefixed user keys automatically.</p>
-<p>The v14 loader also preserves the v12 migration for old raw secret markers.
-An <code>_secret:argon2:&#x3C;hash></code> value from an earlier state version is bound to the
-provider, resource type, stored identity, and top-level attribute key from its
-own row, then stored as a <code>$secret</code> object carrying an
-<code>argon2-legacy:&#x3C;row-salt-hex>:&#x3C;hash-hex></code> digest. This load-time upgrade does
-not require the plaintext and does not create a resource change. The next state
-write that has the matching plaintext replaces the legacy digest with a
-standard <code>$argon2id$...</code> PHC digest containing a fresh random salt and explicit
-Argon2 parameters.</p>
+<p>Ordinary strings remain strings even when their text starts with <code>_secret:</code>.
+Host-owned values use a reserved <code>$</code> namespace: canonical enums use <code>$enum</code>,
+and user map keys beginning with <code>$</code> are escaped with one additional <code>$</code>.
+For example, a user <code>$secret</code> key is stored as <code>$$secret</code>.</p>
+<p>Self-contained <code>argon2-legacy:&#x3C;salt-hex>:&#x3C;hash-hex></code> digests remain valid in
+v21 <code>$secret</code> objects. Verification needs no original resource address. A state
+write with matching plaintext replaces this digest with a standard
+<code>$argon2id$...</code> PHC digest containing a fresh random salt and explicit Argon2
+parameters.</p>
 <h2 id="configuring-the-s3-backend">Configuring the S3 backend</h2>
 <p>Add a <code>backend</code> block to your <code>.crn</code> file:</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#FBBF24">backend</span><span style="color:#94A3B8"> s3</span><span style="color:#F1F5F9"> {</span></span>
@@ -178,8 +149,7 @@ error, while other failures retain their API status.</p>
 <p>The first URL uses the block’s <code>carina-state</code> branch. The second shows
 percent-encoding for a different branch named <code>states/prod</code>.
 The <code>branch</code> query parameter is required. Percent-encode <code>/</code> in branch names
-as <code>%2F</code>. These URLs never acquire a lock or modify state. Offline
-<code>state migrate --check</code> accepts only a local copy, not a GitHub URL.</p>
+as <code>%2F</code>. These URLs never acquire a lock or modify state.</p>
 <p>Use one branch per independently applied state. State and lease writes
 use the Contents API with the observed blob SHA; mutations of different paths
 on one branch can also conflict. Carina retries branch contention a bounded
