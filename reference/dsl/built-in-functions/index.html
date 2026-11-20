@@ -89,6 +89,7 @@
 <span class="line"></span></code></pre>
 <h3 id="length"><code>length</code></h3>
 <p>Returns the number of elements in a list or map, or the length of a string in bytes (UTF-8).</p>
+<p>A resource loop binding is a structural handle, so <code>length(rs)</code> is invalid. Select attributes into an explicitly authored value collection instead. Counting a list with pending members does not make those members eligible as value keys: a simple bound loop needs distinct public Strings; use <code>(i, x)</code> for index addresses. String keys must also round-trip through state address canonicalization and decomposition; use <code>(i, x)</code> for keys rejected until <a href="https://github.com/carina-rs/carina/issues/4552">carina#4552</a> fixes escaping.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>length(value: list(Any) | map(Any) | String) -> Int</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">length</span><span style="color:#F1F5F9">([</span><span style="color:#FEF9C3">1</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">2</span><span style="color:#F1F5F9">, </span><span style="color:#FEF9C3">3</span><span style="color:#F1F5F9">])       </span><span style="color:#64748B"># => 3</span></span>
@@ -119,7 +120,7 @@
 <span class="line"></span></code></pre>
 <h2 id="map-functions">Map Functions</h2>
 <h3 id="keys"><code>keys</code></h3>
-<p>Returns the keys of a map as a sorted list of strings.</p>
+<p>Returns the keys of a map as a sorted list of strings. It accepts a map value, not a resource-loop handle; <code>keys(rs)</code> is invalid for a bound loop. Simple list and map loop instances use String subscripts when selecting attributes.</p>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>keys(map: map(Any)) -> list(String)</span></span>
 <span class="line"><span></span></span></code></pre>
 <pre class="astro-code carina-dark" style="background-color:#1e293b;color:#f1f5f9; overflow-x: auto;" tabindex="0" data-language="crn"><code><span class="line"><span style="color:#94A3B8">keys</span><span style="color:#F1F5F9">({ </span><span style="color:#94A3B8">b</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 2</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">a</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 1</span><span style="color:#F1F5F9">, </span><span style="color:#94A3B8">c</span><span style="color:#FBBF24"> =</span><span style="color:#FEF9C3"> 3</span><span style="color:#F1F5F9"> })  </span><span style="color:#64748B"># => ['a', 'b', 'c']</span></span>
